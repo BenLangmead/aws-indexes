@@ -1,3 +1,5 @@
+Public hosting of these index files is possible thanks to the Amazon Web Services [Public Dataset Program](https://aws.amazon.com/opendata/public-datasets/).
+
 # Bowtie 2 indexes
 
 [Bowtie](http://bowtie-bio.sourceforge.net) and [Bowtie 2](http://bowtie-bio.sourceforge.net/bowtie2) are read aligners for sequencing reads.  Bowtie specializes in short reads, generally about 50bp or shorter.  Bowtie 2 specializes in longer reads, up to around hundreds of base pairs.
