@@ -190,7 +190,7 @@ Human | GRCh38 | NCBI? | [genotypes][htg_genotypes]
 
 See the Kraken 2 manual for more information about the individual libraries and their relationship to public repositories.
 
-The Minikraken packages contain both a Kraken 2 database and Bracken databases for 100mers, 150mers, and 200mers.
+All packages contain a Kraken 2 database along with Bracken databases built for 100mers, 150mers, and 200mers.
 
 <div class="datatable-begin"></div>
 
@@ -208,3 +208,20 @@ Minikraken v2 | Refseq `bacteria`, `archaea`, `viral`, `human` |  8 GB | [.tar.g
 
 # Kraken 2 & Bracken 16s RNA indexes
 
+All packages contain a Kraken 2 database along with Bracken databases built for 100mers, 150mers, and 200mers.
+
+Collection              | Size     | Files
+----------------------- | -------- | -----------
+Greengenes 13.5         |  73.2 MB | [.tar.gz][k2_16s_greengenes_135]
+RDP 11.5                |  168 MB  | [.tar.gz][k2_16s_rdp_115]
+Silva 132               |  117 MB  | [.tar.gz][k2_16s_silva_132]
+Silva 138               |  112 MB  | [.tar.gz][k2_16s_silva_138]
+
+[k2_16s_greengenes_135]: https://aws.amazon.com
+[k2_16s_rdp_115]: https://aws.amazon.com
+[k2_16s_silva_132]: https://aws.amazon.com
+[k2_16s_silva_138]: https://aws.amazon.com
+[//]: # ([k2_16s_greengenes_135]: ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/16S_Greengenes13.5_20200326.tgz)
+[//]: # ([k2_16s_rdp_115]: ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/16S_RDP11.5_20200326.tgz)
+[//]: # ([k2_16s_silva_132]: ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/16S_Silva132_20200326.tgz)
+[//]: # ([k2_16s_silva_138]: ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/16S_Silva138_20200326.tgz)
