@@ -101,14 +101,35 @@ Rat   | rn4 | [UCSC][bt2_rn4_source] | [full zip][bt2_rn4_full], [.1.bt2][bt2_rn
 
 # HISAT2 indexes
 
+Note that indexes with `rep` in the name require HISAT2 v2.2.0 or above.
+
 <div class="datatable-begin"></div>
 
 Species | Build      | FASTA source | Files
 ------- | ---------  | ------------ | -----------
-Human   | hg38       | [UCSC]()     | [full zip](), [.1.bt2](), [.2.bt2](), [.3.bt2](), [.4.bt2](), [.rev.1.bt2](), [.rev.2.bt2]()
-Human   | GRCh38     | [NCBI]()     | [full zip](), [`.1.bt2`](), [`.2.bt2`](), [`.3.bt2`](), [`.4.bt2`](), [`.rev.1.bt2`](), [`.rev.2.bt2`]()
-
+Human   | GRCh38     | [Ensembl][ht2_grch38_source]     | [genome][ht2_grch38_genome], [snp][ht2_grch38_snp], [tran][ht2_grch38_tran], [snp+tran][ht2_grch38_snptran], [rep][ht2_grch38_rep], [snp+rep][ht2_grch38_snprep]
+Human   | hg38       | [UCSC][ht2_hg38_source]     | [genome][ht2_hg38_genome], [tran][ht2_hg38_tran]
+Human   | GRCh37     | [NCBI][ht2_grch37_source]     | [genome][ht2_grch37_genome], [snp][ht2_grch37_snp], [tran][ht2_grch37_tran], [snp+tran][ht2_grch37_snptran]
+Human   | hg19       | [UCSC][ht2_hg19_source]     | [genome][ht2_hg19_genome]
+Mouse   | GRCm38     | [NCBI][ht2_grcm38_source]     | [genome][ht2_grcm38_genome], [snp][ht2_grcm38_snp], [tran][ht2_grcm38_tran], [snp+tran][ht2_grcm38_snptran]
+Mouse   | mm10       | [UCSC][ht2_mm10_source]     | [genome][ht2_mm10_genome]
+Rat     | rn6        | [UCSC][ht2_rn6_source]     | [genome][ht2_rn6_genome]
+Drosophila | BDGP6 | [Ensembl][ht2_bdgp6_source]  | [genome][ht2_bdgp6_genome], [tran][ht2_bdgp6_tran]
+Drosophila | dm6 | [UCSC][ht2_dm6_source]  | [genome][ht2_dm6_genome]
+C. elegans | WBcel235 | [Ensembl][ht2_wbcel235_source]  | [genome][ht2_wbcel235_genome], [tran][ht2_wbcel235_tran]
 <div class="datatable-end"></div>
+
+[ht2_grch38_source]: https://github.com/DaehwanKimLab/hisat2/blob/master/scripts/make_grch38.sh
+[ht2_grch38_genome]: https://cloud.biohpc.swmed.edu/index.php/s/grch38/download
+[ht2_grch38_snp]: https://cloud.biohpc.swmed.edu/index.php/s/grch38_snp/download
+[ht2_grch38_tran]: https://cloud.biohpc.swmed.edu/index.php/s/grch38_tran/download
+[ht2_grch38_snptran]: https://cloud.biohpc.swmed.edu/index.php/s/grch38_snp_tran/download
+[ht2_grch38_rep]: https://cloud.biohpc.swmed.edu/index.php/s/grch38_rep/download
+[ht2_grch38_snprep]: https://cloud.biohpc.swmed.edu/index.php/s/grch38_snp_rep/download
+
+[ht2_hg38_source]: https://github.com/DaehwanKimLab/hisat2/blob/master/scripts/make_hg38.sh
+[ht2_hg38_genome]: https://cloud.biohpc.swmed.edu/index.php/s/hg38/download
+[ht2_hg38_tran]: https://cloud.biohpc.swmed.edu/index.php/s/hg38_tran/download
 
 # HISAT-genotype allele files
 
