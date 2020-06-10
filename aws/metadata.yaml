@@ -1,0 +1,17 @@
+Name: Genome databases on AWS
+Description: Genomic, pan-genomic and metagenomic indexes for analysis of sequencing data
+Documentation: https://benlangmead.github.io/aws-indexes/
+Contact:
+  - langmea@cs.jhu.edu
+  - daehwan.kim@utsouthwestern.edu
+ManagedBy: "[JHU](http://www.jhu.edu/), [UTSW](https://www.utsouthwestern.edu)"
+UpdateFrequency: Annually
+Tags:
+  - genomics
+  - metagenomics
+  - alignment
+  - read alignment
+  - pan genomics
+  - sequencing
+  - DNA sequencing
+License: There are no restrictions on the use of this data.
