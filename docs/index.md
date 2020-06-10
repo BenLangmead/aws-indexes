@@ -138,6 +138,38 @@ C. elegans | WBcel235 | [Ensembl][ht2_wbcel235_source]  | [genome][ht2_wbcel235_
 [ht2_hg38_genome]: https://cloud.biohpc.swmed.edu/index.php/s/hg38/download
 [ht2_hg38_tran]: https://cloud.biohpc.swmed.edu/index.php/s/hg38_tran/download
 
+[ht2_grch37_source]: https://github.com/infphilo/hisat2/blob/master/scripts/make_grch37.sh
+[ht2_grch37_genome]: https://cloud.biohpc.swmed.edu/index.php/s/grch37/download
+[ht2_grch37_snp]: https://cloud.biohpc.swmed.edu/index.php/s/grch37_snp/download
+[ht2_grch37_tran]: https://cloud.biohpc.swmed.edu/index.php/s/grch37_tran/download
+[ht2_grch37_snptran]: https://cloud.biohpc.swmed.edu/index.php/s/grch37_snp_tran/download
+
+[ht2_hg19_source]: https://github.com/DaehwanKimLab/hisat2/blob/master/scripts/make_hg19.sh
+[ht2_hg19_genome]: https://cloud.biohpc.swmed.edu/index.php/s/hg19/download
+
+[ht2_grcm38_source]: https://github.com/infphilo/hisat2/blob/master/scripts/make_grcm38.sh
+[ht2_grcm38_genome]: https://cloud.biohpc.swmed.edu/index.php/s/grcm38/download
+[ht2_grcm38_snp]: https://cloud.biohpc.swmed.edu/index.php/s/grcm38_snp/download
+[ht2_grcm38_tran]: https://cloud.biohpc.swmed.edu/index.php/s/grcm38_tran/download
+[ht2_grcm38_snptran]: https://cloud.biohpc.swmed.edu/index.php/s/grcm38_snp_tran/download
+
+[ht2_mm10_source]: https://github.com/DaehwanKimLab/hisat2/blob/master/scripts/make_mm10.sh
+[ht2_mm10_genome]: https://cloud.biohpc.swmed.edu/index.php/s/mm10/download
+
+[ht2_rn6_source]: https://github.com/DaehwanKimLab/hisat2/blob/master/scripts/make_rn6.sh
+[ht2_rn6_genome]: https://cloud.biohpc.swmed.edu/index.php/s/rn6/download
+
+[ht2_bdgp6_source]: https://github.com/infphilo/hisat2/blob/master/scripts/make_bdgp6.sh
+[ht2_bdgp6_genome]: ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/bdgp6.tar.gz
+[ht2_bdgp6_tran]: ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/bdgp6_tran.tar.gz
+
+[ht2_dm6_source]: https://github.com/infphilo/hisat2/blob/master/scripts/make_dm6.sh
+[ht2_dm6_genome]: ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/dm6.tar.gz
+
+[ht2_wbcel235_source]: https://github.com/infphilo/hisat2/blob/master/scripts/make_wbcel235.sh
+[ht2_wbcel235_genome]: ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/wbcel235.tar.gz
+[ht2_wbcel235_tran]: ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/data/wbcel235_tran.tar.gz
+
 # HISAT-genotype allele files
 
 # Kraken 2 & Bracken indexes
