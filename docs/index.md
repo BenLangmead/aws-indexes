@@ -190,11 +190,21 @@ Human | GRCh38 | NCBI? | [genotypes][htg_genotypes]
 
 See the Kraken 2 manual for more information about the individual libraries and their relationship to public repositories.
 
+The Minikraken packages contain both a Kraken 2 database and Bracken databases for 100mers, 150mers, and 200mers.
+
 <div class="datatable-begin"></div>
 
-Collection | Libraries  | Files
----------- | ---------  | -----------
-Minikraken | hg38       | [hash.k2d](), [opts.k2d](), [taxo.k2d](), [Bracken]
-Human      | GRCh38     | [hash.k2d](), [opts.k2d](), [taxo.k2d](), [Bracken]
+Collection    |     Contains                                   | Size  | Files
+------------- | ---------------------------------------------- | ----- | -----------
+Minikraken v1 | Refseq `bacteria`, `archaea`, `viral`          |  8 GB | [.tar.gz][k2_mini_v1]
+Minikraken v2 | Refseq `bacteria`, `archaea`, `viral`, `human` |  8 GB | [.tar.gz][k2_mini_v2]
 
 <div class="datatable-end"></div>
+
+[k2_mini_v1]: https://aws.amazon.com
+[k2_mini_v2]: https://aws.amazon.com
+[//]: # ([k2_mini_v1]: ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/old/minikraken2_v1_8GB_201904.tgz)
+[//]: # ([k2_mini_v2]: ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/old/minikraken2_v2_8GB_201904.tgz)
+
+# Kraken 2 & Bracken 16s RNA indexes
+
