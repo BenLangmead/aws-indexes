@@ -101,7 +101,14 @@ Rat   | rn4 | [UCSC][bt2_rn4_source] | [full zip][bt2_rn4_full], [.1.bt2][bt2_rn
 
 # HISAT2 indexes
 
-Note that indexes with `rep` in the name require HISAT2 v2.2.0 or above.
+There are different types of indexes depending on whether transcripts and/or single-nucleotide variants are included in the graph index:
+
+* "genome": HISAT2 index for linear reference
+* "snp": HISAT2 index for graph reference including SNPs
+* "tran": HISAT2 index for reference plus annotated transcripts
+* "snp+tran": HISAT2 index for reference including SNPs, plus annotated transcripts
+
+Indexes with `rep` in the name require HISAT2 v2.2.0 or above.
 
 <div class="datatable-begin"></div>
 
