@@ -8,16 +8,46 @@ In the past, Bowtie 1 & 2 had incompatible genome indexes.  This changed in July
 
 See the manuals for Bowtie & Bowtie 2 for further details.
 
-Note: links are placeholders for now.  They will be replaced when the public repo is available.
+Note: all links are placeholders for now.  They will be replaced when the public repo is available.
 
 <div class="datatable-begin"></div>
 
 Species | Build      | FASTA source | Files
 ------- | ---------  | ------------ | -----------
-Human   | hg38       | [UCSC]()     | [full zip](), [.1.bt2](), [.2.bt2](), [.3.bt2](), [.4.bt2](), [.rev.1.bt2](), [.rev.2.bt2]()
-Human   | GRCh38     | [NCBI]()     | [full zip](), [`.1.bt2`](), [`.2.bt2`](), [`.3.bt2`](), [`.4.bt2`](), [`.rev.1.bt2`](), [`.rev.2.bt2`]()
+Human   | hg38       | [UCSC][bt2_hg38_source] | [full zip][bt2_hg38_full], [.1.bt2][bt2_hg38_1], [.2.bt2][bt2_hg38_2], [.3.bt2][bt2_hg38_3], [.4.bt2][bt2_hg38_4], [.rev.1.bt2][bt2_hg38_r1], [.rev.2.bt2][bt2_hg38_r2]
+Human   | GRCh38     | [NCBI][bt2_GRCh38_source]     | [full zip][bt2_GRCh38_full], [.1.bt2][bt2_GRCh38_1], [.2.bt2][bt2_GRCh38_2], [.3.bt2][bt2_GRCh38_3], [.4.bt2][bt2_GRCh38_4], [.rev.1.bt2][bt2_GRCh38_r1], [.rev.2.bt2][bt2_GRCh38_r2]
+Human   | GRCh38 + major SNVs* | [NCBI][bt2_grch38_1kgmaj_source] | [full zip][bt2_grch38_1kgmaj_full], [.1.bt2][bt2_grch38_1kgmaj_1], [.2.bt2][bt2_grch38_1kgmaj_2], [.3.bt2][bt2_grch38_1kgmaj_3], [.4.bt2][bt2_grch38_1kgmaj_4], [.rev.1.bt2][bt2_grch38_1kgmaj_r1], [.rev.2.bt2][bt2_grch38_1kgmaj_r2]
 
 <div class="datatable-end"></div>
+
+* Major SNVs determined from [1000 Genomes Project](https://www.internationalgenome.org) variant calls.  [Details here](https://github.com/BenLangmead/bowtie-majref).
+
+[bt2_hg38_source]: https://aws.amazon.com
+[bt2_hg38_full]: https://aws.amazon.com
+[bt2_hg38_1]: https://aws.amazon.com
+[bt2_hg38_2]: https://aws.amazon.com
+[bt2_hg38_3]: https://aws.amazon.com
+[bt2_hg38_4]: https://aws.amazon.com
+[bt2_hg38_r1]: https://aws.amazon.com
+[bt2_hg38_r2]: https://aws.amazon.com
+
+[bt2_GRCh38_source]: https://aws.amazon.com
+[bt2_GRCh38_full]: https://aws.amazon.com
+[bt2_GRCh38_1]: https://aws.amazon.com
+[bt2_GRCh38_2]: https://aws.amazon.com
+[bt2_GRCh38_3]: https://aws.amazon.com
+[bt2_GRCh38_4]: https://aws.amazon.com
+[bt2_GRCh38_r1]: https://aws.amazon.com
+[bt2_GRCh38_r2]: https://aws.amazon.com
+
+[bt2_grch38_1kgmaj_source]: https://aws.amazon.com
+[bt2_grch38_1kgmaj_full]: https://aws.amazon.com
+[bt2_grch38_1kgmaj_1]: https://aws.amazon.com
+[bt2_grch38_1kgmaj_2]: https://aws.amazon.com
+[bt2_grch38_1kgmaj_3]: https://aws.amazon.com
+[bt2_grch38_1kgmaj_4]: https://aws.amazon.com
+[bt2_grch38_1kgmaj_r1]: https://aws.amazon.com
+[bt2_grch38_1kgmaj_r2]: https://aws.amazon.com
 
 # HISAT2 indexes
 
