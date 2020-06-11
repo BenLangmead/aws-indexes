@@ -1,9 +1,9 @@
 theme: jekyll-theme-minimal
-title: GitHub pages template
-description: A simple template based on minimal jekyll theme
+title: Cloud indexes
+description: Links to genomic index files available in public clouds
 show_downloads: False
 navigation:
   - title: Home
     url: /
-  - title: Setup
-    url: setup
+  - title: Tutorial
+    url: tutorial
