@@ -1,2 +1,9 @@
-theme: jekyll-theme-slate
-show_downloads: false
+theme: jekyll-theme-minimal
+title: GitHub pages template
+description: A simple template based on minimal jekyll theme
+show_downloads: False
+navigation:
+  - title: Home
+    url: /
+  - title: Setup
+    url: setup
