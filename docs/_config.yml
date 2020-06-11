@@ -11,7 +11,11 @@ navigation:
     url: hisat
   - title: Kraken/Bracken
     url: k2
-  - title: centrifuge
+  - title: Centrifuge
     url: centrifuge
+  - title: Downloading
+    url: download
+  - title: Using in AWS
+    url: aws
   - title: Tutorials
     url: tutorial
