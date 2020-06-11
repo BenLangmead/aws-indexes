@@ -213,7 +213,7 @@ All packages contain a Kraken 2 database along with Bracken databases built for 
 <div class="datatable-begin"></div>
 
 Collection              | Date             | Size     | Files
------------------------ | ---------------- | -------- | -----------
+----------------------- | ---------------- | -------- | -----
 Greengenes 13.5         |  March, 2020     | 73.2 MB  | [.tar.gz][k2_16s_greengenes_135]
 RDP 11.5                |  March, 2020     | 168 MB   | [.tar.gz][k2_16s_rdp_115]
 Silva 132               |  March, 2020     | 117 MB   | [.tar.gz][k2_16s_silva_132]
@@ -238,7 +238,7 @@ Centrifuge is a very rapid and memory-efficient system for the classification of
 <div class="datatable-begin"></div>
 
 Collection                                           | Date            | Size    | Files
----------------------------------------–------------ | --------------- | ------- | --------------------
+---------------------------------------------------- | --------------- | ------- | -----
 Refseq: bacteria, archaea, viral, human (compressed) |  December, 2016 | 5.4 GB  | [.tar.gz][cent_bavm_comp]
 Refseq: bacteria, archaea, viral, human              |  December, 2016 | 7.9 GB  | [.tar.gz][cent_bavm]
 Refseq: bacteria, archaea (compressed)               |  April, 2018    | 64 GB   | [.tar.gz][cent_ba_comp]
