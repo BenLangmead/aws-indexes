@@ -184,7 +184,7 @@ Human | GRCh38 | NCBI? | [genotypes][htg_genotypes]
 
 [htg_genotypes]: ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat-genotype/data/genotype_genome_20180128.tar.gz
 
-# Kraken 2 & Bracken indexes
+# Kraken 2 / Bracken Refseq indexes
 
 [Kraken 2](https://github.com/DerrickWood/kraken2/wiki) is a fast and memory efficient tool for taxonomic assignment of metagenomics sequencing reads.  [Bracken](https://ccb.jhu.edu/software/bracken/) is a related tool that additionally estimates relative abundances of species or genera.
 
@@ -194,10 +194,10 @@ All packages contain a Kraken 2 database along with Bracken databases built for 
 
 <div class="datatable-begin"></div>
 
-Collection    |     Contains                                   | Size  | Files
-------------- | ---------------------------------------------- | ----- | -----------
-Minikraken v1 | Refseq `bacteria`, `archaea`, `viral`          |  8 GB | [.tar.gz][k2_mini_v1]
-Minikraken v2 | Refseq `bacteria`, `archaea`, `viral`, `human` |  8 GB | [.tar.gz][k2_mini_v2]
+Collection    |     Contains                            | Size  | Files
+------------- | --------------------------------------- | ----- | -----------
+Minikraken v1 | Refseq: bacteria, archaea, viral        |  8 GB | [.tar.gz][k2_mini_v1]
+Minikraken v2 | Refseq: bacteria, archaea, viral, human |  8 GB | [.tar.gz][k2_mini_v2]
 
 <div class="datatable-end"></div>
 
@@ -206,9 +206,11 @@ Minikraken v2 | Refseq `bacteria`, `archaea`, `viral`, `human` |  8 GB | [.tar.g
 [//]: # ([k2_mini_v1]: ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/old/minikraken2_v1_8GB_201904.tgz)
 [//]: # ([k2_mini_v2]: ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/old/minikraken2_v2_8GB_201904.tgz)
 
-# Kraken 2 & Bracken 16s RNA indexes
+# Kraken 2 / Bracken 16s RNA indexes
 
 All packages contain a Kraken 2 database along with Bracken databases built for 100mers, 150mers, and 200mers.
+
+<div class="datatable-begin"></div>
 
 Collection              | Size     | Files
 ----------------------- | -------- | -----------
@@ -217,11 +219,39 @@ RDP 11.5                |  168 MB  | [.tar.gz][k2_16s_rdp_115]
 Silva 132               |  117 MB  | [.tar.gz][k2_16s_silva_132]
 Silva 138               |  112 MB  | [.tar.gz][k2_16s_silva_138]
 
+<div class="datatable-end"></div>
+
 [k2_16s_greengenes_135]: https://aws.amazon.com
 [k2_16s_rdp_115]: https://aws.amazon.com
 [k2_16s_silva_132]: https://aws.amazon.com
 [k2_16s_silva_138]: https://aws.amazon.com
+
 [//]: # ([k2_16s_greengenes_135]: ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/16S_Greengenes13.5_20200326.tgz)
 [//]: # ([k2_16s_rdp_115]: ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/16S_RDP11.5_20200326.tgz)
 [//]: # ([k2_16s_silva_132]: ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/16S_Silva132_20200326.tgz)
 [//]: # ([k2_16s_silva_138]: ftp://ftp.ccb.jhu.edu/pub/data/kraken2_dbs/16S_Silva138_20200326.tgz)
+
+# Centrifuge indexes
+
+Centrifuge is a very rapid and memory-efficient system for the classification of DNA sequences from microbial samples.
+
+<div class="datatable-begin"></div>
+
+Collection                                           | Date            | Size    | Files
+---------------------------------------–------------ | --------------- | ------- | --------------------
+Refseq: bacteria, archaea, viral, human (compressed) |  December, 2016 | 5.4 GB  | [.tar.gz][cent_bavm_comp]
+Refseq: bacteria, archaea, viral, human              |  December, 2016 | 7.9 GB  | [.tar.gz][cent_bavm]
+Refseq: bacteria, archaea (compressed)               |  April, 2018    | 64 GB   | [.tar.gz][cent_ba_comp]
+NCBI: nucleotide non-redundant sequences             |  March, 2018    | 6.3 GB  | [.tar.gz][cent_nt]
+
+<div class="datatable-end"></div>
+
+[cent_bavm_comp]: https://aws.amazon.com
+[cent_bavm]: https://aws.amazon.com
+[cent_ba_comp]: https://aws.amazon.com
+[cent_nt]: https://aws.amazon.com
+
+[//]: # ([cent_bavm_comp]: ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed+h+v.tar.gz)
+[//]: # ([cent_bavm]: ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p+h+v.tar.gz)
+[//]: # ([cent_ba_comp]: ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/p_compressed_2018_4_15.tar.gz)
+[//]: # ([cent_nt]: ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/nt_2018_3_3.tar.gz)
