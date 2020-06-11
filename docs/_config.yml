@@ -5,5 +5,13 @@ show_downloads: False
 navigation:
   - title: Home
     url: /
-  - title: Tutorial
+  - title: Bowtie
+    url: bowtie
+  - title: HISAT
+    url: hisat
+  - title: Kraken/Bracken
+    url: k2
+  - title: centrifuge
+    url: centrifuge
+  - title: Tutorials
     url: tutorial
