@@ -194,10 +194,10 @@ All packages contain a Kraken 2 database along with Bracken databases built for 
 
 <div class="datatable-begin"></div>
 
-Collection    |     Contains                            | Size  | Files
-------------- | --------------------------------------- | ----- | -----------
-Minikraken v1 | Refseq: bacteria, archaea, viral        |  8 GB | [.tar.gz][k2_mini_v1]
-Minikraken v2 | Refseq: bacteria, archaea, viral, human |  8 GB | [.tar.gz][k2_mini_v2]
+Collection    |     Contains                            | Date             | Size  | Files
+------------- | --------------------------------------- | ---------------- | ----- | -----------
+Minikraken v1 | Refseq: bacteria, archaea, viral        | March, 2020      |  8 GB | [.tar.gz][k2_mini_v1]
+Minikraken v2 | Refseq: bacteria, archaea, viral, human | March, 2020      |  8 GB | [.tar.gz][k2_mini_v2]
 
 <div class="datatable-end"></div>
 
@@ -212,12 +212,12 @@ All packages contain a Kraken 2 database along with Bracken databases built for 
 
 <div class="datatable-begin"></div>
 
-Collection              | Size     | Files
------------------------ | -------- | -----------
-Greengenes 13.5         |  73.2 MB | [.tar.gz][k2_16s_greengenes_135]
-RDP 11.5                |  168 MB  | [.tar.gz][k2_16s_rdp_115]
-Silva 132               |  117 MB  | [.tar.gz][k2_16s_silva_132]
-Silva 138               |  112 MB  | [.tar.gz][k2_16s_silva_138]
+Collection              | Date             | Size     | Files
+----------------------- | ---------------- | -------- | -----------
+Greengenes 13.5         |  March, 2020     | 73.2 MB  | [.tar.gz][k2_16s_greengenes_135]
+RDP 11.5                |  March, 2020     | 168 MB   | [.tar.gz][k2_16s_rdp_115]
+Silva 132               |  March, 2020     | 117 MB   | [.tar.gz][k2_16s_silva_132]
+Silva 138               |  March, 2020     | 112 MB   | [.tar.gz][k2_16s_silva_138]
 
 <div class="datatable-end"></div>
 
