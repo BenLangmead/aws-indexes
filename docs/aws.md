@@ -6,4 +6,4 @@ aws s3 cp s3://.../xyz .
 
 If you are issuing this command from an EC2 instance, note that the instance must be able to find and use your EC2 credentials.
 
-Also note that all S3 files reside in a particular AWS region.  Our files reside in the region us-east-2 (Ohio).  If you access the files from a region other than that one, you will have to pay an inter-regional data transfer cost, [as detailed in the S3 documentation](https://aws.amazon.com/s3/pricing/).
+Note that access to files in the [AWS Public Dataset Program](https://aws.amazon.com/opendata/public-datasets/) is :moneybag: free :moneybag:, even if you are transfering the data across regions within AWS.  You need not pay the typical [inter-regional data transfer cost](https://aws.amazon.com/s3/pricing/).
