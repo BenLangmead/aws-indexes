@@ -1,11 +1,9 @@
 Name: Genome databases on AWS
 Description: Genomic, pan-genomic and metagenomic indexes for analysis of sequencing data
 Documentation: https://benlangmead.github.io/aws-indexes/
-Contact:
-  - langmea@cs.jhu.edu
-  - daehwan.kim@utsouthwestern.edu
-ManagedBy: "[JHU](http://www.jhu.edu/), [UTSW](https://www.utsouthwestern.edu)"
-UpdateFrequency: Annually
+Contact: https://github.com/BenLangmead/aws-indexes/issues
+ManagedBy: Ben Langmead lab at Johns Hopkins Uni. and Daehwan Kim lab at Uni. of Texas Southewstern
+UpdateFrequency: As new data becomes availble (roughly quarterly)
 Tags:
   - genomics
   - metagenomics
@@ -14,4 +12,16 @@ Tags:
   - pan genomics
   - sequencing
   - DNA sequencing
-License: There are no restrictions on the use of this data.
+License: Public domain
+Resources:
+     Description: Genomic indexes for Bowtie, Kraken, HISAT, Centrifuge
+     ARN: PENDING
+     Region: eu-east-2
+     Type: S3 Bucket
+DataAtWork:
+   Tutorials:
+     - Title: Table of contents for tutorials for constituent tools
+       URL: https://benlangmead.github.io/aws-indexes/tutorial
+       AuthorName: Ben Langmead
+       AuthorURL: https://benlangmead.github.io/aws-indexes
+       Services:
