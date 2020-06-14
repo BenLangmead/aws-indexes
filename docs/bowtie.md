@@ -22,13 +22,15 @@ Mouse / GRCm38                            | [NCBI][bt2_grcm38_source] via [iGeno
 Mouse / mm10                              | [UCSC][bt2_mm10_source]                           | [full zip][bt2_mm10_full], [.1.bt2][bt2_mm10_1], [.2.bt2][bt2_mm10_2], [.3.bt2][bt2_mm10_3], [.4.bt2][bt2_mm10_4], [.rev.1.bt2][bt2_mm10_r1], [.rev.2.bt2][bt2_mm10_r2]
 Mouse / mm9                               | [UCSC][bt2_mm9_source]                            | [full zip][bt2_mm9_full], [.1.bt2][bt2_mm9_1], [.2.bt2][bt2_mm9_2], [.3.bt2][bt2_mm9_3], [.4.bt2][bt2_mm9_4], [.rev.1.bt2][bt2_mm9_r1], [.rev.2.bt2][bt2_mm9_r2]
 Chimpanzee / CHIMP2.1.4                   | [Ensembl][bt2_chimp214_source] via [iGenomes]     | [full zip][bt2_chimp214_full], [.1.bt2][bt2_chimp214_1], [.2.bt2][bt2_chimp214_2], [.3.bt2][bt2_chimp214_3], [.4.bt2][bt2_chimp214_4], [.rev.1.bt2][bt2_chimp214_r1], [.rev.2.bt2][bt2_chimp214_r2]
+Cow / ARS-UCD1.2                          | [NCBI][bt2_arsucd12_source]                       | [full zip][bt2_arsucd12_full], [.1.bt2][bt2_arsucd12_1], [.2.bt2][bt2_arsucd12_2], [.3.bt2][bt2_arsucd12_3], [.4.bt2][bt2_arsucd12_4], [.rev.1.bt2][bt2_arsucd12_r1], [.rev.2.bt2][bt2_arsucd12_r2]
 Dog / CanFam3.1                           | [Ensembl][bt2_canfam31_source] via [iGenomes]     | [full zip][bt2_canfam31_full], [.1.bt2][bt2_canfam31_1], [.2.bt2][bt2_canfam31_2], [.3.bt2][bt2_canfam31_3], [.4.bt2][bt2_canfam31_4], [.rev.1.bt2][bt2_canfam31_r1], [.rev.2.bt2][bt2_canfam31_r2]
 Rat / rn4                                 | [UCSC][bt2_rn4_source]                            | [full zip][bt2_rn4_full], [.1.bt2][bt2_rn4_1], [.2.bt2][bt2_rn4_2], [.3.bt2][bt2_rn4_3], [.4.bt2][bt2_rn4_4], [.rev.1.bt2][bt2_rn4_r1], [.rev.2.bt2][bt2_rn4_r2]
 Rat / Rnor6.0                             | [NCBI][bt2_rnor60_source] via [iGenomes]          | [full zip][bt2_rnor60_full], [.1.bt2][bt2_rnor60_1], [.2.bt2][bt2_rnor60_2], [.3.bt2][bt2_rnor60_3], [.4.bt2][bt2_rnor60_4], [.rev.1.bt2][bt2_rnor60_r1], [.rev.2.bt2][bt2_rnor60_r2]
 Chicken / Galgal4                         | [Ensembl][bt2_galgal4_source] via [iGenomes]      | [full zip][bt2_galgal4_full], [.1.bt2][bt2_galgal4_1], [.2.bt2][bt2_galgal4_2], [.3.bt2][bt2_galgal4_3], [.4.bt2][bt2_galgal4_4], [.rev.1.bt2][bt2_galgal4_r1], [.rev.2.bt2][bt2_galgal4_r2]
 Corn / AGPv4                              | [Ensembl][bt2_agpv4_source] via [iGenomes]        | [full zip][bt2_agpv4_full], [.1.bt2][bt2_agpv4_1], [.2.bt2][bt2_agpv4_2], [.3.bt2][bt2_agpv4_3], [.4.bt2][bt2_agpv4_4], [.rev.1.bt2][bt2_agpv4_r1], [.rev.2.bt2][bt2_agpv4_r2]
+Zebrafish / GRCz11                        | [NCBI][bt2_grcz11_source]                         | [full zip][bt2_grcz11_full], [.1.bt2][bt2_grcz11_1], [.2.bt2][bt2_grcz11_2], [.3.bt2][bt2_grcz11_3], [.4.bt2][bt2_grcz11_4], [.rev.1.bt2][bt2_grcz11_r1], [.rev.2.bt2][bt2_grcz11_r2]
 Zebrafish / GRCz10                        | [NCBI][bt2_grcz10_source] via [iGenomes]          | [full zip][bt2_grcz10_full], [.1.bt2][bt2_grcz10_1], [.2.bt2][bt2_grcz10_2], [.3.bt2][bt2_grcz10_3], [.4.bt2][bt2_grcz10_4], [.rev.1.bt2][bt2_grcz10_r1], [.rev.2.bt2][bt2_grcz10_r2]
-Arabidopsis thaliana / TAIR10             | [Ensembl][bt2_tair10_source] via [iGenomes]        | [full zip][bt2_tair10_full], [.1.bt2][bt2_tair10_1], [.2.bt2][bt2_tair10_2], [.3.bt2][bt2_tair10_3], [.4.bt2][bt2_tair10_4], [.rev.1.bt2][bt2_tair10_r1], [.rev.2.bt2][bt2_tair10_r2]
+Arabidopsis thaliana / TAIR10             | [Ensembl][bt2_tair10_source] via [iGenomes]       | [full zip][bt2_tair10_full], [.1.bt2][bt2_tair10_1], [.2.bt2][bt2_tair10_2], [.3.bt2][bt2_tair10_3], [.4.bt2][bt2_tair10_4], [.rev.1.bt2][bt2_tair10_r1], [.rev.2.bt2][bt2_tair10_r2]
 Fruitfly / BDGP6                          | [Ensembl][bt2_bdgp6_source] via [iGenomes]        | [full zip][bt2_bdgp6_full], [.1.bt2][bt2_bdgp6_1], [.2.bt2][bt2_bdgp6_2], [.3.bt2][bt2_bdgp6_3], [.4.bt2][bt2_bdgp6_4], [.rev.1.bt2][bt2_bdgp6_r1], [.rev.2.bt2][bt2_bdgp6_r2]
 C. elegans / WBcel235                     | [Ensembl][bt2_wbcel235_source] via [iGenomes]     | [full zip][bt2_wbcel235_full], [.1.bt2][bt2_wbcel235_1], [.2.bt2][bt2_wbcel235_2], [.3.bt2][bt2_wbcel235_3], [.4.bt2][bt2_wbcel235_4], [.rev.1.bt2][bt2_wbcel235_r1], [.rev.2.bt2][bt2_wbcel235_r2]
 Yeast / R64-1-1                           | [Ensembl][bt2_r6411_source] via [iGenomes]        | [full zip][bt2_r6411_full], [.1.bt2][bt2_r6411_1], [.2.bt2][bt2_r6411_2], [.3.bt2][bt2_r6411_3], [.4.bt2][bt2_r6411_4], [.rev.1.bt2][bt2_r6411_r1], [.rev.2.bt2][bt2_r6411_r2]
@@ -104,6 +106,15 @@ Yeast / R64-1-1                           | [Ensembl][bt2_r6411_source] via [iGe
 [bt2_chimp214_r1]: https://aws.amazon.com
 [bt2_chimp214_r2]: https://aws.amazon.com
 
+[bt2_arsucd12_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/263/795/GCF_002263795.1_ARS-UCD1.2/
+[bt2_arsucd12_full]: https://aws.amazon.com
+[bt2_arsucd12_1]: https://aws.amazon.com
+[bt2_arsucd12_2]: https://aws.amazon.com
+[bt2_arsucd12_3]: https://aws.amazon.com
+[bt2_arsucd12_4]: https://aws.amazon.com
+[bt2_arsucd12_r1]: https://aws.amazon.com
+[bt2_arsucd12_r2]: https://aws.amazon.com
+
 [bt2_canfam31_source]: https://www.ensembl.org/Canis_lupus_familiaris/Info/Index
 [bt2_canfam31_full]: https://aws.amazon.com
 [bt2_canfam31_1]: https://aws.amazon.com
@@ -175,6 +186,15 @@ Yeast / R64-1-1                           | [Ensembl][bt2_r6411_source] via [iGe
 [bt2_agpv4_4]: https://aws.amazon.com
 [bt2_agpv4_r1]: https://aws.amazon.com
 [bt2_agpv4_r2]: https://aws.amazon.com
+
+[bt2_grcz11_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/035/GCF_000002035.6_GRCz11/
+[bt2_grcz11_full]: https://aws.amazon.com
+[bt2_grcz11_1]: https://aws.amazon.com
+[bt2_grcz11_2]: https://aws.amazon.com
+[bt2_grcz11_3]: https://aws.amazon.com
+[bt2_grcz11_4]: https://aws.amazon.com
+[bt2_grcz11_r1]: https://aws.amazon.com
+[bt2_grcz11_r2]: https://aws.amazon.com
 
 [bt2_grcz10_source]: https://useast.ensembl.org/Drosophila_melanogaster/Info/Index
 [bt2_grcz10_full]: https://aws.amazon.com
