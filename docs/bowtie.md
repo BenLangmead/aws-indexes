@@ -28,6 +28,7 @@ Rat / Rnor6.0                             | [NCBI][bt2_rnor60_source] via [iGeno
 Chicken / Galgal4                         | [Ensembl][bt2_galgal4_source] via [iGenomes]      | [full zip][bt2_galgal4_full], [.1.bt2][bt2_galgal4_1], [.2.bt2][bt2_galgal4_2], [.3.bt2][bt2_galgal4_3], [.4.bt2][bt2_galgal4_4], [.rev.1.bt2][bt2_galgal4_r1], [.rev.2.bt2][bt2_galgal4_r2]
 Corn / AGPv4                              | [Ensembl][bt2_agpv4_source] via [iGenomes]        | [full zip][bt2_agpv4_full], [.1.bt2][bt2_agpv4_1], [.2.bt2][bt2_agpv4_2], [.3.bt2][bt2_agpv4_3], [.4.bt2][bt2_agpv4_4], [.rev.1.bt2][bt2_agpv4_r1], [.rev.2.bt2][bt2_agpv4_r2]
 Zebrafish / GRCz10                        | [NCBI][bt2_grcz10_source] via [iGenomes]          | [full zip][bt2_grcz10_full], [.1.bt2][bt2_grcz10_1], [.2.bt2][bt2_grcz10_2], [.3.bt2][bt2_grcz10_3], [.4.bt2][bt2_grcz10_4], [.rev.1.bt2][bt2_grcz10_r1], [.rev.2.bt2][bt2_grcz10_r2]
+Arabidopsis thaliana / TAIR10             | [Ensembl][bt2_tair10_source] via [iGenomes]        | [full zip][bt2_tair10_full], [.1.bt2][bt2_tair10_1], [.2.bt2][bt2_tair10_2], [.3.bt2][bt2_tair10_3], [.4.bt2][bt2_tair10_4], [.rev.1.bt2][bt2_tair10_r1], [.rev.2.bt2][bt2_tair10_r2]
 Fruitfly / BDGP6                          | [Ensembl][bt2_bdgp6_source] via [iGenomes]        | [full zip][bt2_bdgp6_full], [.1.bt2][bt2_bdgp6_1], [.2.bt2][bt2_bdgp6_2], [.3.bt2][bt2_bdgp6_3], [.4.bt2][bt2_bdgp6_4], [.rev.1.bt2][bt2_bdgp6_r1], [.rev.2.bt2][bt2_bdgp6_r2]
 C. elegans / WBcel235                     | [Ensembl][bt2_wbcel235_source] via [iGenomes]     | [full zip][bt2_wbcel235_full], [.1.bt2][bt2_wbcel235_1], [.2.bt2][bt2_wbcel235_2], [.3.bt2][bt2_wbcel235_3], [.4.bt2][bt2_wbcel235_4], [.rev.1.bt2][bt2_wbcel235_r1], [.rev.2.bt2][bt2_wbcel235_r2]
 Yeast / R64-1-1                           | [Ensembl][bt2_r6411_source] via [iGenomes]        | [full zip][bt2_r6411_full], [.1.bt2][bt2_r6411_1], [.2.bt2][bt2_r6411_2], [.3.bt2][bt2_r6411_3], [.4.bt2][bt2_r6411_4], [.rev.1.bt2][bt2_r6411_r1], [.rev.2.bt2][bt2_r6411_r2]
@@ -183,6 +184,15 @@ Yeast / R64-1-1                           | [Ensembl][bt2_r6411_source] via [iGe
 [bt2_grcz10_4]: https://aws.amazon.com
 [bt2_grcz10_r1]: https://aws.amazon.com
 [bt2_grcz10_r2]: https://aws.amazon.com
+
+[bt2_tair10_source]: http://plants.ensembl.org/Arabidopsis_thaliana/Info/Index
+[bt2_tair10_full]: https://aws.amazon.com
+[bt2_tair10_1]: https://aws.amazon.com
+[bt2_tair10_2]: https://aws.amazon.com
+[bt2_tair10_3]: https://aws.amazon.com
+[bt2_tair10_4]: https://aws.amazon.com
+[bt2_tair10_r1]: https://aws.amazon.com
+[bt2_tair10_r2]: https://aws.amazon.com
 
 [bt2_bdgp6_source]: https://www.ncbi.nlm.nih.gov/assembly/GCF_000002035.5/
 [bt2_bdgp6_full]: https://aws.amazon.com
