@@ -13,4 +13,4 @@ while read -r src dst ; do
     echo "  Uploading ${bn}..."
     aws --profile secondary s3 cp --quiet "${bn}" "s3://${BUCKET}/${dst}"
     rm -f "${bn}"
-done < kraken.manifest
+done < *.manifest
