@@ -1,0 +1,21 @@
+ENV['VAG_DEFAULT_PROVIDER'] = 'aws'
+
+eval File.read("Vagrantfile.hash_workaround")
+
+Vagrant.configure("2") do |config|
+
+    eval File.read("Vagrantfile.aws")
+
+    config.vm.provision "file", source: ENV['VAG_CREDS'], destination: "/tmp/credentials"
+    config.vm.provision "file", source: 'kraken.manifest', destination: "/work/kraken.manifest"
+
+    config.vm.provision "shell", privileged: true, name: "move credentials", path: "move_creds.bash"
+
+    config.vm.provision "shell", privileged: true, name: "mount EBS storage", env: {"VOLUME_GB" => ENV['VAG_VOLUME_GB']}, path: "mount_ebs.bash"
+
+    config.vm.provision "shell", privileged: true, name: "install Linux packages", inline: <<-SHELL
+        yum update -q -y && yum install -q -y wget
+    SHELL
+
+    config.vm.provision "shell", privileged: true, name: "sync indexes", path: "cp_files.bash", args: "genome-idx"
+end
