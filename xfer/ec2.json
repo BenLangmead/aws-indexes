@@ -1,0 +1,262 @@
+{
+  "ec2" : {
+    "azs": {
+      "us-east-1": ["1a", "1b", "1c", "1d", "1e", "1f"],
+      "us-east-2": ["2a", "2b", "2c"]
+    },
+    "instance_type": {
+      "t3a.nano": {
+        "arch": "aarch64",
+        "memgb": 0.5,
+        "vcpus": 2,
+        "bid_price": {
+          "us-east-1": "0.0016",
+          "us-east-2": "0.0018"
+        },
+        "azs": {
+          "us-east-1": ["1c", "1e", "1f"],
+          "us-east-2": ["2a", "2b", "2c"]
+        }
+      },
+      "t3a.micro": {
+        "arch": "aarch64",
+        "memgb": 1,
+        "vcpus": 2,
+        "bid_price": {
+          "us-east-1": "0.0035",
+          "us-east-2": "0.003"
+        },
+        "azs": {
+          "us-east-1": ["1a", "1b", "1c", "1e", "1f"],
+          "us-east-2": ["2a", "2b", "2c"]
+        }
+      },
+      "t3a.small": {
+        "arch": "aarch64",
+        "memgb": 2,
+        "vcpus": 2,
+        "bid_price": {
+          "us-east-1": "0.009",
+          "us-east-2": "0.0068"
+        },
+        "azs": {
+          "us-east-1": ["1a", "1b", "1c", "1e", "1f"],
+          "us-east-2": ["2a", "2b", "2c"]
+        }
+      },
+      "t3a.medium": {
+        "arch": "aarch64",
+        "memgb": 4,
+        "vcpus": 2,
+        "bid_price": {
+          "us-east-1": "0.014",
+          "us-east-2": "0.012"
+        },
+        "azs": {
+          "us-east-1": ["1a", "1b", "1c", "1e", "1f"],
+          "us-east-2": ["2a", "2b", "2c"]
+        }
+      },
+      "t3.nano": {
+        "arch": "x86_64",
+        "memgb": 0.5,
+        "vcpus": 2,
+        "bid_price": {
+          "us-east-1": "0.002",
+          "us-east-2": "0.002"
+        },
+        "azs": {
+          "us-east-1": ["1a", "1b", "1c", "1e", "1f"],
+          "us-east-2": ["2a", "2b"]
+        }
+      },
+      "t3.micro": {
+        "arch": "x86_64",
+        "memgb": 1,
+        "vcpus": 2,
+        "bid_price": {
+          "us-east-1": "0.0033",
+          "us-east-2": "0.0035"
+        },
+        "azs": {
+          "us-east-1": ["1a", "1b", "1c", "1e", "1f"],
+          "us-east-2": ["2a", "2b", "2c"]
+        }
+      },
+      "t3.small": {
+        "arch": "x86_64",
+        "memgb": 2,
+        "vcpus": 2,
+        "bid_price": {
+          "us-east-1": "0.0065",
+          "us-east-2": "0.0065"
+        },
+        "azs": {
+          "us-east-1": ["1a", "1b", "1c", "1e", "1f"],
+          "us-east-2": ["2a", "2b", "2c"]
+        }
+      },
+      "t3.medium": {
+        "arch": "x86_64",
+        "memgb": 4,
+        "vcpus": 2,
+        "bid_price": {
+          "us-east-1": "0.013",
+          "us-east-2": "0.013"
+        },
+        "azs": {
+          "us-east-1": ["1a", "1b", "1c", "1e", "1f"],
+          "us-east-2": ["2a", "2b", "2c"]
+        }
+      },
+      "m6g.xlarge": {
+        "arch": "aarch64",
+        "memgb": 16,
+        "vcpus": 4,
+        "bid_price": {
+          "us-east-1": "0.08",
+          "us-east-2": "0.05"
+        },
+        "azs": {
+          "us-east-1": ["1a", "1b", "1c", "1f"],
+          "us-east-2": ["2c"]
+        }
+      },
+      "m6g.2xlarge": {
+        "arch": "aarch64",
+        "memgb": 32,
+        "vcpus": 8,
+        "bid_price": {
+          "us-east-1": "0.16",
+          "us-east-2": "0.09"
+        },
+        "azs": {
+          "us-east-1": ["1a", "1b", "1c", "1f"],
+          "us-east-2": ["2b", "2c"]
+        }
+      },
+      "m5.xlarge": {
+        "arch": "x86_64",
+        "memgb": 16,
+        "vcpus": 4,
+        "bid_price": {
+          "us-east-1": "0.09",
+          "us-east-2": "0.05"
+        },
+        "azs": {
+          "us-east-1": ["1a", "1b", "1c", "1e", "1f"],
+          "us-east-2": ["2a", "2b", "2c"]
+        }
+      },
+      "m5.2xlarge": {
+        "arch": "x86_64",
+        "memgb": 32,
+        "vcpus": 8,
+        "bid_price": {
+          "us-east-1": "0.18",
+          "us-east-2": "0.10"
+        },
+        "azs": {
+          "us-east-1": ["1a", "1b", "1c", "1e", "1f"],
+          "us-east-2": ["2a", "2b", "2c"]
+        }
+      },
+      "a1.medium": {
+        "arch": "aarch64",
+        "memgb": 2,
+        "vcpus": 1,
+        "bid_price": {
+          "us-east-1": "0.009",
+          "us-east-2": "0.006"
+        },
+        "azs": {
+          "us-east-1": ["1a", "1b", "1e"],
+          "us-east-2": ["2a", "2b"]
+        }
+      },
+      "a1.large": {
+        "arch": "aarch64",
+        "memgb": 4,
+        "vcpus": 2,
+        "bid_price": {
+          "us-east-1": "0.02",
+          "us-east-2": "0.012"
+        },
+        "azs": {
+          "us-east-1": ["1a", "1b"],
+          "us-east-2": ["2a", "2b"]
+        }
+      },
+      "a1.xlarge": {
+        "arch": "aarch64",
+        "memgb": 8,
+        "vcpus": 4,
+        "bid_price": {
+          "us-east-1": "0.035",
+          "us-east-2": "0.025"
+        },
+        "azs": {
+          "us-east-1": ["1a", "1b", "1e"],
+          "us-east-2": ["2a", "2b", "2c"]
+        }
+      },
+      "a1.2xlarge": {
+        "arch": "aarch64",
+        "memgb": 16,
+        "vcpus": 8,
+        "bid_price": {
+          "us-east-1": "0.08",
+          "us-east-2": "0.042"
+        },
+        "azs": {
+          "us-east-1": ["1a", "1b", "1e"],
+          "us-east-2": ["2a", "2b"]
+        }
+      },
+      "a1.4xlarge": {
+        "arch": "aarch64",
+        "memgb": 32,
+        "vcpus": 16,
+        "bid_price": {
+          "us-east-1": "0.145",
+          "us-east-2": "0.085"
+        },
+        "azs": {
+          "us-east-1": ["1a", "1b", "1e"],
+          "us-east-2": ["2a", "2b"]
+        }
+      },
+      "a1.metal": {
+        "arch": "aarch64",
+        "memgb": 32,
+        "vcpus": 16,
+        "bid_price": {
+          "us-east-1": "0.145",
+          "us-east-2": "0.085"
+        },
+        "azs": {
+          "us-east-1": ["1a", "1b", "1e"],
+          "us-east-2": ["2a", "2b"]
+        }
+      }
+    },
+    "ami": {
+      "us-east-1": {
+        "aarch64": "ami-002cc39e7bf021a77",
+        "x86_64": "ami-00068cd7555f543d5"
+      },
+      "us-east-2": {
+        "aarch64": "ami-014d175d64de0a174",
+        "x86_64": "ami-006fa13c7887dc68c"
+      },
+      "aarch64": {
+        "us-east-1": "ami-002cc39e7bf021a77",
+        "us-east-2": "ami-014d175d64de0a174"
+      },
+      "x86_64": {
+        "us-east-1": "ami-00068cd7555f543d5",
+        "us-east-2": "ami-006fa13c7887dc68c"
+      }
+    }
+  }
+}

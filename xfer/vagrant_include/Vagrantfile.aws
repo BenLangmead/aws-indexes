@@ -1,0 +1,28 @@
+config.vm.box = "dummy"
+config.vm.synced_folder ".", "/vagrant", disabled: true
+
+config.vm.provider :aws do |aws, override|
+    aws.aws_dir = ENV['HOME'] + "/.aws/"
+    aws.aws_profile = ENV['VAG_PROFILE']
+    aws.region = ENV['VAG_REGION']
+    aws.tags = { 'Application' => ENV['VAG_APPLICATION'] }
+    aws.instance_type = ENV['VAG_EC2_INSTANCE_TYPE']
+    aws.associate_public_ip = true
+    aws.keypair_name = ENV['VAG_EC2_KEYPAIR']
+    aws.ami = ENV['VAG_AMI']
+    aws.subnet_id = ENV['VAG_SUBNET_ID']
+    aws.security_groups = [ENV['VAG_SECURITY_GROUP']]
+    aws.block_device_mapping = [{
+        'DeviceName' => "/dev/sdf",
+        'VirtualName' => "ephemeral0",
+        'Ebs.VolumeSize' => ENV['VAG_VOLUME_GB'],
+        'Ebs.DeleteOnTermination' => true,
+        'Ebs.VolumeType' => 'gp2'
+    }]
+    override.ssh.username = "ec2-user"
+    override.ssh.private_key_path = "~/.aws/" + ENV['VAG_EC2_KEYPAIR'] + ".pem"
+    aws.region_config ENV['VAG_REGION'] do |region|
+        region.spot_instance = true
+        region.spot_max_price = ENV['VAG_EC2_BID_PRICE']
+    end
+end
