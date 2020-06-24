@@ -208,17 +208,20 @@ def run(profile, task, inst, dest_dir, ini_fn, section, no_destroy,
     creds_scr = os.path.join(dest_dir, 'creds.py')
     with open(run_scr, 'wt') as fh:
         _write_exports(fh)
-        fh.write('./creds.py && \\\n')
-        fh.write('vagrant up %s 2>&1 | tee vagrant.log && \\\n' % vagrant_args)
+        fh.write('set -ex\n')
+        fh.write('./creds.py\n')
+        fh.write('vagrant up %s 2>&1 | tee vagrant.log \n' % vagrant_args)
         fh.write('vagrant destroy -f\n')
         fh.write('rm -f .creds.tmp\n')
     with open(run_nd_scr, 'wt') as fh:
         _write_exports(fh)
-        fh.write('./creds.py && \\\n')
+        fh.write('set -ex\n')
+        fh.write('./creds.py\n')
         fh.write('vagrant up %s 2>&1 | tee vagrant.log\n' % vagrant_args)
         fh.write('rm -f .creds.tmp\n')
     with open(destroy_scr, 'wt') as fh:
         _write_exports(fh)
+        fh.write('set -ex\n')
         fh.write('touch .creds.tmp && vagrant destroy -f\n')
         fh.write('rm -f .creds.tmp\n')
     with open(ssh_scr, 'wt') as fh:
