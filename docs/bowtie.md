@@ -6,8 +6,6 @@ In the past, Bowtie 1 & 2 had incompatible genome indexes.  This changed in July
 
 See [Bowtie manual](http://bowtie-bio.sourceforge.net/manual.shtml) and [Bowtie 2 manual](http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml) for further details.
 
-Note: all links are placeholders for now.  They will be replaced when the public repo is available.
-
 <div class="datatable-begin"></div>
 
 Species/Build                             | Source                                            | Files                                                                                                                                                                                                                                     
