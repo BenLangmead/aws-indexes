@@ -8,8 +8,8 @@ Collection                                           | Date            | Size   
 ---------------------------------------------------- | --------------- | ------- | -------------------------------- | -------
 Refseq: bacteria, archaea, viral, human (compressed) |  December, 2016 | 5.4 GB  | [.tar.gz][cent_bavm_comp]        | [.tar.gz][cent_bavm_comp_s3]
 Refseq: bacteria, archaea, viral, human              |  December, 2016 | 7.9 GB  | [.tar.gz][cent_bavm]             | [.tar.gz][cent_bavm_s3]
-Refseq: bacteria, archaea (compressed)               |  April, 2018    | 64 GB   | [.tar.gz][cent_ba_comp]          | [.tar.gz][cent_ba_comp_s3]
-NCBI: nucleotide non-redundant sequences             |  March, 2018    | 6.3 GB  | [.tar.gz][cent_nt]               | [.tar.gz][cent_nt_s3]
+Refseq: bacteria, archaea (compressed)               |  April, 2018    | 6.2 GB  | [.tar.gz][cent_ba_comp]          | [.tar.gz][cent_ba_comp_s3]
+NCBI: nucleotide non-redundant sequences             |  March, 2018    | 64 GB   | [.tar.gz][cent_nt]               | [.tar.gz][cent_nt_s3]
 
 <div class="datatable-end"></div>
 
