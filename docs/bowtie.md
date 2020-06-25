@@ -4,7 +4,7 @@
 
 In the past, Bowtie 1 & 2 had incompatible genome indexes.  This changed in July 2019 when Bowtie v1.2.3 gained the ability to use Bowtie 2 formatted genome indexes (ending in `.bt2`).  We list only Bowtie 2-format `.bt2` index files here.
 
-See [Bowtie manual](http://bowtie-bio.sourceforge.net/manual.shtml) and [Bowtie 2 manual](http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml) for further details.
+You can download all the files for a given assembly as a single `zip` file, or as 6 separate `.bt2` files.  For example, if you only need the forward version of the genome index (e.g. for exact matching only), you can download the files individually and omit the `.rev.1.bt2` and `.rev.2.bt2` files.  Downloading already-decompressed index files might also be quicker for applications running in the AWS cloud.
 
 <div class="datatable-begin"></div>
 
