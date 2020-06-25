@@ -6,6 +6,8 @@ There are different types of indexes depending on whether transcripts and/or sin
 * "snp": HISAT2 index for graph reference including SNPs
 * "tran": HISAT2 index for reference plus annotated transcripts
 * "snp+tran": HISAT2 index for reference including SNPs, plus annotated transcripts
+* "rep": HISAT2 repeat index for reference
+* "snp+rep": HISAT2 repeat index for reference including SNPs
 
 Indexes with `rep` in the name require HISAT2 v2.2.0 or above.
 
@@ -96,8 +98,9 @@ C. elegans / WBcel235   | [Ensembl][ht2_wbcel235_source]  | [genome][ht2_wbcel23
 
 # HISAT-genotype allele files
 
-Species | Build | FASTA source | Files
-------- | ---------  | ------------ | -----------
-Human | GRCh38 | NCBI? | [genotypes][htg_genotypes]
+Species / Build | HTTPs URLs | S3 URLs
+------- | ---------  | ------------
+Human / GRCh38 | [genotypes][htg_genotypes] | [genotypes][htg_genotypes_s3]
 
-[htg_genotypes]: ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat-genotype/data/genotype_genome_20180128.tar.gz
+[htg_genotypes]: https://genome-idx.s3.amazonaws.com/hisat/genotype_genome_20180128.tar.gz
+[htg_genotypes_s3]: s3://genome-idx/hisat/genotype_genome_20180128.tar.gz
