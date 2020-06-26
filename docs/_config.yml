@@ -1,6 +1,6 @@
 theme: jekyll-theme-minimal
-title: Cloud indexes
-description: Links to genomic index files available in public clouds
+title: Index zone
+description: HTTPS and S3 links to genomic index files freely available in the AWS cloud
 show_downloads: False
 navigation:
   - title: Home
