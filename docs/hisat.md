@@ -1,4 +1,4 @@
-# HISAT2 indexes
+# HISAT2 and HISAT-genotype indexes
 
 There are different types of indexes depending on whether transcripts and/or single-nucleotide variants are included in the graph index:
 
