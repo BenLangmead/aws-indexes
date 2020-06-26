@@ -13,7 +13,3 @@ navigation:
     url: k2
   - title: Centrifuge
     url: centrifuge
-  - title: Using in AWS
-    url: aws
-  - title: Tutorials
-    url: tutorial
