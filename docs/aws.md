@@ -6,4 +6,4 @@ aws s3 cp s3://genome-idx/bt/grch38_1kgmaj.zip .
 
 You can also initiate transfers using the [AWS console](https://aws.amazon.com/console/), the Python [`boto3` library](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html), and various other tools and libraries.
 
-Note that access to files in the [AWS Public Dataset Program](https://aws.amazon.com/opendata/public-datasets/) is :moneybag: free :moneybag:, even if the transfer is across AWS regions.  You do not need to pay [an inter-regional data transfer fee](https://aws.amazon.com/s3/pricing/).
+Note that access to files in the [AWS Public Dataset Program](https://aws.amazon.com/opendata/public-datasets/) is *free*.  This is true even if the transfer cross AWS region boundaries; there is no [an inter-regional data transfer fee](https://aws.amazon.com/s3/pricing/).
