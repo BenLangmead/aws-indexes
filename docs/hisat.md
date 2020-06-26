@@ -96,16 +96,6 @@ C. elegans / WBcel235   | [Ensembl][ht2_wbcel235_source]  | [genome][ht2_wbcel23
 [ht2_wbcel235_tran]: https://genome-idx.s3.amazonaws.com/hisat/wbcel235_tran.tar.gz
 [ht2_wbcel235_tran_s3]: s3://genome-idx/hisat/wbcel235_tran.tar.gz
 
-Citations:
-
-* Kim D, Langmead B, Salzberg SL. HISAT: a fast spliced aligner with low memory
-requirements. Nat Methods. 2015 Apr;12(4):357-60. doi: [10.1038/nmeth.3317](https://doi.org/10.1038/nmeth.3317). Epub
-2015 Mar 9. PMID: [25751142](https://pubmed.ncbi.nlm.nih.gov/25751142/); PMCID: [PMC4655817](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4655817/).
-* Kim D, Paggi JM, Park C, Bennett C, Salzberg SL. Graph-based genome alignment
-and genotyping with HISAT2 and HISAT-genotype. Nat Biotechnol. 2019
-Aug;37(8):907-915. doi: [10.1038/s41587-019-0201-4](https://doi.org/10.1038/s41587-019-0201-4). Epub 2019 Aug 2. PMID:
-[31375807](https://pubmed.ncbi.nlm.nih.gov/31375807/).
-
 # HISAT-genotype allele files
 
 Species / Build | HTTPs URLs | S3 URLs
