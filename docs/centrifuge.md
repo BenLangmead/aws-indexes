@@ -13,11 +13,8 @@ NCBI: nucleotide non-redundant sequences             |  March, 2018    | 64 GB  
 
 <div class="datatable-end"></div>
 
-Citation:
-
-* Kim D, Song L, Breitwieser FP, Salzberg SL. Centrifuge: rapid and sensitive
-classification of metagenomic sequences. Genome Res. 2016 Dec;26(12):1721-1729.
-doi: [10.1101/gr.210641.116](https://doi.org/10.1101/gr.210641.116). PMID: [27852649](https://pubmed.ncbi.nlm.nih.gov/27852649/); PMCID: [PMC5131823](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5131823/).
+Centrifuge is the work of Daehwan Kim, Li Song, Florian Breitwieser, Chanhee Park, Steven Salzberg among others.
+Please see the [Centrifuge website](https://ccb.jhu.edu/software/centrifuge/) for more information on the software, authors, and how to cite it.
 
 [cent_bavm_comp]: https://genome-idx.s3.amazonaws.com/centrifuge/p_compressed%2Bh%2Bv.tar.gz
 [cent_bavm_comp_s3]: s3://genome-idx/centrifuge/p_compressed%2Bh%2Bv.tar.gz

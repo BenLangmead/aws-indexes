@@ -48,6 +48,19 @@ Yeast / R64-1-1 | [Ensembl][bt2_r6411_source] | [full zip][bt2_r6411_full], [.1.
 1. Major SNVs determined from [1000 Genomes Project](https://www.internationalgenome.org) variant calls.  [Details here](https://github.com/BenLangmead/bowtie-majref).
 2. Ashkenazi reference genome from [10.1186/s13059-020-02047-7](https://doi.org/10.1186/s13059-020-02047-7)
 
+Bowtie and Bowtie 2 are the work of
+Ben Langmead,
+Cole Trapnell,
+Mihai Pop,
+Steven Salzberg,
+Val Antonescu,
+Rone Charles among others.
+Please see the [Bowtie] and [Bowtie 2]
+websites for more information on the software, authors, and how to cite the work.
+
+[Bowtie]: http://bowtie-bio.sourceforge.net
+[Bowtie 2]: http://bowtie-bio.sourceforge.net/bowtie2
+
 [bt2_grch38_noalt_source]: ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/
 [bt2_grch38_noalt_decoy_source]: ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/
 [bt2_grch38_1kgmaj_source]: ftp://ftp.ccb.jhu.edu/pub/data/bowtie2_indexes/

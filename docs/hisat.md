@@ -115,9 +115,19 @@ Human / GRCh38 | [genotypes][htg_genotypes] | [genotypes][htg_genotypes_s3]
 [htg_genotypes]: https://genome-idx.s3.amazonaws.com/hisat/genotype_genome_20180128.tar.gz
 [htg_genotypes_s3]: s3://genome-idx/hisat/genotype_genome_20180128.tar.gz
 
-Citation:
+HISAT, HISAT2 and HISAT-genotype are the work of
+Daehwan Kim,
+Joe Paggi,
+Geo Pertea,
+Christopher Bennett,
+Yun (Leo) Zhang,
+Chanhee Park,
+Ben Langmead,
+Steven Salzberg among others.
+Please see the [HISAT],
+[HISAT2]
+and [HISAT-genotype] websites for more information on the software, authors, and how to cite the work.
 
-* Kim D, Paggi JM, Park C, Bennett C, Salzberg SL. Graph-based genome alignment
-and genotyping with HISAT2 and HISAT-genotype. Nat Biotechnol. 2019
-Aug;37(8):907-915. doi: [10.1038/s41587-019-0201-4](https://doi.org/10.1038/s41587-019-0201-4). Epub 2019 Aug 2. PMID:
-[31375807](https://pubmed.ncbi.nlm.nih.gov/31375807/).
+[HISAT]: http://www.ccb.jhu.edu/software/hisat
+[HISAT2]: https://daehwankimlab.github.io/hisat2/
+[HISAT-genotype]: https://daehwankimlab.github.io/hisat-genotype/
