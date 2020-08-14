@@ -1,29 +1,29 @@
-grch38_noalt,GRCh38_noalt_as,Human,GRCh38 no-alt analysis set,NCBI
-grch38_noalt_decoy,GRCh38_noalt_decoy_as,Human,GRCh38 no-alt +decoy set,NCBI
-grch38_1kgmaj,grch38_1kgmaj,Human,GRCh38 + major SNVs,NCBI+1KG<sup>1</sup>
-grch37,GRCh37,Human,GRCh37,NCBI
-ash1,Ash1v1.7,Human,Ash1.7,JHU <sup>2</sup>
-hg19,hg19,Human,hg19,UCSC
-hg18,hg18,Human,hg18,UCSC
-grcm38,GRCm38,Mouse,GRCm38,NCBI
-mm10,mm10,Mouse,mm10,UCSC
-mm9,mm9,Mouse,mm9,UCSC
-clintptr2,Clint_PTRv2,Chimpanzee,Clint_PTRv2,NCBI
-chimp214,CHIMP2.1.4,Chimpanzee,CHIMP2.1.4,Ensembl
-mmul10,Mmul_10,Rhesus macaque,MMul_10,Ensembl
-arsucd12,ARS-UCD1.2,Cow,ARS-UCD1.2,NCBI
-sscorfa111,Sscrofa11.1,Pig,Sscrofa11.1,NCBI
-canfam31,CanFam3.1,Dog,CanFam3.1,Ensembl
-rn4,rn4,Rat,rn4,UCSC
-rnor60,Rnor_6.0,Rat,Rnor6.0,NCBI
-grcg6a,GRCg6a,Chicken,GRCg6a,NCBI
-galgal4,Galgal4,Chicken,Galgal4,Ensembl
-grcz11,GRCz11,Zebrafish,GRCz11,NCBI
-grcz10,GRCz10,Zebrafish,GRCz10,NCBI
-agpv4,AGPv4,Corn,AGPv4,Ensembl
-build4,Build_4.0,Oryza sativa (rice),Build_4.0,NCBI
-tair10,TAIR10,Arabidopsis thaliana,TAIR10,Ensembl
-bdgp6,BDGP6,Fruitfly,BDGP6,Ensembl
-dmela410,Dmel_A4_1.0,Fruitfly,Dmel A4 1.0,NCBI
-wbcel235,WBcel235,C. elegans,WBcel235,Ensembl
-r6411,R64-1-1,Yeast,R64-1-1,Ensembl
+grch38_noalt,GRCh38_noalt_as,Human,H. sapiens,GRCh38 no-alt analysis set,NCBI
+grch38_noalt_decoy,GRCh38_noalt_decoy_as,Human,H. sapiens,GRCh38 no-alt +decoy set,NCBI
+grch38_1kgmaj,grch38_1kgmaj,Human,H. sapiens,GRCh38 + major SNVs,NCBI+1KG<sup>1</sup>
+grch37,GRCh37,Human,H. sapiens,GRCh37,NCBI
+ash1,Ash1v1.7,Human,H. sapiens,Ash1.7,JHU <sup>2</sup>
+hg19,hg19,Human,H. sapiens,hg19,UCSC
+hg18,hg18,Human,H. sapiens,hg18,UCSC
+grcm38,GRCm38,Mouse,M. Musculus,GRCm38,NCBI
+mm10,mm10,Mouse,M. Musculus,mm10,UCSC
+mm9,mm9,Mouse,M. Musculus,mm9,UCSC
+clintptr2,Clint_PTRv2,Chimpanzee,P. troglodytes,Clint_PTRv2,NCBI
+chimp214,CHIMP2.1.4,Chimpanzee,P. troglodytes,CHIMP2.1.4,Ensembl
+mmul10,Mmul_10,Rhesus macaque,M. mulatta,MMul_10,Ensembl
+arsucd12,ARS-UCD1.2,Cow,B. taurus,ARS-UCD1.2,NCBI
+sscorfa111,Sscrofa11.1,Pig,S. scrofa,Sscrofa11.1,NCBI
+canfam31,CanFam3.1,Dog,C. familiaris,CanFam3.1,Ensembl
+rn4,rn4,Rat,R. norvegicus,rn4,UCSC
+rnor60,Rnor_6.0,Rat,R. norvegicus,Rnor6.0,NCBI
+grcg6a,GRCg6a,Chicken,G. gallus,GRCg6a,NCBI
+galgal4,Galgal4,Chicken,G. gallus,Galgal4,Ensembl
+grcz11,GRCz11,Zebrafish,D. rerio,GRCz11,NCBI
+grcz10,GRCz10,Zebrafish,D. rerio,GRCz10,NCBI
+agpv4,AGPv4,Corn,Z. mays,AGPv4,Ensembl
+build4,Build_4.0,Oryza sativa (rice),O. sativa,Build_4.0,NCBI
+tair10,TAIR10,Arabidopsis thaliana,A. thaliana,TAIR10,Ensembl
+bdgp6,BDGP6,Fruitfly,D. melanogaster,BDGP6,Ensembl
+dmela410,Dmel_A4_1.0,Fruitfly,D. melanogaster,Dmel A4 1.0,NCBI
+wbcel235,WBcel235,C. elegans,C. elegans,WBcel235,Ensembl
+r6411,R64-1-1,Yeast,S. cerevisiae,R64-1-1,Ensembl
