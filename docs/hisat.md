@@ -35,16 +35,16 @@ C. elegans / WBcel235   | [Ensembl][ht2_wbcel235_source]  | [genome][ht2_wbcel23
 [ht2_grch38_snp_s3]: s3://genome-idx/hisat/grch38_snp.tar.gz
 [ht2_grch38_tran]: https://genome-idx.s3.amazonaws.com/hisat/grch38_tran.tar.gz
 [ht2_grch38_tran_s3]: s3://genome-idx/hisat/grch38_tran.tar.gz
-[ht2_grch38_snptran]: https://genome-idx.s3.amazonaws.com/hisat/grch38_snp_tran.tar.gz
-[ht2_grch38_snptran_s3]: s3://genome-idx/hisat/grch38_snp_tran.tar.gz
+[ht2_grch38_snptran]: https://genome-idx.s3.amazonaws.com/hisat/grch38_snptran.tar.gz
+[ht2_grch38_snptran_s3]: s3://genome-idx/hisat/grch38_snptran.tar.gz
 [ht2_grch38_rep]: https://genome-idx.s3.amazonaws.com/hisat/grch38_rep.tar.gz
 [ht2_grch38_rep_s3]: s3://genome-idx/hisat/grch38_rep.tar.gz
 [ht2_grch38_snprep]: https://genome-idx.s3.amazonaws.com/hisat/grch38_snprep.tar.gz
 [ht2_grch38_snprep_s3]: s3://genome-idx/hisat/grch38_snprep.tar.gz
 
 [ht2_hg38_source]: https://github.com/DaehwanKimLab/hisat2/blob/master/scripts/make_hg38.sh
-[ht2_hg38_genome]: https://genome-idx.s3.amazonaws.com/hisat/hg38.tar.gz
-[ht2_hg38_genome_s3]: s3://genome-idx/hisat/hg38.tar.gz
+[ht2_hg38_genome]: https://genome-idx.s3.amazonaws.com/hisat/hg38_genome.tar.gz
+[ht2_hg38_genome_s3]: s3://genome-idx/hisat/hg38_genome.tar.gz
 [ht2_hg38_tran]: https://genome-idx.s3.amazonaws.com/hisat/hg38_tran.tar.gz
 [ht2_hg38_tran_s3]: s3://genome-idx/hisat/hg38_tran.tar.gz
 
