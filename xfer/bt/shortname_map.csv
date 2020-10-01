@@ -6,6 +6,7 @@ ash1,Ash1v1.7,Human,H. sapiens,Ash1.7,JHU <sup>2</sup>
 hg19,hg19,Human,H. sapiens,hg19,UCSC
 hg18,hg18,Human,H. sapiens,hg18,UCSC
 grcm38,GRCm38,Mouse,M. Musculus,GRCm38,NCBI
+grcm39,GRCm39,Mouse,M. Musculus,GRCm39,NCBI
 mm10,mm10,Mouse,M. Musculus,mm10,UCSC
 mm9,mm9,Mouse,M. Musculus,mm9,UCSC
 clintptr2,Clint_PTRv2,Chimpanzee,P. troglodytes,Clint_PTRv2,NCBI
@@ -14,6 +15,7 @@ mmul10,Mmul_10,Rhesus macaque,M. mulatta,MMul_10,Ensembl
 arsucd12,ARS-UCD1.2,Cow,B. taurus,ARS-UCD1.2,NCBI
 sscorfa111,Sscrofa11.1,Pig,S. scrofa,Sscrofa11.1,NCBI
 canfam31,CanFam3.1,Dog,C. familiaris,CanFam3.1,Ensembl
+canfam4,canfam4,Dog,C. familiaris,CanFam4,NCBI
 rn4,rn4,Rat,R. norvegicus,rn4,UCSC
 rnor60,Rnor_6.0,Rat,R. norvegicus,Rnor6.0,NCBI
 grcg6a,GRCg6a,Chicken,G. gallus,GRCg6a,NCBI
@@ -21,6 +23,7 @@ galgal4,Galgal4,Chicken,G. gallus,Galgal4,Ensembl
 grcz11,GRCz11,Zebrafish,D. rerio,GRCz11,NCBI
 grcz10,GRCz10,Zebrafish,D. rerio,GRCz10,NCBI
 agpv4,AGPv4,Corn,Z. mays,AGPv4,Ensembl
+b73_refgen_v5,Zm-B73-REFERENCE-NAM-5.0,Corn,Z. mays,B73 RefGenV5,NCBI
 build4,Build_4.0,Oryza sativa (rice),O. sativa,Build_4.0,NCBI
 tair10,TAIR10,Arabidopsis thaliana,A. thaliana,TAIR10,Ensembl
 bdgp6,BDGP6,Fruitfly,D. melanogaster,BDGP6,Ensembl
