@@ -13,7 +13,9 @@ Species/Build                             | Source                              
 Human / GRCh38 no-alt analysis set | [NCBI][bt2_grch38_noalt_source] | [full zip][bt2_grch38_noalt_full], [.1.bt2][bt2_grch38_noalt_1], [.2.bt2][bt2_grch38_noalt_2], [.3.bt2][bt2_grch38_noalt_3], [.4.bt2][bt2_grch38_noalt_4], [.rev.1.bt2][bt2_grch38_noalt_r1], [.rev.2.bt2][bt2_grch38_noalt_r2] | [full zip][bt2_grch38_noalt_full_s3], [.1.bt2][bt2_grch38_noalt_1_s3], [.2.bt2][bt2_grch38_noalt_2_s3], [.3.bt2][bt2_grch38_noalt_3_s3], [.4.bt2][bt2_grch38_noalt_4_s3], [.rev.1.bt2][bt2_grch38_noalt_r1_s3], [.rev.2.bt2][bt2_grch38_noalt_r2_s3]
 Human / GRCh38 no-alt +decoy set | [NCBI][bt2_grch38_noalt_decoy_source] | [full zip][bt2_grch38_noalt_decoy_full], [.1.bt2][bt2_grch38_noalt_decoy_1], [.2.bt2][bt2_grch38_noalt_decoy_2], [.3.bt2][bt2_grch38_noalt_decoy_3], [.4.bt2][bt2_grch38_noalt_decoy_4], [.rev.1.bt2][bt2_grch38_noalt_decoy_r1], [.rev.2.bt2][bt2_grch38_noalt_decoy_r2] | [full zip][bt2_grch38_noalt_decoy_full_s3], [.1.bt2][bt2_grch38_noalt_decoy_1_s3], [.2.bt2][bt2_grch38_noalt_decoy_2_s3], [.3.bt2][bt2_grch38_noalt_decoy_3_s3], [.4.bt2][bt2_grch38_noalt_decoy_4_s3], [.rev.1.bt2][bt2_grch38_noalt_decoy_r1_s3], [.rev.2.bt2][bt2_grch38_noalt_decoy_r2_s3]
 Human / GRCh38 + major SNVs | [NCBI+1KG<sup>1</sup>][bt2_grch38_1kgmaj_source] | [full zip][bt2_grch38_1kgmaj_full], [.1.bt2][bt2_grch38_1kgmaj_1], [.2.bt2][bt2_grch38_1kgmaj_2], [.3.bt2][bt2_grch38_1kgmaj_3], [.4.bt2][bt2_grch38_1kgmaj_4], [.rev.1.bt2][bt2_grch38_1kgmaj_r1], [.rev.2.bt2][bt2_grch38_1kgmaj_r2] | [full zip][bt2_grch38_1kgmaj_full_s3], [.1.bt2][bt2_grch38_1kgmaj_1_s3], [.2.bt2][bt2_grch38_1kgmaj_2_s3], [.3.bt2][bt2_grch38_1kgmaj_3_s3], [.4.bt2][bt2_grch38_1kgmaj_4_s3], [.rev.1.bt2][bt2_grch38_1kgmaj_r1_s3], [.rev.2.bt2][bt2_grch38_1kgmaj_r2_s3]
+Human / CHM13plusY | [T2T <sup>3</sup>][bt2_t2tplusy_source] | [full zip][bt2_t2tplusy_full], [.1.bt2][bt2_t2tplusy_1], [.2.bt2][bt2_t2tplusy_2], [.3.bt2][bt2_t2tplusy_3], [.4.bt2][bt2_t2tplusy_4], [.rev.1.bt2][bt2_t2tplusy_r1], [.rev.2.bt2][bt2_t2tplusy_r2] | [full zip][bt2_t2tplusy_full_s3], [.1.bt2][bt2_t2tplusy_1_s3], [.2.bt2][bt2_t2tplusy_2_s3], [.3.bt2][bt2_t2tplusy_3_s3], [.4.bt2][bt2_t2tplusy_4_s3], [.rev.1.bt2][bt2_t2tplusy_r1_s3], [.rev.2.bt2][bt2_t2tplusy_r2_s3]
 Human / GRCh37 | [NCBI][bt2_grch37_source] | [full zip][bt2_grch37_full], [.1.bt2][bt2_grch37_1], [.2.bt2][bt2_grch37_2], [.3.bt2][bt2_grch37_3], [.4.bt2][bt2_grch37_4], [.rev.1.bt2][bt2_grch37_r1], [.rev.2.bt2][bt2_grch37_r2] | [full zip][bt2_grch37_full_s3], [.1.bt2][bt2_grch37_1_s3], [.2.bt2][bt2_grch37_2_s3], [.3.bt2][bt2_grch37_3_s3], [.4.bt2][bt2_grch37_4_s3], [.rev.1.bt2][bt2_grch37_r1_s3], [.rev.2.bt2][bt2_grch37_r2_s3]
+Human / Ash2.0 | [JHU <sup>2</sup>][bt2_ash1_2_source] | [full zip][bt2_ash1_2_full], [.1.bt2][bt2_ash1_2_1], [.2.bt2][bt2_ash1_2_2], [.3.bt2][bt2_ash1_2_3], [.4.bt2][bt2_ash1_2_4], [.rev.1.bt2][bt2_ash1_2_r1], [.rev.2.bt2][bt2_ash1_2_r2] | [full zip][bt2_ash1_2_full_s3], [.1.bt2][bt2_ash1_2_1_s3], [.2.bt2][bt2_ash1_2_2_s3], [.3.bt2][bt2_ash1_2_3_s3], [.4.bt2][bt2_ash1_2_4_s3], [.rev.1.bt2][bt2_ash1_2_r1_s3], [.rev.2.bt2][bt2_ash1_2_r2_s3]
 Human / Ash1.7 | [JHU <sup>2</sup>][bt2_ash1_source] | [full zip][bt2_ash1_full], [.1.bt2][bt2_ash1_1], [.2.bt2][bt2_ash1_2], [.3.bt2][bt2_ash1_3], [.4.bt2][bt2_ash1_4], [.rev.1.bt2][bt2_ash1_r1], [.rev.2.bt2][bt2_ash1_r2] | [full zip][bt2_ash1_full_s3], [.1.bt2][bt2_ash1_1_s3], [.2.bt2][bt2_ash1_2_s3], [.3.bt2][bt2_ash1_3_s3], [.4.bt2][bt2_ash1_4_s3], [.rev.1.bt2][bt2_ash1_r1_s3], [.rev.2.bt2][bt2_ash1_r2_s3]
 Human / hg19 | [UCSC][bt2_hg19_source] | [full zip][bt2_hg19_full], [.1.bt2][bt2_hg19_1], [.2.bt2][bt2_hg19_2], [.3.bt2][bt2_hg19_3], [.4.bt2][bt2_hg19_4], [.rev.1.bt2][bt2_hg19_r1], [.rev.2.bt2][bt2_hg19_r2] | [full zip][bt2_hg19_full_s3], [.1.bt2][bt2_hg19_1_s3], [.2.bt2][bt2_hg19_2_s3], [.3.bt2][bt2_hg19_3_s3], [.4.bt2][bt2_hg19_4_s3], [.rev.1.bt2][bt2_hg19_r1_s3], [.rev.2.bt2][bt2_hg19_r2_s3]
 Human / hg18 | [UCSC][bt2_hg18_source] | [full zip][bt2_hg18_full], [.1.bt2][bt2_hg18_1], [.2.bt2][bt2_hg18_2], [.3.bt2][bt2_hg18_3], [.4.bt2][bt2_hg18_4], [.rev.1.bt2][bt2_hg18_r1], [.rev.2.bt2][bt2_hg18_r2] | [full zip][bt2_hg18_full_s3], [.1.bt2][bt2_hg18_1_s3], [.2.bt2][bt2_hg18_2_s3], [.3.bt2][bt2_hg18_3_s3], [.4.bt2][bt2_hg18_4_s3], [.rev.1.bt2][bt2_hg18_r1_s3], [.rev.2.bt2][bt2_hg18_r2_s3]
@@ -50,6 +52,7 @@ Yeast / R64-1-1 | [Ensembl][bt2_r6411_source] | [full zip][bt2_r6411_full], [.1.
 
 1. Major SNVs determined from [1000 Genomes Project](https://www.internationalgenome.org) variant calls.  [Details here](https://github.com/BenLangmead/bowtie-majref).
 2. Ashkenazi reference genome from [10.1186/s13059-020-02047-7](https://doi.org/10.1186/s13059-020-02047-7)
+3. CHM13 human reference from [Telomere-to-Telomere consortium](https://github.com/nanopore-wgs-consortium/CHM13), plus Y chromosome from GRCh38
 
 Bowtie and Bowtie 2 are the work of
 Ben Langmead,
@@ -63,12 +66,13 @@ websites for more information on the software, authors, and how to cite the work
 
 [Bowtie]: http://bowtie-bio.sourceforge.net
 [Bowtie 2]: http://bowtie-bio.sourceforge.net/bowtie2
-
+[bt2_t2tplusy_source]: https://github.com/nanopore-wgs-consortium/CHM13
 [bt2_grch38_noalt_source]: ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/
 [bt2_grch38_noalt_decoy_source]: ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/
 [bt2_grch38_1kgmaj_source]: ftp://ftp.ccb.jhu.edu/pub/data/bowtie2_indexes/
 [bt2_grch37_source]: https://grch37.ensembl.org/index.html
 [bt2_ash1_source]: ftp://ftp.ccb.jhu.edu/pub/data/Homo_sapiens/Ash1/v1.7/Assembly/
+[bt2_ash1_2_source]: ftp://ftp.ccb.jhu.edu/pub/data/Homo_sapiens/Ash1/v2.0/Assembly/
 [bt2_hg19_source]: ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes
 [bt2_hg18_source]: ftp://hgdownload.cse.ucsc.edu/goldenPath/hg18/chromosomes
 [bt2_clintptr2_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/880/755/GCF_002880755.1_Clint_PTRv2/
@@ -168,6 +172,34 @@ websites for more information on the software, authors, and how to cite the work
 [bt2_ash1_4_s3]: s3://genome-idx/bt/Ash1v1.7.4.bt2
 [bt2_ash1_r1_s3]: s3://genome-idx/bt/Ash1v1.7.rev.1.bt2
 [bt2_ash1_r2_s3]: s3://genome-idx/bt/Ash1v1.7.rev.2.bt2
+[bt2_ash1_2_full]: https://genome-idx.s3.amazonaws.com/bt/Ash1_v2.0.zip
+[bt2_ash1_2_1]: https://genome-idx.s3.amazonaws.com/bt/Ash1_v2.0.1.bt2
+[bt2_ash1_2_2]: https://genome-idx.s3.amazonaws.com/bt/Ash1_v2.0.2.bt2
+[bt2_ash1_2_3]: https://genome-idx.s3.amazonaws.com/bt/Ash1_v2.0.3.bt2
+[bt2_ash1_2_4]: https://genome-idx.s3.amazonaws.com/bt/Ash1_v2.0.4.bt2
+[bt2_ash1_2_r1]: https://genome-idx.s3.amazonaws.com/bt/Ash1_v2.0.rev.1.bt2
+[bt2_ash1_2_r2]: https://genome-idx.s3.amazonaws.com/bt/Ash1_v2.0.rev.2.bt2
+[bt2_ash1_2_full_s3]: s3://genome-idx/bt/Ash1_v2.0.zip
+[bt2_ash1_2_1_s3]: s3://genome-idx/bt/Ash1_v2.0.1.bt2
+[bt2_ash1_2_2_s3]: s3://genome-idx/bt/Ash1_v2.0.2.bt2
+[bt2_ash1_2_3_s3]: s3://genome-idx/bt/Ash1_v2.0.3.bt2
+[bt2_ash1_2_4_s3]: s3://genome-idx/bt/Ash1_v2.0.4.bt2
+[bt2_ash1_2_r1_s3]: s3://genome-idx/bt/Ash1_v2.0.rev.1.bt2
+[bt2_ash1_2_r2_s3]: s3://genome-idx/bt/Ash1_v2.0.rev.2.bt2
+[bt2_t2tplusy_full]: https://genome-idx.s3.amazonaws.com/bt/chm13.draft_v1.0_plusY.zip
+[bt2_t2tplusy_1]: https://genome-idx.s3.amazonaws.com/bt/chm13.draft_v1.0_plusY.1.bt2
+[bt2_t2tplusy_2]: https://genome-idx.s3.amazonaws.com/bt/chm13.draft_v1.0_plusY.2.bt2
+[bt2_t2tplusy_3]: https://genome-idx.s3.amazonaws.com/bt/chm13.draft_v1.0_plusY.3.bt2
+[bt2_t2tplusy_4]: https://genome-idx.s3.amazonaws.com/bt/chm13.draft_v1.0_plusY.4.bt2
+[bt2_t2tplusy_r1]: https://genome-idx.s3.amazonaws.com/bt/chm13.draft_v1.0_plusY.rev.1.bt2
+[bt2_t2tplusy_r2]: https://genome-idx.s3.amazonaws.com/bt/chm13.draft_v1.0_plusY.rev.2.bt2
+[bt2_t2tplusy_full_s3]: s3://genome-idx/bt/chm13.draft_v1.0_plusY.zip
+[bt2_t2tplusy_1_s3]: s3://genome-idx/bt/chm13.draft_v1.0_plusY.1.bt2
+[bt2_t2tplusy_2_s3]: s3://genome-idx/bt/chm13.draft_v1.0_plusY.2.bt2
+[bt2_t2tplusy_3_s3]: s3://genome-idx/bt/chm13.draft_v1.0_plusY.3.bt2
+[bt2_t2tplusy_4_s3]: s3://genome-idx/bt/chm13.draft_v1.0_plusY.4.bt2
+[bt2_t2tplusy_r1_s3]: s3://genome-idx/bt/chm13.draft_v1.0_plusY.rev.1.bt2
+[bt2_t2tplusy_r2_s3]: s3://genome-idx/bt/chm13.draft_v1.0_plusY.rev.2.bt2
 [bt2_hg19_full]: https://genome-idx.s3.amazonaws.com/bt/hg19.zip
 [bt2_hg19_1]: https://genome-idx.s3.amazonaws.com/bt/hg19.1.bt2
 [bt2_hg19_2]: https://genome-idx.s3.amazonaws.com/bt/hg19.2.bt2

@@ -2,7 +2,9 @@ grch38_noalt,GRCh38_noalt_as,Human,H. sapiens,GRCh38 no-alt analysis set,NCBI
 grch38_noalt_decoy,GRCh38_noalt_decoy_as,Human,H. sapiens,GRCh38 no-alt +decoy set,NCBI
 grch38_1kgmaj,grch38_1kgmaj,Human,H. sapiens,GRCh38 + major SNVs,NCBI+1KG<sup>1</sup>
 grch37,GRCh37,Human,H. sapiens,GRCh37,NCBI
-ash1,Ash1v1.7,Human,H. sapiens,Ash1.7,JHU <sup>2</sup>
+ash1,Ash1v1.7,Human,H. sapiens,Ash1v1.7,JHU <sup>2</sup>
+ash1_2,Ash1_v2.0,Human,H. sapiens,Ash1v2.0,JHU <sup>2</sup>
+t2tplusy,chm13.draft_v1.0_plusY,Human,H. sapiens,CHM13plusY,T2T <sup>3</sup>
 hg19,hg19,Human,H. sapiens,hg19,UCSC
 hg18,hg18,Human,H. sapiens,hg18,UCSC
 grcm38,GRCm38,Mouse,M. Musculus,GRCm38,NCBI
