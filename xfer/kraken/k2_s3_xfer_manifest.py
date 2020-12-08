@@ -15,7 +15,7 @@ files = ['hash.k2d', 'opts.k2d', 'taxo.k2d', 'seqid2taxid.map']
 for ln in bracken_lengths:
     files.append('database%dmers.kmer_distrib' % ln)
 
-dbs = ['minusb',
+dbs = ['viral', 'minusb',
        'standard', 'standard_8gb', 'standard_16gb',
        'pluspf', 'pluspf_8gb', 'pluspf_16gb',
        'pluspfp', 'pluspfp_8gb', 'pluspfp_16gb']
