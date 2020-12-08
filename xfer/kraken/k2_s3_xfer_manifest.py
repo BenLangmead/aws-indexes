@@ -30,4 +30,4 @@ archive_fns = list(map(lambda x: dest_path + '/k2_' + x + '_' + date, dbs))
 for src, dst, archive_fn in zip(sources, dests, archive_fns):
     for file in files:
         print('%s/%s %s/%s' % (src, file, dst, file))
-    print('%s/db.tar.gz %s' % (src, archive_fn))
+    print('%s/db.tar.gz %s.tar.gz' % (src, archive_fn))
