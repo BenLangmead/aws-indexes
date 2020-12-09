@@ -10,7 +10,7 @@ import sys
 
 date = sys.argv[1]
 bracken_lengths = [50, 75, 100, 150, 200, 250, 300]
-files = ['hash.k2d', 'opts.k2d', 'taxo.k2d', 'seqid2taxid.map']
+files = ['hash.k2d', 'opts.k2d', 'taxo.k2d', 'seqid2taxid.map', 'inspect.txt']
 
 for ln in bracken_lengths:
     files.append('database%dmers.kmer_distrib' % ln)
