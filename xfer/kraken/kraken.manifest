@@ -2,6 +2,7 @@ s3://k2-dbs/dbs/mkidx_viral/hash.k2d kraken/viral_20201202/hash.k2d
 s3://k2-dbs/dbs/mkidx_viral/opts.k2d kraken/viral_20201202/opts.k2d
 s3://k2-dbs/dbs/mkidx_viral/taxo.k2d kraken/viral_20201202/taxo.k2d
 s3://k2-dbs/dbs/mkidx_viral/seqid2taxid.map kraken/viral_20201202/seqid2taxid.map
+s3://k2-dbs/dbs/mkidx_viral/inspect.txt kraken/viral_20201202/inspect.txt
 s3://k2-dbs/dbs/mkidx_viral/database50mers.kmer_distrib kraken/viral_20201202/database50mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_viral/database75mers.kmer_distrib kraken/viral_20201202/database75mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_viral/database100mers.kmer_distrib kraken/viral_20201202/database100mers.kmer_distrib
@@ -14,6 +15,7 @@ s3://k2-dbs/dbs/mkidx_minusb/hash.k2d kraken/minusb_20201202/hash.k2d
 s3://k2-dbs/dbs/mkidx_minusb/opts.k2d kraken/minusb_20201202/opts.k2d
 s3://k2-dbs/dbs/mkidx_minusb/taxo.k2d kraken/minusb_20201202/taxo.k2d
 s3://k2-dbs/dbs/mkidx_minusb/seqid2taxid.map kraken/minusb_20201202/seqid2taxid.map
+s3://k2-dbs/dbs/mkidx_minusb/inspect.txt kraken/minusb_20201202/inspect.txt
 s3://k2-dbs/dbs/mkidx_minusb/database50mers.kmer_distrib kraken/minusb_20201202/database50mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_minusb/database75mers.kmer_distrib kraken/minusb_20201202/database75mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_minusb/database100mers.kmer_distrib kraken/minusb_20201202/database100mers.kmer_distrib
@@ -26,6 +28,7 @@ s3://k2-dbs/dbs/mkidx_standard/hash.k2d kraken/standard_20201202/hash.k2d
 s3://k2-dbs/dbs/mkidx_standard/opts.k2d kraken/standard_20201202/opts.k2d
 s3://k2-dbs/dbs/mkidx_standard/taxo.k2d kraken/standard_20201202/taxo.k2d
 s3://k2-dbs/dbs/mkidx_standard/seqid2taxid.map kraken/standard_20201202/seqid2taxid.map
+s3://k2-dbs/dbs/mkidx_standard/inspect.txt kraken/standard_20201202/inspect.txt
 s3://k2-dbs/dbs/mkidx_standard/database50mers.kmer_distrib kraken/standard_20201202/database50mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_standard/database75mers.kmer_distrib kraken/standard_20201202/database75mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_standard/database100mers.kmer_distrib kraken/standard_20201202/database100mers.kmer_distrib
@@ -38,6 +41,7 @@ s3://k2-dbs/dbs/mkidx_standard_8gb/hash.k2d kraken/standard_8gb_20201202/hash.k2
 s3://k2-dbs/dbs/mkidx_standard_8gb/opts.k2d kraken/standard_8gb_20201202/opts.k2d
 s3://k2-dbs/dbs/mkidx_standard_8gb/taxo.k2d kraken/standard_8gb_20201202/taxo.k2d
 s3://k2-dbs/dbs/mkidx_standard_8gb/seqid2taxid.map kraken/standard_8gb_20201202/seqid2taxid.map
+s3://k2-dbs/dbs/mkidx_standard_8gb/inspect.txt kraken/standard_8gb_20201202/inspect.txt
 s3://k2-dbs/dbs/mkidx_standard_8gb/database50mers.kmer_distrib kraken/standard_8gb_20201202/database50mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_standard_8gb/database75mers.kmer_distrib kraken/standard_8gb_20201202/database75mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_standard_8gb/database100mers.kmer_distrib kraken/standard_8gb_20201202/database100mers.kmer_distrib
@@ -50,6 +54,7 @@ s3://k2-dbs/dbs/mkidx_standard_16gb/hash.k2d kraken/standard_16gb_20201202/hash.
 s3://k2-dbs/dbs/mkidx_standard_16gb/opts.k2d kraken/standard_16gb_20201202/opts.k2d
 s3://k2-dbs/dbs/mkidx_standard_16gb/taxo.k2d kraken/standard_16gb_20201202/taxo.k2d
 s3://k2-dbs/dbs/mkidx_standard_16gb/seqid2taxid.map kraken/standard_16gb_20201202/seqid2taxid.map
+s3://k2-dbs/dbs/mkidx_standard_16gb/inspect.txt kraken/standard_16gb_20201202/inspect.txt
 s3://k2-dbs/dbs/mkidx_standard_16gb/database50mers.kmer_distrib kraken/standard_16gb_20201202/database50mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_standard_16gb/database75mers.kmer_distrib kraken/standard_16gb_20201202/database75mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_standard_16gb/database100mers.kmer_distrib kraken/standard_16gb_20201202/database100mers.kmer_distrib
@@ -62,6 +67,7 @@ s3://k2-dbs/dbs/mkidx_pluspf/hash.k2d kraken/pluspf_20201202/hash.k2d
 s3://k2-dbs/dbs/mkidx_pluspf/opts.k2d kraken/pluspf_20201202/opts.k2d
 s3://k2-dbs/dbs/mkidx_pluspf/taxo.k2d kraken/pluspf_20201202/taxo.k2d
 s3://k2-dbs/dbs/mkidx_pluspf/seqid2taxid.map kraken/pluspf_20201202/seqid2taxid.map
+s3://k2-dbs/dbs/mkidx_pluspf/inspect.txt kraken/pluspf_20201202/inspect.txt
 s3://k2-dbs/dbs/mkidx_pluspf/database50mers.kmer_distrib kraken/pluspf_20201202/database50mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_pluspf/database75mers.kmer_distrib kraken/pluspf_20201202/database75mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_pluspf/database100mers.kmer_distrib kraken/pluspf_20201202/database100mers.kmer_distrib
@@ -74,6 +80,7 @@ s3://k2-dbs/dbs/mkidx_pluspf_8gb/hash.k2d kraken/pluspf_8gb_20201202/hash.k2d
 s3://k2-dbs/dbs/mkidx_pluspf_8gb/opts.k2d kraken/pluspf_8gb_20201202/opts.k2d
 s3://k2-dbs/dbs/mkidx_pluspf_8gb/taxo.k2d kraken/pluspf_8gb_20201202/taxo.k2d
 s3://k2-dbs/dbs/mkidx_pluspf_8gb/seqid2taxid.map kraken/pluspf_8gb_20201202/seqid2taxid.map
+s3://k2-dbs/dbs/mkidx_pluspf_8gb/inspect.txt kraken/pluspf_8gb_20201202/inspect.txt
 s3://k2-dbs/dbs/mkidx_pluspf_8gb/database50mers.kmer_distrib kraken/pluspf_8gb_20201202/database50mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_pluspf_8gb/database75mers.kmer_distrib kraken/pluspf_8gb_20201202/database75mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_pluspf_8gb/database100mers.kmer_distrib kraken/pluspf_8gb_20201202/database100mers.kmer_distrib
@@ -86,6 +93,7 @@ s3://k2-dbs/dbs/mkidx_pluspf_16gb/hash.k2d kraken/pluspf_16gb_20201202/hash.k2d
 s3://k2-dbs/dbs/mkidx_pluspf_16gb/opts.k2d kraken/pluspf_16gb_20201202/opts.k2d
 s3://k2-dbs/dbs/mkidx_pluspf_16gb/taxo.k2d kraken/pluspf_16gb_20201202/taxo.k2d
 s3://k2-dbs/dbs/mkidx_pluspf_16gb/seqid2taxid.map kraken/pluspf_16gb_20201202/seqid2taxid.map
+s3://k2-dbs/dbs/mkidx_pluspf_16gb/inspect.txt kraken/pluspf_16gb_20201202/inspect.txt
 s3://k2-dbs/dbs/mkidx_pluspf_16gb/database50mers.kmer_distrib kraken/pluspf_16gb_20201202/database50mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_pluspf_16gb/database75mers.kmer_distrib kraken/pluspf_16gb_20201202/database75mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_pluspf_16gb/database100mers.kmer_distrib kraken/pluspf_16gb_20201202/database100mers.kmer_distrib
@@ -98,6 +106,7 @@ s3://k2-dbs/dbs/mkidx_pluspfp/hash.k2d kraken/pluspfp_20201202/hash.k2d
 s3://k2-dbs/dbs/mkidx_pluspfp/opts.k2d kraken/pluspfp_20201202/opts.k2d
 s3://k2-dbs/dbs/mkidx_pluspfp/taxo.k2d kraken/pluspfp_20201202/taxo.k2d
 s3://k2-dbs/dbs/mkidx_pluspfp/seqid2taxid.map kraken/pluspfp_20201202/seqid2taxid.map
+s3://k2-dbs/dbs/mkidx_pluspfp/inspect.txt kraken/pluspfp_20201202/inspect.txt
 s3://k2-dbs/dbs/mkidx_pluspfp/database50mers.kmer_distrib kraken/pluspfp_20201202/database50mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_pluspfp/database75mers.kmer_distrib kraken/pluspfp_20201202/database75mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_pluspfp/database100mers.kmer_distrib kraken/pluspfp_20201202/database100mers.kmer_distrib
@@ -110,6 +119,7 @@ s3://k2-dbs/dbs/mkidx_pluspfp_8gb/hash.k2d kraken/pluspfp_8gb_20201202/hash.k2d
 s3://k2-dbs/dbs/mkidx_pluspfp_8gb/opts.k2d kraken/pluspfp_8gb_20201202/opts.k2d
 s3://k2-dbs/dbs/mkidx_pluspfp_8gb/taxo.k2d kraken/pluspfp_8gb_20201202/taxo.k2d
 s3://k2-dbs/dbs/mkidx_pluspfp_8gb/seqid2taxid.map kraken/pluspfp_8gb_20201202/seqid2taxid.map
+s3://k2-dbs/dbs/mkidx_pluspfp_8gb/inspect.txt kraken/pluspfp_8gb_20201202/inspect.txt
 s3://k2-dbs/dbs/mkidx_pluspfp_8gb/database50mers.kmer_distrib kraken/pluspfp_8gb_20201202/database50mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_pluspfp_8gb/database75mers.kmer_distrib kraken/pluspfp_8gb_20201202/database75mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_pluspfp_8gb/database100mers.kmer_distrib kraken/pluspfp_8gb_20201202/database100mers.kmer_distrib
@@ -122,6 +132,7 @@ s3://k2-dbs/dbs/mkidx_pluspfp_16gb/hash.k2d kraken/pluspfp_16gb_20201202/hash.k2
 s3://k2-dbs/dbs/mkidx_pluspfp_16gb/opts.k2d kraken/pluspfp_16gb_20201202/opts.k2d
 s3://k2-dbs/dbs/mkidx_pluspfp_16gb/taxo.k2d kraken/pluspfp_16gb_20201202/taxo.k2d
 s3://k2-dbs/dbs/mkidx_pluspfp_16gb/seqid2taxid.map kraken/pluspfp_16gb_20201202/seqid2taxid.map
+s3://k2-dbs/dbs/mkidx_pluspfp_16gb/inspect.txt kraken/pluspfp_16gb_20201202/inspect.txt
 s3://k2-dbs/dbs/mkidx_pluspfp_16gb/database50mers.kmer_distrib kraken/pluspfp_16gb_20201202/database50mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_pluspfp_16gb/database75mers.kmer_distrib kraken/pluspfp_16gb_20201202/database75mers.kmer_distrib
 s3://k2-dbs/dbs/mkidx_pluspfp_16gb/database100mers.kmer_distrib kraken/pluspfp_16gb_20201202/database100mers.kmer_distrib
