@@ -2,6 +2,8 @@
 
 SPUMONI is a fast read classification tool for targeted nanopore sequencing.  It uses a compressed r-index together with a streaming matching-statistics algorithm and statsitical test to classify reads. 
 
+The exact accession ids used for the reference genomes in the Zymo mock community indexes can be [found here][accessions] ([s3 link][accessions_s3]).
+
 <div class="datatable-begin"></div>
 
 Collection                                              | Date            | HTTPS URL                                                                         | S3 URL
@@ -16,6 +18,9 @@ Human, three genomes (T2T CHM13 v1.0, Ashv2.0, GRCh38)  |  March, 2021    | [pos
 <div class="datatable-end"></div>
 
 SPUMONI is the work of Omar Ahmed, Massimiliano Rossi, Sam Kovaka, Michael C. Schatz, Travis Gagie, Christina Boucher, and Ben Langmead.
+
+[accessions]: https://genome-idx.s3.amazonaws.com/spumoni/refseq_accession_nums/accessions.zip
+[accessions_s3]: s3://genome-idx/spumoni/refseq_accession_nums/accessions.zip
 
 [zymo_pos_one_match]: https://genome-idx.s3.amazonaws.com/spumoni/mock_comm_one_genome_with_zymo_refs/mock_comm_one_genome_with_zymo_refs_positive_index.spumoni
 [zymo_null_one_match]: https://genome-idx.s3.amazonaws.com/spumoni/mock_comm_one_genome_with_zymo_refs/mock_comm_one_genome_with_zymo_refs_null_index.spumoni
