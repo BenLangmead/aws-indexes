@@ -3,12 +3,15 @@
 import subprocess
 
 
-dbs = ['viral', 'minusb',
+dbs = ['viral',    'minusb',
        'standard', 'standard_8gb', 'standard_16gb',
-       'pluspf', 'pluspf_8gb', 'pluspf_16gb',
-       'pluspfp', 'pluspfp_8gb', 'pluspfp_16gb']
+       'pluspf',   'pluspf_8gb',   'pluspf_16gb',
+                   'pluspfp_8gb',  'pluspfp_16gb']
 
-date = '20201202'
+dates = ['20210517', '20210517',
+         '20210517', '20210517', '20210517',
+         '20210517', '20210517', '20210517',
+         '20210517', '20210517', '20210517']
 
 
 def get_size(url):
@@ -20,7 +23,7 @@ def get_size(url):
     return '%0.1f' % float(result.stdout.decode('utf-8'))
 
 
-for db in dbs:
+for db, date in zip(dbs, dates):
     db_url = 'https://genome-idx.s3.amazonaws.com/kraken/k2_%s_%s.tar.gz' % (db, date)
     ar_sz = get_size(db_url)
     hash_url = 'https://genome-idx.s3.amazonaws.com/kraken/%s_%s/hash.k2d' % (db, date)
