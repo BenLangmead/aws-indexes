@@ -1,6 +1,6 @@
 # SPUMONI indexes
 
-SPUMONI is a fast read classification tool for targeted nanopore sequencing.  It uses a compressed r-index together with a streaming matching-statistics algorithm and statsitical test to classify reads. 
+SPUMONI ([GitHub repo](https://github.com/oma219/spumoni)) is a fast read classification tool for targeted nanopore sequencing.  It uses a compressed r-index together with a streaming matching-statistics algorithm and statsitical test to classify reads. 
 
 The exact accession ids used for the reference genomes in the Zymo mock community indexes can be [found here][accessions] ([s3 link][accessions_s3]).
 
