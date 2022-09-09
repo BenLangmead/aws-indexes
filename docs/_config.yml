@@ -15,3 +15,5 @@ navigation:
     url: centrifuge
   - title: SPUMONI
     url: spumoni
+  - title: SPUMONI 2
+    url: spu2
