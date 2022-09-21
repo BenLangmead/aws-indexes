@@ -95,7 +95,7 @@ websites for more information on the software, authors, and how to cite the work
 [bt2_grcz11_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/035/GCF_000002035.6_GRCz11/
 [bt2_grcz10_source]: https://www.ensembl.org/Drosophila_melanogaster/Info/Index
 [bt2_tair10_source]: http://plants.ensembl.org/Arabidopsis_thaliana/Info/Index
-[bt2_bdgp6_source]: https://www.ncbi.nlm.nih.gov/assembly/GCF_000002035.5/
+[bt2_bdgp6_source]: https://jan2019.archive.ensembl.org/Drosophila_melanogaster/Info/Index
 [bt2_wbcel235_source]: https://www.ensembl.org/Caenorhabditis_elegans/Info/Index
 [bt2_r6411_source]: https://www.ensembl.org/Saccharomyces_cerevisiae/Info/Index
 [bt2_dmela410_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/002/300/595/GCA_002300595.1_Dmel_A4_1.0/
