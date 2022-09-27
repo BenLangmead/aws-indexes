@@ -4,14 +4,14 @@ import subprocess
 
 
 dbs = ['viral',    'minusb',
-       'standard', 'standard_8gb', 'standard_16gb',
-       'pluspf',   'pluspf_8gb',   'pluspf_16gb',
-                   'pluspfp_8gb',  'pluspfp_16gb']
+       'standard', 'standard_08gb', 'standard_16gb',
+       'pluspf',   'pluspf_08gb',   'pluspf_16gb',
+                   'pluspfp_08gb',  'pluspfp_16gb']
 
-dates = ['20210517', '20210517',
-         '20210517', '20210517', '20210517',
-         '20210517', '20210517', '20210517',
-         '20210517', '20210517', '20210517']
+dates = ['20220908', '20220926',
+         '20220926', '20220926', '20220926',
+         '20220908', '20220908', '20220908',
+         '20220908', '20220908', '20220908']
 
 
 def get_size(url):
