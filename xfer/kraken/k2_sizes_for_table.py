@@ -6,12 +6,12 @@ import subprocess
 dbs = ['viral',    'minusb',
        'standard', 'standard_08gb', 'standard_16gb',
        'pluspf',   'pluspf_08gb',   'pluspf_16gb',
-                   'pluspfp_08gb',  'pluspfp_16gb']
+       'pluspfp',  'pluspfp_08gb',  'pluspfp_16gb']
 
-dates = ['20220908', '20220926',
-         '20220926', '20220926', '20220926',
-         '20220908', '20220908', '20220908',
-         '20220908', '20220908', '20220908']
+dates = ['20221209', '20221209',
+         '20221209', '20221209', '20221209',
+         '20221209', '20221209', '20221209',
+         '20221209', '20221209', '20221209']
 
 
 def get_size(url):
