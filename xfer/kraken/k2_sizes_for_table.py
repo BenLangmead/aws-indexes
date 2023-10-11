@@ -8,17 +8,19 @@ dbs = ['viral',    'minusb',
        'pluspf',   'pluspf_08gb',   'pluspf_16gb',
        'pluspfp',  'pluspfp_08gb',  'pluspfp_16gb']
 
-dates = ['20230314', '20230314',
-         '20230314', '20230314', '20230314',
-         '20230314', '20230314', '20230314',
-         '20230314', '20230314', '20230314']
+dates = ['20231009', '20231009',
+         '20231009', '20231009', '20231009',
+         '20231009', '20231009', '20231009',
+         '20231009', '20231009', '20231009']
 
 
-def get_size(url):
+def get_size(url, verbose=False):
     cmd = ['curl', '-I', url, '2>/dev/null',
            '|', 'grep', 'Content-Length',
            '|', 'awk', '\'{print $2/1024/1024/1024}\'']
     cmd = ' '.join(cmd)
+    if verbose:
+        print(cmd)
     result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE)
     return '%0.1f' % float(result.stdout.decode('utf-8'))
 
