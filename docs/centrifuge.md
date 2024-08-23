@@ -22,7 +22,6 @@ A team from Lawrence Livermore National Laboratory (LLNL) have constructed a Cen
 
 ```
 curl https://genome-idx.s3.amazonaws.com/centrifuge/llnl/nt_wntr23/nt_wntr23_filt.cf.7z.[001-071] -O
-7z x nt_wntr23_filt.cf.7z.001
 ```
 
 Then you must decompress them with the command:
