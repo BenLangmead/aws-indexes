@@ -16,6 +16,23 @@ NCBI: nucleotide non-redundant sequences             |  March, 2018    | 64 GB  
 Centrifuge is the work of Daehwan Kim, Li Song, Florian Breitwieser, Chanhee Park, Steven Salzberg among others.
 Please see the [Centrifuge website](https://ccb.jhu.edu/software/centrifuge/) for more information on the software, authors, and how to cite it.
 
+# nt Database from Lawrence Livermore National Laboratory
+
+A team from Lawrence Livermore National Laboratory (LLNL) have constructed a Centrifuge database spanning all of the BLAST nt sequences.  This is described in [a recent manuscript](https://doi.org/10.1101/2024.06.12.598617).  This database can be downloaded as a collection of 7zip archives.  You will need to have the [7zip softare](https://7-zip.org/download.html) (i.e. the `7z` command) installed.  Altogether, the compressed archives occupy 284G.  These commands will download the archives:
+
+```
+curl https://genome-idx.s3.amazonaws.com/centrifuge/llnl/nt_wntr23/nt_wntr23_filt.cf.7z.[001-071] -O
+7z x nt_wntr23_filt.cf.7z.001
+```
+
+Then you must decompress them with the command:
+
+```
+7z x nt_wntr23_filt.cf.7z.001
+```
+
+This index was constructed by Jose Manuel Martí, Car Reen Kok, James B. Thissen, Nisha J. Mulakken, Aram Avila-Herrera, Crystal J. Jaing, Jonathan E. Allen, and Nicholas A. Be at LLNL.
+
 [cent_bavm_comp]: https://genome-idx.s3.amazonaws.com/centrifuge/p_compressed%2Bh%2Bv.tar.gz
 [cent_bavm_comp_s3]: s3://genome-idx/centrifuge/p_compressed%2Bh%2Bv.tar.gz
 
