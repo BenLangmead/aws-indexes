@@ -25,11 +25,15 @@ do
         database300mers.kmer_distrib \
         database50mers.kmer_distrib \
         database75mers.kmer_distrib \
+        "${c}.md5" \
         hash.k2d \
         inspect.txt \
         ktaxonomy.tsv \
         opts.k2d \
+        library_report.tsv \
         seqid2taxid.map \
+        names.dmp \
+        nodes.dmp \
         taxo.k2d
     do
         [[ ! -f "${c}/${fn}" ]] && echo "Could not find ${c}/${fn}" && exit 1
