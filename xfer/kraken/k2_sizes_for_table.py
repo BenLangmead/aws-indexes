@@ -1,17 +1,23 @@
 #!/usr/bin/env python3
 
 import subprocess
+import sys
+
+
+verbose = any(map(lambda x: x == '--verbose', sys.argv[1:]))
 
 
 dbs = ['viral',    'minusb',
        'standard', 'standard_08gb', 'standard_16gb',
        'pluspf',   'pluspf_08gb',   'pluspf_16gb',
-       'pluspfp',  'pluspfp_08gb',  'pluspfp_16gb']
+       'pluspfp',  'pluspfp_08gb',  'pluspfp_16gb',
+       'core_nt']
 
-dates = ['20231009', '20231009',
-         '20231009', '20231009', '20231009',
-         '20231009', '20231009', '20231009',
-         '20231009', '20231009', '20231009']
+dates = ['20240904', '20240904',
+         '20240904', '20240904', '20240904',
+         '20240904', '20240904', '20240904',
+         '20240904', '20240904', '20240904',
+         '20240904']
 
 
 def get_size(url, verbose=False):
@@ -27,8 +33,8 @@ def get_size(url, verbose=False):
 
 for db, date in zip(dbs, dates):
     db_url = 'https://genome-idx.s3.amazonaws.com/kraken/k2_%s_%s.tar.gz' % (db, date)
-    ar_sz = get_size(db_url)
+    ar_sz = get_size(db_url, verbose)
     hash_url = 'https://genome-idx.s3.amazonaws.com/kraken/%s_%s/hash.k2d' % (db, date)
-    hash_sz = get_size(hash_url)
+    hash_sz = get_size(hash_url, verbose)
     print(db)
     print(ar_sz + ' ' + hash_sz)
