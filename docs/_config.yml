@@ -1,6 +1,6 @@
 theme: jekyll-theme-minimal
 title: Index zone
-description: HTTPS and S3 links to genomic index files freely available in the AWS cloud
+description: HTTPS & S3 links to indexes freely available thanks to the Amazon Web Services [Public Dataset Program](https://aws.amazon.com/opendata/public-datasets/)
 show_downloads: False
 navigation:
   - title: Home
