@@ -14,6 +14,7 @@ Human / GRCh38 no-alt analysis set<sup>1</sup> | [NCBI][bt2_grch38_noalt_source]
 Human / GRCh38 no-alt +decoy set<sup>1</sup> | [NCBI][bt2_grch38_noalt_decoy_source] | [full zip][bt2_grch38_noalt_decoy_full], [.1.bt2][bt2_grch38_noalt_decoy_1], [.2.bt2][bt2_grch38_noalt_decoy_2], [.3.bt2][bt2_grch38_noalt_decoy_3], [.4.bt2][bt2_grch38_noalt_decoy_4], [.rev.1.bt2][bt2_grch38_noalt_decoy_r1], [.rev.2.bt2][bt2_grch38_noalt_decoy_r2] | [full zip][bt2_grch38_noalt_decoy_full_s3], [.1.bt2][bt2_grch38_noalt_decoy_1_s3], [.2.bt2][bt2_grch38_noalt_decoy_2_s3], [.3.bt2][bt2_grch38_noalt_decoy_3_s3], [.4.bt2][bt2_grch38_noalt_decoy_4_s3], [.rev.1.bt2][bt2_grch38_noalt_decoy_r1_s3], [.rev.2.bt2][bt2_grch38_noalt_decoy_r2_s3]
 Human / GRCh38 + major SNVs | [NCBI+1KG<sup>2</sup>][bt2_grch38_1kgmaj_source] | [full zip][bt2_grch38_1kgmaj_full], [.1.bt2][bt2_grch38_1kgmaj_1], [.2.bt2][bt2_grch38_1kgmaj_2], [.3.bt2][bt2_grch38_1kgmaj_3], [.4.bt2][bt2_grch38_1kgmaj_4], [.rev.1.bt2][bt2_grch38_1kgmaj_r1], [.rev.2.bt2][bt2_grch38_1kgmaj_r2] | [full zip][bt2_grch38_1kgmaj_full_s3], [.1.bt2][bt2_grch38_1kgmaj_1_s3], [.2.bt2][bt2_grch38_1kgmaj_2_s3], [.3.bt2][bt2_grch38_1kgmaj_3_s3], [.4.bt2][bt2_grch38_1kgmaj_4_s3], [.rev.1.bt2][bt2_grch38_1kgmaj_r1_s3], [.rev.2.bt2][bt2_grch38_1kgmaj_r2_s3]
 Human / CHM13plusY | [T2T<sup>3</sup>][bt2_t2tplusy_source] | [full zip][bt2_t2tplusy_full], [.1.bt2][bt2_t2tplusy_1], [.2.bt2][bt2_t2tplusy_2], [.3.bt2][bt2_t2tplusy_3], [.4.bt2][bt2_t2tplusy_4], [.rev.1.bt2][bt2_t2tplusy_r1], [.rev.2.bt2][bt2_t2tplusy_r2] | [full zip][bt2_t2tplusy_full_s3], [.1.bt2][bt2_t2tplusy_1_s3], [.2.bt2][bt2_t2tplusy_2_s3], [.3.bt2][bt2_t2tplusy_3_s3], [.4.bt2][bt2_t2tplusy_4_s3], [.rev.1.bt2][bt2_t2tplusy_r1_s3], [.rev.2.bt2][bt2_t2tplusy_r2_s3]
+Human / CHM13v2 | [T2T][bt2_chm13v2_source] | [full zip][bt2_chm13v2_full], [.1.bt2][bt2_chm13v2_1], [.2.bt2][bt2_chm13v2_2], [.3.bt2][bt2_chm13v2_3], [.4.bt2][bt2_chm13v2_4], [.rev.1.bt2][bt2_chm13v2_r1], [.rev.2.bt2][bt2_chm13v2_r2] | [full zip][bt2_chm13v2_full_s3], [.1.bt2][bt2_chm13v2_1_s3], [.2.bt2][bt2_chm13v2_2_s3], [.3.bt2][bt2_chm13v2_3_s3], [.4.bt2][bt2_chm13v2_4_s3], [.rev.1.bt2][bt2_chm13v2_r1_s3], [.rev.2.bt2][bt2_chm13v2_r2_s3]
 Human / GRCh37 | [NCBI][bt2_grch37_source] | [full zip][bt2_grch37_full], [.1.bt2][bt2_grch37_1], [.2.bt2][bt2_grch37_2], [.3.bt2][bt2_grch37_3], [.4.bt2][bt2_grch37_4], [.rev.1.bt2][bt2_grch37_r1], [.rev.2.bt2][bt2_grch37_r2] | [full zip][bt2_grch37_full_s3], [.1.bt2][bt2_grch37_1_s3], [.2.bt2][bt2_grch37_2_s3], [.3.bt2][bt2_grch37_3_s3], [.4.bt2][bt2_grch37_4_s3], [.rev.1.bt2][bt2_grch37_r1_s3], [.rev.2.bt2][bt2_grch37_r2_s3]
 Human / Ash2.0 | [JHU<sup>4</sup>][bt2_ash1_2_source] | [full zip][bt2_ash1_2_full], [.1.bt2][bt2_ash1_2_1], [.2.bt2][bt2_ash1_2_2], [.3.bt2][bt2_ash1_2_3], [.4.bt2][bt2_ash1_2_4], [.rev.1.bt2][bt2_ash1_2_r1], [.rev.2.bt2][bt2_ash1_2_r2] | [full zip][bt2_ash1_2_full_s3], [.1.bt2][bt2_ash1_2_1_s3], [.2.bt2][bt2_ash1_2_2_s3], [.3.bt2][bt2_ash1_2_3_s3], [.4.bt2][bt2_ash1_2_4_s3], [.rev.1.bt2][bt2_ash1_2_r1_s3], [.rev.2.bt2][bt2_ash1_2_r2_s3]
 Human / Ash1.7 | [JHU<sup>4</sup>][bt2_ash1_source] | [full zip][bt2_ash1_full], [.1.bt2][bt2_ash1_1], [.2.bt2][bt2_ash1_2], [.3.bt2][bt2_ash1_3], [.4.bt2][bt2_ash1_4], [.rev.1.bt2][bt2_ash1_r1], [.rev.2.bt2][bt2_ash1_r2] | [full zip][bt2_ash1_full_s3], [.1.bt2][bt2_ash1_1_s3], [.2.bt2][bt2_ash1_2_s3], [.3.bt2][bt2_ash1_3_s3], [.4.bt2][bt2_ash1_4_s3], [.rev.1.bt2][bt2_ash1_r1_s3], [.rev.2.bt2][bt2_ash1_r2_s3]
@@ -68,6 +69,7 @@ websites for more information on the software, authors, and how to cite the work
 [Bowtie]: http://bowtie-bio.sourceforge.net
 [Bowtie 2]: http://bowtie-bio.sourceforge.net/bowtie2
 [bt2_t2tplusy_source]: https://github.com/nanopore-wgs-consortium/CHM13
+[bt2_chm13v2_source]: https://github.com/marbl/CHM13
 [bt2_grch38_noalt_source]: ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/
 [bt2_grch38_noalt_decoy_source]: ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/
 [bt2_grch38_1kgmaj_source]: ftp://ftp.ccb.jhu.edu/pub/data/bowtie2_indexes/
@@ -201,6 +203,20 @@ websites for more information on the software, authors, and how to cite the work
 [bt2_t2tplusy_4_s3]: s3://genome-idx/bt/chm13.draft_v1.0_plusY.4.bt2
 [bt2_t2tplusy_r1_s3]: s3://genome-idx/bt/chm13.draft_v1.0_plusY.rev.1.bt2
 [bt2_t2tplusy_r2_s3]: s3://genome-idx/bt/chm13.draft_v1.0_plusY.rev.2.bt2
+[bt2_chm13v2_full]: https://genome-idx.s3.amazonaws.com/bt/chm13v2.0.zip
+[bt2_chm13v2_1]: https://genome-idx.s3.amazonaws.com/bt/chm13v2.0.1.bt2
+[bt2_chm13v2_2]: https://genome-idx.s3.amazonaws.com/bt/chm13v2.0.2.bt2
+[bt2_chm13v2_3]: https://genome-idx.s3.amazonaws.com/bt/chm13v2.0.3.bt2
+[bt2_chm13v2_4]: https://genome-idx.s3.amazonaws.com/bt/chm13v2.0.4.bt2
+[bt2_chm13v2_r1]: https://genome-idx.s3.amazonaws.com/bt/chm13v2.0.rev.1.bt2
+[bt2_chm13v2_r2]: https://genome-idx.s3.amazonaws.com/bt/chm13v2.0.rev.2.bt2
+[bt2_chm13v2_full_s3]: s3://genome-idx/bt/chm13v2.0.zip
+[bt2_chm13v2_1_s3]: s3://genome-idx/bt/chm13v2.0.1.bt2
+[bt2_chm13v2_2_s3]: s3://genome-idx/bt/chm13v2.0.2.bt2
+[bt2_chm13v2_3_s3]: s3://genome-idx/bt/chm13v2.0.3.bt2
+[bt2_chm13v2_4_s3]: s3://genome-idx/bt/chm13v2.0.4.bt2
+[bt2_chm13v2_r1_s3]: s3://genome-idx/bt/chm13v2.0.rev.1.bt2
+[bt2_chm13v2_r2_s3]: s3://genome-idx/bt/chm13v2.0.rev.2.bt2
 [bt2_hg19_full]: https://genome-idx.s3.amazonaws.com/bt/hg19.zip
 [bt2_hg19_1]: https://genome-idx.s3.amazonaws.com/bt/hg19.1.bt2
 [bt2_hg19_2]: https://genome-idx.s3.amazonaws.com/bt/hg19.2.bt2
