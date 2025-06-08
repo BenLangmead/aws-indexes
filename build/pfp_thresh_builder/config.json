@@ -1,0 +1,19 @@
+{
+    "region": "eu-north-1",
+    "availability_zone": "eu-north-1b",
+    "instance_type": {
+        "small": {
+            "type": "t3.micro",
+            "spot_price": 0.005
+        },
+        "large": {
+            "type": "x2iedn.24xlarge",
+            "spot_price": 3.0
+        },
+        "large-us-west-1b": {
+            "type": "x2iedn.16xlarge",
+            "spot_price": 1.75
+        }
+    },
+    "use_large_instance": true
+}

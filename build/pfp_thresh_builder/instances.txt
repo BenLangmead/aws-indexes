@@ -1,0 +1,13 @@
+Name               vCPU        MEM   Spot us-east-2a us-east-2b us-east-1a  us-west-1b  us-west-2a  eu-central-1  eu-north-1b  ap-south-1a  ap-south-1b
+p5.48xlarge         192    2048.00                                                                                        N/A
+p5e.48xlarge        192    2048.00                                                                                       1.52
+x1e.32xlarge        128    3904.00               9.8       26.7        4.9*        N/A        8.2            4.0          N/A         2.75
+x2iedn.16xlarge      64    2048.00                                                 1.73                                  1.52         1.4
+x2iedn.24xlarge      96    3072.00                                                 2.6                                   2.28         2.06
+x2iedn.32xlarge     128    4096.00               8.5        8.0        7.8         3.5       10.9            $$$         3.04                      2.75
+
+* Variability across availability zones
+
+"Spot is available for nearly all EC2 instance families and sizes, including the newest compute-optimized instances, accelerated graphics, FPGA and the new bare-metal instance types."
+
+Yet no metal options appear when I apply my filters in the AWS Console.
