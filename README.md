@@ -10,6 +10,6 @@ Users working in the cloud, e.g. on AWS EC2 instances, gain a particular advanta
 
 # Other resources
 
-Many thanks to Illunina for maintaining the excellent [iGenomes](https://support.illumina.com/sequencing/sequencing_software/igenome.html) resource.
+Many thanks to Illumina for maintaining the excellent [iGenomes](https://support.illumina.com/sequencing/sequencing_software/igenome.html) resource.
 
 For access to [iGenomes](https://support.illumina.com/sequencing/sequencing_software/igenome.html)-style indexes, sequences and annotations, check out [AWS iGenomes](https://ewels.github.io/AWS-iGenomes/).
