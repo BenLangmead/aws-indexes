@@ -13,7 +13,7 @@ dbs = ['viral',    'minusb',
        'pluspfp',  'pluspfp_08_GB',  'pluspfp_16_GB',
        'core_nt']
 
-dates = ['20250714'] * 11 + ['20241228']
+dates = ['20251015'] * 12
 
 
 def get_size(url, verbose=False):
