@@ -1,3 +1,17 @@
+"""
+Stack for building a run-length BWT index with thresholds, which can be used
+with downstream tools like Movi or SPUMONI.
+
+Uses Amazon Linux AMI.
+
+The actual tools run include: yum, python3, psrecord, AVS CLI, 
+
+pfp-thresholds is made from scratch.
+
+Author: Ben Langmead
+  Date: Aug 7, 2025
+"""
+
 import configparser
 import os
 import base64

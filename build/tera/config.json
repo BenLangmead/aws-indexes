@@ -1,0 +1,17 @@
+{
+    "region": "ap-northeast-2",
+    "availability_zone": "ap-northeast-2a",
+    "preferred_availability_zones": ["ap-northeast-2a", "ap-northeast-2b", "ap-northeast-2c"],
+    "key_name": "tera-build",
+    "instance_type": {
+        "small": {
+            "type": "t3.micro",
+            "spot_price": "0.01"
+        },
+        "large": {
+            "type": "m7gd.metal",
+            "spot_price": "1.00"
+        }
+    },
+    "use_large_instance": true
+}
