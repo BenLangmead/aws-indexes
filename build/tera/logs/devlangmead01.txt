@@ -1,0 +1,81 @@
+Timer:|Starting 'TeraLCP'
+Timer:||Starting 'Program Initialization'
+Timer:|||Starting 'Reading Arguments'
+Timer:|||Ending 'Reading Arguments'. It took 3.77e-07 seconds
+Timer:|||Starting 'Loading fmd'
+Timer:|||Ending 'Loading fmd'. It took 17.0468 seconds
+Timer:||Ending 'Program Initialization'. It took 17.0469 seconds
+Timer:||Starting 'LCP index construction'
+Number of threads: 32
+Timer:|||Starting 'Constructing Psi from FMD'
+Timer:||||Starting 'Reading fmd for parameters’
+Number of threads: 32
+Timer:|||Starting 'Constructing Psi from FMD'
+Timer:||||Starting 'Reading fmd for parameters'
+INFO: The parameters for our constructed BWT (i.e. #runs, max length, etc.) may be different from those of the input (ropebwt3).
+INFO: This is because in our constructed BWT, each endmarker is contained in its own run.
+Input number of runs (i.e. before splitting endmarker runs): 5507687733
+This index number of runs (i.e. after splitting endmarker runs): 5507692386
+Number of bits per symbol in rlbwt: 3
+Input number of bits per run for encoding length (i.e. before splitting endmarker runs): 24
+This index number of bits per run for encoding length (i.e. after splitting endmarker runs): 24
+Alphabet range: [0,5]
+Input run lengths range (i.e. before splitting endmarker runs): [1,10797759]
+This index run lengths range (i.e. after splitting endmarker runs): [1,10797759]
+Total BWT length: 3486234458642
+Timer:||||Ending 'Reading fmd for parameters'. It took 66.836 seconds
+Timer:||||Starting 'Reading fmd to create Flens’
+Timer:||||Ending 'Reading fmd to create Flens'. It took 119.652 seconds     
+Timer:||||Starting 'Reading fmd to create D_index and D_offset'             
+Timer:||||Ending 'Reading fmd to create D_index and D_offset'. It took 230.325 seconds
+Timer:||||Starting 'Constructing F'
+Timer:||||Ending 'Constructing F'. It took 13.4521 seconds
+Timer:|||Ending 'Constructing Psi from FMD'. It took 461.674 seconds
+Timer:|||Starting 'Computing numTopRuns, seqLens, and repairing Psi of endmarkers in F'
+Timer:||||Starting 'Parallel seq traversal’
+Timer:||||Ending 'Parallel seq traversal'. It took 35176.8 seconds
+Timer:||||Starting 'Prefix summing auxiliary data'
+Timer:||||Ending 'Prefix summing auxiliary data'. It took 0.000502172 seconds
+INFO: maximum interval length for phi data structure: 35942379
+Timer:||||Starting 'Second Parallel seq traversal’
+Timer:||||Ending 'Second Parallel seq traversal'. It took 30698.6 seconds
+Timer:|||Ending 'Computing numTopRuns, seqLens, and repairing Psi of endmarkers in F'. It took 65891 seconds
+Timer:|||Starting 'Computing and storing intAtEnd'
+Timer:|||Ending 'Computing and storing intAtEnd'. It took 326.36 seconds
+Timer:|||Starting 'Storing F'
+Timer:|||Ending 'Storing F'. It took 0.853697 seconds
+Timer:|||Starting 'Storing intAtTop'
+Timer:|||Ending 'Storing intAtTop'. It took 10.8247 seconds
+Timer:|||Starting 'Construct Phi and Samples'
+FlensBits: 24
+Psi_Offset_Samples.width(): 24
+Timer:|||Ending 'Construct Phi and Samples'. It took 23545.4 seconds
+Timer:|||Starting 'Recover intAtEnd from disk'
+Timer:|||Ending 'Recover intAtEnd from disk'. It took 8.15501 seconds
+Timer:|||Starting 'Recover F from disk'
+Timer:|||Ending 'Recover F from disk'. It took 0.690473 seconds
+Timer:|||Starting 'LCP Computation’
+PLCP width: 26
+Timer:|||Ending 'LCP Computation'. It took 31003.1 seconds
+Timer:|||Starting 'Recover intAtTop from disk'
+Timer:|||Ending 'Recover intAtTop from disk'. It took 9.04386 seconds
+Timer:||Ending 'LCP index construction'. It took 121259 seconds
+Timer:||Starting 'min LCP per run computation'
+Timer:|||Starting 'Computing Min LCP per Run'
+Timer:||||Starting 'Parallel per run computation'
+Block size: 1024
+Timer:||||Ending 'Parallel per run computation'. It took 35546.4 seconds
+Timer:||||Starting 'bit compress'
+Timer:||||Ending 'bit compress'. It took 148.747 seconds
+Timer:||||Starting 'Sequential reordering'
+Timer:||||Ending 'Sequential reordering'. It took 780.191 seconds
+Timer:|||Ending 'Computing Min LCP per Run'. It took 36512.5 seconds
+Timer:|||Starting 'sequential output min LCP per run'
+Timer:|||Ending 'sequential output min LCP per run'. It took 658.846 seconds
+Timer:||Ending 'min LCP per run computation'. It took 37188.4 seconds
+Timer:||Starting 'Measure size'
+Size of our index: 59
+Timer:||Ending 'Measure size'. It took 6.0165e-05 seconds
+Timer:||Starting 'Writing Index'
+Timer:||Ending 'Writing Index'. It took 0.00138567 seconds
+Timer:|Ending 'TeraLCP'. It took 158465 seconds
