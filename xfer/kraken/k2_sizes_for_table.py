@@ -10,10 +10,9 @@ verbose = any(map(lambda x: x == '--verbose', sys.argv[1:]))
 dbs = ['viral',    'minusb',
        'standard', 'standard_08_GB', 'standard_16_GB',
        'pluspf',   'pluspf_08_GB',   'pluspf_16_GB',
-       'pluspfp',  'pluspfp_08_GB',  'pluspfp_16_GB',
-       'core_nt']
+       'pluspfp',  'pluspfp_08_GB',  'pluspfp_16_GB']
 
-dates = ['20251015'] * 12
+dates = ['20260226'] * 12
 
 
 def get_size(url, verbose=False):
