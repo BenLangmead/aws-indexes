@@ -1,17 +1,30 @@
 {
-    "region": "ap-northeast-2",
-    "availability_zone": "ap-northeast-2a",
-    "preferred_availability_zones": ["ap-northeast-2a", "ap-northeast-2b", "ap-northeast-2c"],
+    "run_mode": "runlcp",
+    "index_stem": "human579",
+    "lcp_index_source_s3_prefix": "s3://genome-idx/movi/tera-openhgl/20260312/output",
     "key_name": "tera-build",
+    "instance_profile": "large",
     "instance_type": {
         "small": {
+            "region": "ap-northeast-2",
+            "availability_zone": "ap-northeast-2a",
+            "preferred_availability_zones": ["ap-northeast-2a", "ap-northeast-2b", "ap-northeast-2c"],
             "type": "t3.micro",
             "spot_price": "0.01"
         },
-        "large": {
+        "medium": {
+            "region": "ap-northeast-2",
+            "availability_zone": "ap-northeast-2a",
+            "preferred_availability_zones": ["ap-northeast-2a", "ap-northeast-2b", "ap-northeast-2c"],
             "type": "m7gd.metal",
             "spot_price": "1.00"
+        },
+        "large": {
+            "region": "eu-north-1",
+            "availability_zone": "eu-north-1a",
+            "preferred_availability_zones": ["eu-north-1a", "eu-north-1b"],
+            "type": "r6gd.metal",
+            "spot_price": "1.50"
         }
-    },
-    "use_large_instance": true
+    }
 }

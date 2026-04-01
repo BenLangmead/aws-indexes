@@ -1,14 +1,15 @@
 """
 Stack for running TeraLCP on the OpenHGL human579 FMD dataset.
 
-Provisions a spot instance (type and region from config.json), builds
-TeraTools from source, runs TeraLCP with full resource monitoring, and
-uploads results to S3. Default: m7gd.metal in ap-northeast-2 at $1.00/hr.
+Provisions a spot instance (profile from config.json: instance type, region, AZs), builds
+TeraTools from source, runs TeraLCP (or RunLCP resume from an existing
+.lcp_index) with full resource monitoring, and uploads results to S3.
+Default: m7gd.metal in ap-northeast-2 at $1.00/hr.
 
 Design notes vs pfp_thresh_builder:
-  - Fixes gcc-c++ package name (not g++)
-  - Fixes user-data line joining (uses newlines throughout, no ' '.join())
-  - Spot price stored as string in config.json (avoids CDK float->string issue)
+  - Fixes gcc-c++ package name (not `g++`)
+  - Fixes user-data line joining (uses newlines throughout, no `' '.join()`)
+  - Spot price stored as string in config.json (avoids CDK float→string issue)
   - NVMe instance stores discovered and striped into RAID 0 at /data
   - Job script written to /home/ec2-user/job.sh and run as ec2-user,
     avoiding inline heredoc termination issues
@@ -41,14 +42,49 @@ class TeraStack(Stack):
         with open('config.json', 'r') as f:
             cfg = json.load(f)
 
+        run_mode = cfg.get("run_mode", "teralcp")
+        if run_mode not in ("teralcp", "runlcp"):
+            raise ValueError(
+                'config.json "run_mode" must be "teralcp" or "runlcp", '
+                f'got {run_mode!r}'
+            )
+        index_stem = cfg.get("index_stem", "human579")
+        lcp_index_source_s3_prefix = (cfg.get("lcp_index_source_s3_prefix") or "").strip()
+        if run_mode == "runlcp" and not lcp_index_source_s3_prefix:
+            raise ValueError(
+                'config.json "lcp_index_source_s3_prefix" is required when '
+                '"run_mode" is "runlcp" (S3 prefix containing the .lcp_index file)'
+            )
+        lcp_source_uri = (
+            f"{lcp_index_source_s3_prefix.rstrip('/')}/{index_stem}.lcp_index"
+            if run_mode == "runlcp"
+            else ""
+        )
+
+        instance_profile = cfg.get("instance_profile")
+        if not instance_profile:
+            raise ValueError(
+                'config.json must set "instance_profile" to a key under "instance_type" '
+                '(e.g. "small", "medium", "large")'
+            )
+        instance_defs = cfg.get("instance_type") or {}
+        if instance_profile not in instance_defs:
+            raise ValueError(
+                f'config.json "instance_profile" {instance_profile!r} '
+                f'is not a key under "instance_type". Available: {sorted(instance_defs)}'
+            )
+        inst_cfg = instance_defs[instance_profile]
+        for ky in ("region", "availability_zone", "type", "spot_price"):
+            if ky not in inst_cfg:
+                raise ValueError(
+                    f'config.json instance_type.{instance_profile} is missing required key {ky!r}'
+                )
         # Prefer AZs that commonly have capacity first; fall back to cheaper AZs (e.g. 1f)
-        preferred_azs = cfg.get(
+        preferred_azs = inst_cfg.get(
             "preferred_availability_zones",
-            [cfg["availability_zone"]],
+            [inst_cfg["availability_zone"]],
         )
         key_name = cfg['key_name']
-        instance_size = 'large' if cfg['use_large_instance'] else 'small'
-        inst_cfg = cfg['instance_type'][instance_size]
 
         # ── Networking ────────────────────────────────────────────────────────
         # Use enough AZs so the configured AZ (e.g. ap-northeast-2a) is included
@@ -84,11 +120,11 @@ class TeraStack(Stack):
         )
 
         # ── AMI: match instance architecture (ARM64 vs x86_64) ─────────────────
-        instance_type_str = inst_cfg["type"].lower()
-        is_arm = instance_type_str.startswith("a1.") or "g" in instance_type_str.split(".")[0]
+        # Use CDK's catalog (e.g. R6gd / M7gd are Graviton + NVMe; see AWS instance-type docs).
+        _arch = ec2.InstanceType(inst_cfg["type"]).architecture
         machine_image = (
             ec2.MachineImage.latest_amazon_linux2023(cpu_type=ec2.AmazonLinuxCpuType.ARM_64)
-            if is_arm
+            if _arch == ec2.InstanceArchitecture.ARM_64
             else ec2.MachineImage.latest_amazon_linux2023(cpu_type=ec2.AmazonLinuxCpuType.X86_64)
         )
 
@@ -120,7 +156,7 @@ class TeraStack(Stack):
         #   1. Root section: package install, NVMe RAID-0 mount, credential
         #      provisioning, Python tool install, write job.sh, execute job.sh
         #   2. job.sh (runs as ec2-user): build TeraTools, download FMD,
-        #      run TeraLCP under psrecord+time, collect metrics, upload to S3
+        #      run TeraLCP or RunLCP under psrecord+time, collect metrics, upload to S3
         #
         # The job.sh is written into the user data via a heredoc
         # (<< 'JOBEOF') so that all bash variable expansions in job.sh
@@ -128,14 +164,19 @@ class TeraStack(Stack):
         # uses '\n'.join() throughout to ensure proper line separation.
 
         # ── job.sh content (runs as ec2-user) ─────────────────────────────────
-        job_lines = [
+        fmd_s3 = f"s3://openhgl/human/{index_stem}/{index_stem}.fmd"
+        fmd_local = f"/data/{index_stem}.fmd"
+
+        job_lines: list[str] = [
             "#!/bin/bash",
             "set -x",
             "",
+            f"INDEX_STEM={index_stem}",
             "LOG_DIR=/data/logs",
             "OUT_DIR=/data/output",
             "TMP_DIR=/data/tmp",
-            "mkdir -p $LOG_DIR $OUT_DIR $TMP_DIR",
+            "RESUME_IN_DIR=/data/resume_input",
+            "mkdir -p $LOG_DIR $OUT_DIR $TMP_DIR $RESUME_IN_DIR",
             "",
             "# ── OS and tool info ─────────────────────────────────────────",
             "cat /etc/os-release > $LOG_DIR/os_info.txt",
@@ -153,14 +194,37 @@ class TeraStack(Stack):
             "cd /home/ec2-user",
             "",
             "TERALCP=/home/ec2-user/TeraTools/src/TeraLCP/TeraLCP",
-            "",
             "# Record TeraLCP help/version",
             "$TERALCP --help > $LOG_DIR/teralcp_help.txt 2>&1 || true",
-            "",
+        ]
+
+        if run_mode == "runlcp":
+            job_lines += [
+                "# RunLCP binary path — adjust if `make` places the binary elsewhere",
+                "RUNLCP=/home/ec2-user/TeraTools/src/TeraLCP/RunLCP",
+                "$RUNLCP --help > $LOG_DIR/runlcp_help.txt 2>&1 || true",
+                "",
+            ]
+        else:
+            job_lines += [""]
+
+        job_lines += [
             "# ── Download input FMD ───────────────────────────────────────",
             "aws s3 --profile data-langmead cp \\",
-            "    s3://openhgl/human/human579/human579.fmd /data/",
+            f"    {fmd_s3} {fmd_local}",
             "",
+        ]
+
+        if run_mode == "runlcp":
+            job_lines += [
+                "# ── Download existing LCP index (resume) ────────────────────",
+                "aws s3 --profile data-langmead cp \\",
+                f"    {lcp_source_uri} \\",
+                "    $RESUME_IN_DIR/$INDEX_STEM.lcp_index",
+                "",
+            ]
+
+        job_lines += [
             "# ── Background disk usage monitor ────────────────────────────",
             "touch $LOG_DIR/disk_monitor_running",
             "(",
@@ -171,16 +235,57 @@ class TeraStack(Stack):
             ") &",
             "DISK_MONITOR_PID=$!",
             "",
-            "# ── Run TeraLCP under psrecord and /usr/bin/time ─────────────",
-            "# Pass one argument to psrecord (bash -c '...') so it does not parse TeraLCP flags (-v, -f, etc.)",
-            "TERA_CMD=\"bash -c \\\"/usr/bin/time -v $TERALCP -f fmd -i /data/human579.fmd -v verb -oindex $OUT_DIR/human579 -orlcp $OUT_DIR/human579.rlcp -t $TMP_DIR/teratools.tmp -otsv $OUT_DIR/human579 -tsvmode thresholds > $LOG_DIR/tera_stdout.log 2> $LOG_DIR/tera_stderr.log\\\"\"",
-            "psrecord \\",
-            "    --log $LOG_DIR/tera_resource_usage.log \\",
-            "    --interval 15 \\",
-            "    --plot $LOG_DIR/tera_resource_plot.png \\",
-            "    --include-children \\",
-            "    -- \"$TERA_CMD\"",
-            "",
+        ]
+
+        if run_mode == "teralcp":
+            job_lines += [
+                "# ── Run TeraLCP under psrecord and /usr/bin/time ─────────────",
+                "# Pass one argument to psrecord (bash -c '...') so it does not parse TeraLCP flags (-v, -f, etc.)",
+                (
+                    "TERA_CMD=\"bash -c \\\"/usr/bin/time -v $TERALCP -f fmd -i "
+                    f"{fmd_local} -v verb -chunk 16 -oindex $OUT_DIR/$INDEX_STEM "
+                    "-orlcp $OUT_DIR/$INDEX_STEM -t $TMP_DIR/teratools.tmp "
+                    "-otsv $OUT_DIR/$INDEX_STEM -tsvmode thresholds "
+                    "> $LOG_DIR/tera_stdout.log 2> $LOG_DIR/tera_stderr.log\\\"\""
+                ),
+                "psrecord \\",
+                "    --log $LOG_DIR/tera_resource_usage.log \\",
+                "    --interval 15 \\",
+                "    --plot $LOG_DIR/tera_resource_plot.png \\",
+                "    --include-children \\",
+                "    -- \"$TERA_CMD\"",
+                "",
+            ]
+        else:
+            job_lines += [
+                "# ── Run RunLCP (thresholds from existing index) ─────────────",
+                "# Same psrecord pattern so flags are not parsed by psrecord",
+                (
+                    "TERA_CMD=\"bash -c \\\"/usr/bin/time -v $RUNLCP "
+                    "-i $RESUME_IN_DIR/$INDEX_STEM.lcp_index "
+                    "-o $OUT_DIR/$INDEX_STEM --mode thresholds "
+                    f"--fmd {fmd_local} "
+                    "> $LOG_DIR/tera_stdout.log 2> $LOG_DIR/tera_stderr.log\\\"\""
+                ),
+                "psrecord \\",
+                "    --log $LOG_DIR/tera_resource_usage.log \\",
+                "    --interval 15 \\",
+                "    --plot $LOG_DIR/tera_resource_plot.png \\",
+                "    --include-children \\",
+                "    -- \"$TERA_CMD\"",
+                "",
+            ]
+
+        summary_header = [
+            "Run Date: $(date -u)",
+            f"Instance Type: {inst_cfg['type']}",
+            f"Run mode: {run_mode}",
+        ]
+        if run_mode == "runlcp":
+            summary_header.append(f"LCP index source: {lcp_source_uri}")
+        summary_header.append(f"Input FMD: {fmd_s3}")
+
+        job_lines += [
             "# ── Stop disk monitor ────────────────────────────────────────",
             "rm -f $LOG_DIR/disk_monitor_running",
             "wait $DISK_MONITOR_PID 2>/dev/null || true",
@@ -206,17 +311,15 @@ class TeraStack(Stack):
             "OUTPUT_DATE=$(date +%Y%m%d)",
             "",
             "# ── Write summary file ───────────────────────────────────────",
-            "# If TeraLCP/psrecord failed, capture tera_stderr.log tail so we see the error",
+            "# If the job failed, capture tera_stderr.log tail so we see the error",
             "TERA_STDERR_TAIL=''",
             "if [ -s $LOG_DIR/tera_stderr.log ]; then",
             "  TERA_STDERR_TAIL=\"$(tail -50 $LOG_DIR/tera_stderr.log | sed 's/^/  /')\"",
             "else",
-            "  TERA_STDERR_TAIL='  (file missing or empty - TeraLCP may not have run; check spot termination)'",
+            "  TERA_STDERR_TAIL='  (file missing or empty; check spot termination / OOM)'",
             "fi",
             "cat > $LOG_DIR/summary.txt << SUMEOF",
-            "Run Date: $(date -u)",
-            f"Instance Type: {inst_cfg['type']}",
-            "Input: s3://openhgl/human/human579/human579.fmd",
+            *summary_header,
             "Output S3 prefix: s3://genome-idx/movi/tera-openhgl/${OUTPUT_DATE}/",
             "---",
             "Wall Clock Time: $WALL_CLOCK",
@@ -232,10 +335,23 @@ class TeraStack(Stack):
             "# ── Create TeraTools tarball ─────────────────────────────────",
             "tar czf /data/TeraTools.tar.gz -C /home/ec2-user TeraTools/",
             "",
-            "# ── Upload everything to S3 ──────────────────────────────────",
-            "# output/ includes index, rlcp, and -otsv outputs (human579.thr, human579.thr_pos)",
+            "# ── Upload to S3 ─────────────────────────────────────────────",
             "S3_BASE=s3://genome-idx/movi/tera-openhgl/${OUTPUT_DATE}",
-            "aws s3 --profile data-langmead sync $OUT_DIR/   ${S3_BASE}/output/",
+        ]
+
+        if run_mode == "teralcp":
+            job_lines += [
+                "# output/: full TeraLCP artifacts (index, rlcp, thresholds, …)",
+                "aws s3 --profile data-langmead sync $OUT_DIR/   ${S3_BASE}/output/",
+            ]
+        else:
+            job_lines += [
+                "# output/: threshold files only (resume from .lcp_index); not full sync",
+                "aws s3 --profile data-langmead cp $OUT_DIR/$INDEX_STEM.thr     ${S3_BASE}/output/",
+                "aws s3 --profile data-langmead cp $OUT_DIR/$INDEX_STEM.thr_pos ${S3_BASE}/output/",
+            ]
+
+        job_lines += [
             "aws s3 --profile data-langmead sync $LOG_DIR/   ${S3_BASE}/logs/",
             "aws s3 --profile data-langmead cp /data/TeraTools.tar.gz ${S3_BASE}/",
         ]
@@ -250,13 +366,22 @@ class TeraStack(Stack):
             "dnf install -y make gcc gcc-c++ git cmake zlib-devel mdadm python3-pip time libatomic",
             "",
             "# ── Mount NVMe instance store(s) as RAID-0 at /data ──────────",
-            "# Exclude the root device (EBS); use only instance-store NVMe devices.",
-            "ROOT_DEV=$(findmnt -n -o SOURCE / | sed 's/p[0-9]*$//' | xargs -I {} basename {})",
+            "# Exclude the root disk (EBS); use instance-store NVMe namespaces only.",
+            "# Scan all whole-disk nvme*n1 devices (metal can have >5 NVMe namespaces).",
+            "ROOT_SRC=$(findmnt -n -o SOURCE /)",
+            "ROOT_DISK=''",
+            "if [ -b \"$ROOT_SRC\" ]; then",
+            "    ROOT_DISK=$(lsblk -no pkname \"$ROOT_SRC\" 2>/dev/null | head -1)",
+            "fi",
+            "if [ -z \"$ROOT_DISK\" ]; then",
+            "    ROOT_DISK=$(basename \"$ROOT_SRC\" | sed 's/p[0-9]*$//')",
+            "fi",
+            "ROOT_DISK=$(basename \"$ROOT_DISK\")",
             "NVME_STORES=''",
-            "for dev in /dev/nvme0n1 /dev/nvme1n1 /dev/nvme2n1 /dev/nvme3n1 /dev/nvme4n1; do",
+            "for dev in /dev/nvme*n1; do",
             "    [ -b \"$dev\" ] || continue",
             "    devname=$(basename \"$dev\")",
-            "    [ \"$devname\" = \"$ROOT_DEV\" ] && continue",
+            "    [ \"$devname\" = \"$ROOT_DISK\" ] && continue",
             "    NVME_STORES=\"$NVME_STORES $dev\"",
             "done",
             "NVME_COUNT=$(echo $NVME_STORES | wc -w)",
