@@ -15,6 +15,7 @@
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Monaco, Consolas, monospace;
   --content-max: 42rem;
+  --page-max: min(1400px, calc(100vw - 48px));
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -89,7 +90,7 @@ a small {
 }
 a:hover small { color: var(--text-muted); }
 .wrapper {
-  max-width: 1120px;
+  max-width: var(--page-max);
   margin: 0 auto;
 }
 blockquote {
@@ -275,7 +276,7 @@ hr {
 .download-list li { margin-bottom: 0.35rem; }
 .main-content {
   width: calc(100% - 290px);
-  max-width: 800px;
+  max-width: none;
   float: right;
   padding-bottom: 3rem;
 }
@@ -290,6 +291,32 @@ hr {
   border: 1px solid var(--border);
   background: var(--bg-card);
   box-shadow: var(--shadow);
+  position: relative;
+}
+/* When the table is wider than the box, show soft edge fades so “more” columns are discoverable. */
+.table-scroll.table-scroll--more-right::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 2.75rem;
+  background: linear-gradient(to right, transparent, var(--bg-card));
+  pointer-events: none;
+  z-index: 3;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.table-scroll.table-scroll--more-left::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 2.75rem;
+  background: linear-gradient(to left, transparent, var(--bg-card));
+  pointer-events: none;
+  z-index: 3;
+  border-radius: var(--radius) 0 0 var(--radius);
 }
 .table-scroll table {
   margin: 0;
@@ -300,7 +327,7 @@ hr {
 .table-scroll thead th {
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 5;
   background: var(--bg-card);
   box-shadow: 0 1px 0 var(--border-strong);
 }
@@ -401,7 +428,7 @@ body.layout-full {
   padding-top: 24px;
 }
 .layout-full-inner.wrapper {
-  max-width: 1120px;
+  max-width: var(--page-max);
   float: none;
 }
 .main-content.main-content-wide {
