@@ -1,5 +1,7 @@
 # HISAT2 and HISAT-genotype indexes
 
+HISAT2 ([GitHub repo](https://github.com/DaehwanKimLab/hisat2)) is a fast splice-aware aligner for mapping sequencing reads to genomes and transcriptomes.  This page lists prebuilt HISAT2 and HISAT-genotype indexes.
+
 There are different types of indexes depending on whether transcripts and/or single-nucleotide variants are included in the graph index:
 
 * "genome": HISAT2 index for linear reference
@@ -98,9 +100,13 @@ C. elegans / WBcel235   | [Ensembl][ht2_wbcel235_source]  | [genome][ht2_wbcel23
 
 # HISAT-genotype allele files
 
+<div class="datatable-begin"></div>
+
 Species / Build | HTTPs URLs | S3 URLs
 ------- | ---------  | ------------
 Human / GRCh38 | [genotypes][htg_genotypes] | [genotypes][htg_genotypes_s3]
+
+<div class="datatable-end"></div>
 
 [htg_genotypes]: https://genome-idx.s3.amazonaws.com/hisat/genotype_genome_20180128.tar.gz
 [htg_genotypes_s3]: s3://genome-idx/hisat/genotype_genome_20180128.tar.gz

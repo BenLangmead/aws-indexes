@@ -18,7 +18,51 @@ import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from urllib.error import HTTPError, URLError
+from urllib.parse import quote, unquote, urlsplit, urlunsplit
 from urllib.request import Request, urlopen
+
+
+def url_for_fetch(url: str) -> str:
+    """Encode path so '+' in keys is sent as %2B (important for S3)."""
+    u = url.strip()
+    parts = urlsplit(u)
+    if parts.scheme.lower() != "https":
+        return u
+    path = quote(unquote(parts.path), safe="/")
+    return urlunsplit((parts.scheme, parts.netloc, path, parts.query, parts.fragment))
+
+
+def check_url(url: str, timeout: float = 15.0) -> tuple[str, bool, str]:
+    """
+    Return (url, ok, message). Uses HEAD first, then GET if 405.
+    """
+    fetch_url = url_for_fetch(url)
+    try:
+        req = Request(fetch_url, method="HEAD")
+        req.add_header("User-Agent", "check_k2_links.py (link checker)")
+        with urlopen(req, timeout=timeout) as resp:
+            code = resp.getcode()
+            if 200 <= code < 400:
+                return (url, True, f"{code}")
+            return (url, False, f"HTTP {code}")
+    except HTTPError as e:
+        if e.code == 405:
+            # Method Not Allowed; try GET
+            try:
+                req = Request(fetch_url)
+                req.add_header("User-Agent", "check_k2_links.py (link checker)")
+                with urlopen(req, timeout=timeout) as resp:
+                    code = resp.getcode()
+                    if 200 <= code < 400:
+                        return (url, True, f"{code}")
+                    return (url, False, f"HTTP {code}")
+            except (HTTPError, URLError) as e2:
+                return (url, False, str(e2).split("\n")[0])
+        return (url, False, f"HTTP {e.code} {e.reason}")
+    except URLError as e:
+        return (url, False, str(e.reason or e).split("\n")[0])
+    except Exception as e:
+        return (url, False, str(e).split("\n")[0])
 
 
 def find_https_urls(text: str) -> list[str]:
@@ -35,38 +79,6 @@ def find_https_urls(text: str) -> list[str]:
             seen.add(u)
             unique.append(u)
     return unique
-
-
-def check_url(url: str, timeout: float = 15.0) -> tuple[str, bool, str]:
-    """
-    Return (url, ok, message). Uses HEAD first, then GET if 405.
-    """
-    try:
-        req = Request(url, method="HEAD")
-        req.add_header("User-Agent", "check_k2_links.py (link checker)")
-        with urlopen(req, timeout=timeout) as resp:
-            code = resp.getcode()
-            if 200 <= code < 400:
-                return (url, True, f"{code}")
-            return (url, False, f"HTTP {code}")
-    except HTTPError as e:
-        if e.code == 405:
-            # Method Not Allowed; try GET
-            try:
-                req = Request(url)
-                req.add_header("User-Agent", "check_k2_links.py (link checker)")
-                with urlopen(req, timeout=timeout) as resp:
-                    code = resp.getcode()
-                    if 200 <= code < 400:
-                        return (url, True, f"{code}")
-                    return (url, False, f"HTTP {code}")
-            except (HTTPError, URLError) as e2:
-                return (url, False, str(e2).split("\n")[0])
-        return (url, False, f"HTTP {e.code} {e.reason}")
-    except URLError as e:
-        return (url, False, str(e.reason or e).split("\n")[0])
-    except Exception as e:
-        return (url, False, str(e).split("\n")[0])
 
 
 def main() -> int:

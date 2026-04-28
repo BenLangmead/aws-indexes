@@ -1,6 +1,6 @@
 # Centrifuge indexes
 
-Centrifuge is a very rapid and memory-efficient system for the classification of DNA sequences from microbial samples.
+Centrifuge ([GitHub repo](https://github.com/DaehwanKimLab/centrifuge)) is a very rapid and memory-efficient system for the classification of DNA sequences from microbial samples.
 
 <div class="datatable-begin"></div>
 

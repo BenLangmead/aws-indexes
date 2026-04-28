@@ -1,6 +1,6 @@
 # Bowtie 2 indexes
 
-[Bowtie](http://bowtie-bio.sourceforge.net) and [Bowtie 2](http://bowtie-bio.sourceforge.net/bowtie2) are read aligners for sequencing reads.  Bowtie specializes in short reads, generally about 50bp or shorter.  Bowtie 2 specializes in longer reads, up to around hundreds of base pairs.  HTTPS URLs allow you to download the files from your web browser or using command-line tools like `wget` or `curl`.  The S3 URLs can be used with AWS tools, including the [AWS console](https://aws.amazon.com/console/) and [AWS command-line interface](https://aws.amazon.com/cli/). 
+Bowtie 2 ([GitHub repo](https://github.com/BenLangmead/bowtie2)) and Bowtie ([GitHub repo](https://github.com/BenLangmead/bowtie)) are read aligners for sequencing reads.  Bowtie specializes in short reads, generally about 50bp or shorter.  Bowtie 2 specializes in longer reads, up to around hundreds of base pairs.  Project home pages are [Bowtie](http://bowtie-bio.sourceforge.net) and [Bowtie 2](http://bowtie-bio.sourceforge.net/bowtie2).  HTTPS URLs allow you to download the files from your web browser or using command-line tools like `wget` or `curl`.  The S3 URLs can be used with AWS tools, including the [AWS console](https://aws.amazon.com/console/) and [AWS command-line interface](https://aws.amazon.com/cli/). 
 
 In the past, Bowtie 1 & 2 had incompatible genome indexes.  This changed in July 2019 when Bowtie v1.2.3 gained the ability to use Bowtie 2 formatted genome indexes (ending in `.bt2`).  We list only Bowtie 2-format `.bt2` index files here.
 
@@ -77,11 +77,11 @@ websites for more information on the software, authors, and how to cite the work
 [bt2_hg19_source]: ftp://hgdownload.cse.ucsc.edu/goldenPath/hg19/chromosomes
 [bt2_hg18_source]: ftp://hgdownload.cse.ucsc.edu/goldenPath/hg18/chromosomes
 [bt2_clintptr2_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/880/755/GCF_002880755.1_Clint_PTRv2/
-[bt2_chimp214_source]: https://www.ensembl.org/Pan_troglodytes/Info/Index
+[bt2_chimp214_source]: https://useast.ensembl.org/Pan_troglodytes/Info/Index
 [bt2_mmul10_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/339/765/GCF_003339765.1_Mmul_10/
 [bt2_arsucd12_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/263/795/GCF_002263795.1_ARS-UCD1.2/
 [bt2_sscorfa111_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/003/025/GCF_000003025.6_Sscrofa11.1/
-[bt2_canfam31_source]: https://www.ensembl.org/Canis_lupus_familiaris/Info/Index
+[bt2_canfam31_source]: https://useast.ensembl.org/Canis_lupus_familiaris/Info/Index
 [bt2_grcm38_source]: https://www.ncbi.nlm.nih.gov/assembly/GCF_000001635.20/
 [bt2_grcm39_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/635/GCF_000001635.27_GRCm39/
 [bt2_mm10_source]: ftp://hgdownload.cse.ucsc.edu/goldenPath/mm10/chromosomes
@@ -93,11 +93,11 @@ websites for more information on the software, authors, and how to cite the work
 [bt2_agpv4_source]: http://plants.ensembl.org/Zea_mays/Info/Index
 [bt2_build4_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/425/GCF_000005425.2_Build_4.0/
 [bt2_grcz11_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/035/GCF_000002035.6_GRCz11/
-[bt2_grcz10_source]: https://www.ensembl.org/Drosophila_melanogaster/Info/Index
+[bt2_grcz10_source]: https://useast.ensembl.org/Drosophila_melanogaster/Info/Index
 [bt2_tair10_source]: http://plants.ensembl.org/Arabidopsis_thaliana/Info/Index
 [bt2_bdgp6_source]: https://jan2019.archive.ensembl.org/Drosophila_melanogaster/Info/Index
-[bt2_wbcel235_source]: https://www.ensembl.org/Caenorhabditis_elegans/Info/Index
-[bt2_r6411_source]: https://www.ensembl.org/Saccharomyces_cerevisiae/Info/Index
+[bt2_wbcel235_source]: https://useast.ensembl.org/Caenorhabditis_elegans/Info/Index
+[bt2_r6411_source]: https://useast.ensembl.org/Saccharomyces_cerevisiae/Info/Index
 [bt2_dmela410_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/002/300/595/GCA_002300595.1_Dmel_A4_1.0/
 [bt2_b73_refgen_v5_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/902/167/145/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0/
 [bt2_canfam4_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/002/285/

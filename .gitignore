@@ -1,3 +1,7 @@
 /xfer/profile.json
 .idea
 .DS_Store
+_site/
+__pycache__/
+*.pem
+.vscode/

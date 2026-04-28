@@ -1,3 +1,7 @@
+---
+title: Tutorials
+---
+
 To get started with these index files, please see the tutorials for the respective tools.
 
 * [Bowtie tutorial](http://bowtie-bio.sourceforge.net/tutorial.shtml)

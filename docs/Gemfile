@@ -1,0 +1,10 @@
+source "https://rubygems.org"
+
+# Match GitHub Pages Jekyll environment for local preview.
+# https://pages.github.com/versions/
+gem "github-pages", group: :jekyll_plugins
+
+# Ruby 3.4+ no longer ships some stdlib in default gems; github-pages / Jekyll 3.x need these locally.
+gem "csv"
+gem "bigdecimal"
+gem "webrick" # Jekyll serve; not a default gem in Ruby 3.0+

@@ -1,33 +1,50 @@
 ---
-layout: full
 ---
 <!doctype html>
-<html>
+<!-- Full-width layout: use layout: full in page front matter. -->
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link rel="icon" type="image/png"  href="assets/img/favicon.png">
-    <title>{{ site.title | default: site.github.repository_name }} by {{ site.github.owner_name }}</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/img/favicon-32.png' | relative_url }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/img/favicon-16.png' | relative_url }}">
+    <link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}">
+    <title>{{ page.title | default: site.title | default: site.github.repository_name }}{% if site.github.owner_name %} — {{ site.github.owner_name }}{% endif %}</title>
     <link rel="stylesheet" href="{{ '/assets/css/styles.css?v=' | append: site.github.build_revision | relative_url }}">
     <meta name="viewport" content="width=device-width">
+    {% if site.google_analytics %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ site.google_analytics }}');
+    </script>
+    {% endif %}
   </head>
-  <body>
-    <div class="wrapper">
-
-      {{ content }}
-
+  <body class="layout-full">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="wrapper layout-full-inner">
+      <header class="site-full-banner" role="banner">
+        <div class="site-brand-row site-brand-row--full">
+          <div class="site-brand-text">
+            <h1 class="site-title"><a href="{{ '/' | relative_url }}"><span class="site-title-text">{{ site.title | default: site.github.repository_name }}</span></a></h1>
+            <p class="site-tagline site-tagline--brand">{{ site.description | default: site.github.project_tagline }}</p>
+          </div>
+          <a class="site-logo-link" href="{{ '/' | relative_url }}" aria-label="Home"><img class="site-logo" src="{{ '/assets/img/site-logo-128.png' | relative_url }}" width="90" height="90" alt="" decoding="async"></a>
+        </div>
+      </header>
+      <main class="main-content main-content-wide" id="main-content">
+        {{ content }}
+      </main>
+      <footer class="site-footer site-footer--full" role="contentinfo">
+        <p><a href="{{ '/privacy' | relative_url }}">Privacy</a></p>
+      </footer>
     </div>
     <script src="{{ '/assets/js/scale.fix.js' | relative_url }}"></script>
-
-  {% if site.google_analytics %}
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-        ga('create', '{{ site.google_analytics }}', 'auto');
-        ga('send', 'pageview');
-    </script>
-  {% endif %}
+    <script src="{{ '/assets/js/datatable-wrap.js' | relative_url }}"></script>
+    {% if site.google_analytics %}
+    <script src="{{ '/assets/js/ga-outbound.js' | relative_url }}"></script>
+    {% endif %}
   </body>
 </html>

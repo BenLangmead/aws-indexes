@@ -1,0 +1,8 @@
+# Optional local overrides for `bundle exec jekyll serve`.
+# Copy this file to `_config_local.yml` (gitignored) and set your GA4 Measurement ID
+# so analytics loads during local preview without committing secrets to the repo.
+#
+# google_analytics: G-XXXXXXXXXX
+#
+# Serve with:
+#   bundle exec jekyll serve --config _config.yml,_config_local.yml

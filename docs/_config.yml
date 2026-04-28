@@ -1,19 +1,30 @@
 theme: jekyll-theme-minimal
 title: Index zone
-description: HTTPS & S3 links to indexes freely available thanks to the Amazon Web Services Public Dataset Program
+description: Open access thanks to the Amazon Web Services Open Data Sponsorship Program
 show_downloads: False
+# Google Analytics 4 (Admin → Data streams → Web). README: “Analytics (Google Analytics 4)”.
+google_analytics: G-TPWP9H5G48
 navigation:
   - title: Home
     url: /
-  - title: Bowtie
-    url: bowtie
-  - title: HISAT
-    url: hisat
   - title: Kraken/Bracken
     url: k2
+    blurb: Indexes for Kraken 1/2, Bracken and related metagenomics tools.
+  - title: Bowtie
+    url: bowtie
+    blurb: Bowtie 1 & 2 reference indexes.
+  - title: Movi
+    url: movi
+    blurb: Movi 1/2 pangenome indexes.
+  - title: HISAT
+    url: hisat
+    blurb: HISAT2 and related splice-aware aligner indexes.
   - title: Centrifuge
     url: centrifuge
+    blurb: Centrifuge compact indexes for metagenomics classification.
   - title: SPUMONI
     url: spumoni
+    blurb: SPUMONI 1 compressed pangenome indexes for classification.
   - title: SPUMONI 2
     url: spu2
+    blurb: SPUMONI 2 compressed pangenome indexes for classification.

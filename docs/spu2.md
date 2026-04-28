@@ -4,8 +4,6 @@ SPUMONI 2 ([GitHub repo](https://github.com/oma219/spumoni)) is a fast read clas
 
 <div class="datatable-begin"></div>
 
-Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazonaws.com` from the beginning of the URLs linked to above and replacing with `s3://genome-idx`.
-
 Collection                                              | Date            | HTTPS URL                                                         |
 ------------------------------------------------------- |-----------------|-------------------------------------------------------------------|
 Assembly contaminant pan-genome, SPUMONI 2 index        | September, 2022 | [tar.gz][assembly_contamination_index.tar.gz]
@@ -15,6 +13,8 @@ Zymo mock community pan-genome, SPUMONI 2 index         | September, 2022 | [tar
 8-species SPUMONI 2 index, including sampled doc array  | September, 2022 | [tar.gz][sampled_doc_array_index.tar.gz]
 
 <div class="datatable-end"></div>
+
+Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazonaws.com` from the beginning of the URLs in the table and replacing with `s3://genome-idx`.
 
 SPUMONI 2 is the work of Omar Ahmed, Massimiliano Rossi, Travis Gagie, Christina Boucher, and Ben Langmead.
 
