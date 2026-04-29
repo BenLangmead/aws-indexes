@@ -157,9 +157,40 @@ hr {
 .site-nav {
   flex: 1 1 auto;
   min-height: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.site-nav-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+}
+/* When the nav list is taller than the pane, soft edge fades (same idea as .table-scroll). */
+.site-nav.site-nav--more-below::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2.75rem;
+  background: linear-gradient(to bottom, transparent, var(--bg-card));
+  pointer-events: none;
+  z-index: 3;
+}
+.site-nav.site-nav--more-above::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2.75rem;
+  background: linear-gradient(to bottom, var(--bg-card), transparent);
+  pointer-events: none;
+  z-index: 3;
 }
 .site-nav .site-nav-list {
   margin-bottom: 0;
@@ -502,6 +533,9 @@ body.layout-full {
     overflow: visible;
     flex: none;
     min-height: 0;
+  }
+  .site-nav-scroll {
+    overflow: visible;
   }
   .site-nav-sublist {
     max-height: 45vh;
