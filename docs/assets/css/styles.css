@@ -142,7 +142,27 @@ hr {
   width: 260px;
   float: left;
   position: fixed;
+  left: 24px;
+  top: 48px;
+  bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
+}
+.site-header > .site-brand-row {
+  flex-shrink: 0;
+}
+.site-nav {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.site-nav .site-nav-list {
+  margin-bottom: 0;
 }
 .site-title {
   font-size: 1.35rem;
@@ -247,9 +267,8 @@ hr {
   padding: 0;
   border-top: 1px solid var(--border);
   background: var(--bg);
-  max-height: 45vh;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: visible;
   -webkit-overflow-scrolling: touch;
 }
 .site-nav-subitem a {
@@ -272,6 +291,7 @@ hr {
   list-style: none;
   margin: 1rem 0 0;
   padding: 0;
+  flex-shrink: 0;
 }
 .download-list li { margin-bottom: 0.35rem; }
 .main-content {
@@ -412,14 +432,20 @@ hr {
 .home-after-grid h2,
 .home-after-grid h1 { margin-top: 0; }
 .site-footer {
-  width: 260px;
-  float: left;
-  position: fixed;
-  bottom: 40px;
-  -webkit-font-smoothing: antialiased;
+  flex-shrink: 0;
+  width: 100%;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
   font-size: 0.8rem;
   color: var(--text-muted);
   line-height: 1.45;
+}
+.site-footer p {
+  margin: 0 0 0.5rem;
+}
+.site-footer p:last-child {
+  margin-bottom: 0;
 }
 .site-footer a { color: var(--accent); }
 
@@ -457,21 +483,39 @@ body.layout-full {
 @media print, screen and (max-width: 960px) {
   div.wrapper { width: auto; margin: 0; }
   .site-header,
-  .main-content,
-  .site-footer {
+  .main-content {
     float: none;
     position: static;
     width: auto;
     max-width: none;
   }
-  .site-header { margin-bottom: 1.5rem; }
+  .site-header {
+    margin-bottom: 1.5rem;
+    display: block;
+    overflow: visible;
+    left: auto;
+    top: auto;
+    bottom: auto;
+    max-height: none;
+  }
+  .site-nav {
+    overflow: visible;
+    flex: none;
+    min-height: 0;
+  }
+  .site-nav-sublist {
+    max-height: 45vh;
+    overflow-y: auto;
+  }
+  .site-footer {
+    padding-top: 1rem;
+  }
   .main-content {
     border: 1px solid var(--border);
     border-width: 1px 0;
     padding: 1.25rem 0;
     margin: 0 0 1.25rem;
   }
-  .site-footer { padding-top: 1rem; }
 }
 @media print, screen and (max-width: 720px) {
   body {
