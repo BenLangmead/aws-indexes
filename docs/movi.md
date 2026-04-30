@@ -18,7 +18,6 @@ HPRC Release 2, 466 human haplotypes (complete `.tar.gz`) | 25.8 GB | [.tar.gz][
 `movi.zml.nulldb` | 1.1 MB | [.zml.nulldb][movi_hprc2_zml_http]
 `null_reads.fasta` | 157 KB | [.fasta][movi_hprc2_fasta_http]
 `ref.list` | 17 KB | [.list][movi_hprc2_list_http]
-
 HPRC Release 1, 96 human haplotypes (complete `.tar.gz`) | 18.8 GB | [.tar.gz][movi_hprc1_tgz_http]
 *Link above is recommended; links below are its individual components* | |
 `CMakeLists.txt` | 3.2 KB | [.txt][movi_hprc1_cmake_http]
