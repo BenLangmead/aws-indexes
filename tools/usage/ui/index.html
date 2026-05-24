@@ -70,6 +70,14 @@
       background: var(--panel);
       color: var(--accent-strong);
     }
+    .select-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
     input[type="file"] { display: none; }
     input[type="search"],
     select {
@@ -128,28 +136,47 @@
       grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
       gap: 18px;
     }
+    .panel-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .panel-heading h2 {
+      margin: 0;
+    }
+    .panel-heading .muted {
+      font-size: 0.82rem;
+      text-align: right;
+    }
     .bar-chart {
       display: grid;
       gap: 8px;
     }
     .bar-row {
       display: grid;
-      grid-template-columns: 110px 1fr 90px;
+      grid-template-columns: 130px 1fr 110px;
       gap: 10px;
       align-items: center;
       min-height: 26px;
       font-size: 0.88rem;
     }
     .bar-track {
+      display: block;
       height: 12px;
       border-radius: 999px;
       background: var(--accent-soft);
       overflow: hidden;
     }
     .bar-fill {
+      display: block;
       height: 100%;
       min-width: 2px;
       background: var(--accent);
+    }
+    .bar-fill.secondary {
+      background: #2563eb;
     }
     .table-wrap {
       overflow-x: auto;
@@ -184,8 +211,30 @@
       min-width: 280px;
       word-break: break-word;
     }
+    .numeric {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .category-badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .category-badge.transfer { background: #dff5f2; color: #0f766e; }
+    .category-badge.storage { background: #e0ecff; color: #1d4ed8; }
+    .category-badge.requests { background: #f4e8ff; color: #7e22ce; }
+    .category-badge.other { background: #eef2f7; color: #475569; }
     tr:last-child td { border-bottom: 0; }
     .muted { color: var(--muted); }
+    .chart-note {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
     .empty {
       padding: 18px;
       background: var(--warn-soft);
@@ -197,7 +246,15 @@
       header { position: static; }
       main { padding: 16px; }
       .grid-2 { grid-template-columns: 1fr; }
-      .bar-row { grid-template-columns: 92px 1fr 72px; }
+      .bar-row { grid-template-columns: 96px 1fr 76px; }
+      .panel-heading {
+        display: block;
+      }
+      .panel-heading .muted {
+        display: block;
+        margin-top: 2px;
+        text-align: left;
+      }
     }
   </style>
 </head>
@@ -208,6 +265,20 @@
       <label class="file-label" for="snapshot-file">Snapshot JSON</label>
       <input id="snapshot-file" type="file" accept="application/json,.json">
       <button class="secondary" id="demo-button" type="button">Demo Data</button>
+      <label class="select-label" for="rollup">Rollup
+        <select id="rollup">
+          <option value="day">Daily</option>
+          <option value="week">Weekly</option>
+          <option value="month">Monthly</option>
+        </select>
+      </label>
+      <label class="select-label" for="top-window">Top files
+        <select id="top-window">
+          <option value="day">Last day</option>
+          <option value="week" selected>Last week</option>
+          <option value="month">Last month</option>
+        </select>
+      </label>
       <select id="prefix-filter" aria-label="Prefix filter"></select>
       <input id="search" type="search" placeholder="Filter keys">
     </div>
@@ -218,13 +289,33 @@
 
     <section class="grid-2">
       <div class="panel">
-        <h2>Daily Transfer Out</h2>
+        <div class="panel-heading">
+          <h2>Data Served</h2>
+          <span class="muted" id="egress-period"></span>
+        </div>
         <div id="egress-chart" class="bar-chart"></div>
       </div>
       <div class="panel">
-        <h2>Cost Explorer Breakdown</h2>
-        <div id="cost-table" class="table-wrap"></div>
+        <div class="panel-heading">
+          <h2>Estimated Downloads</h2>
+          <span class="muted" id="downloads-period"></span>
+        </div>
+        <div id="downloads-chart" class="bar-chart"></div>
       </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading">
+        <h2>Top Downloaded Files</h2>
+        <span class="muted" id="top-files-period"></span>
+      </div>
+      <div id="top-files-table" class="table-wrap"></div>
+      <p class="chart-note">File cost is estimated from effective transfer-out and S3 request rates in the selected snapshot period.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Cost Explorer Breakdown</h2>
+      <div id="cost-table" class="table-wrap"></div>
     </section>
 
     <section class="panel">
@@ -239,47 +330,158 @@
   </main>
 
   <script>
+    function costRow(start, group, metric, amount, unit) {
+      const end = addDays(start, 1);
+      return { start, end, group, metric, amount: String(amount), unit };
+    }
+
     const demoSnapshot = {
-      generated_at: "2026-05-24T14:55:00+00:00",
+      generated_at: "2026-05-24T15:11:31+00:00",
       bucket: "genome-idx",
-      period: { start: "2026-05-23", end: "2026-05-24", label: "2026-05-23 through 2026-05-23" },
+      period: { start: "2026-05-01", end: "2026-05-24", label: "May 1 through May 23, 2026" },
       highlights: {
         cards: [
           { label: "Indexed data stored", value: "28.1 TB", detail: "Current S3 storage across 4,631 objects." },
           { label: "Objects available", value: "4,631", detail: "Public files, archives, indexes, checksums, and reports in genome-idx." },
-          { label: "Data served this period", value: "4.0 TB", detail: "S3 transfer out from 2026-05-23." },
-          { label: "S3 requests this period", value: "6,708", detail: "Cost Explorer request classes for the same period." }
+          { label: "Data served this period", value: "167.6 TB", detail: "S3 transfer out from May 1 through May 23, 2026." },
+          { label: "S3 requests this period", value: "610K", detail: "Cost Explorer request classes for the same period." }
         ]
       },
       cost: [
-        { start: "2026-05-23", end: "2026-05-24", group: "DataTransfer-Out-Bytes", metric: "UsageQuantity", amount: "4015.0623868711", unit: "GB" },
-        { start: "2026-05-23", end: "2026-05-24", group: "USE1-USW2-AWS-Out-Bytes", metric: "UsageQuantity", amount: "5.5235595182", unit: "GB" },
-        { start: "2026-05-23", end: "2026-05-24", group: "Requests-INT-Tier2", metric: "UsageQuantity", amount: "5903", unit: "Requests" }
+        costRow("2026-05-02", "DataTransfer-Out-Bytes", "UnblendedCost", 88.42, "USD"),
+        costRow("2026-05-02", "DataTransfer-Out-Bytes", "UsageQuantity", 1768.4, "GB"),
+        costRow("2026-05-02", "Requests-Tier2", "UnblendedCost", 0.0031, "USD"),
+        costRow("2026-05-02", "Requests-Tier2", "UsageQuantity", 7750, "Requests"),
+        costRow("2026-05-02", "TimedStorage-INT-FA-ByteHrs", "UnblendedCost", 7.82, "USD"),
+        costRow("2026-05-02", "TimedStorage-INT-FA-ByteHrs", "UsageQuantity", 372.1, "GB-Month"),
+        costRow("2026-05-17", "DataTransfer-Out-Bytes", "UnblendedCost", 121.54, "USD"),
+        costRow("2026-05-17", "DataTransfer-Out-Bytes", "UsageQuantity", 2430.8, "GB"),
+        costRow("2026-05-17", "Requests-INT-Tier2", "UnblendedCost", 0.0027, "USD"),
+        costRow("2026-05-17", "Requests-INT-Tier2", "UsageQuantity", 6825, "Requests"),
+        costRow("2026-05-17", "TimedStorage-INT-IA-ByteHrs", "UnblendedCost", 1.98, "USD"),
+        costRow("2026-05-17", "TimedStorage-INT-IA-ByteHrs", "UsageQuantity", 158.5, "GB-Month"),
+        costRow("2026-05-21", "DataTransfer-Out-Bytes", "UnblendedCost", 130.18, "USD"),
+        costRow("2026-05-21", "DataTransfer-Out-Bytes", "UsageQuantity", 2603.6, "GB"),
+        costRow("2026-05-21", "Requests-Tier1", "UnblendedCost", 0.0014, "USD"),
+        costRow("2026-05-21", "Requests-Tier1", "UsageQuantity", 284, "Requests"),
+        costRow("2026-05-21", "TimedStorage-INT-AIA-ByteHrs", "UnblendedCost", 1.25, "USD"),
+        costRow("2026-05-21", "TimedStorage-INT-AIA-ByteHrs", "UsageQuantity", 312.7, "GB-Month"),
+        costRow("2026-05-22", "DataTransfer-Out-Bytes", "UnblendedCost", 159.02, "USD"),
+        costRow("2026-05-22", "DataTransfer-Out-Bytes", "UsageQuantity", 3180.4, "GB"),
+        costRow("2026-05-22", "Requests-INT-Tier2", "UnblendedCost", 0.0037, "USD"),
+        costRow("2026-05-22", "Requests-INT-Tier2", "UsageQuantity", 9325, "Requests"),
+        costRow("2026-05-22", "TimedStorage-ByteHrs", "UnblendedCost", 0.034, "USD"),
+        costRow("2026-05-22", "TimedStorage-ByteHrs", "UsageQuantity", 1.65, "GB-Month"),
+        costRow("2026-05-23", "DataTransfer-Out-Bytes", "UnblendedCost", 200.7531193427, "USD"),
+        costRow("2026-05-23", "DataTransfer-Out-Bytes", "UsageQuantity", 4015.0623868711, "GB"),
+        costRow("2026-05-23", "USE1-USW2-AWS-Out-Bytes", "UnblendedCost", 0.1104711904, "USD"),
+        costRow("2026-05-23", "USE1-USW2-AWS-Out-Bytes", "UsageQuantity", 5.5235595182, "GB"),
+        costRow("2026-05-23", "Requests-INT-Tier2", "UnblendedCost", 0.0023612, "USD"),
+        costRow("2026-05-23", "Requests-INT-Tier2", "UsageQuantity", 5903, "Requests"),
+        costRow("2026-05-23", "Requests-Tier1", "UnblendedCost", 0.00146, "USD"),
+        costRow("2026-05-23", "Requests-Tier1", "UsageQuantity", 292, "Requests"),
+        costRow("2026-05-23", "TimedStorage-INT-FA-ByteHrs", "UnblendedCost", 7.8307840238, "USD"),
+        costRow("2026-05-23", "TimedStorage-INT-FA-ByteHrs", "UsageQuantity", 372.8944773248, "GB-Month")
       ],
       logs: {
         downloads: [
           {
-            date: "2026-05-22",
+            date: "2026-05-23",
             prefix: "kraken",
             key: "kraken/k2_standard_20260226.tar.gz",
-            download_sessions: 1,
-            likely_complete_sessions: 0,
-            likely_partial_sessions: 1,
-            raw_get_requests: 41,
-            bytes_sent: 343732820,
+            download_sessions: 53,
+            likely_complete_sessions: 48,
+            likely_partial_sessions: 5,
+            raw_get_requests: 2100,
+            bytes_sent: 4250000000000,
             max_object_size: 80230502610
+          },
+          {
+            date: "2026-05-23",
+            prefix: "bt",
+            key: "bt/grch38_1kgmaj.zip",
+            download_sessions: 41,
+            likely_complete_sessions: 39,
+            likely_partial_sessions: 2,
+            raw_get_requests: 820,
+            bytes_sent: 720000000000,
+            max_object_size: 17560975630
+          },
+          {
+            date: "2026-05-22",
+            prefix: "hisat",
+            key: "hisat/grch38_tran.tar.gz",
+            download_sessions: 18,
+            likely_complete_sessions: 16,
+            likely_partial_sessions: 2,
+            raw_get_requests: 330,
+            bytes_sent: 90000000000,
+            max_object_size: 5016500000
+          },
+          {
+            date: "2026-05-21",
+            prefix: "centrifuge",
+            key: "centrifuge/p_compressed+h+v.tar.gz",
+            download_sessions: 15,
+            likely_complete_sessions: 14,
+            likely_partial_sessions: 1,
+            raw_get_requests: 290,
+            bytes_sent: 123000000000,
+            max_object_size: 8400000000
+          },
+          {
+            date: "2026-05-17",
+            prefix: "kraken",
+            key: "kraken/k2_pluspf_20260226.tar.gz",
+            download_sessions: 23,
+            likely_complete_sessions: 21,
+            likely_partial_sessions: 2,
+            raw_get_requests: 960,
+            bytes_sent: 1650000000000,
+            max_object_size: 76000000000
+          },
+          {
+            date: "2026-05-02",
+            prefix: "recount",
+            key: "recount/recount3_human_v2.tar.gz",
+            download_sessions: 12,
+            likely_complete_sessions: 10,
+            likely_partial_sessions: 2,
+            raw_get_requests: 510,
+            bytes_sent: 420000000000,
+            max_object_size: 35000000000
           }
         ],
         summary: [
           {
-            date: "2026-05-22",
+            date: "2026-05-23",
             prefix: "kraken",
             key: "kraken/k2_standard_20260226.tar.gz",
             operation: "REST.GET.OBJECT",
             http_status: 206,
-            raw_requests: 41,
-            bytes_sent: 343732820,
+            raw_requests: 2100,
+            bytes_sent: 4250000000000,
             max_object_size: 80230502610
+          },
+          {
+            date: "2026-05-23",
+            prefix: "bt",
+            key: "bt/grch38_1kgmaj.zip",
+            operation: "REST.GET.OBJECT",
+            http_status: 206,
+            raw_requests: 820,
+            bytes_sent: 720000000000,
+            max_object_size: 17560975630
+          },
+          {
+            date: "2026-05-22",
+            prefix: "hisat",
+            key: "hisat/grch38_tran.tar.gz",
+            operation: "REST.GET.OBJECT",
+            http_status: 200,
+            raw_requests: 330,
+            bytes_sent: 90000000000,
+            max_object_size: 5016500000
           }
         ]
       }
@@ -288,12 +490,19 @@
     let snapshot = demoSnapshot;
 
     const cardsEl = document.querySelector("#cards");
-    const chartEl = document.querySelector("#egress-chart");
+    const egressChartEl = document.querySelector("#egress-chart");
+    const downloadsChartEl = document.querySelector("#downloads-chart");
     const costTableEl = document.querySelector("#cost-table");
+    const topFilesTableEl = document.querySelector("#top-files-table");
     const downloadsTableEl = document.querySelector("#downloads-table");
     const logsTableEl = document.querySelector("#logs-table");
+    const rollupEl = document.querySelector("#rollup");
+    const topWindowEl = document.querySelector("#top-window");
     const prefixFilterEl = document.querySelector("#prefix-filter");
     const searchEl = document.querySelector("#search");
+    const egressPeriodEl = document.querySelector("#egress-period");
+    const downloadsPeriodEl = document.querySelector("#downloads-period");
+    const topFilesPeriodEl = document.querySelector("#top-files-period");
 
     function number(value) {
       const n = Number(value || 0);
@@ -317,54 +526,150 @@
       return `${compact(n)} B`;
     }
 
+    function gb(value) {
+      const n = number(value);
+      return n >= 1000 ? `${(n / 1000).toFixed(1)} TB` : `${n.toFixed(1)} GB`;
+    }
+
+    function money(value) {
+      const n = number(value);
+      const digits = Math.abs(n) > 0 && Math.abs(n) < 1 ? 4 : 2;
+      return `$${n.toLocaleString(undefined, { minimumFractionDigits: digits, maximumFractionDigits: digits })}`;
+    }
+
+    function unitCost(value) {
+      const n = number(value);
+      if (!n) return "";
+      const digits = Math.abs(n) < 0.001 ? 6 : 4;
+      return `$${n.toLocaleString(undefined, { minimumFractionDigits: digits, maximumFractionDigits: digits })}`;
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[char]));
+    }
+
     function rows(path) {
       return path.reduce((current, key) => current && current[key], snapshot) || [];
+    }
+
+    function parseDate(date) {
+      return new Date(`${date}T00:00:00Z`);
+    }
+
+    function isoDate(date) {
+      return date.toISOString().slice(0, 10);
+    }
+
+    function addDays(date, days) {
+      const d = parseDate(date);
+      d.setUTCDate(d.getUTCDate() + days);
+      return isoDate(d);
+    }
+
+    function bucketFor(date, rollup) {
+      const d = parseDate(date);
+      if (rollup === "month") {
+        return date.slice(0, 7);
+      }
+      if (rollup === "week") {
+        const offset = (d.getUTCDay() + 6) % 7;
+        d.setUTCDate(d.getUTCDate() - offset);
+        return isoDate(d);
+      }
+      return date;
+    }
+
+    function bucketLabel(bucket, rollup) {
+      if (rollup === "month") return bucket;
+      if (rollup === "week") return `${bucket} wk`;
+      return bucket;
+    }
+
+    function dateRangeLabel(start, endExclusive) {
+      const end = addDays(endExclusive, -1);
+      return start === end ? start : `${start} through ${end}`;
     }
 
     function renderCards() {
       const cards = (snapshot.highlights && snapshot.highlights.cards) || [];
       cardsEl.innerHTML = cards.map(card => `
         <article class="stat">
-          <span class="stat-value">${card.value}</span>
-          <span class="stat-label">${card.label}</span>
-          <span class="stat-detail">${card.detail || ""}</span>
+          <span class="stat-value">${escapeHtml(card.value)}</span>
+          <span class="stat-label">${escapeHtml(card.label)}</span>
+          <span class="stat-detail">${escapeHtml(card.detail || "")}</span>
         </article>
       `).join("");
     }
 
-    function dailyEgressRows() {
-      const byDate = new Map();
-      rows(["cost"]).forEach(row => {
-        if (row.metric !== "UsageQuantity" || row.unit !== "GB" || !String(row.group).endsWith("Out-Bytes")) return;
-        byDate.set(row.start, (byDate.get(row.start) || 0) + number(row.amount));
+    function aggregateByBucket(data, valueFn) {
+      const rollup = rollupEl.value;
+      const byBucket = new Map();
+      data.forEach(row => {
+        const value = valueFn(row);
+        if (!value) return;
+        const bucket = bucketFor(row.date || row.start, rollup);
+        byBucket.set(bucket, (byBucket.get(bucket) || 0) + value);
       });
-      return [...byDate.entries()].sort(([a], [b]) => a.localeCompare(b));
+      return [...byBucket.entries()].sort(([a], [b]) => a.localeCompare(b));
     }
 
-    function renderChart() {
-      const data = dailyEgressRows();
+    function egressSeries() {
+      rows(["cost"]).forEach(row => {
+        row.date = row.start;
+      });
+      return aggregateByBucket(rows(["cost"]), row => {
+        if (row.metric !== "UsageQuantity" || row.unit !== "GB" || !String(row.group).endsWith("Out-Bytes")) return 0;
+        return number(row.amount);
+      });
+    }
+
+    function downloadSeries() {
+      return aggregateByBucket(filtered(rows(["logs", "downloads"])), row => number(row.download_sessions));
+    }
+
+    function renderBarChart(element, data, formatter, fillClass = "") {
       if (!data.length) {
-        chartEl.innerHTML = `<div class="empty">No transfer rows in this snapshot.</div>`;
+        element.innerHTML = `<div class="empty">No rows in this snapshot.</div>`;
         return;
       }
       const max = Math.max(...data.map(([, value]) => value), 1);
-      chartEl.innerHTML = data.map(([date, gb]) => {
-        const pct = Math.max(1, (gb / max) * 100);
-        const label = gb >= 1000 ? `${(gb / 1000).toFixed(1)} TB` : `${gb.toFixed(1)} GB`;
+      element.innerHTML = data.map(([bucket, value]) => {
+        const pct = Math.max(1, (value / max) * 100);
         return `
           <div class="bar-row">
-            <span>${date}</span>
-            <span class="bar-track"><span class="bar-fill" style="width:${pct}%"></span></span>
-            <span>${label}</span>
+            <span>${escapeHtml(bucketLabel(bucket, rollupEl.value))}</span>
+            <span class="bar-track"><span class="bar-fill ${fillClass}" style="width:${pct}%"></span></span>
+            <span>${escapeHtml(formatter(value))}</span>
           </div>
         `;
       }).join("");
     }
 
+    function renderCharts() {
+      const rollupLabel = rollupEl.options[rollupEl.selectedIndex].textContent.toLowerCase();
+      egressPeriodEl.textContent = rollupLabel;
+      downloadsPeriodEl.textContent = rollupLabel;
+      renderBarChart(egressChartEl, egressSeries(), gb);
+      renderBarChart(downloadsChartEl, downloadSeries(), value => compact(value), "secondary");
+    }
+
+    function costCategory(group) {
+      if (String(group).endsWith("Out-Bytes")) return { key: "transfer", label: "Transfer" };
+      if (String(group).startsWith("Requests-")) return { key: "requests", label: "Requests" };
+      if (/TimedStorage|Storage|Bucket-Hrs|Monitoring/.test(String(group))) return { key: "storage", label: "Storage" };
+      return { key: "other", label: "Other" };
+    }
+
     function groupCostRows() {
       const grouped = new Map();
       rows(["cost"]).forEach(row => {
-        const item = grouped.get(row.group) || { group: row.group, cost: 0, usage: 0, unit: "" };
+        const item = grouped.get(row.group) || { group: row.group, category: costCategory(row.group), cost: 0, usage: 0, unit: "" };
         if (row.metric === "UnblendedCost") item.cost += number(row.amount);
         if (row.metric === "UsageQuantity") {
           item.usage += number(row.amount);
@@ -372,12 +677,12 @@
         }
         grouped.set(row.group, item);
       });
-      return [...grouped.values()].sort((a, b) => b.cost - a.cost || b.usage - a.usage);
+      return [...grouped.values()].sort((a, b) => b.cost - a.cost || a.category.label.localeCompare(b.category.label));
     }
 
     function table(headers, data, mapper) {
       if (!data.length) return `<div class="empty">No rows in this snapshot.</div>`;
-      const head = headers.map(h => `<th>${h}</th>`).join("");
+      const head = headers.map(h => `<th>${escapeHtml(h)}</th>`).join("");
       const body = data.map(row => `<tr>${mapper(row).map(cell => `<td>${cell}</td>`).join("")}</tr>`).join("");
       return `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
     }
@@ -402,12 +707,104 @@
       });
     }
 
+    function snapshotLatestDate() {
+      const dates = [
+        ...rows(["logs", "downloads"]).map(row => row.date),
+        ...rows(["cost"]).map(row => row.start),
+        snapshot.period && snapshot.period.end ? addDays(snapshot.period.end, -1) : null
+      ].filter(Boolean);
+      return dates.length ? dates.sort().at(-1) : isoDate(new Date());
+    }
+
+    function selectedTopWindow() {
+      const latest = snapshotLatestDate();
+      const days = { day: 1, week: 7, month: 31 }[topWindowEl.value] || 7;
+      const start = addDays(latest, -(days - 1));
+      const end = addDays(latest, 1);
+      return { start, end, label: dateRangeLabel(start, end) };
+    }
+
+    function costRowsInRange(start, end) {
+      return rows(["cost"]).filter(row => row.start < end && (row.end || addDays(row.start, 1)) > start);
+    }
+
+    function costRates(start, end) {
+      let egressCost = 0;
+      let egressGb = 0;
+      let requestCost = 0;
+      let requests = 0;
+      costRowsInRange(start, end).forEach(row => {
+        const group = String(row.group);
+        if (group.endsWith("Out-Bytes")) {
+          if (row.metric === "UnblendedCost") egressCost += number(row.amount);
+          if (row.metric === "UsageQuantity" && row.unit === "GB") egressGb += number(row.amount);
+        }
+        if (group.startsWith("Requests-")) {
+          if (row.metric === "UnblendedCost") requestCost += number(row.amount);
+          if (row.metric === "UsageQuantity" && row.unit === "Requests") requests += number(row.amount);
+        }
+      });
+      return {
+        egressCostPerGb: egressGb ? egressCost / egressGb : 0,
+        requestCostPerRequest: requests ? requestCost / requests : 0
+      };
+    }
+
+    function topDownloadedFiles() {
+      const { start, end, label } = selectedTopWindow();
+      topFilesPeriodEl.textContent = label;
+      const rates = costRates(start, end);
+      const grouped = new Map();
+      filtered(rows(["logs", "downloads"]))
+        .filter(row => row.date >= start && row.date < end)
+        .forEach(row => {
+          const key = row.key || "";
+          const current = grouped.get(key) || {
+            prefix: row.prefix || "",
+            key,
+            download_sessions: 0,
+            raw_get_requests: 0,
+            bytes_sent: 0,
+            likely_complete_sessions: 0,
+            likely_partial_sessions: 0
+          };
+          current.download_sessions += number(row.download_sessions);
+          current.raw_get_requests += number(row.raw_get_requests);
+          current.bytes_sent += number(row.bytes_sent);
+          current.likely_complete_sessions += number(row.likely_complete_sessions);
+          current.likely_partial_sessions += number(row.likely_partial_sessions);
+          grouped.set(key, current);
+        });
+      return [...grouped.values()].map(row => ({
+        ...row,
+        estimated_cost: (row.bytes_sent / 1_000_000_000) * rates.egressCostPerGb +
+          row.raw_get_requests * rates.requestCostPerRequest
+      })).sort((a, b) => b.download_sessions - a.download_sessions || b.bytes_sent - a.bytes_sent).slice(0, 10);
+    }
+
+    function renderTopFiles() {
+      topFilesTableEl.innerHTML = table(
+        ["Prefix", "Key", "Downloads", "Raw GETs", "Bytes", "Est. download cost"],
+        topDownloadedFiles(),
+        row => [
+          escapeHtml(row.prefix || ""),
+          `<span class="key">${escapeHtml(row.key || "")}</span>`,
+          compact(row.download_sessions),
+          compact(row.raw_get_requests),
+          bytes(row.bytes_sent),
+          money(row.estimated_cost)
+        ]
+      );
+    }
+
     function renderTables() {
-      const cost = groupCostRows().slice(0, 20);
-      costTableEl.innerHTML = table(["Usage type", "Cost", "Usage"], cost, row => [
-        row.group,
-        `$${row.cost.toLocaleString(undefined, { maximumFractionDigits: 2 })}`,
-        `${compact(row.usage)} ${row.unit || ""}`
+      const cost = groupCostRows().slice(0, 50);
+      costTableEl.innerHTML = table(["Category", "Usage type", "Cost", "Usage", "Effective unit cost"], cost, row => [
+        `<span class="category-badge ${row.category.key}">${escapeHtml(row.category.label)}</span>`,
+        escapeHtml(row.group),
+        money(row.cost),
+        `${compact(row.usage)} ${escapeHtml(row.unit || "")}`,
+        row.usage ? `${unitCost(row.cost / row.usage)} / ${escapeHtml(row.unit || "unit")}` : ""
       ]);
 
       const downloads = filtered(rows(["logs", "downloads"]))
@@ -417,9 +814,9 @@
         ["Date", "Prefix", "Key", "Sessions", "Raw GETs", "Bytes", "Complete", "Partial"],
         downloads,
         row => [
-          row.date,
-          row.prefix || "",
-          `<span class="key">${row.key || ""}</span>`,
+          escapeHtml(row.date),
+          escapeHtml(row.prefix || ""),
+          `<span class="key">${escapeHtml(row.key || "")}</span>`,
           compact(row.download_sessions),
           compact(row.raw_get_requests),
           bytes(row.bytes_sent),
@@ -435,11 +832,11 @@
         ["Date", "Prefix", "Key", "Operation", "Status", "Requests", "Bytes"],
         logSummary,
         row => [
-          row.date,
-          row.prefix || "",
-          `<span class="key">${row.key || ""}</span>`,
-          row.operation,
-          row.http_status,
+          escapeHtml(row.date),
+          escapeHtml(row.prefix || ""),
+          `<span class="key">${escapeHtml(row.key || "")}</span>`,
+          escapeHtml(row.operation),
+          escapeHtml(row.http_status),
           compact(row.raw_requests),
           bytes(row.bytes_sent)
         ]
@@ -449,7 +846,8 @@
     function render() {
       filters();
       renderCards();
-      renderChart();
+      renderCharts();
+      renderTopFiles();
       renderTables();
     }
 
@@ -468,8 +866,18 @@
       snapshot = demoSnapshot;
       render();
     });
-    prefixFilterEl.addEventListener("change", renderTables);
-    searchEl.addEventListener("input", renderTables);
+    rollupEl.addEventListener("change", renderCharts);
+    topWindowEl.addEventListener("change", renderTopFiles);
+    prefixFilterEl.addEventListener("change", () => {
+      renderCharts();
+      renderTopFiles();
+      renderTables();
+    });
+    searchEl.addEventListener("input", () => {
+      renderCharts();
+      renderTopFiles();
+      renderTables();
+    });
 
     render();
   </script>

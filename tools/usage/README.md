@@ -109,6 +109,10 @@ python3 tools/usage/index_zone_usage.py snapshot \
 ```
 
 Open `tools/usage/ui/index.html` in a browser and load the snapshot JSON.
+The static explorer can roll Cost Explorer transfer data and inferred downloads
+up by day, week, or month. It also includes a selectable top-files table that
+allocates approximate download cost by applying the snapshot's effective
+transfer-out and request rates to each file's inferred download traffic.
 
 ## Website highlights
 
