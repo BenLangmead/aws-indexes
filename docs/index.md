@@ -9,6 +9,7 @@
     <div class="home-usage-card">
       <span class="home-usage-value">{{ card.value }}</span>
       <span class="home-usage-label">{{ card.label }}</span>
+      {% if card.note %}<span class="home-usage-note">{{ card.note }}</span>{% endif %}
     </div>
     {% endfor %}
   </div>

@@ -751,6 +751,7 @@ def build_highlights(
         {
             "label": "AWS charges per week",
             "value": f"~{compact_money(weekly_unblended_cost)}",
+            "note": "Thank you, AWS!",
         },
     ]
     return {

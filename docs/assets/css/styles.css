@@ -436,6 +436,12 @@ hr {
   font-size: 0.88rem;
   font-weight: 600;
 }
+.home-usage-note {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+}
 .home-usage-updated {
   margin: 0.85rem 0 0;
   color: var(--text-muted);
