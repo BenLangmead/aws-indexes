@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-05-24T15:11:31+00:00",
+  "period": {
+    "start": "2026-05-01",
+    "end": "2026-05-24",
+    "label": "May 1 through May 23, 2026"
+  },
+  "first_known_log_date": "2020-06-15",
+  "storage_timestamp": "2026-05-22T11:11:00-04:00",
+  "metrics": {
+    "egress_gb": 167608.3841511367,
+    "public_egress_gb": 165901.8753608847,
+    "requests": 609541.0,
+    "unblended_cost_usd": 8589.723126415498,
+    "storage_bytes": 28096623437871.0,
+    "storage_tb_decimal": 28.096623437871,
+    "objects": 4631.0
+  },
+  "cards": [
+    {
+      "label": "Indexed data stored",
+      "value": "28.1 TB",
+      "detail": "Current S3 storage across 4,631 objects."
+    },
+    {
+      "label": "Objects available",
+      "value": "4,631",
+      "detail": "Public files, archives, indexes, checksums, and reports in genome-idx."
+    },
+    {
+      "label": "Data served this period",
+      "value": "167.6 TB",
+      "detail": "S3 transfer out from May 1 through May 23, 2026."
+    },
+    {
+      "label": "S3 requests this period",
+      "value": "610K",
+      "detail": "Cost Explorer request classes for the same period."
+    }
+  ]
+}

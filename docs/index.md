@@ -4,6 +4,26 @@
   </p>
 </div>
 
+{% assign usage = site.data.usage_highlights %}
+{% if usage.cards %}
+<section class="usage-highlights" aria-labelledby="usage-highlights-heading">
+  <div class="usage-highlights-header">
+    <h2 id="usage-highlights-heading">Usage snapshot</h2>
+    <p>Measured from AWS Cost Explorer and CloudWatch. Current-month figures cover {{ usage.period.label }}.</p>
+  </div>
+  <div class="usage-highlight-grid">
+    {% for card in usage.cards %}
+    <div class="usage-highlight">
+      <span class="usage-highlight-value">{{ card.value }}</span>
+      <span class="usage-highlight-label">{{ card.label }}</span>
+      <span class="usage-highlight-detail">{{ card.detail }}</span>
+    </div>
+    {% endfor %}
+  </div>
+  <p class="usage-highlight-note">Server access logs are available back to {{ usage.first_known_log_date }} for more detailed file-level analysis.</p>
+</section>
+{% endif %}
+
 <h2 class="tool-grid-heading">Browse by tool</h2>
 <div class="tool-grid">
 {% for nav in site.navigation %}

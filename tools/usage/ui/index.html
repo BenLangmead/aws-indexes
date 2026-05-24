@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Index Zone Usage Explorer</title>
+  <style>
+    :root {
+      --bg: #f7faf9;
+      --panel: #ffffff;
+      --ink: #172033;
+      --muted: #637083;
+      --border: #d9e2e0;
+      --accent: #0d9488;
+      --accent-strong: #0f766e;
+      --accent-soft: #dff5f2;
+      --warn-soft: #fff3d6;
+      --shadow: 0 1px 3px rgba(15, 23, 42, 0.07);
+      --radius: 8px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 15px/1.5 var(--font, inherit);
+    }
+    header {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--panel);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    h1 {
+      font-size: 1.35rem;
+      margin: 0 0 12px;
+      letter-spacing: 0;
+    }
+    h2 {
+      font-size: 1rem;
+      margin: 0 0 12px;
+      letter-spacing: 0;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .toolbar label,
+    .toolbar button,
+    .toolbar input,
+    .toolbar select {
+      font: inherit;
+    }
+    button,
+    .file-label {
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #fff;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button.secondary {
+      background: var(--panel);
+      color: var(--accent-strong);
+    }
+    input[type="file"] { display: none; }
+    input[type="search"],
+    select {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--panel);
+      color: var(--ink);
+      padding: 8px 10px;
+      min-height: 38px;
+    }
+    main {
+      padding: 24px;
+      display: grid;
+      gap: 18px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+    }
+    .stat {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px;
+    }
+    .stat-value {
+      display: block;
+      font-size: 1.65rem;
+      line-height: 1.15;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .stat-label {
+      display: block;
+      margin-top: 4px;
+      font-weight: 650;
+    }
+    .stat-detail {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      min-width: 0;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 18px;
+    }
+    .bar-chart {
+      display: grid;
+      gap: 8px;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 110px 1fr 90px;
+      gap: 10px;
+      align-items: center;
+      min-height: 26px;
+      font-size: 0.88rem;
+    }
+    .bar-track {
+      height: 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      min-width: 2px;
+      background: var(--accent);
+    }
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    th,
+    td {
+      text-align: left;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      white-space: nowrap;
+    }
+    th {
+      background: var(--accent-soft);
+      color: var(--ink);
+      font-weight: 700;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    td.key,
+    .key {
+      white-space: normal;
+      min-width: 280px;
+      word-break: break-word;
+    }
+    tr:last-child td { border-bottom: 0; }
+    .muted { color: var(--muted); }
+    .empty {
+      padding: 18px;
+      background: var(--warn-soft);
+      border: 1px solid #f1d48b;
+      border-radius: var(--radius);
+      color: #604400;
+    }
+    @media (max-width: 820px) {
+      header { position: static; }
+      main { padding: 16px; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .bar-row { grid-template-columns: 92px 1fr 72px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Index Zone Usage Explorer</h1>
+    <div class="toolbar">
+      <label class="file-label" for="snapshot-file">Snapshot JSON</label>
+      <input id="snapshot-file" type="file" accept="application/json,.json">
+      <button class="secondary" id="demo-button" type="button">Demo Data</button>
+      <select id="prefix-filter" aria-label="Prefix filter"></select>
+      <input id="search" type="search" placeholder="Filter keys">
+    </div>
+  </header>
+
+  <main>
+    <section class="cards" id="cards"></section>
+
+    <section class="grid-2">
+      <div class="panel">
+        <h2>Daily Transfer Out</h2>
+        <div id="egress-chart" class="bar-chart"></div>
+      </div>
+      <div class="panel">
+        <h2>Cost Explorer Breakdown</h2>
+        <div id="cost-table" class="table-wrap"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Estimated Download Sessions</h2>
+      <div id="downloads-table" class="table-wrap"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Raw Access Log Summary</h2>
+      <div id="logs-table" class="table-wrap"></div>
+    </section>
+  </main>
+
+  <script>
+    const demoSnapshot = {
+      generated_at: "2026-05-24T14:55:00+00:00",
+      bucket: "genome-idx",
+      period: { start: "2026-05-23", end: "2026-05-24", label: "2026-05-23 through 2026-05-23" },
+      highlights: {
+        cards: [
+          { label: "Indexed data stored", value: "28.1 TB", detail: "Current S3 storage across 4,631 objects." },
+          { label: "Objects available", value: "4,631", detail: "Public files, archives, indexes, checksums, and reports in genome-idx." },
+          { label: "Data served this period", value: "4.0 TB", detail: "S3 transfer out from 2026-05-23." },
+          { label: "S3 requests this period", value: "6,708", detail: "Cost Explorer request classes for the same period." }
+        ]
+      },
+      cost: [
+        { start: "2026-05-23", end: "2026-05-24", group: "DataTransfer-Out-Bytes", metric: "UsageQuantity", amount: "4015.0623868711", unit: "GB" },
+        { start: "2026-05-23", end: "2026-05-24", group: "USE1-USW2-AWS-Out-Bytes", metric: "UsageQuantity", amount: "5.5235595182", unit: "GB" },
+        { start: "2026-05-23", end: "2026-05-24", group: "Requests-INT-Tier2", metric: "UsageQuantity", amount: "5903", unit: "Requests" }
+      ],
+      logs: {
+        downloads: [
+          {
+            date: "2026-05-22",
+            prefix: "kraken",
+            key: "kraken/k2_standard_20260226.tar.gz",
+            download_sessions: 1,
+            likely_complete_sessions: 0,
+            likely_partial_sessions: 1,
+            raw_get_requests: 41,
+            bytes_sent: 343732820,
+            max_object_size: 80230502610
+          }
+        ],
+        summary: [
+          {
+            date: "2026-05-22",
+            prefix: "kraken",
+            key: "kraken/k2_standard_20260226.tar.gz",
+            operation: "REST.GET.OBJECT",
+            http_status: 206,
+            raw_requests: 41,
+            bytes_sent: 343732820,
+            max_object_size: 80230502610
+          }
+        ]
+      }
+    };
+
+    let snapshot = demoSnapshot;
+
+    const cardsEl = document.querySelector("#cards");
+    const chartEl = document.querySelector("#egress-chart");
+    const costTableEl = document.querySelector("#cost-table");
+    const downloadsTableEl = document.querySelector("#downloads-table");
+    const logsTableEl = document.querySelector("#logs-table");
+    const prefixFilterEl = document.querySelector("#prefix-filter");
+    const searchEl = document.querySelector("#search");
+
+    function number(value) {
+      const n = Number(value || 0);
+      return Number.isFinite(n) ? n : 0;
+    }
+
+    function compact(value) {
+      const n = number(value);
+      if (n >= 1e12) return `${(n / 1e12).toFixed(1)}T`;
+      if (n >= 1e9) return `${(n / 1e9).toFixed(1)}B`;
+      if (n >= 1e6) return `${(n / 1e6).toFixed(1)}M`;
+      if (n >= 1e4) return `${(n / 1e3).toFixed(0)}K`;
+      return n.toLocaleString(undefined, { maximumFractionDigits: 1 });
+    }
+
+    function bytes(value) {
+      const n = number(value);
+      if (n >= 1e12) return `${(n / 1e12).toFixed(2)} TB`;
+      if (n >= 1e9) return `${(n / 1e9).toFixed(2)} GB`;
+      if (n >= 1e6) return `${(n / 1e6).toFixed(2)} MB`;
+      return `${compact(n)} B`;
+    }
+
+    function rows(path) {
+      return path.reduce((current, key) => current && current[key], snapshot) || [];
+    }
+
+    function renderCards() {
+      const cards = (snapshot.highlights && snapshot.highlights.cards) || [];
+      cardsEl.innerHTML = cards.map(card => `
+        <article class="stat">
+          <span class="stat-value">${card.value}</span>
+          <span class="stat-label">${card.label}</span>
+          <span class="stat-detail">${card.detail || ""}</span>
+        </article>
+      `).join("");
+    }
+
+    function dailyEgressRows() {
+      const byDate = new Map();
+      rows(["cost"]).forEach(row => {
+        if (row.metric !== "UsageQuantity" || row.unit !== "GB" || !String(row.group).endsWith("Out-Bytes")) return;
+        byDate.set(row.start, (byDate.get(row.start) || 0) + number(row.amount));
+      });
+      return [...byDate.entries()].sort(([a], [b]) => a.localeCompare(b));
+    }
+
+    function renderChart() {
+      const data = dailyEgressRows();
+      if (!data.length) {
+        chartEl.innerHTML = `<div class="empty">No transfer rows in this snapshot.</div>`;
+        return;
+      }
+      const max = Math.max(...data.map(([, value]) => value), 1);
+      chartEl.innerHTML = data.map(([date, gb]) => {
+        const pct = Math.max(1, (gb / max) * 100);
+        const label = gb >= 1000 ? `${(gb / 1000).toFixed(1)} TB` : `${gb.toFixed(1)} GB`;
+        return `
+          <div class="bar-row">
+            <span>${date}</span>
+            <span class="bar-track"><span class="bar-fill" style="width:${pct}%"></span></span>
+            <span>${label}</span>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function groupCostRows() {
+      const grouped = new Map();
+      rows(["cost"]).forEach(row => {
+        const item = grouped.get(row.group) || { group: row.group, cost: 0, usage: 0, unit: "" };
+        if (row.metric === "UnblendedCost") item.cost += number(row.amount);
+        if (row.metric === "UsageQuantity") {
+          item.usage += number(row.amount);
+          item.unit = row.unit;
+        }
+        grouped.set(row.group, item);
+      });
+      return [...grouped.values()].sort((a, b) => b.cost - a.cost || b.usage - a.usage);
+    }
+
+    function table(headers, data, mapper) {
+      if (!data.length) return `<div class="empty">No rows in this snapshot.</div>`;
+      const head = headers.map(h => `<th>${h}</th>`).join("");
+      const body = data.map(row => `<tr>${mapper(row).map(cell => `<td>${cell}</td>`).join("")}</tr>`).join("");
+      return `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+    }
+
+    function filters() {
+      const prefixes = new Set();
+      rows(["logs", "downloads"]).forEach(row => prefixes.add(row.prefix || ""));
+      rows(["logs", "summary"]).forEach(row => prefixes.add(row.prefix || ""));
+      const current = prefixFilterEl.value;
+      prefixFilterEl.innerHTML = `<option value="">All prefixes</option>` +
+        [...prefixes].filter(Boolean).sort().map(prefix => `<option value="${prefix}">${prefix}</option>`).join("");
+      prefixFilterEl.value = [...prefixes].includes(current) ? current : "";
+    }
+
+    function filtered(data) {
+      const prefix = prefixFilterEl.value;
+      const query = searchEl.value.trim().toLowerCase();
+      return data.filter(row => {
+        if (prefix && row.prefix !== prefix) return false;
+        if (query && !String(row.key || "").toLowerCase().includes(query)) return false;
+        return true;
+      });
+    }
+
+    function renderTables() {
+      const cost = groupCostRows().slice(0, 20);
+      costTableEl.innerHTML = table(["Usage type", "Cost", "Usage"], cost, row => [
+        row.group,
+        `$${row.cost.toLocaleString(undefined, { maximumFractionDigits: 2 })}`,
+        `${compact(row.usage)} ${row.unit || ""}`
+      ]);
+
+      const downloads = filtered(rows(["logs", "downloads"]))
+        .sort((a, b) => number(b.bytes_sent) - number(a.bytes_sent))
+        .slice(0, 100);
+      downloadsTableEl.innerHTML = table(
+        ["Date", "Prefix", "Key", "Sessions", "Raw GETs", "Bytes", "Complete", "Partial"],
+        downloads,
+        row => [
+          row.date,
+          row.prefix || "",
+          `<span class="key">${row.key || ""}</span>`,
+          compact(row.download_sessions),
+          compact(row.raw_get_requests),
+          bytes(row.bytes_sent),
+          compact(row.likely_complete_sessions),
+          compact(row.likely_partial_sessions)
+        ]
+      );
+
+      const logSummary = filtered(rows(["logs", "summary"]))
+        .sort((a, b) => number(b.bytes_sent) - number(a.bytes_sent))
+        .slice(0, 100);
+      logsTableEl.innerHTML = table(
+        ["Date", "Prefix", "Key", "Operation", "Status", "Requests", "Bytes"],
+        logSummary,
+        row => [
+          row.date,
+          row.prefix || "",
+          `<span class="key">${row.key || ""}</span>`,
+          row.operation,
+          row.http_status,
+          compact(row.raw_requests),
+          bytes(row.bytes_sent)
+        ]
+      );
+    }
+
+    function render() {
+      filters();
+      renderCards();
+      renderChart();
+      renderTables();
+    }
+
+    document.querySelector("#snapshot-file").addEventListener("change", event => {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        snapshot = JSON.parse(reader.result);
+        render();
+      });
+      reader.readAsText(file);
+    });
+
+    document.querySelector("#demo-button").addEventListener("click", () => {
+      snapshot = demoSnapshot;
+      render();
+    });
+    prefixFilterEl.addEventListener("change", renderTables);
+    searchEl.addEventListener("input", renderTables);
+
+    render();
+  </script>
+</body>
+</html>

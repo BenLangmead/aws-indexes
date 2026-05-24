@@ -13,6 +13,7 @@ import dataclasses
 import datetime as dt
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -27,6 +28,7 @@ DEFAULT_BUCKET = "genome-idx"
 DEFAULT_LOG_BUCKET = "genome-idx-logs"
 DEFAULT_REGION = "us-east-1"
 DEFAULT_CACHE_DIR = Path(".usage-cache") / "s3-access-logs"
+FIRST_KNOWN_LOG_DATE = "2020-06-15"
 
 S3_LOG_RE = re.compile(
     r"^(?P<owner>\S+) "
@@ -226,6 +228,16 @@ def write_rows(
         writer = csv.DictWriter(stream, fieldnames=headers)
         writer.writeheader()
         writer.writerows(rows)
+    finally:
+        if output:
+            stream.close()
+
+
+def write_json_document(document: Mapping[str, Any], output: str | None) -> None:
+    stream = open(output, "w") if output else sys.stdout
+    try:
+        json.dump(document, stream, indent=2, default=str)
+        stream.write("\n")
     finally:
         if output:
             stream.close()
@@ -580,6 +592,226 @@ def storage_rows(args: argparse.Namespace) -> list[dict[str, Any]]:
     return rows
 
 
+def numeric(value: Any) -> float:
+    if value in (None, ""):
+        return 0.0
+    return float(value)
+
+
+def sum_metric(
+    rows: Sequence[Mapping[str, Any]],
+    *,
+    metric: str,
+    unit: str | None = None,
+    group_suffix: str | None = None,
+    group_prefix: str | None = None,
+    group_exact: str | None = None,
+) -> float:
+    total = 0.0
+    for row in rows:
+        group = str(row.get("group", ""))
+        if row.get("metric") != metric:
+            continue
+        if unit and row.get("unit") != unit:
+            continue
+        if group_suffix and not group.endswith(group_suffix):
+            continue
+        if group_prefix and not group.startswith(group_prefix):
+            continue
+        if group_exact and group != group_exact:
+            continue
+        total += numeric(row.get("amount"))
+    return total
+
+
+def compact_number(value: float) -> str:
+    if value >= 1_000_000_000:
+        return f"{value / 1_000_000_000:.1f}B"
+    if value >= 1_000_000:
+        return f"{value / 1_000_000:.1f}M"
+    if value >= 10_000:
+        return f"{value / 1_000:.0f}K"
+    if value >= 1_000:
+        return f"{value:,.0f}"
+    if math.isclose(value, round(value)):
+        return f"{value:.0f}"
+    return f"{value:.1f}"
+
+
+def end_minus_one(end: str) -> str:
+    return (dt.date.fromisoformat(end) - dt.timedelta(days=1)).isoformat()
+
+
+def display_period(start: str, end: str) -> str:
+    start_date = dt.date.fromisoformat(start)
+    end_date = dt.date.fromisoformat(end_minus_one(end))
+    start_month = start_date.strftime("%B")
+    end_month = end_date.strftime("%B")
+    if start_date.year == end_date.year and start_date.month == end_date.month:
+        return f"{start_month} {start_date.day} through {end_month} {end_date.day}, {end_date.year}"
+    if start_date.year == end_date.year:
+        return f"{start_month} {start_date.day} through {end_month} {end_date.day}, {end_date.year}"
+    return f"{start_month} {start_date.day}, {start_date.year} through {end_month} {end_date.day}, {end_date.year}"
+
+
+def storage_totals(rows: Sequence[Mapping[str, Any]]) -> tuple[float, float, str | None]:
+    bytes_total = 0.0
+    objects = 0.0
+    timestamp: str | None = None
+    for row in rows:
+        if row.get("metric") == "BucketSizeBytes":
+            bytes_total += numeric(row.get("average"))
+            timestamp = timestamp or str(row.get("timestamp", ""))
+        elif row.get("metric") == "NumberOfObjects" and row.get("storage_type") == "AllStorageTypes":
+            objects = numeric(row.get("average"))
+            timestamp = timestamp or str(row.get("timestamp", ""))
+    return bytes_total, objects, timestamp
+
+
+def build_highlights(
+    *,
+    start: str,
+    end: str,
+    cost_rows: Sequence[Mapping[str, Any]],
+    storage: Sequence[Mapping[str, Any]],
+) -> dict[str, Any]:
+    egress_gb = sum_metric(
+        cost_rows,
+        metric="UsageQuantity",
+        unit="GB",
+        group_suffix="Out-Bytes",
+    )
+    public_egress_gb = sum_metric(
+        cost_rows,
+        metric="UsageQuantity",
+        unit="GB",
+        group_exact="DataTransfer-Out-Bytes",
+    )
+    requests = sum_metric(
+        cost_rows,
+        metric="UsageQuantity",
+        unit="Requests",
+        group_prefix="Requests-",
+    )
+    unblended_cost = sum_metric(cost_rows, metric="UnblendedCost")
+    bytes_total, objects, storage_timestamp = storage_totals(storage)
+    storage_tb = bytes_total / 1_000_000_000_000
+    period_label = display_period(start, end)
+    cards = [
+        {
+            "label": "Indexed data stored",
+            "value": f"{storage_tb:.1f} TB",
+            "detail": f"Current S3 storage across {compact_number(objects)} objects.",
+        },
+        {
+            "label": "Objects available",
+            "value": compact_number(objects),
+            "detail": "Public files, archives, indexes, checksums, and reports in genome-idx.",
+        },
+        {
+            "label": "Data served this period",
+            "value": f"{egress_gb / 1000:.1f} TB",
+            "detail": f"S3 transfer out from {period_label}.",
+        },
+        {
+            "label": "S3 requests this period",
+            "value": compact_number(requests),
+            "detail": "Cost Explorer request classes for the same period.",
+        },
+    ]
+    return {
+        "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+        "period": {"start": start, "end": end, "label": period_label},
+        "first_known_log_date": FIRST_KNOWN_LOG_DATE,
+        "storage_timestamp": storage_timestamp,
+        "metrics": {
+            "egress_gb": egress_gb,
+            "public_egress_gb": public_egress_gb,
+            "requests": requests,
+            "unblended_cost_usd": unblended_cost,
+            "storage_bytes": bytes_total,
+            "storage_tb_decimal": storage_tb,
+            "objects": objects,
+        },
+        "cards": cards,
+    }
+
+
+def snapshot_document(args: argparse.Namespace) -> dict[str, Any]:
+    cost_args = argparse.Namespace(
+        profile=args.profile,
+        region=args.region,
+        start=args.start,
+        end=args.end,
+        granularity=args.granularity,
+        metrics="UnblendedCost,UsageQuantity",
+        service="Amazon Simple Storage Service",
+        group_by="USAGE_TYPE",
+    )
+    storage_args = argparse.Namespace(
+        profile=args.profile,
+        region=args.region,
+        bucket=args.bucket,
+        days=args.storage_days,
+    )
+    cost_rows = get_cost_rows(cost_args)
+    storage = storage_rows(storage_args)
+    log_args = argparse.Namespace(
+        inputs=args.inputs,
+        cache_dir=args.cache_dir,
+        start=args.start,
+        end=args.end,
+        skip_bad_lines=args.skip_bad_lines,
+        window_minutes=args.window_minutes,
+        complete_threshold=args.complete_threshold,
+    )
+    logs_summary: list[dict[str, Any]] = []
+    downloads_summary: list[dict[str, Any]] = []
+    if not args.no_logs:
+        logs_summary = summarize_logs(log_args)
+        downloads_summary = summarize_downloads(log_args)
+    highlights = build_highlights(start=args.start, end=args.end, cost_rows=cost_rows, storage=storage)
+    return {
+        "generated_at": highlights["generated_at"],
+        "bucket": args.bucket,
+        "log_bucket": args.log_bucket,
+        "period": highlights["period"],
+        "highlights": highlights,
+        "cost": cost_rows,
+        "storage": storage,
+        "logs": {
+            "summary": logs_summary,
+            "downloads": downloads_summary,
+            "privacy": "Raw client IPs are not emitted. Download coalescing uses hashed client fingerprints only.",
+        },
+    }
+
+
+def highlights_document(args: argparse.Namespace) -> dict[str, Any]:
+    cost_args = argparse.Namespace(
+        profile=args.profile,
+        region=args.region,
+        start=args.start,
+        end=args.end,
+        granularity=args.granularity,
+        metrics="UnblendedCost,UsageQuantity",
+        service="Amazon Simple Storage Service",
+        group_by="USAGE_TYPE",
+    )
+    storage_args = argparse.Namespace(
+        profile=args.profile,
+        region=args.region,
+        bucket=args.bucket,
+        days=args.storage_days,
+    )
+    return build_highlights(
+        start=args.start,
+        end=args.end,
+        cost_rows=get_cost_rows(cost_args),
+        storage=storage_rows(storage_args),
+    )
+
+
 def add_common_aws_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--profile", default=os.environ.get("AWS_PROFILE", DEFAULT_PROFILE))
     parser.add_argument("--region", default=os.environ.get("AWS_REGION", DEFAULT_REGION))
@@ -659,6 +891,33 @@ def build_parser() -> argparse.ArgumentParser:
     storage.add_argument("--bucket", default=DEFAULT_BUCKET)
     storage.add_argument("--days", type=int, default=14)
     storage.set_defaults(func=lambda args: write_rows(storage_rows(args), fmt=args.format, output=args.output))
+
+    highlights = subparsers.add_parser("highlights", help="Build website-ready usage highlight JSON.")
+    add_common_aws_args(highlights)
+    highlights.add_argument("--start", required=True, help="Inclusive start date, YYYY-MM-DD.")
+    highlights.add_argument("--end", required=True, help="Exclusive end date, YYYY-MM-DD.")
+    highlights.add_argument("--granularity", choices=("DAILY", "MONTHLY"), default="DAILY")
+    highlights.add_argument("--bucket", default=DEFAULT_BUCKET)
+    highlights.add_argument("--storage-days", type=int, default=14)
+    highlights.add_argument("--output", help="Write highlight JSON to this file instead of stdout.")
+    highlights.set_defaults(func=lambda args: write_json_document(highlights_document(args), args.output))
+
+    snapshot = subparsers.add_parser("snapshot", help="Build a JSON snapshot for the static explorer UI.")
+    add_common_aws_args(snapshot)
+    snapshot.add_argument("--start", required=True, help="Inclusive start date, YYYY-MM-DD.")
+    snapshot.add_argument("--end", required=True, help="Exclusive end date, YYYY-MM-DD.")
+    snapshot.add_argument("--granularity", choices=("DAILY", "MONTHLY"), default="DAILY")
+    snapshot.add_argument("--bucket", default=DEFAULT_BUCKET)
+    snapshot.add_argument("--log-bucket", default=DEFAULT_LOG_BUCKET)
+    snapshot.add_argument("--cache-dir", default=str(DEFAULT_CACHE_DIR))
+    snapshot.add_argument("--storage-days", type=int, default=14)
+    snapshot.add_argument("--window-minutes", type=float, default=15.0)
+    snapshot.add_argument("--complete-threshold", type=float, default=0.95)
+    snapshot.add_argument("--skip-bad-lines", action="store_true")
+    snapshot.add_argument("--no-logs", action="store_true", help="Skip cached access-log summaries.")
+    snapshot.add_argument("--output", help="Write snapshot JSON to this file instead of stdout.")
+    snapshot.add_argument("inputs", nargs="*", help="Cached log files or directories. Defaults to --cache-dir.")
+    snapshot.set_defaults(func=lambda args: write_json_document(snapshot_document(args), args.output))
 
     return parser
 
