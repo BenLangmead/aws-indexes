@@ -1,7 +1,22 @@
 <div class="home-hero">
+  {% assign usage = site.data.usage_highlights %}
   <p class="home-lead">
     Thanks to the <a href="https://aws.amazon.com/opendata/public-datasets/">AWS Open Data Sponsorship Program</a>, indexes are freely available via <strong>HTTPS</strong> and <strong>S3</strong>.
   </p>
+  {% if usage.site_cards %}
+  <div class="home-usage-grid">
+    {% for card in usage.site_cards %}
+    <div class="home-usage-card">
+      <span class="home-usage-value">{{ card.value }}</span>
+      <span class="home-usage-label">{{ card.label }}</span>
+      {% if card.note %}<span class="home-usage-note">{{ card.note }}</span>{% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if usage.updated_label %}
+  <p class="home-usage-updated">Stats updated {{ usage.updated_label }}.</p>
+  {% endif %}
 </div>
 
 <h2 class="tool-grid-heading">Browse by tool</h2>

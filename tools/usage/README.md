@@ -95,3 +95,35 @@ python3 tools/usage/index_zone_usage.py storage --format csv
 
 This discovers available S3 storage metric dimensions for `genome-idx`, then
 reports the latest datapoint found within the last 14 days.
+
+## Snapshot for the explorer UI
+
+Build a single JSON file containing Cost Explorer rows, storage rows, and any
+cached log summaries:
+
+```bash
+python3 tools/usage/index_zone_usage.py snapshot \
+  --start 2026-05-01 \
+  --end 2026-05-24 \
+  --output /tmp/index-zone-usage-snapshot.json
+```
+
+Open `tools/usage/ui/index.html` in a browser and load the snapshot JSON.
+The static explorer can roll Cost Explorer transfer data and inferred downloads
+up by day, week, or month. It also includes a selectable top-files table that
+allocates approximate download cost by applying the snapshot's effective
+transfer-out and request rates to each file's inferred download traffic.
+
+## Website highlights
+
+Build the small JSON file used by the Index Zone home page usage cards:
+
+```bash
+python3 tools/usage/index_zone_usage.py highlights \
+  --start 2026-05-01 \
+  --end 2026-05-24 \
+  --output docs/_data/usage_highlights.json
+```
+
+The committed snapshot should be refreshed deliberately; it is not updated by
+the site build.

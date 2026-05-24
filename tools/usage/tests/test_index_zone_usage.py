@@ -98,6 +98,69 @@ class S3AccessLogTests(unittest.TestCase):
 
         self.assertEqual(len(sessions), 2)
 
+    def test_build_highlights(self):
+        cost_rows = [
+            {
+                "group": "DataTransfer-Out-Bytes",
+                "metric": "UsageQuantity",
+                "amount": "1500",
+                "unit": "GB",
+            },
+            {
+                "group": "USE1-USW2-AWS-Out-Bytes",
+                "metric": "UsageQuantity",
+                "amount": "500",
+                "unit": "GB",
+            },
+            {
+                "group": "Requests-Tier2",
+                "metric": "UsageQuantity",
+                "amount": "20000",
+                "unit": "Requests",
+            },
+            {
+                "group": "DataTransfer-Out-Bytes",
+                "metric": "UnblendedCost",
+                "amount": "75",
+                "unit": "USD",
+            },
+        ]
+        storage = [
+            {
+                "metric": "BucketSizeBytes",
+                "storage_type": "StandardStorage",
+                "average": 2_500_000_000_000,
+                "timestamp": "2026-05-22T00:00:00Z",
+            },
+            {
+                "metric": "NumberOfObjects",
+                "storage_type": "AllStorageTypes",
+                "average": 12345,
+                "timestamp": "2026-05-22T00:00:00Z",
+            },
+        ]
+
+        highlights = usage.build_highlights(
+            start="2026-05-01",
+            end="2026-05-24",
+            cost_rows=cost_rows,
+            storage=storage,
+        )
+
+        self.assertEqual(highlights["metrics"]["egress_gb"], 2000)
+        self.assertEqual(highlights["metrics"]["public_egress_gb"], 1500)
+        self.assertEqual(highlights["metrics"]["weekly_egress_gb"], 2000 / 23 * 7)
+        self.assertEqual(highlights["metrics"]["weekly_unblended_cost_usd"], 75 / 23 * 7)
+        self.assertEqual(highlights["metrics"]["requests"], 20000)
+        self.assertEqual(highlights["cards"][0]["value"], "2.5 TB")
+        self.assertEqual(highlights["site_cards"][1]["label"], "Files available")
+        self.assertEqual(highlights["site_cards"][2]["value"], "~0.6 TB")
+        self.assertEqual(highlights["site_cards"][3]["label"], "AWS charges / week")
+        self.assertEqual(highlights["site_cards"][3]["value"], "~$23")
+        self.assertEqual(highlights["site_cards"][3]["note"], "Thank you, AWS!")
+        self.assertIn("updated_label", highlights)
+        self.assertEqual(highlights["period"]["label"], "May 1 through May 23, 2026")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -407,6 +407,46 @@ hr {
   margin: 0 0 0.75rem;
   max-width: var(--content-max);
 }
+.home-usage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.home-usage-card {
+  min-height: 5.75rem;
+  padding: 0.85rem 0.95rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.home-usage-value {
+  display: block;
+  font-size: 1.55rem;
+  line-height: 1.1;
+  color: var(--text-heading);
+  font-weight: 700;
+}
+.home-usage-label {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--text-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+.home-usage-note {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+}
+.home-usage-updated {
+  margin: 0.85rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
 .home-bucket {
   margin: 0;
   font-size: 0.95rem;
