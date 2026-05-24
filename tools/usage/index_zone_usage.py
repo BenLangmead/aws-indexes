@@ -746,11 +746,11 @@ def build_highlights(
         },
         {
             "label": "Data served per week",
-            "value": f"{weekly_egress_gb / 1000:.1f} TB",
+            "value": f"~{weekly_egress_gb / 1000:.1f} TB",
         },
         {
             "label": "AWS charges per week",
-            "value": compact_money(weekly_unblended_cost),
+            "value": f"~{compact_money(weekly_unblended_cost)}",
         },
     ]
     return {
