@@ -436,6 +436,11 @@ hr {
   font-size: 0.88rem;
   font-weight: 600;
 }
+.home-usage-updated {
+  margin: 0.85rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
 .home-bucket {
   margin: 0;
   font-size: 0.95rem;

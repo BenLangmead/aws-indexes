@@ -1,16 +1,18 @@
 {
-  "generated_at": "2026-05-24T16:26:24+00:00",
+  "generated_at": "2026-05-24T16:30:47+00:00",
+  "updated_label": "May 24, 2026",
   "period": {
     "start": "2026-05-01",
     "end": "2026-05-24",
     "label": "May 1 through May 23, 2026"
   },
   "first_known_log_date": "2020-06-15",
-  "storage_timestamp": "2026-05-22T12:26:00-04:00",
+  "storage_timestamp": "2026-05-22T12:30:00-04:00",
   "metrics": {
     "egress_gb": 167608.3841511367,
     "public_egress_gb": 165901.8753608847,
     "weekly_egress_gb": 51011.247350345955,
+    "weekly_unblended_cost_usd": 2614.2635602134123,
     "requests": 609541.0,
     "unblended_cost_usd": 8589.723126415498,
     "storage_bytes": 28096623437871.0,
@@ -51,6 +53,10 @@
     {
       "label": "Data served per week",
       "value": "51.0 TB"
+    },
+    {
+      "label": "AWS charges per week",
+      "value": "$2.6K"
     }
   ]
 }

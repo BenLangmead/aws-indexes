@@ -13,6 +13,9 @@
     {% endfor %}
   </div>
   {% endif %}
+  {% if usage.updated_label %}
+  <p class="home-usage-updated">Stats updated {{ usage.updated_label }}.</p>
+  {% endif %}
 </div>
 
 <h2 class="tool-grid-heading">Browse by tool</h2>

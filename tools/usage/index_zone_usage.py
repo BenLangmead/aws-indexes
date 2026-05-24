@@ -638,6 +638,14 @@ def compact_number(value: float) -> str:
     return f"{value:.1f}"
 
 
+def compact_money(value: float) -> str:
+    if value >= 1_000_000:
+        return f"${value / 1_000_000:.1f}M"
+    if value >= 1_000:
+        return f"${value / 1_000:.1f}K"
+    return f"${value:,.0f}"
+
+
 def end_minus_one(end: str) -> str:
     return (dt.date.fromisoformat(end) - dt.timedelta(days=1)).isoformat()
 
@@ -701,7 +709,10 @@ def build_highlights(
     bytes_total, objects, storage_timestamp = storage_totals(storage)
     storage_tb = bytes_total / 1_000_000_000_000
     weekly_egress_gb = egress_gb / period_days(start, end) * 7
+    weekly_unblended_cost = unblended_cost / period_days(start, end) * 7
     period_label = display_period(start, end)
+    generated_at = dt.datetime.now(dt.timezone.utc)
+    updated_label = f"{generated_at.strftime('%B')} {generated_at.day}, {generated_at.year}"
     cards = [
         {
             "label": "Indexed data stored",
@@ -737,9 +748,14 @@ def build_highlights(
             "label": "Data served per week",
             "value": f"{weekly_egress_gb / 1000:.1f} TB",
         },
+        {
+            "label": "AWS charges per week",
+            "value": compact_money(weekly_unblended_cost),
+        },
     ]
     return {
-        "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+        "generated_at": generated_at.isoformat(timespec="seconds"),
+        "updated_label": updated_label,
         "period": {"start": start, "end": end, "label": period_label},
         "first_known_log_date": FIRST_KNOWN_LOG_DATE,
         "storage_timestamp": storage_timestamp,
@@ -747,6 +763,7 @@ def build_highlights(
             "egress_gb": egress_gb,
             "public_egress_gb": public_egress_gb,
             "weekly_egress_gb": weekly_egress_gb,
+            "weekly_unblended_cost_usd": weekly_unblended_cost,
             "requests": requests,
             "unblended_cost_usd": unblended_cost,
             "storage_bytes": bytes_total,
