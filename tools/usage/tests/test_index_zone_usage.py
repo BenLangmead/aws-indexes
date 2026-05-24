@@ -149,8 +149,11 @@ class S3AccessLogTests(unittest.TestCase):
 
         self.assertEqual(highlights["metrics"]["egress_gb"], 2000)
         self.assertEqual(highlights["metrics"]["public_egress_gb"], 1500)
+        self.assertEqual(highlights["metrics"]["weekly_egress_gb"], 2000 / 23 * 7)
         self.assertEqual(highlights["metrics"]["requests"], 20000)
         self.assertEqual(highlights["cards"][0]["value"], "2.5 TB")
+        self.assertEqual(highlights["site_cards"][1]["label"], "Files available")
+        self.assertEqual(highlights["site_cards"][2]["value"], "0.6 TB")
         self.assertEqual(highlights["period"]["label"], "May 1 through May 23, 2026")
 
 

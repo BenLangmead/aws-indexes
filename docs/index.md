@@ -1,28 +1,19 @@
 <div class="home-hero">
+  {% assign usage = site.data.usage_highlights %}
   <p class="home-lead">
     Thanks to the <a href="https://aws.amazon.com/opendata/public-datasets/">AWS Open Data Sponsorship Program</a>, indexes are freely available via <strong>HTTPS</strong> and <strong>S3</strong>.
   </p>
-</div>
-
-{% assign usage = site.data.usage_highlights %}
-{% if usage.cards %}
-<section class="usage-highlights" aria-labelledby="usage-highlights-heading">
-  <div class="usage-highlights-header">
-    <h2 id="usage-highlights-heading">Usage snapshot</h2>
-    <p>Measured from AWS Cost Explorer and CloudWatch. Current-month figures cover {{ usage.period.label }}.</p>
-  </div>
-  <div class="usage-highlight-grid">
-    {% for card in usage.cards %}
-    <div class="usage-highlight">
-      <span class="usage-highlight-value">{{ card.value }}</span>
-      <span class="usage-highlight-label">{{ card.label }}</span>
-      <span class="usage-highlight-detail">{{ card.detail }}</span>
+  {% if usage.site_cards %}
+  <div class="home-usage-grid">
+    {% for card in usage.site_cards %}
+    <div class="home-usage-card">
+      <span class="home-usage-value">{{ card.value }}</span>
+      <span class="home-usage-label">{{ card.label }}</span>
     </div>
     {% endfor %}
   </div>
-  <p class="usage-highlight-note">Server access logs are available back to {{ usage.first_known_log_date }} for more detailed file-level analysis.</p>
-</section>
-{% endif %}
+  {% endif %}
+</div>
 
 <h2 class="tool-grid-heading">Browse by tool</h2>
 <div class="tool-grid">

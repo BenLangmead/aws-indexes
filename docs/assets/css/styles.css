@@ -407,6 +407,35 @@ hr {
   margin: 0 0 0.75rem;
   max-width: var(--content-max);
 }
+.home-usage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.home-usage-card {
+  min-height: 5.75rem;
+  padding: 0.85rem 0.95rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.home-usage-value {
+  display: block;
+  font-size: 1.55rem;
+  line-height: 1.1;
+  color: var(--text-heading);
+  font-weight: 700;
+}
+.home-usage-label {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--text-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
 .home-bucket {
   margin: 0;
   font-size: 0.95rem;
@@ -416,70 +445,6 @@ hr {
   padding: 0.15rem 0.45rem;
   border-radius: 4px;
   border: 1px solid var(--border);
-}
-.usage-highlights {
-  margin: 0 0 2rem;
-  padding: 1rem 0 0;
-  border-top: 1px solid var(--border);
-}
-.usage-highlights-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.85rem;
-}
-.usage-highlights-header h2 {
-  margin: 0;
-  font-size: 1rem;
-}
-.usage-highlights-header p {
-  margin: 0;
-  max-width: 34rem;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  text-align: right;
-}
-.usage-highlight-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 0.75rem;
-}
-.usage-highlight {
-  min-height: 8.25rem;
-  padding: 0.9rem 1rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--accent);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-.usage-highlight-value {
-  display: block;
-  font-size: 1.65rem;
-  line-height: 1.1;
-  color: var(--text-heading);
-  font-weight: 700;
-}
-.usage-highlight-label {
-  display: block;
-  margin-top: 0.35rem;
-  color: var(--text-heading);
-  font-size: 0.88rem;
-  font-weight: 600;
-}
-.usage-highlight-detail {
-  display: block;
-  margin-top: 0.35rem;
-  color: var(--text-muted);
-  font-size: 0.8rem;
-  line-height: 1.35;
-}
-.usage-highlight-note {
-  margin: 0.65rem 0 0;
-  max-width: var(--content-max);
-  color: var(--text-muted);
-  font-size: 0.82rem;
 }
 .tool-grid-heading {
   font-size: 1rem;
@@ -613,13 +578,6 @@ body.layout-full {
     border-width: 1px 0;
     padding: 1.25rem 0;
     margin: 0 0 1.25rem;
-  }
-  .usage-highlights-header {
-    display: block;
-  }
-  .usage-highlights-header p {
-    margin-top: 0.35rem;
-    text-align: left;
   }
 }
 @media print, screen and (max-width: 720px) {

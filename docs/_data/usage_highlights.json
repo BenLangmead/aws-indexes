@@ -1,15 +1,16 @@
 {
-  "generated_at": "2026-05-24T15:11:31+00:00",
+  "generated_at": "2026-05-24T16:26:24+00:00",
   "period": {
     "start": "2026-05-01",
     "end": "2026-05-24",
     "label": "May 1 through May 23, 2026"
   },
   "first_known_log_date": "2020-06-15",
-  "storage_timestamp": "2026-05-22T11:11:00-04:00",
+  "storage_timestamp": "2026-05-22T12:26:00-04:00",
   "metrics": {
     "egress_gb": 167608.3841511367,
     "public_egress_gb": 165901.8753608847,
+    "weekly_egress_gb": 51011.247350345955,
     "requests": 609541.0,
     "unblended_cost_usd": 8589.723126415498,
     "storage_bytes": 28096623437871.0,
@@ -36,6 +37,20 @@
       "label": "S3 requests this period",
       "value": "610K",
       "detail": "Cost Explorer request classes for the same period."
+    }
+  ],
+  "site_cards": [
+    {
+      "label": "Indexed data stored",
+      "value": "28.1 TB"
+    },
+    {
+      "label": "Files available",
+      "value": "4,631"
+    },
+    {
+      "label": "Data served per week",
+      "value": "51.0 TB"
     }
   ]
 }

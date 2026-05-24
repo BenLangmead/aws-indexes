@@ -642,6 +642,10 @@ def end_minus_one(end: str) -> str:
     return (dt.date.fromisoformat(end) - dt.timedelta(days=1)).isoformat()
 
 
+def period_days(start: str, end: str) -> int:
+    return max(1, (dt.date.fromisoformat(end) - dt.date.fromisoformat(start)).days)
+
+
 def display_period(start: str, end: str) -> str:
     start_date = dt.date.fromisoformat(start)
     end_date = dt.date.fromisoformat(end_minus_one(end))
@@ -696,6 +700,7 @@ def build_highlights(
     unblended_cost = sum_metric(cost_rows, metric="UnblendedCost")
     bytes_total, objects, storage_timestamp = storage_totals(storage)
     storage_tb = bytes_total / 1_000_000_000_000
+    weekly_egress_gb = egress_gb / period_days(start, end) * 7
     period_label = display_period(start, end)
     cards = [
         {
@@ -719,6 +724,20 @@ def build_highlights(
             "detail": "Cost Explorer request classes for the same period.",
         },
     ]
+    site_cards = [
+        {
+            "label": "Indexed data stored",
+            "value": f"{storage_tb:.1f} TB",
+        },
+        {
+            "label": "Files available",
+            "value": compact_number(objects),
+        },
+        {
+            "label": "Data served per week",
+            "value": f"{weekly_egress_gb / 1000:.1f} TB",
+        },
+    ]
     return {
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "period": {"start": start, "end": end, "label": period_label},
@@ -727,6 +746,7 @@ def build_highlights(
         "metrics": {
             "egress_gb": egress_gb,
             "public_egress_gb": public_egress_gb,
+            "weekly_egress_gb": weekly_egress_gb,
             "requests": requests,
             "unblended_cost_usd": unblended_cost,
             "storage_bytes": bytes_total,
@@ -734,6 +754,7 @@ def build_highlights(
             "objects": objects,
         },
         "cards": cards,
+        "site_cards": site_cards,
     }
 
 
