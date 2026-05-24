@@ -155,7 +155,7 @@ class S3AccessLogTests(unittest.TestCase):
         self.assertEqual(highlights["cards"][0]["value"], "2.5 TB")
         self.assertEqual(highlights["site_cards"][1]["label"], "Files available")
         self.assertEqual(highlights["site_cards"][2]["value"], "~0.6 TB")
-        self.assertEqual(highlights["site_cards"][3]["label"], "AWS charges per week")
+        self.assertEqual(highlights["site_cards"][3]["label"], "AWS charges / week")
         self.assertEqual(highlights["site_cards"][3]["value"], "~$23")
         self.assertEqual(highlights["site_cards"][3]["note"], "Thank you, AWS!")
         self.assertIn("updated_label", highlights)

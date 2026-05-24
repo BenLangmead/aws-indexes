@@ -21,7 +21,7 @@
   },
   "cards": [
     {
-      "label": "Indexed data stored",
+      "label": "Data stored",
       "value": "28.1 TB",
       "detail": "Current S3 storage across 4,631 objects."
     },
@@ -43,7 +43,7 @@
   ],
   "site_cards": [
     {
-      "label": "Indexed data stored",
+      "label": "Data stored",
       "value": "28.1 TB"
     },
     {
@@ -51,11 +51,11 @@
       "value": "4,631"
     },
     {
-      "label": "Data served per week",
+      "label": "Served / week",
       "value": "~51.0 TB"
     },
     {
-      "label": "AWS charges per week",
+      "label": "AWS charges / week",
       "value": "~$2.6K",
       "note": "Thank you, AWS!"
     }

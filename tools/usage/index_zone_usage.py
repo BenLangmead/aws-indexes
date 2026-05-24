@@ -715,7 +715,7 @@ def build_highlights(
     updated_label = f"{generated_at.strftime('%B')} {generated_at.day}, {generated_at.year}"
     cards = [
         {
-            "label": "Indexed data stored",
+            "label": "Data stored",
             "value": f"{storage_tb:.1f} TB",
             "detail": f"Current S3 storage across {compact_number(objects)} objects.",
         },
@@ -737,7 +737,7 @@ def build_highlights(
     ]
     site_cards = [
         {
-            "label": "Indexed data stored",
+            "label": "Data stored",
             "value": f"{storage_tb:.1f} TB",
         },
         {
@@ -745,11 +745,11 @@ def build_highlights(
             "value": compact_number(objects),
         },
         {
-            "label": "Data served per week",
+            "label": "Served / week",
             "value": f"~{weekly_egress_gb / 1000:.1f} TB",
         },
         {
-            "label": "AWS charges per week",
+            "label": "AWS charges / week",
             "value": f"~{compact_money(weekly_unblended_cost)}",
             "note": "Thank you, AWS!",
         },
