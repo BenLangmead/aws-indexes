@@ -1,0 +1,51 @@
+{
+    "account": "159168350739",
+    "key_name": "bowtie-build",
+    "instance_role_name": "index-zone-bowtie-builder-role",
+    "launch_instance": false,
+    "instance_profile": "medium",
+    "target_ids": ["hs1"],
+    "threads": "$(nproc)",
+    "output_s3_prefix": "s3://genome-idx/bt",
+    "log_s3_prefix": "s3://genome-idx/bt/build-logs",
+    "upload_outputs": true,
+    "targets_file": "targets.tsv",
+    "build_script": "build_indexes.bash",
+    "bowtie2_repo": "https://github.com/BenLangmead/bowtie2.git",
+    "bowtie2_ref": "master",
+    "upload_profile": "data-langmead",
+    "upload_role_arn": "arn:aws:iam::128342663110:role/S3UploadFromComputeRole",
+    "volume_gb": 1000,
+    "volume_iops": 12000,
+    "volume_throughput": 500,
+    "instance_type": {
+        "small": {
+            "region": "us-east-2",
+            "availability_zone": "us-east-2a",
+            "preferred_availability_zones": ["us-east-2a", "us-east-2b", "us-east-2c"],
+            "type": "m7i.2xlarge",
+            "spot_price": "0.20"
+        },
+        "medium": {
+            "region": "us-east-2",
+            "availability_zone": "us-east-2a",
+            "preferred_availability_zones": ["us-east-2a", "us-east-2b", "us-east-2c"],
+            "type": "r7i.4xlarge",
+            "spot_price": "0.60"
+        },
+        "large": {
+            "region": "us-east-2",
+            "availability_zone": "us-east-2a",
+            "preferred_availability_zones": ["us-east-2a", "us-east-2b", "us-east-2c"],
+            "type": "r7i.8xlarge",
+            "spot_price": "1.20"
+        },
+        "xlarge": {
+            "region": "us-east-2",
+            "availability_zone": "us-east-2a",
+            "preferred_availability_zones": ["us-east-2a", "us-east-2b", "us-east-2c"],
+            "type": "r7i.16xlarge",
+            "spot_price": "2.40"
+        }
+    }
+}

@@ -1,0 +1,10 @@
+out/
+work/
+__pycache__/
+.pytest_cache/
+.venv/
+*.egg-info/
+cdk.out/
+cdk.context.json
+outputs.json
+*.pem
