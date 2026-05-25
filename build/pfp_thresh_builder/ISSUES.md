@@ -68,10 +68,10 @@ Two things to confirm before deploying:
   instance will never launch rather than producing an explicit error. Check current spot
   prices before deploying.
 
-## 6. CDK version is pinned to an exact old release
+## 6. CDK version should be kept current
 
 **File:** `requirements.txt`  
-**Impact:** Low — existing pinned version still works, but misses security/bug fixes.
+**Impact:** Low — existing pinned versions usually work, but can miss security/bug fixes.
 
-`aws-cdk-lib==2.198.0` was already several months old at time of writing. Consider
-relaxing to `>=2.198.0,<3.0.0` and keeping the installed version current.
+Keep the pinned `aws-cdk-lib` version aligned across the CDK tools and refresh it
+periodically so Dependabot and local installs stay on a patched CDK v2 release.
