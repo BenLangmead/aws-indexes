@@ -1,5 +1,19 @@
 #!/usr/bin/env python3
 
+short_suf = ['full', '1', '2', '3', '4', 'r1', 'r2']
+
+
+def index_ext(toks):
+    ext = toks[6].strip() if len(toks) > 6 and toks[6].strip() else 'bt2'
+    if ext not in ('bt2', 'bt2l'):
+        raise ValueError('expected index extension "bt2" or "bt2l", got "%s"' % ext)
+    return ext
+
+
+def file_labels(ext):
+    return ['full zip', f'.1.{ext}', f'.2.{ext}', f'.3.{ext}', f'.4.{ext}', f'.rev.1.{ext}', f'.rev.2.{ext}']
+
+
 with open('shortname_map.csv', 'rt') as fh:
     for ln in fh:
         if ',' not in ln:
@@ -8,5 +22,8 @@ with open('shortname_map.csv', 'rt') as fh:
             continue
         toks = ln.rstrip().split(',')
         short, long, species, _, assembly, source = toks[0], toks[1], toks[2], toks[3], toks[4], toks[5]
-        line = '%s / %s | [%s][bt2_%s_source] | [full zip][bt2_%s_full], [.1.bt2][bt2_%s_1], [.2.bt2][bt2_%s_2], [.3.bt2][bt2_%s_3], [.4.bt2][bt2_%s_4], [.rev.1.bt2][bt2_%s_r1], [.rev.2.bt2][bt2_%s_r2] | [full zip][bt2_%s_full_s3], [.1.bt2][bt2_%s_1_s3], [.2.bt2][bt2_%s_2_s3], [.3.bt2][bt2_%s_3_s3], [.4.bt2][bt2_%s_4_s3], [.rev.1.bt2][bt2_%s_r1_s3], [.rev.2.bt2][bt2_%s_r2_s3]' % (species, assembly, source, short, short, short, short, short, short, short, short, short, short, short, short, short, short, short)
+        labels = file_labels(index_ext(toks))
+        https_links = ', '.join('[%s][bt2_%s_%s]' % (label, short, suf) for label, suf in zip(labels, short_suf))
+        s3_links = ', '.join('[%s][bt2_%s_%s_s3]' % (label, short, suf) for label, suf in zip(labels, short_suf))
+        line = '%s / %s | [%s][bt2_%s_source] | %s | %s' % (species, assembly, source, short, https_links, s3_links)
         print(line)
