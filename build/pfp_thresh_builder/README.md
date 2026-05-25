@@ -74,7 +74,7 @@ deploy.sh ──► cdk deploy ──► CloudFormation ──► EC2 instance
 
 | Aspect | Detail |
 |---|---|
-| IaC Framework | AWS CDK (Python), `aws-cdk-lib==2.198.0` |
+| IaC Framework | AWS CDK (Python), `aws-cdk-lib==2.257.0` |
 | AWS Account / Region | `159168350739` / `eu-north-1` |
 | Instance type (large) | `x2iedn.24xlarge` (spot), max $3.00/hr |
 | AMI | Latest Amazon Linux 2023 (resolved at deploy time) |

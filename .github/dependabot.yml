@@ -1,0 +1,42 @@
+version: 2
+
+updates:
+  - package-ecosystem: "bundler"
+    directory: "/docs"
+    schedule:
+      interval: "weekly"
+    groups:
+      docs-security-updates:
+        applies-to: security-updates
+        patterns:
+          - "*"
+
+  - package-ecosystem: "pip"
+    directory: "/build/bowtie"
+    schedule:
+      interval: "weekly"
+    groups:
+      bowtie-python-security-updates:
+        applies-to: security-updates
+        patterns:
+          - "*"
+
+  - package-ecosystem: "pip"
+    directory: "/build/tera"
+    schedule:
+      interval: "weekly"
+    groups:
+      tera-python-security-updates:
+        applies-to: security-updates
+        patterns:
+          - "*"
+
+  - package-ecosystem: "pip"
+    directory: "/build/pfp_thresh_builder"
+    schedule:
+      interval: "weekly"
+    groups:
+      pfp-python-security-updates:
+        applies-to: security-updates
+        patterns:
+          - "*"
