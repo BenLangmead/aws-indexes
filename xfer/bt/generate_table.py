@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 
 short_suf = ['full', '1', '2', '3', '4', 'r1', 'r2']
+metadata_suf = ['md5', 'dict', 'manifest']
+metadata_labels = {
+    'md5': 'archive md5',
+    'dict': '.dict',
+    'manifest': 'manifest json',
+}
 
 
 def index_ext(toks):
@@ -14,6 +20,16 @@ def file_labels(ext):
     return ['full zip', f'.1.{ext}', f'.2.{ext}', f'.3.{ext}', f'.4.{ext}', f'.rev.1.{ext}', f'.rev.2.{ext}']
 
 
+def metadata_types(toks):
+    types = ['md5']
+    if len(toks) > 7 and toks[7].strip():
+        types.extend(t.strip() for t in toks[7].split(';') if t.strip())
+    invalid = sorted(set(types) - set(metadata_suf))
+    if invalid:
+        raise ValueError('unknown metadata type(s): %s' % ', '.join(invalid))
+    return [typ for typ in metadata_suf if typ in types]
+
+
 with open('shortname_map.csv', 'rt') as fh:
     for ln in fh:
         if ',' not in ln:
@@ -25,5 +41,7 @@ with open('shortname_map.csv', 'rt') as fh:
         labels = file_labels(index_ext(toks))
         https_links = ', '.join('[%s][bt2_%s_%s]' % (label, short, suf) for label, suf in zip(labels, short_suf))
         s3_links = ', '.join('[%s][bt2_%s_%s_s3]' % (label, short, suf) for label, suf in zip(labels, short_suf))
-        line = '%s / %s | [%s][bt2_%s_source] | %s | %s' % (species, assembly, source, short, https_links, s3_links)
+        https_metadata = ', '.join('[%s][bt2_%s_%s]' % (metadata_labels[typ], short, typ) for typ in metadata_types(toks))
+        s3_metadata = ', '.join('[%s][bt2_%s_%s_s3]' % (metadata_labels[typ], short, typ) for typ in metadata_types(toks))
+        line = '%s / %s | [%s][bt2_%s_source] | %s | %s | %s | %s' % (species, assembly, source, short, https_links, s3_links, https_metadata, s3_metadata)
         print(line)

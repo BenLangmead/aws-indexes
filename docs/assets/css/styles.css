@@ -409,43 +409,43 @@ hr {
 }
 .home-usage-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 0.75rem;
-  margin-top: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(136px, 1fr));
+  gap: 0.6rem;
+  margin-top: 0.8rem;
 }
 .home-usage-card {
-  min-height: 5.75rem;
-  padding: 0.85rem 0.95rem;
+  min-height: 4.6rem;
+  padding: 0.68rem 0.76rem;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-left: 4px solid var(--accent);
+  border-left: 3px solid var(--accent);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
 .home-usage-value {
   display: block;
-  font-size: 1.55rem;
+  font-size: 1.24rem;
   line-height: 1.1;
   color: var(--text-heading);
   font-weight: 700;
 }
 .home-usage-label {
   display: block;
-  margin-top: 0.35rem;
+  margin-top: 0.28rem;
   color: var(--text-heading);
-  font-size: 0.88rem;
+  font-size: 0.78rem;
   font-weight: 600;
 }
 .home-usage-note {
   display: block;
-  margin-top: 0.25rem;
+  margin-top: 0.2rem;
   color: var(--text-muted);
-  font-size: 0.76rem;
+  font-size: 0.68rem;
 }
 .home-usage-updated {
-  margin: 0.85rem 0 0;
+  margin: 0.68rem 0 0;
   color: var(--text-muted);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
 }
 .home-bucket {
   margin: 0;
@@ -465,20 +465,20 @@ hr {
 }
 .tool-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 0.85rem;
-  margin: 0 0 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.7rem;
+  margin: 0 0 1.6rem;
 }
 .tool-card {
   display: block;
-  padding: 1rem 1.1rem;
+  padding: 0.8rem 0.9rem;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   color: var(--text-heading);
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   box-shadow: var(--shadow);
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
@@ -490,8 +490,8 @@ hr {
 }
 .tool-card-desc {
   display: block;
-  margin-top: 0.4rem;
-  font-size: 0.82rem;
+  margin-top: 0.32rem;
+  font-size: 0.78rem;
   font-weight: 400;
   color: var(--text-muted);
   line-height: 1.4;

@@ -12,7 +12,7 @@ navigation:
     blurb: Indexes for Kraken 1/2, Bracken and related metagenomics tools.
   - title: Bowtie
     url: bowtie
-    blurb: Bowtie 1 & 2 reference indexes.
+    blurb: 35 Bowtie 1 & 2 reference indexes.
   - title: Movi
     url: movi
     blurb: Movi 1/2 pangenome indexes.
