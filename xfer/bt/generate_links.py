@@ -7,7 +7,6 @@ import sys
 check = '--no-check' not in sys.argv
 
 url_pre = 'https://genome-idx.s3.amazonaws.com/bt/'
-s3_pre = 's3://genome-idx/bt/'
 
 short_suf = ['full', '1', '2', '3', '4', 'r1', 'r2']
 metadata_suf = ['md5', 'dict', 'manifest']
@@ -56,8 +55,3 @@ with open('shortname_map.csv', 'rt') as fh:
             print('[bt2_%s_%s]: %s' % (short, sh, url))
         for typ in metadata:
             print('[bt2_%s_%s]: %s%s.%s' % (short, typ, url_pre, long, metadata_long_suf[typ]))
-        # generate s3 links
-        for sh, lo in zip(short_suf, long_suf):
-            print('[bt2_%s_%s_s3]: %s%s.%s' % (short, sh, s3_pre, long, lo))
-        for typ in metadata:
-            print('[bt2_%s_%s_s3]: %s%s.%s' % (short, typ, s3_pre, long, metadata_long_suf[typ]))
