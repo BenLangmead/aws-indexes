@@ -10,14 +10,14 @@ You can download all the files for a given assembly as a single `zip` file, or a
 
 Species/Build | Source | HTTPS URLs | S3 URLs | HTTPS metadata | S3 metadata
 --- | --- | --- | --- | --- | ---
-Human / GRCh38 no-alt analysis set<sup>1</sup> | [NCBI][bt2_grch38_noalt_source] | [full zip][bt2_grch38_noalt_full], [.1.bt2][bt2_grch38_noalt_1], [.2.bt2][bt2_grch38_noalt_2], [.3.bt2][bt2_grch38_noalt_3], [.4.bt2][bt2_grch38_noalt_4], [.rev.1.bt2][bt2_grch38_noalt_r1], [.rev.2.bt2][bt2_grch38_noalt_r2] | [full zip][bt2_grch38_noalt_full_s3], [.1.bt2][bt2_grch38_noalt_1_s3], [.2.bt2][bt2_grch38_noalt_2_s3], [.3.bt2][bt2_grch38_noalt_3_s3], [.4.bt2][bt2_grch38_noalt_4_s3], [.rev.1.bt2][bt2_grch38_noalt_r1_s3], [.rev.2.bt2][bt2_grch38_noalt_r2_s3] | [archive md5][bt2_grch38_noalt_md5] | [archive md5][bt2_grch38_noalt_md5_s3]
-Human / GRCh38 no-alt +decoy set<sup>1</sup> | [NCBI][bt2_grch38_noalt_decoy_source] | [full zip][bt2_grch38_noalt_decoy_full], [.1.bt2][bt2_grch38_noalt_decoy_1], [.2.bt2][bt2_grch38_noalt_decoy_2], [.3.bt2][bt2_grch38_noalt_decoy_3], [.4.bt2][bt2_grch38_noalt_decoy_4], [.rev.1.bt2][bt2_grch38_noalt_decoy_r1], [.rev.2.bt2][bt2_grch38_noalt_decoy_r2] | [full zip][bt2_grch38_noalt_decoy_full_s3], [.1.bt2][bt2_grch38_noalt_decoy_1_s3], [.2.bt2][bt2_grch38_noalt_decoy_2_s3], [.3.bt2][bt2_grch38_noalt_decoy_3_s3], [.4.bt2][bt2_grch38_noalt_decoy_4_s3], [.rev.1.bt2][bt2_grch38_noalt_decoy_r1_s3], [.rev.2.bt2][bt2_grch38_noalt_decoy_r2_s3] | [archive md5][bt2_grch38_noalt_decoy_md5] | [archive md5][bt2_grch38_noalt_decoy_md5_s3]
-Human / GRCh38 + major SNVs | [NCBI+1KG<sup>2</sup>][bt2_grch38_1kgmaj_source] | [full zip][bt2_grch38_1kgmaj_full], [.1.bt2][bt2_grch38_1kgmaj_1], [.2.bt2][bt2_grch38_1kgmaj_2], [.3.bt2][bt2_grch38_1kgmaj_3], [.4.bt2][bt2_grch38_1kgmaj_4], [.rev.1.bt2][bt2_grch38_1kgmaj_r1], [.rev.2.bt2][bt2_grch38_1kgmaj_r2] | [full zip][bt2_grch38_1kgmaj_full_s3], [.1.bt2][bt2_grch38_1kgmaj_1_s3], [.2.bt2][bt2_grch38_1kgmaj_2_s3], [.3.bt2][bt2_grch38_1kgmaj_3_s3], [.4.bt2][bt2_grch38_1kgmaj_4_s3], [.rev.1.bt2][bt2_grch38_1kgmaj_r1_s3], [.rev.2.bt2][bt2_grch38_1kgmaj_r2_s3] | [archive md5][bt2_grch38_1kgmaj_md5] | [archive md5][bt2_grch38_1kgmaj_md5_s3]
-Human / CHM13plusY | [T2T<sup>3</sup>][bt2_t2tplusy_source] | [full zip][bt2_t2tplusy_full], [.1.bt2][bt2_t2tplusy_1], [.2.bt2][bt2_t2tplusy_2], [.3.bt2][bt2_t2tplusy_3], [.4.bt2][bt2_t2tplusy_4], [.rev.1.bt2][bt2_t2tplusy_r1], [.rev.2.bt2][bt2_t2tplusy_r2] | [full zip][bt2_t2tplusy_full_s3], [.1.bt2][bt2_t2tplusy_1_s3], [.2.bt2][bt2_t2tplusy_2_s3], [.3.bt2][bt2_t2tplusy_3_s3], [.4.bt2][bt2_t2tplusy_4_s3], [.rev.1.bt2][bt2_t2tplusy_r1_s3], [.rev.2.bt2][bt2_t2tplusy_r2_s3] | [archive md5][bt2_t2tplusy_md5] | [archive md5][bt2_t2tplusy_md5_s3]
-Human / hs1 / T2T-CHM13v2.0 | [UCSC][bt2_hs1_source] | [full zip][bt2_hs1_full], [.1.bt2][bt2_hs1_1], [.2.bt2][bt2_hs1_2], [.3.bt2][bt2_hs1_3], [.4.bt2][bt2_hs1_4], [.rev.1.bt2][bt2_hs1_r1], [.rev.2.bt2][bt2_hs1_r2] | [full zip][bt2_hs1_full_s3], [.1.bt2][bt2_hs1_1_s3], [.2.bt2][bt2_hs1_2_s3], [.3.bt2][bt2_hs1_3_s3], [.4.bt2][bt2_hs1_4_s3], [.rev.1.bt2][bt2_hs1_r1_s3], [.rev.2.bt2][bt2_hs1_r2_s3] | [archive md5][bt2_hs1_md5], [.dict][bt2_hs1_dict], [manifest json][bt2_hs1_manifest] | [archive md5][bt2_hs1_md5_s3], [.dict][bt2_hs1_dict_s3], [manifest json][bt2_hs1_manifest_s3]
+Human / GRCh38 no-alt analysis set | [NCBI][bt2_grch38_noalt_source] | [full zip][bt2_grch38_noalt_full], [.1.bt2][bt2_grch38_noalt_1], [.2.bt2][bt2_grch38_noalt_2], [.3.bt2][bt2_grch38_noalt_3], [.4.bt2][bt2_grch38_noalt_4], [.rev.1.bt2][bt2_grch38_noalt_r1], [.rev.2.bt2][bt2_grch38_noalt_r2] | [full zip][bt2_grch38_noalt_full_s3], [.1.bt2][bt2_grch38_noalt_1_s3], [.2.bt2][bt2_grch38_noalt_2_s3], [.3.bt2][bt2_grch38_noalt_3_s3], [.4.bt2][bt2_grch38_noalt_4_s3], [.rev.1.bt2][bt2_grch38_noalt_r1_s3], [.rev.2.bt2][bt2_grch38_noalt_r2_s3] | [archive md5][bt2_grch38_noalt_md5] | [archive md5][bt2_grch38_noalt_md5_s3]
+Human / GRCh38 no-alt +decoy set | [NCBI][bt2_grch38_noalt_decoy_source] | [full zip][bt2_grch38_noalt_decoy_full], [.1.bt2][bt2_grch38_noalt_decoy_1], [.2.bt2][bt2_grch38_noalt_decoy_2], [.3.bt2][bt2_grch38_noalt_decoy_3], [.4.bt2][bt2_grch38_noalt_decoy_4], [.rev.1.bt2][bt2_grch38_noalt_decoy_r1], [.rev.2.bt2][bt2_grch38_noalt_decoy_r2] | [full zip][bt2_grch38_noalt_decoy_full_s3], [.1.bt2][bt2_grch38_noalt_decoy_1_s3], [.2.bt2][bt2_grch38_noalt_decoy_2_s3], [.3.bt2][bt2_grch38_noalt_decoy_3_s3], [.4.bt2][bt2_grch38_noalt_decoy_4_s3], [.rev.1.bt2][bt2_grch38_noalt_decoy_r1_s3], [.rev.2.bt2][bt2_grch38_noalt_decoy_r2_s3] | [archive md5][bt2_grch38_noalt_decoy_md5] | [archive md5][bt2_grch38_noalt_decoy_md5_s3]
+Human / GRCh38 + major SNVs | [NCBI+1KG<sup>1</sup>][bt2_grch38_1kgmaj_source] | [full zip][bt2_grch38_1kgmaj_full], [.1.bt2][bt2_grch38_1kgmaj_1], [.2.bt2][bt2_grch38_1kgmaj_2], [.3.bt2][bt2_grch38_1kgmaj_3], [.4.bt2][bt2_grch38_1kgmaj_4], [.rev.1.bt2][bt2_grch38_1kgmaj_r1], [.rev.2.bt2][bt2_grch38_1kgmaj_r2] | [full zip][bt2_grch38_1kgmaj_full_s3], [.1.bt2][bt2_grch38_1kgmaj_1_s3], [.2.bt2][bt2_grch38_1kgmaj_2_s3], [.3.bt2][bt2_grch38_1kgmaj_3_s3], [.4.bt2][bt2_grch38_1kgmaj_4_s3], [.rev.1.bt2][bt2_grch38_1kgmaj_r1_s3], [.rev.2.bt2][bt2_grch38_1kgmaj_r2_s3] | [archive md5][bt2_grch38_1kgmaj_md5] | [archive md5][bt2_grch38_1kgmaj_md5_s3]
 Human / GRCh37 | [NCBI][bt2_grch37_source] | [full zip][bt2_grch37_full], [.1.bt2][bt2_grch37_1], [.2.bt2][bt2_grch37_2], [.3.bt2][bt2_grch37_3], [.4.bt2][bt2_grch37_4], [.rev.1.bt2][bt2_grch37_r1], [.rev.2.bt2][bt2_grch37_r2] | [full zip][bt2_grch37_full_s3], [.1.bt2][bt2_grch37_1_s3], [.2.bt2][bt2_grch37_2_s3], [.3.bt2][bt2_grch37_3_s3], [.4.bt2][bt2_grch37_4_s3], [.rev.1.bt2][bt2_grch37_r1_s3], [.rev.2.bt2][bt2_grch37_r2_s3] | [archive md5][bt2_grch37_md5] | [archive md5][bt2_grch37_md5_s3]
-Human / Ash2.0 | [JHU<sup>4</sup>][bt2_ash1_2_source] | [full zip][bt2_ash1_2_full], [.1.bt2][bt2_ash1_2_1], [.2.bt2][bt2_ash1_2_2], [.3.bt2][bt2_ash1_2_3], [.4.bt2][bt2_ash1_2_4], [.rev.1.bt2][bt2_ash1_2_r1], [.rev.2.bt2][bt2_ash1_2_r2] | [full zip][bt2_ash1_2_full_s3], [.1.bt2][bt2_ash1_2_1_s3], [.2.bt2][bt2_ash1_2_2_s3], [.3.bt2][bt2_ash1_2_3_s3], [.4.bt2][bt2_ash1_2_4_s3], [.rev.1.bt2][bt2_ash1_2_r1_s3], [.rev.2.bt2][bt2_ash1_2_r2_s3] | [archive md5][bt2_ash1_2_md5] | [archive md5][bt2_ash1_2_md5_s3]
-Human / Ash1.7 | [JHU<sup>4</sup>][bt2_ash1_source] | [full zip][bt2_ash1_full], [.1.bt2][bt2_ash1_1], [.2.bt2][bt2_ash1_2], [.3.bt2][bt2_ash1_3], [.4.bt2][bt2_ash1_4], [.rev.1.bt2][bt2_ash1_r1], [.rev.2.bt2][bt2_ash1_r2] | [full zip][bt2_ash1_full_s3], [.1.bt2][bt2_ash1_1_s3], [.2.bt2][bt2_ash1_2_s3], [.3.bt2][bt2_ash1_3_s3], [.4.bt2][bt2_ash1_4_s3], [.rev.1.bt2][bt2_ash1_r1_s3], [.rev.2.bt2][bt2_ash1_r2_s3] | [archive md5][bt2_ash1_md5] | [archive md5][bt2_ash1_md5_s3]
+Human / Ash1v1.7 | [JHU <sup>2</sup>][bt2_ash1_source] | [full zip][bt2_ash1_full], [.1.bt2][bt2_ash1_1], [.2.bt2][bt2_ash1_2], [.3.bt2][bt2_ash1_3], [.4.bt2][bt2_ash1_4], [.rev.1.bt2][bt2_ash1_r1], [.rev.2.bt2][bt2_ash1_r2] | [full zip][bt2_ash1_full_s3], [.1.bt2][bt2_ash1_1_s3], [.2.bt2][bt2_ash1_2_s3], [.3.bt2][bt2_ash1_3_s3], [.4.bt2][bt2_ash1_4_s3], [.rev.1.bt2][bt2_ash1_r1_s3], [.rev.2.bt2][bt2_ash1_r2_s3] | [archive md5][bt2_ash1_md5] | [archive md5][bt2_ash1_md5_s3]
+Human / Ash1v2.0 | [JHU <sup>2</sup>][bt2_ash1_2_source] | [full zip][bt2_ash1_2_full], [.1.bt2][bt2_ash1_2_1], [.2.bt2][bt2_ash1_2_2], [.3.bt2][bt2_ash1_2_3], [.4.bt2][bt2_ash1_2_4], [.rev.1.bt2][bt2_ash1_2_r1], [.rev.2.bt2][bt2_ash1_2_r2] | [full zip][bt2_ash1_2_full_s3], [.1.bt2][bt2_ash1_2_1_s3], [.2.bt2][bt2_ash1_2_2_s3], [.3.bt2][bt2_ash1_2_3_s3], [.4.bt2][bt2_ash1_2_4_s3], [.rev.1.bt2][bt2_ash1_2_r1_s3], [.rev.2.bt2][bt2_ash1_2_r2_s3] | [archive md5][bt2_ash1_2_md5] | [archive md5][bt2_ash1_2_md5_s3]
+Human / CHM13plusY | [T2T <sup>3</sup>][bt2_t2tplusy_source] | [full zip][bt2_t2tplusy_full], [.1.bt2][bt2_t2tplusy_1], [.2.bt2][bt2_t2tplusy_2], [.3.bt2][bt2_t2tplusy_3], [.4.bt2][bt2_t2tplusy_4], [.rev.1.bt2][bt2_t2tplusy_r1], [.rev.2.bt2][bt2_t2tplusy_r2] | [full zip][bt2_t2tplusy_full_s3], [.1.bt2][bt2_t2tplusy_1_s3], [.2.bt2][bt2_t2tplusy_2_s3], [.3.bt2][bt2_t2tplusy_3_s3], [.4.bt2][bt2_t2tplusy_4_s3], [.rev.1.bt2][bt2_t2tplusy_r1_s3], [.rev.2.bt2][bt2_t2tplusy_r2_s3] | [archive md5][bt2_t2tplusy_md5] | [archive md5][bt2_t2tplusy_md5_s3]
+Human / hs1 / T2T-CHM13v2.0 | [UCSC][bt2_hs1_source] | [full zip][bt2_hs1_full], [.1.bt2][bt2_hs1_1], [.2.bt2][bt2_hs1_2], [.3.bt2][bt2_hs1_3], [.4.bt2][bt2_hs1_4], [.rev.1.bt2][bt2_hs1_r1], [.rev.2.bt2][bt2_hs1_r2] | [full zip][bt2_hs1_full_s3], [.1.bt2][bt2_hs1_1_s3], [.2.bt2][bt2_hs1_2_s3], [.3.bt2][bt2_hs1_3_s3], [.4.bt2][bt2_hs1_4_s3], [.rev.1.bt2][bt2_hs1_r1_s3], [.rev.2.bt2][bt2_hs1_r2_s3] | [archive md5][bt2_hs1_md5], [.dict][bt2_hs1_dict], [manifest json][bt2_hs1_manifest] | [archive md5][bt2_hs1_md5_s3], [.dict][bt2_hs1_dict_s3], [manifest json][bt2_hs1_manifest_s3]
 Human / hg19 | [UCSC][bt2_hg19_source] | [full zip][bt2_hg19_full], [.1.bt2][bt2_hg19_1], [.2.bt2][bt2_hg19_2], [.3.bt2][bt2_hg19_3], [.4.bt2][bt2_hg19_4], [.rev.1.bt2][bt2_hg19_r1], [.rev.2.bt2][bt2_hg19_r2] | [full zip][bt2_hg19_full_s3], [.1.bt2][bt2_hg19_1_s3], [.2.bt2][bt2_hg19_2_s3], [.3.bt2][bt2_hg19_3_s3], [.4.bt2][bt2_hg19_4_s3], [.rev.1.bt2][bt2_hg19_r1_s3], [.rev.2.bt2][bt2_hg19_r2_s3] | [archive md5][bt2_hg19_md5] | [archive md5][bt2_hg19_md5_s3]
 Human / hg18 | [UCSC][bt2_hg18_source] | [full zip][bt2_hg18_full], [.1.bt2][bt2_hg18_1], [.2.bt2][bt2_hg18_2], [.3.bt2][bt2_hg18_3], [.4.bt2][bt2_hg18_4], [.rev.1.bt2][bt2_hg18_r1], [.rev.2.bt2][bt2_hg18_r2] | [full zip][bt2_hg18_full_s3], [.1.bt2][bt2_hg18_1_s3], [.2.bt2][bt2_hg18_2_s3], [.3.bt2][bt2_hg18_3_s3], [.4.bt2][bt2_hg18_4_s3], [.rev.1.bt2][bt2_hg18_r1_s3], [.rev.2.bt2][bt2_hg18_r2_s3] | [archive md5][bt2_hg18_md5] | [archive md5][bt2_hg18_md5_s3]
 Mouse / GRCm38 | [NCBI][bt2_grcm38_source] | [full zip][bt2_grcm38_full], [.1.bt2][bt2_grcm38_1], [.2.bt2][bt2_grcm38_2], [.3.bt2][bt2_grcm38_3], [.4.bt2][bt2_grcm38_4], [.rev.1.bt2][bt2_grcm38_r1], [.rev.2.bt2][bt2_grcm38_r2] | [full zip][bt2_grcm38_full_s3], [.1.bt2][bt2_grcm38_1_s3], [.2.bt2][bt2_grcm38_2_s3], [.3.bt2][bt2_grcm38_3_s3], [.4.bt2][bt2_grcm38_4_s3], [.rev.1.bt2][bt2_grcm38_r1_s3], [.rev.2.bt2][bt2_grcm38_r2_s3] | [archive md5][bt2_grcm38_md5] | [archive md5][bt2_grcm38_md5_s3]
@@ -27,25 +27,31 @@ Mouse / mm9 | [UCSC][bt2_mm9_source] | [full zip][bt2_mm9_full], [.1.bt2][bt2_mm
 Chimpanzee / Clint_PTRv2 | [NCBI][bt2_clintptr2_source] | [full zip][bt2_clintptr2_full], [.1.bt2][bt2_clintptr2_1], [.2.bt2][bt2_clintptr2_2], [.3.bt2][bt2_clintptr2_3], [.4.bt2][bt2_clintptr2_4], [.rev.1.bt2][bt2_clintptr2_r1], [.rev.2.bt2][bt2_clintptr2_r2] | [full zip][bt2_clintptr2_full_s3], [.1.bt2][bt2_clintptr2_1_s3], [.2.bt2][bt2_clintptr2_2_s3], [.3.bt2][bt2_clintptr2_3_s3], [.4.bt2][bt2_clintptr2_4_s3], [.rev.1.bt2][bt2_clintptr2_r1_s3], [.rev.2.bt2][bt2_clintptr2_r2_s3] | [archive md5][bt2_clintptr2_md5] | [archive md5][bt2_clintptr2_md5_s3]
 Chimpanzee / CHIMP2.1.4 | [Ensembl][bt2_chimp214_source] | [full zip][bt2_chimp214_full], [.1.bt2][bt2_chimp214_1], [.2.bt2][bt2_chimp214_2], [.3.bt2][bt2_chimp214_3], [.4.bt2][bt2_chimp214_4], [.rev.1.bt2][bt2_chimp214_r1], [.rev.2.bt2][bt2_chimp214_r2] | [full zip][bt2_chimp214_full_s3], [.1.bt2][bt2_chimp214_1_s3], [.2.bt2][bt2_chimp214_2_s3], [.3.bt2][bt2_chimp214_3_s3], [.4.bt2][bt2_chimp214_4_s3], [.rev.1.bt2][bt2_chimp214_r1_s3], [.rev.2.bt2][bt2_chimp214_r2_s3] | [archive md5][bt2_chimp214_md5] | [archive md5][bt2_chimp214_md5_s3]
 Rhesus macaque / MMul_10 | [Ensembl][bt2_mmul10_source] | [full zip][bt2_mmul10_full], [.1.bt2][bt2_mmul10_1], [.2.bt2][bt2_mmul10_2], [.3.bt2][bt2_mmul10_3], [.4.bt2][bt2_mmul10_4], [.rev.1.bt2][bt2_mmul10_r1], [.rev.2.bt2][bt2_mmul10_r2] | [full zip][bt2_mmul10_full_s3], [.1.bt2][bt2_mmul10_1_s3], [.2.bt2][bt2_mmul10_2_s3], [.3.bt2][bt2_mmul10_3_s3], [.4.bt2][bt2_mmul10_4_s3], [.rev.1.bt2][bt2_mmul10_r1_s3], [.rev.2.bt2][bt2_mmul10_r2_s3] | [archive md5][bt2_mmul10_md5] | [archive md5][bt2_mmul10_md5_s3]
+Cow / ARS-UCD2.0 | [NCBI RefSeq][bt2_arsucd20_source] | [full zip][bt2_arsucd20_full], [.1.bt2][bt2_arsucd20_1], [.2.bt2][bt2_arsucd20_2], [.3.bt2][bt2_arsucd20_3], [.4.bt2][bt2_arsucd20_4], [.rev.1.bt2][bt2_arsucd20_r1], [.rev.2.bt2][bt2_arsucd20_r2] | [full zip][bt2_arsucd20_full_s3], [.1.bt2][bt2_arsucd20_1_s3], [.2.bt2][bt2_arsucd20_2_s3], [.3.bt2][bt2_arsucd20_3_s3], [.4.bt2][bt2_arsucd20_4_s3], [.rev.1.bt2][bt2_arsucd20_r1_s3], [.rev.2.bt2][bt2_arsucd20_r2_s3] | [archive md5][bt2_arsucd20_md5], [.dict][bt2_arsucd20_dict], [manifest json][bt2_arsucd20_manifest] | [archive md5][bt2_arsucd20_md5_s3], [.dict][bt2_arsucd20_dict_s3], [manifest json][bt2_arsucd20_manifest_s3]
 Cow / ARS-UCD1.2 | [NCBI][bt2_arsucd12_source] | [full zip][bt2_arsucd12_full], [.1.bt2][bt2_arsucd12_1], [.2.bt2][bt2_arsucd12_2], [.3.bt2][bt2_arsucd12_3], [.4.bt2][bt2_arsucd12_4], [.rev.1.bt2][bt2_arsucd12_r1], [.rev.2.bt2][bt2_arsucd12_r2] | [full zip][bt2_arsucd12_full_s3], [.1.bt2][bt2_arsucd12_1_s3], [.2.bt2][bt2_arsucd12_2_s3], [.3.bt2][bt2_arsucd12_3_s3], [.4.bt2][bt2_arsucd12_4_s3], [.rev.1.bt2][bt2_arsucd12_r1_s3], [.rev.2.bt2][bt2_arsucd12_r2_s3] | [archive md5][bt2_arsucd12_md5] | [archive md5][bt2_arsucd12_md5_s3]
 Pig / Sscrofa11.1 | [NCBI][bt2_sscorfa111_source] | [full zip][bt2_sscorfa111_full], [.1.bt2][bt2_sscorfa111_1], [.2.bt2][bt2_sscorfa111_2], [.3.bt2][bt2_sscorfa111_3], [.4.bt2][bt2_sscorfa111_4], [.rev.1.bt2][bt2_sscorfa111_r1], [.rev.2.bt2][bt2_sscorfa111_r2] | [full zip][bt2_sscorfa111_full_s3], [.1.bt2][bt2_sscorfa111_1_s3], [.2.bt2][bt2_sscorfa111_2_s3], [.3.bt2][bt2_sscorfa111_3_s3], [.4.bt2][bt2_sscorfa111_4_s3], [.rev.1.bt2][bt2_sscorfa111_r1_s3], [.rev.2.bt2][bt2_sscorfa111_r2_s3] | [archive md5][bt2_sscorfa111_md5] | [archive md5][bt2_sscorfa111_md5_s3]
+Dog / ROS_Cfam_1.0 | [NCBI RefSeq][bt2_roscfam10_source] | [full zip][bt2_roscfam10_full], [.1.bt2][bt2_roscfam10_1], [.2.bt2][bt2_roscfam10_2], [.3.bt2][bt2_roscfam10_3], [.4.bt2][bt2_roscfam10_4], [.rev.1.bt2][bt2_roscfam10_r1], [.rev.2.bt2][bt2_roscfam10_r2] | [full zip][bt2_roscfam10_full_s3], [.1.bt2][bt2_roscfam10_1_s3], [.2.bt2][bt2_roscfam10_2_s3], [.3.bt2][bt2_roscfam10_3_s3], [.4.bt2][bt2_roscfam10_4_s3], [.rev.1.bt2][bt2_roscfam10_r1_s3], [.rev.2.bt2][bt2_roscfam10_r2_s3] | [archive md5][bt2_roscfam10_md5], [.dict][bt2_roscfam10_dict], [manifest json][bt2_roscfam10_manifest] | [archive md5][bt2_roscfam10_md5_s3], [.dict][bt2_roscfam10_dict_s3], [manifest json][bt2_roscfam10_manifest_s3]
 Dog / CanFam3.1 | [Ensembl][bt2_canfam31_source] | [full zip][bt2_canfam31_full], [.1.bt2][bt2_canfam31_1], [.2.bt2][bt2_canfam31_2], [.3.bt2][bt2_canfam31_3], [.4.bt2][bt2_canfam31_4], [.rev.1.bt2][bt2_canfam31_r1], [.rev.2.bt2][bt2_canfam31_r2] | [full zip][bt2_canfam31_full_s3], [.1.bt2][bt2_canfam31_1_s3], [.2.bt2][bt2_canfam31_2_s3], [.3.bt2][bt2_canfam31_3_s3], [.4.bt2][bt2_canfam31_4_s3], [.rev.1.bt2][bt2_canfam31_r1_s3], [.rev.2.bt2][bt2_canfam31_r2_s3] | [archive md5][bt2_canfam31_md5] | [archive md5][bt2_canfam31_md5_s3]
 Dog / CanFam4 | [NCBI][bt2_canfam4_source] | [full zip][bt2_canfam4_full], [.1.bt2][bt2_canfam4_1], [.2.bt2][bt2_canfam4_2], [.3.bt2][bt2_canfam4_3], [.4.bt2][bt2_canfam4_4], [.rev.1.bt2][bt2_canfam4_r1], [.rev.2.bt2][bt2_canfam4_r2] | [full zip][bt2_canfam4_full_s3], [.1.bt2][bt2_canfam4_1_s3], [.2.bt2][bt2_canfam4_2_s3], [.3.bt2][bt2_canfam4_3_s3], [.4.bt2][bt2_canfam4_4_s3], [.rev.1.bt2][bt2_canfam4_r1_s3], [.rev.2.bt2][bt2_canfam4_r2_s3] | [archive md5][bt2_canfam4_md5] | [archive md5][bt2_canfam4_md5_s3]
+Rat / GRCr8 | [NCBI RefSeq][bt2_grcr8_source] | [full zip][bt2_grcr8_full], [.1.bt2][bt2_grcr8_1], [.2.bt2][bt2_grcr8_2], [.3.bt2][bt2_grcr8_3], [.4.bt2][bt2_grcr8_4], [.rev.1.bt2][bt2_grcr8_r1], [.rev.2.bt2][bt2_grcr8_r2] | [full zip][bt2_grcr8_full_s3], [.1.bt2][bt2_grcr8_1_s3], [.2.bt2][bt2_grcr8_2_s3], [.3.bt2][bt2_grcr8_3_s3], [.4.bt2][bt2_grcr8_4_s3], [.rev.1.bt2][bt2_grcr8_r1_s3], [.rev.2.bt2][bt2_grcr8_r2_s3] | [archive md5][bt2_grcr8_md5], [.dict][bt2_grcr8_dict], [manifest json][bt2_grcr8_manifest] | [archive md5][bt2_grcr8_md5_s3], [.dict][bt2_grcr8_dict_s3], [manifest json][bt2_grcr8_manifest_s3]
 Rat / rn4 | [UCSC][bt2_rn4_source] | [full zip][bt2_rn4_full], [.1.bt2][bt2_rn4_1], [.2.bt2][bt2_rn4_2], [.3.bt2][bt2_rn4_3], [.4.bt2][bt2_rn4_4], [.rev.1.bt2][bt2_rn4_r1], [.rev.2.bt2][bt2_rn4_r2] | [full zip][bt2_rn4_full_s3], [.1.bt2][bt2_rn4_1_s3], [.2.bt2][bt2_rn4_2_s3], [.3.bt2][bt2_rn4_3_s3], [.4.bt2][bt2_rn4_4_s3], [.rev.1.bt2][bt2_rn4_r1_s3], [.rev.2.bt2][bt2_rn4_r2_s3] | [archive md5][bt2_rn4_md5] | [archive md5][bt2_rn4_md5_s3]
 Rat / Rnor6.0 | [NCBI][bt2_rnor60_source] | [full zip][bt2_rnor60_full], [.1.bt2][bt2_rnor60_1], [.2.bt2][bt2_rnor60_2], [.3.bt2][bt2_rnor60_3], [.4.bt2][bt2_rnor60_4], [.rev.1.bt2][bt2_rnor60_r1], [.rev.2.bt2][bt2_rnor60_r2] | [full zip][bt2_rnor60_full_s3], [.1.bt2][bt2_rnor60_1_s3], [.2.bt2][bt2_rnor60_2_s3], [.3.bt2][bt2_rnor60_3_s3], [.4.bt2][bt2_rnor60_4_s3], [.rev.1.bt2][bt2_rnor60_r1_s3], [.rev.2.bt2][bt2_rnor60_r2_s3] | [archive md5][bt2_rnor60_md5] | [archive md5][bt2_rnor60_md5_s3]
+Chicken / bGalGal1.mat.broiler.GRCg7b | [NCBI RefSeq][bt2_grcg7b_source] | [full zip][bt2_grcg7b_full], [.1.bt2][bt2_grcg7b_1], [.2.bt2][bt2_grcg7b_2], [.3.bt2][bt2_grcg7b_3], [.4.bt2][bt2_grcg7b_4], [.rev.1.bt2][bt2_grcg7b_r1], [.rev.2.bt2][bt2_grcg7b_r2] | [full zip][bt2_grcg7b_full_s3], [.1.bt2][bt2_grcg7b_1_s3], [.2.bt2][bt2_grcg7b_2_s3], [.3.bt2][bt2_grcg7b_3_s3], [.4.bt2][bt2_grcg7b_4_s3], [.rev.1.bt2][bt2_grcg7b_r1_s3], [.rev.2.bt2][bt2_grcg7b_r2_s3] | [archive md5][bt2_grcg7b_md5], [.dict][bt2_grcg7b_dict], [manifest json][bt2_grcg7b_manifest] | [archive md5][bt2_grcg7b_md5_s3], [.dict][bt2_grcg7b_dict_s3], [manifest json][bt2_grcg7b_manifest_s3]
 Chicken / GRCg6a | [NCBI][bt2_grcg6a_source] | [full zip][bt2_grcg6a_full], [.1.bt2][bt2_grcg6a_1], [.2.bt2][bt2_grcg6a_2], [.3.bt2][bt2_grcg6a_3], [.4.bt2][bt2_grcg6a_4], [.rev.1.bt2][bt2_grcg6a_r1], [.rev.2.bt2][bt2_grcg6a_r2] | [full zip][bt2_grcg6a_full_s3], [.1.bt2][bt2_grcg6a_1_s3], [.2.bt2][bt2_grcg6a_2_s3], [.3.bt2][bt2_grcg6a_3_s3], [.4.bt2][bt2_grcg6a_4_s3], [.rev.1.bt2][bt2_grcg6a_r1_s3], [.rev.2.bt2][bt2_grcg6a_r2_s3] | [archive md5][bt2_grcg6a_md5] | [archive md5][bt2_grcg6a_md5_s3]
 Chicken / Galgal4 | [Ensembl][bt2_galgal4_source] | [full zip][bt2_galgal4_full], [.1.bt2][bt2_galgal4_1], [.2.bt2][bt2_galgal4_2], [.3.bt2][bt2_galgal4_3], [.4.bt2][bt2_galgal4_4], [.rev.1.bt2][bt2_galgal4_r1], [.rev.2.bt2][bt2_galgal4_r2] | [full zip][bt2_galgal4_full_s3], [.1.bt2][bt2_galgal4_1_s3], [.2.bt2][bt2_galgal4_2_s3], [.3.bt2][bt2_galgal4_3_s3], [.4.bt2][bt2_galgal4_4_s3], [.rev.1.bt2][bt2_galgal4_r1_s3], [.rev.2.bt2][bt2_galgal4_r2_s3] | [archive md5][bt2_galgal4_md5] | [archive md5][bt2_galgal4_md5_s3]
 Zebrafish / GRCz11 | [NCBI][bt2_grcz11_source] | [full zip][bt2_grcz11_full], [.1.bt2][bt2_grcz11_1], [.2.bt2][bt2_grcz11_2], [.3.bt2][bt2_grcz11_3], [.4.bt2][bt2_grcz11_4], [.rev.1.bt2][bt2_grcz11_r1], [.rev.2.bt2][bt2_grcz11_r2] | [full zip][bt2_grcz11_full_s3], [.1.bt2][bt2_grcz11_1_s3], [.2.bt2][bt2_grcz11_2_s3], [.3.bt2][bt2_grcz11_3_s3], [.4.bt2][bt2_grcz11_4_s3], [.rev.1.bt2][bt2_grcz11_r1_s3], [.rev.2.bt2][bt2_grcz11_r2_s3] | [archive md5][bt2_grcz11_md5] | [archive md5][bt2_grcz11_md5_s3]
 Zebrafish / GRCz10 | [NCBI][bt2_grcz10_source] | [full zip][bt2_grcz10_full], [.1.bt2][bt2_grcz10_1], [.2.bt2][bt2_grcz10_2], [.3.bt2][bt2_grcz10_3], [.4.bt2][bt2_grcz10_4], [.rev.1.bt2][bt2_grcz10_r1], [.rev.2.bt2][bt2_grcz10_r2] | [full zip][bt2_grcz10_full_s3], [.1.bt2][bt2_grcz10_1_s3], [.2.bt2][bt2_grcz10_2_s3], [.3.bt2][bt2_grcz10_3_s3], [.4.bt2][bt2_grcz10_4_s3], [.rev.1.bt2][bt2_grcz10_r1_s3], [.rev.2.bt2][bt2_grcz10_r2_s3] | [archive md5][bt2_grcz10_md5] | [archive md5][bt2_grcz10_md5_s3]
 Corn / AGPv4 | [Ensembl][bt2_agpv4_source] | [full zip][bt2_agpv4_full], [.1.bt2][bt2_agpv4_1], [.2.bt2][bt2_agpv4_2], [.3.bt2][bt2_agpv4_3], [.4.bt2][bt2_agpv4_4], [.rev.1.bt2][bt2_agpv4_r1], [.rev.2.bt2][bt2_agpv4_r2] | [full zip][bt2_agpv4_full_s3], [.1.bt2][bt2_agpv4_1_s3], [.2.bt2][bt2_agpv4_2_s3], [.3.bt2][bt2_agpv4_3_s3], [.4.bt2][bt2_agpv4_4_s3], [.rev.1.bt2][bt2_agpv4_r1_s3], [.rev.2.bt2][bt2_agpv4_r2_s3] | [archive md5][bt2_agpv4_md5] | [archive md5][bt2_agpv4_md5_s3]
 Corn / B73 RefGenV5 | [NCBI][bt2_b73_refgen_v5_source] | [full zip][bt2_b73_refgen_v5_full], [.1.bt2][bt2_b73_refgen_v5_1], [.2.bt2][bt2_b73_refgen_v5_2], [.3.bt2][bt2_b73_refgen_v5_3], [.4.bt2][bt2_b73_refgen_v5_4], [.rev.1.bt2][bt2_b73_refgen_v5_r1], [.rev.2.bt2][bt2_b73_refgen_v5_r2] | [full zip][bt2_b73_refgen_v5_full_s3], [.1.bt2][bt2_b73_refgen_v5_1_s3], [.2.bt2][bt2_b73_refgen_v5_2_s3], [.3.bt2][bt2_b73_refgen_v5_3_s3], [.4.bt2][bt2_b73_refgen_v5_4_s3], [.rev.1.bt2][bt2_b73_refgen_v5_r1_s3], [.rev.2.bt2][bt2_b73_refgen_v5_r2_s3] | [archive md5][bt2_b73_refgen_v5_md5] | [archive md5][bt2_b73_refgen_v5_md5_s3]
+Wheat / IWGSC | [Ensembl Plants][bt2_iwgsc_source] | [full zip][bt2_iwgsc_full], [.1.bt2l][bt2_iwgsc_1], [.2.bt2l][bt2_iwgsc_2], [.3.bt2l][bt2_iwgsc_3], [.4.bt2l][bt2_iwgsc_4], [.rev.1.bt2l][bt2_iwgsc_r1], [.rev.2.bt2l][bt2_iwgsc_r2] | [full zip][bt2_iwgsc_full_s3], [.1.bt2l][bt2_iwgsc_1_s3], [.2.bt2l][bt2_iwgsc_2_s3], [.3.bt2l][bt2_iwgsc_3_s3], [.4.bt2l][bt2_iwgsc_4_s3], [.rev.1.bt2l][bt2_iwgsc_r1_s3], [.rev.2.bt2l][bt2_iwgsc_r2_s3] | [archive md5][bt2_iwgsc_md5], [.dict][bt2_iwgsc_dict], [manifest json][bt2_iwgsc_manifest] | [archive md5][bt2_iwgsc_md5_s3], [.dict][bt2_iwgsc_dict_s3], [manifest json][bt2_iwgsc_manifest_s3]
+Barley / MorexV3_pseudomolecules_assembly | [Ensembl Plants][bt2_morexv3_source] | [full zip][bt2_morexv3_full], [.1.bt2l][bt2_morexv3_1], [.2.bt2l][bt2_morexv3_2], [.3.bt2l][bt2_morexv3_3], [.4.bt2l][bt2_morexv3_4], [.rev.1.bt2l][bt2_morexv3_r1], [.rev.2.bt2l][bt2_morexv3_r2] | [full zip][bt2_morexv3_full_s3], [.1.bt2l][bt2_morexv3_1_s3], [.2.bt2l][bt2_morexv3_2_s3], [.3.bt2l][bt2_morexv3_3_s3], [.4.bt2l][bt2_morexv3_4_s3], [.rev.1.bt2l][bt2_morexv3_r1_s3], [.rev.2.bt2l][bt2_morexv3_r2_s3] | [archive md5][bt2_morexv3_md5], [.dict][bt2_morexv3_dict], [manifest json][bt2_morexv3_manifest] | [archive md5][bt2_morexv3_md5_s3], [.dict][bt2_morexv3_dict_s3], [manifest json][bt2_morexv3_manifest_s3]
+Oryza sativa (rice) / IRGSP-1.0 | [Ensembl Plants][bt2_irgsp10_source] | [full zip][bt2_irgsp10_full], [.1.bt2][bt2_irgsp10_1], [.2.bt2][bt2_irgsp10_2], [.3.bt2][bt2_irgsp10_3], [.4.bt2][bt2_irgsp10_4], [.rev.1.bt2][bt2_irgsp10_r1], [.rev.2.bt2][bt2_irgsp10_r2] | [full zip][bt2_irgsp10_full_s3], [.1.bt2][bt2_irgsp10_1_s3], [.2.bt2][bt2_irgsp10_2_s3], [.3.bt2][bt2_irgsp10_3_s3], [.4.bt2][bt2_irgsp10_4_s3], [.rev.1.bt2][bt2_irgsp10_r1_s3], [.rev.2.bt2][bt2_irgsp10_r2_s3] | [archive md5][bt2_irgsp10_md5], [.dict][bt2_irgsp10_dict], [manifest json][bt2_irgsp10_manifest] | [archive md5][bt2_irgsp10_md5_s3], [.dict][bt2_irgsp10_dict_s3], [manifest json][bt2_irgsp10_manifest_s3]
 Oryza sativa (rice) / Build_4.0 | [NCBI][bt2_build4_source] | [full zip][bt2_build4_full], [.1.bt2][bt2_build4_1], [.2.bt2][bt2_build4_2], [.3.bt2][bt2_build4_3], [.4.bt2][bt2_build4_4], [.rev.1.bt2][bt2_build4_r1], [.rev.2.bt2][bt2_build4_r2] | [full zip][bt2_build4_full_s3], [.1.bt2][bt2_build4_1_s3], [.2.bt2][bt2_build4_2_s3], [.3.bt2][bt2_build4_3_s3], [.4.bt2][bt2_build4_4_s3], [.rev.1.bt2][bt2_build4_r1_s3], [.rev.2.bt2][bt2_build4_r2_s3] | [archive md5][bt2_build4_md5] | [archive md5][bt2_build4_md5_s3]
 Arabidopsis thaliana / TAIR10 | [Ensembl][bt2_tair10_source] | [full zip][bt2_tair10_full], [.1.bt2][bt2_tair10_1], [.2.bt2][bt2_tair10_2], [.3.bt2][bt2_tair10_3], [.4.bt2][bt2_tair10_4], [.rev.1.bt2][bt2_tair10_r1], [.rev.2.bt2][bt2_tair10_r2] | [full zip][bt2_tair10_full_s3], [.1.bt2][bt2_tair10_1_s3], [.2.bt2][bt2_tair10_2_s3], [.3.bt2][bt2_tair10_3_s3], [.4.bt2][bt2_tair10_4_s3], [.rev.1.bt2][bt2_tair10_r1_s3], [.rev.2.bt2][bt2_tair10_r2_s3] | [archive md5][bt2_tair10_md5] | [archive md5][bt2_tair10_md5_s3]
 Fruitfly / BDGP6 | [Ensembl][bt2_bdgp6_source] | [full zip][bt2_bdgp6_full], [.1.bt2][bt2_bdgp6_1], [.2.bt2][bt2_bdgp6_2], [.3.bt2][bt2_bdgp6_3], [.4.bt2][bt2_bdgp6_4], [.rev.1.bt2][bt2_bdgp6_r1], [.rev.2.bt2][bt2_bdgp6_r2] | [full zip][bt2_bdgp6_full_s3], [.1.bt2][bt2_bdgp6_1_s3], [.2.bt2][bt2_bdgp6_2_s3], [.3.bt2][bt2_bdgp6_3_s3], [.4.bt2][bt2_bdgp6_4_s3], [.rev.1.bt2][bt2_bdgp6_r1_s3], [.rev.2.bt2][bt2_bdgp6_r2_s3] | [archive md5][bt2_bdgp6_md5] | [archive md5][bt2_bdgp6_md5_s3]
 Fruitfly / Dmel A4 1.0 | [NCBI][bt2_dmela410_source] | [full zip][bt2_dmela410_full], [.1.bt2][bt2_dmela410_1], [.2.bt2][bt2_dmela410_2], [.3.bt2][bt2_dmela410_3], [.4.bt2][bt2_dmela410_4], [.rev.1.bt2][bt2_dmela410_r1], [.rev.2.bt2][bt2_dmela410_r2] | [full zip][bt2_dmela410_full_s3], [.1.bt2][bt2_dmela410_1_s3], [.2.bt2][bt2_dmela410_2_s3], [.3.bt2][bt2_dmela410_3_s3], [.4.bt2][bt2_dmela410_4_s3], [.rev.1.bt2][bt2_dmela410_r1_s3], [.rev.2.bt2][bt2_dmela410_r2_s3] | [archive md5][bt2_dmela410_md5] | [archive md5][bt2_dmela410_md5_s3]
 C. elegans / WBcel235 | [Ensembl][bt2_wbcel235_source] | [full zip][bt2_wbcel235_full], [.1.bt2][bt2_wbcel235_1], [.2.bt2][bt2_wbcel235_2], [.3.bt2][bt2_wbcel235_3], [.4.bt2][bt2_wbcel235_4], [.rev.1.bt2][bt2_wbcel235_r1], [.rev.2.bt2][bt2_wbcel235_r2] | [full zip][bt2_wbcel235_full_s3], [.1.bt2][bt2_wbcel235_1_s3], [.2.bt2][bt2_wbcel235_2_s3], [.3.bt2][bt2_wbcel235_3_s3], [.4.bt2][bt2_wbcel235_4_s3], [.rev.1.bt2][bt2_wbcel235_r1_s3], [.rev.2.bt2][bt2_wbcel235_r2_s3] | [archive md5][bt2_wbcel235_md5] | [archive md5][bt2_wbcel235_md5_s3]
 Yeast / R64-1-1 | [Ensembl][bt2_r6411_source] | [full zip][bt2_r6411_full], [.1.bt2][bt2_r6411_1], [.2.bt2][bt2_r6411_2], [.3.bt2][bt2_r6411_3], [.4.bt2][bt2_r6411_4], [.rev.1.bt2][bt2_r6411_r1], [.rev.2.bt2][bt2_r6411_r2] | [full zip][bt2_r6411_full_s3], [.1.bt2][bt2_r6411_1_s3], [.2.bt2][bt2_r6411_2_s3], [.3.bt2][bt2_r6411_3_s3], [.4.bt2][bt2_r6411_4_s3], [.rev.1.bt2][bt2_r6411_r1_s3], [.rev.2.bt2][bt2_r6411_r2_s3] | [archive md5][bt2_r6411_md5] | [archive md5][bt2_r6411_md5_s3]
-
 <div class="datatable-end"></div>
 
 [1000 Genomes]: https://www.internationalgenome.org
@@ -81,18 +87,25 @@ websites for more information on the software, authors, and how to cite the work
 [bt2_clintptr2_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/880/755/GCF_002880755.1_Clint_PTRv2/
 [bt2_chimp214_source]: https://useast.ensembl.org/Pan_troglodytes/Info/Index
 [bt2_mmul10_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/339/765/GCF_003339765.1_Mmul_10/
+[bt2_arsucd20_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/263/795/GCF_002263795.3_ARS-UCD2.0/
 [bt2_arsucd12_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/263/795/GCF_002263795.1_ARS-UCD1.2/
 [bt2_sscorfa111_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/003/025/GCF_000003025.6_Sscrofa11.1/
+[bt2_roscfam10_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/014/441/545/GCF_014441545.1_ROS_Cfam_1.0/
 [bt2_canfam31_source]: https://useast.ensembl.org/Canis_lupus_familiaris/Info/Index
 [bt2_grcm38_source]: https://www.ncbi.nlm.nih.gov/assembly/GCF_000001635.20/
 [bt2_grcm39_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/635/GCF_000001635.27_GRCm39/
 [bt2_mm10_source]: ftp://hgdownload.cse.ucsc.edu/goldenPath/mm10/chromosomes
 [bt2_mm9_source]: ftp://hgdownload.cse.ucsc.edu/goldenPath/mm9/chromosomes
+[bt2_grcr8_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/036/323/735/GCF_036323735.1_GRCr8/
 [bt2_rn4_source]: ftp://hgdownload.cse.ucsc.edu/goldenPath/rn4/chromosomes
 [bt2_rnor60_source]: https://www.ncbi.nlm.nih.gov/assembly/GCF_000001895.5/
+[bt2_grcg7b_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/016/699/485/GCF_016699485.2_bGalGal1.mat.broiler.GRCg7b/
 [bt2_grcg6a_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/
 [bt2_galgal4_source]: http://jul2016.archive.ensembl.org/Gallus_gallus/Info/Index
 [bt2_agpv4_source]: http://plants.ensembl.org/Zea_mays/Info/Index
+[bt2_iwgsc_source]: https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-62/fasta/triticum_aestivum/dna/
+[bt2_morexv3_source]: https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-62/fasta/hordeum_vulgare/dna/
+[bt2_irgsp10_source]: https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-62/fasta/oryza_sativa/dna/
 [bt2_build4_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/425/GCF_000005425.2_Build_4.0/
 [bt2_grcz11_source]: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/035/GCF_000002035.6_GRCz11/
 [bt2_grcz10_source]: https://useast.ensembl.org/Drosophila_melanogaster/Info/Index
@@ -380,6 +393,26 @@ websites for more information on the software, authors, and how to cite the work
 [bt2_mmul10_r1_s3]: s3://genome-idx/bt/Mmul_10.rev.1.bt2
 [bt2_mmul10_r2_s3]: s3://genome-idx/bt/Mmul_10.rev.2.bt2
 [bt2_mmul10_md5_s3]: s3://genome-idx/bt/Mmul_10.md5
+[bt2_arsucd20_full]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD2.0.zip
+[bt2_arsucd20_1]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD2.0.1.bt2
+[bt2_arsucd20_2]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD2.0.2.bt2
+[bt2_arsucd20_3]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD2.0.3.bt2
+[bt2_arsucd20_4]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD2.0.4.bt2
+[bt2_arsucd20_r1]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD2.0.rev.1.bt2
+[bt2_arsucd20_r2]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD2.0.rev.2.bt2
+[bt2_arsucd20_md5]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD2.0.md5
+[bt2_arsucd20_dict]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD2.0.dict
+[bt2_arsucd20_manifest]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD2.0.manifest.json
+[bt2_arsucd20_full_s3]: s3://genome-idx/bt/ARS-UCD2.0.zip
+[bt2_arsucd20_1_s3]: s3://genome-idx/bt/ARS-UCD2.0.1.bt2
+[bt2_arsucd20_2_s3]: s3://genome-idx/bt/ARS-UCD2.0.2.bt2
+[bt2_arsucd20_3_s3]: s3://genome-idx/bt/ARS-UCD2.0.3.bt2
+[bt2_arsucd20_4_s3]: s3://genome-idx/bt/ARS-UCD2.0.4.bt2
+[bt2_arsucd20_r1_s3]: s3://genome-idx/bt/ARS-UCD2.0.rev.1.bt2
+[bt2_arsucd20_r2_s3]: s3://genome-idx/bt/ARS-UCD2.0.rev.2.bt2
+[bt2_arsucd20_md5_s3]: s3://genome-idx/bt/ARS-UCD2.0.md5
+[bt2_arsucd20_dict_s3]: s3://genome-idx/bt/ARS-UCD2.0.dict
+[bt2_arsucd20_manifest_s3]: s3://genome-idx/bt/ARS-UCD2.0.manifest.json
 [bt2_arsucd12_full]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD1.2.zip
 [bt2_arsucd12_1]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD1.2.1.bt2
 [bt2_arsucd12_2]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD1.2.2.bt2
@@ -412,6 +445,26 @@ websites for more information on the software, authors, and how to cite the work
 [bt2_sscorfa111_r1_s3]: s3://genome-idx/bt/Sscrofa11.1.rev.1.bt2
 [bt2_sscorfa111_r2_s3]: s3://genome-idx/bt/Sscrofa11.1.rev.2.bt2
 [bt2_sscorfa111_md5_s3]: s3://genome-idx/bt/Sscrofa11.1.md5
+[bt2_roscfam10_full]: https://genome-idx.s3.amazonaws.com/bt/ROS_Cfam_1.0.zip
+[bt2_roscfam10_1]: https://genome-idx.s3.amazonaws.com/bt/ROS_Cfam_1.0.1.bt2
+[bt2_roscfam10_2]: https://genome-idx.s3.amazonaws.com/bt/ROS_Cfam_1.0.2.bt2
+[bt2_roscfam10_3]: https://genome-idx.s3.amazonaws.com/bt/ROS_Cfam_1.0.3.bt2
+[bt2_roscfam10_4]: https://genome-idx.s3.amazonaws.com/bt/ROS_Cfam_1.0.4.bt2
+[bt2_roscfam10_r1]: https://genome-idx.s3.amazonaws.com/bt/ROS_Cfam_1.0.rev.1.bt2
+[bt2_roscfam10_r2]: https://genome-idx.s3.amazonaws.com/bt/ROS_Cfam_1.0.rev.2.bt2
+[bt2_roscfam10_md5]: https://genome-idx.s3.amazonaws.com/bt/ROS_Cfam_1.0.md5
+[bt2_roscfam10_dict]: https://genome-idx.s3.amazonaws.com/bt/ROS_Cfam_1.0.dict
+[bt2_roscfam10_manifest]: https://genome-idx.s3.amazonaws.com/bt/ROS_Cfam_1.0.manifest.json
+[bt2_roscfam10_full_s3]: s3://genome-idx/bt/ROS_Cfam_1.0.zip
+[bt2_roscfam10_1_s3]: s3://genome-idx/bt/ROS_Cfam_1.0.1.bt2
+[bt2_roscfam10_2_s3]: s3://genome-idx/bt/ROS_Cfam_1.0.2.bt2
+[bt2_roscfam10_3_s3]: s3://genome-idx/bt/ROS_Cfam_1.0.3.bt2
+[bt2_roscfam10_4_s3]: s3://genome-idx/bt/ROS_Cfam_1.0.4.bt2
+[bt2_roscfam10_r1_s3]: s3://genome-idx/bt/ROS_Cfam_1.0.rev.1.bt2
+[bt2_roscfam10_r2_s3]: s3://genome-idx/bt/ROS_Cfam_1.0.rev.2.bt2
+[bt2_roscfam10_md5_s3]: s3://genome-idx/bt/ROS_Cfam_1.0.md5
+[bt2_roscfam10_dict_s3]: s3://genome-idx/bt/ROS_Cfam_1.0.dict
+[bt2_roscfam10_manifest_s3]: s3://genome-idx/bt/ROS_Cfam_1.0.manifest.json
 [bt2_canfam31_full]: https://genome-idx.s3.amazonaws.com/bt/CanFam3.1.zip
 [bt2_canfam31_1]: https://genome-idx.s3.amazonaws.com/bt/CanFam3.1.1.bt2
 [bt2_canfam31_2]: https://genome-idx.s3.amazonaws.com/bt/CanFam3.1.2.bt2
@@ -444,6 +497,26 @@ websites for more information on the software, authors, and how to cite the work
 [bt2_canfam4_r1_s3]: s3://genome-idx/bt/canfam4.rev.1.bt2
 [bt2_canfam4_r2_s3]: s3://genome-idx/bt/canfam4.rev.2.bt2
 [bt2_canfam4_md5_s3]: s3://genome-idx/bt/canfam4.md5
+[bt2_grcr8_full]: https://genome-idx.s3.amazonaws.com/bt/GRCr8.zip
+[bt2_grcr8_1]: https://genome-idx.s3.amazonaws.com/bt/GRCr8.1.bt2
+[bt2_grcr8_2]: https://genome-idx.s3.amazonaws.com/bt/GRCr8.2.bt2
+[bt2_grcr8_3]: https://genome-idx.s3.amazonaws.com/bt/GRCr8.3.bt2
+[bt2_grcr8_4]: https://genome-idx.s3.amazonaws.com/bt/GRCr8.4.bt2
+[bt2_grcr8_r1]: https://genome-idx.s3.amazonaws.com/bt/GRCr8.rev.1.bt2
+[bt2_grcr8_r2]: https://genome-idx.s3.amazonaws.com/bt/GRCr8.rev.2.bt2
+[bt2_grcr8_md5]: https://genome-idx.s3.amazonaws.com/bt/GRCr8.md5
+[bt2_grcr8_dict]: https://genome-idx.s3.amazonaws.com/bt/GRCr8.dict
+[bt2_grcr8_manifest]: https://genome-idx.s3.amazonaws.com/bt/GRCr8.manifest.json
+[bt2_grcr8_full_s3]: s3://genome-idx/bt/GRCr8.zip
+[bt2_grcr8_1_s3]: s3://genome-idx/bt/GRCr8.1.bt2
+[bt2_grcr8_2_s3]: s3://genome-idx/bt/GRCr8.2.bt2
+[bt2_grcr8_3_s3]: s3://genome-idx/bt/GRCr8.3.bt2
+[bt2_grcr8_4_s3]: s3://genome-idx/bt/GRCr8.4.bt2
+[bt2_grcr8_r1_s3]: s3://genome-idx/bt/GRCr8.rev.1.bt2
+[bt2_grcr8_r2_s3]: s3://genome-idx/bt/GRCr8.rev.2.bt2
+[bt2_grcr8_md5_s3]: s3://genome-idx/bt/GRCr8.md5
+[bt2_grcr8_dict_s3]: s3://genome-idx/bt/GRCr8.dict
+[bt2_grcr8_manifest_s3]: s3://genome-idx/bt/GRCr8.manifest.json
 [bt2_rn4_full]: https://genome-idx.s3.amazonaws.com/bt/rn4.zip
 [bt2_rn4_1]: https://genome-idx.s3.amazonaws.com/bt/rn4.1.bt2
 [bt2_rn4_2]: https://genome-idx.s3.amazonaws.com/bt/rn4.2.bt2
@@ -476,6 +549,26 @@ websites for more information on the software, authors, and how to cite the work
 [bt2_rnor60_r1_s3]: s3://genome-idx/bt/Rnor_6.0.rev.1.bt2
 [bt2_rnor60_r2_s3]: s3://genome-idx/bt/Rnor_6.0.rev.2.bt2
 [bt2_rnor60_md5_s3]: s3://genome-idx/bt/Rnor_6.0.md5
+[bt2_grcg7b_full]: https://genome-idx.s3.amazonaws.com/bt/bGalGal1.mat.broiler.GRCg7b.zip
+[bt2_grcg7b_1]: https://genome-idx.s3.amazonaws.com/bt/bGalGal1.mat.broiler.GRCg7b.1.bt2
+[bt2_grcg7b_2]: https://genome-idx.s3.amazonaws.com/bt/bGalGal1.mat.broiler.GRCg7b.2.bt2
+[bt2_grcg7b_3]: https://genome-idx.s3.amazonaws.com/bt/bGalGal1.mat.broiler.GRCg7b.3.bt2
+[bt2_grcg7b_4]: https://genome-idx.s3.amazonaws.com/bt/bGalGal1.mat.broiler.GRCg7b.4.bt2
+[bt2_grcg7b_r1]: https://genome-idx.s3.amazonaws.com/bt/bGalGal1.mat.broiler.GRCg7b.rev.1.bt2
+[bt2_grcg7b_r2]: https://genome-idx.s3.amazonaws.com/bt/bGalGal1.mat.broiler.GRCg7b.rev.2.bt2
+[bt2_grcg7b_md5]: https://genome-idx.s3.amazonaws.com/bt/bGalGal1.mat.broiler.GRCg7b.md5
+[bt2_grcg7b_dict]: https://genome-idx.s3.amazonaws.com/bt/bGalGal1.mat.broiler.GRCg7b.dict
+[bt2_grcg7b_manifest]: https://genome-idx.s3.amazonaws.com/bt/bGalGal1.mat.broiler.GRCg7b.manifest.json
+[bt2_grcg7b_full_s3]: s3://genome-idx/bt/bGalGal1.mat.broiler.GRCg7b.zip
+[bt2_grcg7b_1_s3]: s3://genome-idx/bt/bGalGal1.mat.broiler.GRCg7b.1.bt2
+[bt2_grcg7b_2_s3]: s3://genome-idx/bt/bGalGal1.mat.broiler.GRCg7b.2.bt2
+[bt2_grcg7b_3_s3]: s3://genome-idx/bt/bGalGal1.mat.broiler.GRCg7b.3.bt2
+[bt2_grcg7b_4_s3]: s3://genome-idx/bt/bGalGal1.mat.broiler.GRCg7b.4.bt2
+[bt2_grcg7b_r1_s3]: s3://genome-idx/bt/bGalGal1.mat.broiler.GRCg7b.rev.1.bt2
+[bt2_grcg7b_r2_s3]: s3://genome-idx/bt/bGalGal1.mat.broiler.GRCg7b.rev.2.bt2
+[bt2_grcg7b_md5_s3]: s3://genome-idx/bt/bGalGal1.mat.broiler.GRCg7b.md5
+[bt2_grcg7b_dict_s3]: s3://genome-idx/bt/bGalGal1.mat.broiler.GRCg7b.dict
+[bt2_grcg7b_manifest_s3]: s3://genome-idx/bt/bGalGal1.mat.broiler.GRCg7b.manifest.json
 [bt2_grcg6a_full]: https://genome-idx.s3.amazonaws.com/bt/GRCg6a.zip
 [bt2_grcg6a_1]: https://genome-idx.s3.amazonaws.com/bt/GRCg6a.1.bt2
 [bt2_grcg6a_2]: https://genome-idx.s3.amazonaws.com/bt/GRCg6a.2.bt2
@@ -572,6 +665,66 @@ websites for more information on the software, authors, and how to cite the work
 [bt2_b73_refgen_v5_r1_s3]: s3://genome-idx/bt/Zm-B73-REFERENCE-NAM-5.0.rev.1.bt2
 [bt2_b73_refgen_v5_r2_s3]: s3://genome-idx/bt/Zm-B73-REFERENCE-NAM-5.0.rev.2.bt2
 [bt2_b73_refgen_v5_md5_s3]: s3://genome-idx/bt/Zm-B73-REFERENCE-NAM-5.0.md5
+[bt2_iwgsc_full]: https://genome-idx.s3.amazonaws.com/bt/IWGSC.zip
+[bt2_iwgsc_1]: https://genome-idx.s3.amazonaws.com/bt/IWGSC.1.bt2l
+[bt2_iwgsc_2]: https://genome-idx.s3.amazonaws.com/bt/IWGSC.2.bt2l
+[bt2_iwgsc_3]: https://genome-idx.s3.amazonaws.com/bt/IWGSC.3.bt2l
+[bt2_iwgsc_4]: https://genome-idx.s3.amazonaws.com/bt/IWGSC.4.bt2l
+[bt2_iwgsc_r1]: https://genome-idx.s3.amazonaws.com/bt/IWGSC.rev.1.bt2l
+[bt2_iwgsc_r2]: https://genome-idx.s3.amazonaws.com/bt/IWGSC.rev.2.bt2l
+[bt2_iwgsc_md5]: https://genome-idx.s3.amazonaws.com/bt/IWGSC.md5
+[bt2_iwgsc_dict]: https://genome-idx.s3.amazonaws.com/bt/IWGSC.dict
+[bt2_iwgsc_manifest]: https://genome-idx.s3.amazonaws.com/bt/IWGSC.manifest.json
+[bt2_iwgsc_full_s3]: s3://genome-idx/bt/IWGSC.zip
+[bt2_iwgsc_1_s3]: s3://genome-idx/bt/IWGSC.1.bt2l
+[bt2_iwgsc_2_s3]: s3://genome-idx/bt/IWGSC.2.bt2l
+[bt2_iwgsc_3_s3]: s3://genome-idx/bt/IWGSC.3.bt2l
+[bt2_iwgsc_4_s3]: s3://genome-idx/bt/IWGSC.4.bt2l
+[bt2_iwgsc_r1_s3]: s3://genome-idx/bt/IWGSC.rev.1.bt2l
+[bt2_iwgsc_r2_s3]: s3://genome-idx/bt/IWGSC.rev.2.bt2l
+[bt2_iwgsc_md5_s3]: s3://genome-idx/bt/IWGSC.md5
+[bt2_iwgsc_dict_s3]: s3://genome-idx/bt/IWGSC.dict
+[bt2_iwgsc_manifest_s3]: s3://genome-idx/bt/IWGSC.manifest.json
+[bt2_morexv3_full]: https://genome-idx.s3.amazonaws.com/bt/MorexV3_pseudomolecules_assembly.zip
+[bt2_morexv3_1]: https://genome-idx.s3.amazonaws.com/bt/MorexV3_pseudomolecules_assembly.1.bt2l
+[bt2_morexv3_2]: https://genome-idx.s3.amazonaws.com/bt/MorexV3_pseudomolecules_assembly.2.bt2l
+[bt2_morexv3_3]: https://genome-idx.s3.amazonaws.com/bt/MorexV3_pseudomolecules_assembly.3.bt2l
+[bt2_morexv3_4]: https://genome-idx.s3.amazonaws.com/bt/MorexV3_pseudomolecules_assembly.4.bt2l
+[bt2_morexv3_r1]: https://genome-idx.s3.amazonaws.com/bt/MorexV3_pseudomolecules_assembly.rev.1.bt2l
+[bt2_morexv3_r2]: https://genome-idx.s3.amazonaws.com/bt/MorexV3_pseudomolecules_assembly.rev.2.bt2l
+[bt2_morexv3_md5]: https://genome-idx.s3.amazonaws.com/bt/MorexV3_pseudomolecules_assembly.md5
+[bt2_morexv3_dict]: https://genome-idx.s3.amazonaws.com/bt/MorexV3_pseudomolecules_assembly.dict
+[bt2_morexv3_manifest]: https://genome-idx.s3.amazonaws.com/bt/MorexV3_pseudomolecules_assembly.manifest.json
+[bt2_morexv3_full_s3]: s3://genome-idx/bt/MorexV3_pseudomolecules_assembly.zip
+[bt2_morexv3_1_s3]: s3://genome-idx/bt/MorexV3_pseudomolecules_assembly.1.bt2l
+[bt2_morexv3_2_s3]: s3://genome-idx/bt/MorexV3_pseudomolecules_assembly.2.bt2l
+[bt2_morexv3_3_s3]: s3://genome-idx/bt/MorexV3_pseudomolecules_assembly.3.bt2l
+[bt2_morexv3_4_s3]: s3://genome-idx/bt/MorexV3_pseudomolecules_assembly.4.bt2l
+[bt2_morexv3_r1_s3]: s3://genome-idx/bt/MorexV3_pseudomolecules_assembly.rev.1.bt2l
+[bt2_morexv3_r2_s3]: s3://genome-idx/bt/MorexV3_pseudomolecules_assembly.rev.2.bt2l
+[bt2_morexv3_md5_s3]: s3://genome-idx/bt/MorexV3_pseudomolecules_assembly.md5
+[bt2_morexv3_dict_s3]: s3://genome-idx/bt/MorexV3_pseudomolecules_assembly.dict
+[bt2_morexv3_manifest_s3]: s3://genome-idx/bt/MorexV3_pseudomolecules_assembly.manifest.json
+[bt2_irgsp10_full]: https://genome-idx.s3.amazonaws.com/bt/IRGSP-1.0.zip
+[bt2_irgsp10_1]: https://genome-idx.s3.amazonaws.com/bt/IRGSP-1.0.1.bt2
+[bt2_irgsp10_2]: https://genome-idx.s3.amazonaws.com/bt/IRGSP-1.0.2.bt2
+[bt2_irgsp10_3]: https://genome-idx.s3.amazonaws.com/bt/IRGSP-1.0.3.bt2
+[bt2_irgsp10_4]: https://genome-idx.s3.amazonaws.com/bt/IRGSP-1.0.4.bt2
+[bt2_irgsp10_r1]: https://genome-idx.s3.amazonaws.com/bt/IRGSP-1.0.rev.1.bt2
+[bt2_irgsp10_r2]: https://genome-idx.s3.amazonaws.com/bt/IRGSP-1.0.rev.2.bt2
+[bt2_irgsp10_md5]: https://genome-idx.s3.amazonaws.com/bt/IRGSP-1.0.md5
+[bt2_irgsp10_dict]: https://genome-idx.s3.amazonaws.com/bt/IRGSP-1.0.dict
+[bt2_irgsp10_manifest]: https://genome-idx.s3.amazonaws.com/bt/IRGSP-1.0.manifest.json
+[bt2_irgsp10_full_s3]: s3://genome-idx/bt/IRGSP-1.0.zip
+[bt2_irgsp10_1_s3]: s3://genome-idx/bt/IRGSP-1.0.1.bt2
+[bt2_irgsp10_2_s3]: s3://genome-idx/bt/IRGSP-1.0.2.bt2
+[bt2_irgsp10_3_s3]: s3://genome-idx/bt/IRGSP-1.0.3.bt2
+[bt2_irgsp10_4_s3]: s3://genome-idx/bt/IRGSP-1.0.4.bt2
+[bt2_irgsp10_r1_s3]: s3://genome-idx/bt/IRGSP-1.0.rev.1.bt2
+[bt2_irgsp10_r2_s3]: s3://genome-idx/bt/IRGSP-1.0.rev.2.bt2
+[bt2_irgsp10_md5_s3]: s3://genome-idx/bt/IRGSP-1.0.md5
+[bt2_irgsp10_dict_s3]: s3://genome-idx/bt/IRGSP-1.0.dict
+[bt2_irgsp10_manifest_s3]: s3://genome-idx/bt/IRGSP-1.0.manifest.json
 [bt2_build4_full]: https://genome-idx.s3.amazonaws.com/bt/Build_4.0.zip
 [bt2_build4_1]: https://genome-idx.s3.amazonaws.com/bt/Build_4.0.1.bt2
 [bt2_build4_2]: https://genome-idx.s3.amazonaws.com/bt/Build_4.0.2.bt2
