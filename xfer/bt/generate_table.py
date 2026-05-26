@@ -43,5 +43,14 @@ with open('shortname_map.csv', 'rt') as fh:
         s3_links = ', '.join('[%s][bt2_%s_%s_s3]' % (label, short, suf) for label, suf in zip(labels, short_suf))
         https_metadata = ', '.join('[%s][bt2_%s_%s]' % (metadata_labels[typ], short, typ) for typ in metadata_types(toks))
         s3_metadata = ', '.join('[%s][bt2_%s_%s_s3]' % (metadata_labels[typ], short, typ) for typ in metadata_types(toks))
-        line = '%s / %s | [%s][bt2_%s_source] | %s | %s | %s | %s' % (species, assembly, source, short, https_links, s3_links, https_metadata, s3_metadata)
+        line = '| %s / %s | [%s][bt2_%s_source] | %s | %s | %s | %s |' % (
+            species,
+            assembly,
+            source,
+            short,
+            https_links,
+            s3_links,
+            https_metadata,
+            s3_metadata,
+        )
         print(line)
