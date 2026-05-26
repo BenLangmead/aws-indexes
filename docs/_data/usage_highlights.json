@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-25T15:50:00-04:00",
-  "updated_label": "May 25, 2026",
+  "generated_at": "2026-05-26T13:04:54-04:00",
+  "updated_label": "May 26, 2026",
   "period": {
     "start": "2026-05-01",
     "end": "2026-05-24",
@@ -15,19 +15,19 @@
     "weekly_unblended_cost_usd": 2614.2635602134123,
     "requests": 609541.0,
     "unblended_cost_usd": 8589.723126415498,
-    "storage_bytes": 28104928267559.0,
-    "storage_tb_decimal": 28.104928267559,
-    "objects": 4642.0
+    "storage_bytes": 28187937570879.0,
+    "storage_tb_decimal": 28.187937570879,
+    "objects": 4719.0
   },
   "cards": [
     {
       "label": "Data stored",
-      "value": "28.1 TB",
-      "detail": "Current S3 storage across 4,642 objects."
+      "value": "28.2 TB",
+      "detail": "Current S3 storage across 4,719 objects."
     },
     {
       "label": "Objects available",
-      "value": "4,642",
+      "value": "4,719",
       "detail": "Public files, archives, indexes, checksums, and reports in genome-idx."
     },
     {
@@ -44,11 +44,11 @@
   "site_cards": [
     {
       "label": "Data stored",
-      "value": "28.1 TB"
+      "value": "28.2 TB"
     },
     {
       "label": "Files available",
-      "value": "4,642"
+      "value": "4,719"
     },
     {
       "label": "Served / week",
