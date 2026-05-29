@@ -4,54 +4,54 @@ Bowtie 2 ([GitHub repo](https://github.com/BenLangmead/bowtie2)) and Bowtie ([Gi
 
 In the past, Bowtie 1 & 2 had incompatible genome indexes.  This changed in July 2019 when Bowtie v1.2.3 gained the ability to use Bowtie 2 formatted genome indexes (ending in `.bt2`).  We list only Bowtie 2-format `.bt2` index files here.
 
-You can download all the files for a given assembly as a single `zip` file, or as 6 separate `.bt2` / `.bt2l` files.  For example, if you only need the forward version of the genome index (e.g. for exact matching only), you can download the files individually and omit the `.rev.1.bt2` and `.rev.2.bt2` files.  Downloading already-decompressed index files might also be quicker for applications running in the AWS cloud.  The Metadata column links to the archive MD5 file and, for newer builds, may also include a SAM-style sequence dictionary (`.dict`) and provenance manifest (`.manifest.json`).
+You can download all the files for a given assembly as a single `zip` file, or as 6 separate `.bt2` / `.bt2l` files.  For example, if you only need the forward version of the genome index (e.g. for exact matching only), you can download the files individually and omit the `.rev.1.bt2` and `.rev.2.bt2` files.  Downloading already-decompressed index files might also be quicker for applications running in the AWS cloud.  The Metadata column links to the archive MD5 file, a SAM-style sequence dictionary (`.dict`), and the provenance manifest (`.manifest.json`).
 
 <div class="datatable-begin"></div>
 
 | Species/Build | Source | HTTPS URLs | Metadata |
 | --- | --- | --- | --- |
-| Human / GRCh38 no-alt analysis set | [NCBI][bt2_grch38_noalt_source] | [full zip][bt2_grch38_noalt_full], [.1.bt2][bt2_grch38_noalt_1], [.2.bt2][bt2_grch38_noalt_2], [.3.bt2][bt2_grch38_noalt_3], [.4.bt2][bt2_grch38_noalt_4], [.rev.1.bt2][bt2_grch38_noalt_r1], [.rev.2.bt2][bt2_grch38_noalt_r2] | [archive md5][bt2_grch38_noalt_md5] |
-| Human / GRCh38 no-alt +decoy set | [NCBI][bt2_grch38_noalt_decoy_source] | [full zip][bt2_grch38_noalt_decoy_full], [.1.bt2][bt2_grch38_noalt_decoy_1], [.2.bt2][bt2_grch38_noalt_decoy_2], [.3.bt2][bt2_grch38_noalt_decoy_3], [.4.bt2][bt2_grch38_noalt_decoy_4], [.rev.1.bt2][bt2_grch38_noalt_decoy_r1], [.rev.2.bt2][bt2_grch38_noalt_decoy_r2] | [archive md5][bt2_grch38_noalt_decoy_md5] |
-| Human / GRCh38 + major SNVs | [NCBI+1KG<sup>1</sup>][bt2_grch38_1kgmaj_source] | [full zip][bt2_grch38_1kgmaj_full], [.1.bt2][bt2_grch38_1kgmaj_1], [.2.bt2][bt2_grch38_1kgmaj_2], [.3.bt2][bt2_grch38_1kgmaj_3], [.4.bt2][bt2_grch38_1kgmaj_4], [.rev.1.bt2][bt2_grch38_1kgmaj_r1], [.rev.2.bt2][bt2_grch38_1kgmaj_r2] | [archive md5][bt2_grch38_1kgmaj_md5] |
-| Human / GRCh37 | [NCBI][bt2_grch37_source] | [full zip][bt2_grch37_full], [.1.bt2][bt2_grch37_1], [.2.bt2][bt2_grch37_2], [.3.bt2][bt2_grch37_3], [.4.bt2][bt2_grch37_4], [.rev.1.bt2][bt2_grch37_r1], [.rev.2.bt2][bt2_grch37_r2] | [archive md5][bt2_grch37_md5] |
-| Human / Ash1v1.7 | [JHU <sup>2</sup>][bt2_ash1_source] | [full zip][bt2_ash1_full], [.1.bt2][bt2_ash1_1], [.2.bt2][bt2_ash1_2], [.3.bt2][bt2_ash1_3], [.4.bt2][bt2_ash1_4], [.rev.1.bt2][bt2_ash1_r1], [.rev.2.bt2][bt2_ash1_r2] | [archive md5][bt2_ash1_md5] |
-| Human / Ash1v2.0 | [JHU <sup>2</sup>][bt2_ash1_2_source] | [full zip][bt2_ash1_2_full], [.1.bt2][bt2_ash1_2_1], [.2.bt2][bt2_ash1_2_2], [.3.bt2][bt2_ash1_2_3], [.4.bt2][bt2_ash1_2_4], [.rev.1.bt2][bt2_ash1_2_r1], [.rev.2.bt2][bt2_ash1_2_r2] | [archive md5][bt2_ash1_2_md5] |
-| Human / CHM13plusY | [T2T <sup>3</sup>][bt2_t2tplusy_source] | [full zip][bt2_t2tplusy_full], [.1.bt2][bt2_t2tplusy_1], [.2.bt2][bt2_t2tplusy_2], [.3.bt2][bt2_t2tplusy_3], [.4.bt2][bt2_t2tplusy_4], [.rev.1.bt2][bt2_t2tplusy_r1], [.rev.2.bt2][bt2_t2tplusy_r2] | [archive md5][bt2_t2tplusy_md5] |
+| Human / GRCh38 no-alt analysis set | [NCBI][bt2_grch38_noalt_source] | [full zip][bt2_grch38_noalt_full], [.1.bt2][bt2_grch38_noalt_1], [.2.bt2][bt2_grch38_noalt_2], [.3.bt2][bt2_grch38_noalt_3], [.4.bt2][bt2_grch38_noalt_4], [.rev.1.bt2][bt2_grch38_noalt_r1], [.rev.2.bt2][bt2_grch38_noalt_r2] | [archive md5][bt2_grch38_noalt_md5], [.dict][bt2_grch38_noalt_dict], [manifest json][bt2_grch38_noalt_manifest] |
+| Human / GRCh38 no-alt +decoy set | [NCBI][bt2_grch38_noalt_decoy_source] | [full zip][bt2_grch38_noalt_decoy_full], [.1.bt2][bt2_grch38_noalt_decoy_1], [.2.bt2][bt2_grch38_noalt_decoy_2], [.3.bt2][bt2_grch38_noalt_decoy_3], [.4.bt2][bt2_grch38_noalt_decoy_4], [.rev.1.bt2][bt2_grch38_noalt_decoy_r1], [.rev.2.bt2][bt2_grch38_noalt_decoy_r2] | [archive md5][bt2_grch38_noalt_decoy_md5], [.dict][bt2_grch38_noalt_decoy_dict], [manifest json][bt2_grch38_noalt_decoy_manifest] |
+| Human / GRCh38 + major SNVs | [NCBI+1KG<sup>1</sup>][bt2_grch38_1kgmaj_source] | [full zip][bt2_grch38_1kgmaj_full], [.1.bt2][bt2_grch38_1kgmaj_1], [.2.bt2][bt2_grch38_1kgmaj_2], [.3.bt2][bt2_grch38_1kgmaj_3], [.4.bt2][bt2_grch38_1kgmaj_4], [.rev.1.bt2][bt2_grch38_1kgmaj_r1], [.rev.2.bt2][bt2_grch38_1kgmaj_r2] | [archive md5][bt2_grch38_1kgmaj_md5], [.dict][bt2_grch38_1kgmaj_dict], [manifest json][bt2_grch38_1kgmaj_manifest] |
+| Human / GRCh37 | [NCBI][bt2_grch37_source] | [full zip][bt2_grch37_full], [.1.bt2][bt2_grch37_1], [.2.bt2][bt2_grch37_2], [.3.bt2][bt2_grch37_3], [.4.bt2][bt2_grch37_4], [.rev.1.bt2][bt2_grch37_r1], [.rev.2.bt2][bt2_grch37_r2] | [archive md5][bt2_grch37_md5], [.dict][bt2_grch37_dict], [manifest json][bt2_grch37_manifest] |
+| Human / Ash1v1.7 | [JHU <sup>2</sup>][bt2_ash1_source] | [full zip][bt2_ash1_full], [.1.bt2][bt2_ash1_1], [.2.bt2][bt2_ash1_2], [.3.bt2][bt2_ash1_3], [.4.bt2][bt2_ash1_4], [.rev.1.bt2][bt2_ash1_r1], [.rev.2.bt2][bt2_ash1_r2] | [archive md5][bt2_ash1_md5], [.dict][bt2_ash1_dict], [manifest json][bt2_ash1_manifest] |
+| Human / Ash1v2.0 | [JHU <sup>2</sup>][bt2_ash1_2_source] | [full zip][bt2_ash1_2_full], [.1.bt2][bt2_ash1_2_1], [.2.bt2][bt2_ash1_2_2], [.3.bt2][bt2_ash1_2_3], [.4.bt2][bt2_ash1_2_4], [.rev.1.bt2][bt2_ash1_2_r1], [.rev.2.bt2][bt2_ash1_2_r2] | [archive md5][bt2_ash1_2_md5], [.dict][bt2_ash1_2_dict], [manifest json][bt2_ash1_2_manifest] |
+| Human / CHM13plusY | [T2T <sup>3</sup>][bt2_t2tplusy_source] | [full zip][bt2_t2tplusy_full], [.1.bt2][bt2_t2tplusy_1], [.2.bt2][bt2_t2tplusy_2], [.3.bt2][bt2_t2tplusy_3], [.4.bt2][bt2_t2tplusy_4], [.rev.1.bt2][bt2_t2tplusy_r1], [.rev.2.bt2][bt2_t2tplusy_r2] | [archive md5][bt2_t2tplusy_md5], [.dict][bt2_t2tplusy_dict], [manifest json][bt2_t2tplusy_manifest] |
 | Human / hs1 / T2T-CHM13v2.0 | [UCSC][bt2_hs1_source] | [full zip][bt2_hs1_full], [.1.bt2][bt2_hs1_1], [.2.bt2][bt2_hs1_2], [.3.bt2][bt2_hs1_3], [.4.bt2][bt2_hs1_4], [.rev.1.bt2][bt2_hs1_r1], [.rev.2.bt2][bt2_hs1_r2] | [archive md5][bt2_hs1_md5], [.dict][bt2_hs1_dict], [manifest json][bt2_hs1_manifest] |
-| Human / hg19 | [UCSC][bt2_hg19_source] | [full zip][bt2_hg19_full], [.1.bt2][bt2_hg19_1], [.2.bt2][bt2_hg19_2], [.3.bt2][bt2_hg19_3], [.4.bt2][bt2_hg19_4], [.rev.1.bt2][bt2_hg19_r1], [.rev.2.bt2][bt2_hg19_r2] | [archive md5][bt2_hg19_md5] |
-| Human / hg18 | [UCSC][bt2_hg18_source] | [full zip][bt2_hg18_full], [.1.bt2][bt2_hg18_1], [.2.bt2][bt2_hg18_2], [.3.bt2][bt2_hg18_3], [.4.bt2][bt2_hg18_4], [.rev.1.bt2][bt2_hg18_r1], [.rev.2.bt2][bt2_hg18_r2] | [archive md5][bt2_hg18_md5] |
-| Mouse / GRCm38 | [NCBI][bt2_grcm38_source] | [full zip][bt2_grcm38_full], [.1.bt2][bt2_grcm38_1], [.2.bt2][bt2_grcm38_2], [.3.bt2][bt2_grcm38_3], [.4.bt2][bt2_grcm38_4], [.rev.1.bt2][bt2_grcm38_r1], [.rev.2.bt2][bt2_grcm38_r2] | [archive md5][bt2_grcm38_md5] |
-| Mouse / GRCm39 | [NCBI][bt2_grcm39_source] | [full zip][bt2_grcm39_full], [.1.bt2][bt2_grcm39_1], [.2.bt2][bt2_grcm39_2], [.3.bt2][bt2_grcm39_3], [.4.bt2][bt2_grcm39_4], [.rev.1.bt2][bt2_grcm39_r1], [.rev.2.bt2][bt2_grcm39_r2] | [archive md5][bt2_grcm39_md5] |
-| Mouse / mm10 | [UCSC][bt2_mm10_source] | [full zip][bt2_mm10_full], [.1.bt2][bt2_mm10_1], [.2.bt2][bt2_mm10_2], [.3.bt2][bt2_mm10_3], [.4.bt2][bt2_mm10_4], [.rev.1.bt2][bt2_mm10_r1], [.rev.2.bt2][bt2_mm10_r2] | [archive md5][bt2_mm10_md5] |
-| Mouse / mm9 | [UCSC][bt2_mm9_source] | [full zip][bt2_mm9_full], [.1.bt2][bt2_mm9_1], [.2.bt2][bt2_mm9_2], [.3.bt2][bt2_mm9_3], [.4.bt2][bt2_mm9_4], [.rev.1.bt2][bt2_mm9_r1], [.rev.2.bt2][bt2_mm9_r2] | [archive md5][bt2_mm9_md5] |
-| Chimpanzee / Clint_PTRv2 | [NCBI][bt2_clintptr2_source] | [full zip][bt2_clintptr2_full], [.1.bt2][bt2_clintptr2_1], [.2.bt2][bt2_clintptr2_2], [.3.bt2][bt2_clintptr2_3], [.4.bt2][bt2_clintptr2_4], [.rev.1.bt2][bt2_clintptr2_r1], [.rev.2.bt2][bt2_clintptr2_r2] | [archive md5][bt2_clintptr2_md5] |
-| Chimpanzee / CHIMP2.1.4 | [Ensembl][bt2_chimp214_source] | [full zip][bt2_chimp214_full], [.1.bt2][bt2_chimp214_1], [.2.bt2][bt2_chimp214_2], [.3.bt2][bt2_chimp214_3], [.4.bt2][bt2_chimp214_4], [.rev.1.bt2][bt2_chimp214_r1], [.rev.2.bt2][bt2_chimp214_r2] | [archive md5][bt2_chimp214_md5] |
-| Rhesus macaque / MMul_10 | [Ensembl][bt2_mmul10_source] | [full zip][bt2_mmul10_full], [.1.bt2][bt2_mmul10_1], [.2.bt2][bt2_mmul10_2], [.3.bt2][bt2_mmul10_3], [.4.bt2][bt2_mmul10_4], [.rev.1.bt2][bt2_mmul10_r1], [.rev.2.bt2][bt2_mmul10_r2] | [archive md5][bt2_mmul10_md5] |
+| Human / hg19 | [UCSC][bt2_hg19_source] | [full zip][bt2_hg19_full], [.1.bt2][bt2_hg19_1], [.2.bt2][bt2_hg19_2], [.3.bt2][bt2_hg19_3], [.4.bt2][bt2_hg19_4], [.rev.1.bt2][bt2_hg19_r1], [.rev.2.bt2][bt2_hg19_r2] | [archive md5][bt2_hg19_md5], [.dict][bt2_hg19_dict], [manifest json][bt2_hg19_manifest] |
+| Human / hg18 | [UCSC][bt2_hg18_source] | [full zip][bt2_hg18_full], [.1.bt2][bt2_hg18_1], [.2.bt2][bt2_hg18_2], [.3.bt2][bt2_hg18_3], [.4.bt2][bt2_hg18_4], [.rev.1.bt2][bt2_hg18_r1], [.rev.2.bt2][bt2_hg18_r2] | [archive md5][bt2_hg18_md5], [.dict][bt2_hg18_dict], [manifest json][bt2_hg18_manifest] |
+| Mouse / GRCm38 | [NCBI][bt2_grcm38_source] | [full zip][bt2_grcm38_full], [.1.bt2][bt2_grcm38_1], [.2.bt2][bt2_grcm38_2], [.3.bt2][bt2_grcm38_3], [.4.bt2][bt2_grcm38_4], [.rev.1.bt2][bt2_grcm38_r1], [.rev.2.bt2][bt2_grcm38_r2] | [archive md5][bt2_grcm38_md5], [.dict][bt2_grcm38_dict], [manifest json][bt2_grcm38_manifest] |
+| Mouse / GRCm39 | [NCBI][bt2_grcm39_source] | [full zip][bt2_grcm39_full], [.1.bt2][bt2_grcm39_1], [.2.bt2][bt2_grcm39_2], [.3.bt2][bt2_grcm39_3], [.4.bt2][bt2_grcm39_4], [.rev.1.bt2][bt2_grcm39_r1], [.rev.2.bt2][bt2_grcm39_r2] | [archive md5][bt2_grcm39_md5], [.dict][bt2_grcm39_dict], [manifest json][bt2_grcm39_manifest] |
+| Mouse / mm10 | [UCSC][bt2_mm10_source] | [full zip][bt2_mm10_full], [.1.bt2][bt2_mm10_1], [.2.bt2][bt2_mm10_2], [.3.bt2][bt2_mm10_3], [.4.bt2][bt2_mm10_4], [.rev.1.bt2][bt2_mm10_r1], [.rev.2.bt2][bt2_mm10_r2] | [archive md5][bt2_mm10_md5], [.dict][bt2_mm10_dict], [manifest json][bt2_mm10_manifest] |
+| Mouse / mm9 | [UCSC][bt2_mm9_source] | [full zip][bt2_mm9_full], [.1.bt2][bt2_mm9_1], [.2.bt2][bt2_mm9_2], [.3.bt2][bt2_mm9_3], [.4.bt2][bt2_mm9_4], [.rev.1.bt2][bt2_mm9_r1], [.rev.2.bt2][bt2_mm9_r2] | [archive md5][bt2_mm9_md5], [.dict][bt2_mm9_dict], [manifest json][bt2_mm9_manifest] |
+| Chimpanzee / Clint_PTRv2 | [NCBI][bt2_clintptr2_source] | [full zip][bt2_clintptr2_full], [.1.bt2][bt2_clintptr2_1], [.2.bt2][bt2_clintptr2_2], [.3.bt2][bt2_clintptr2_3], [.4.bt2][bt2_clintptr2_4], [.rev.1.bt2][bt2_clintptr2_r1], [.rev.2.bt2][bt2_clintptr2_r2] | [archive md5][bt2_clintptr2_md5], [.dict][bt2_clintptr2_dict], [manifest json][bt2_clintptr2_manifest] |
+| Chimpanzee / CHIMP2.1.4 | [Ensembl][bt2_chimp214_source] | [full zip][bt2_chimp214_full], [.1.bt2][bt2_chimp214_1], [.2.bt2][bt2_chimp214_2], [.3.bt2][bt2_chimp214_3], [.4.bt2][bt2_chimp214_4], [.rev.1.bt2][bt2_chimp214_r1], [.rev.2.bt2][bt2_chimp214_r2] | [archive md5][bt2_chimp214_md5], [.dict][bt2_chimp214_dict], [manifest json][bt2_chimp214_manifest] |
+| Rhesus macaque / MMul_10 | [Ensembl][bt2_mmul10_source] | [full zip][bt2_mmul10_full], [.1.bt2][bt2_mmul10_1], [.2.bt2][bt2_mmul10_2], [.3.bt2][bt2_mmul10_3], [.4.bt2][bt2_mmul10_4], [.rev.1.bt2][bt2_mmul10_r1], [.rev.2.bt2][bt2_mmul10_r2] | [archive md5][bt2_mmul10_md5], [.dict][bt2_mmul10_dict], [manifest json][bt2_mmul10_manifest] |
 | Cow / ARS-UCD2.0 | [NCBI RefSeq][bt2_arsucd20_source] | [full zip][bt2_arsucd20_full], [.1.bt2][bt2_arsucd20_1], [.2.bt2][bt2_arsucd20_2], [.3.bt2][bt2_arsucd20_3], [.4.bt2][bt2_arsucd20_4], [.rev.1.bt2][bt2_arsucd20_r1], [.rev.2.bt2][bt2_arsucd20_r2] | [archive md5][bt2_arsucd20_md5], [.dict][bt2_arsucd20_dict], [manifest json][bt2_arsucd20_manifest] |
-| Cow / ARS-UCD1.2 | [NCBI][bt2_arsucd12_source] | [full zip][bt2_arsucd12_full], [.1.bt2][bt2_arsucd12_1], [.2.bt2][bt2_arsucd12_2], [.3.bt2][bt2_arsucd12_3], [.4.bt2][bt2_arsucd12_4], [.rev.1.bt2][bt2_arsucd12_r1], [.rev.2.bt2][bt2_arsucd12_r2] | [archive md5][bt2_arsucd12_md5] |
-| Pig / Sscrofa11.1 | [NCBI][bt2_sscorfa111_source] | [full zip][bt2_sscorfa111_full], [.1.bt2][bt2_sscorfa111_1], [.2.bt2][bt2_sscorfa111_2], [.3.bt2][bt2_sscorfa111_3], [.4.bt2][bt2_sscorfa111_4], [.rev.1.bt2][bt2_sscorfa111_r1], [.rev.2.bt2][bt2_sscorfa111_r2] | [archive md5][bt2_sscorfa111_md5] |
+| Cow / ARS-UCD1.2 | [NCBI][bt2_arsucd12_source] | [full zip][bt2_arsucd12_full], [.1.bt2][bt2_arsucd12_1], [.2.bt2][bt2_arsucd12_2], [.3.bt2][bt2_arsucd12_3], [.4.bt2][bt2_arsucd12_4], [.rev.1.bt2][bt2_arsucd12_r1], [.rev.2.bt2][bt2_arsucd12_r2] | [archive md5][bt2_arsucd12_md5], [.dict][bt2_arsucd12_dict], [manifest json][bt2_arsucd12_manifest] |
+| Pig / Sscrofa11.1 | [NCBI][bt2_sscorfa111_source] | [full zip][bt2_sscorfa111_full], [.1.bt2][bt2_sscorfa111_1], [.2.bt2][bt2_sscorfa111_2], [.3.bt2][bt2_sscorfa111_3], [.4.bt2][bt2_sscorfa111_4], [.rev.1.bt2][bt2_sscorfa111_r1], [.rev.2.bt2][bt2_sscorfa111_r2] | [archive md5][bt2_sscorfa111_md5], [.dict][bt2_sscorfa111_dict], [manifest json][bt2_sscorfa111_manifest] |
 | Dog / ROS_Cfam_1.0 | [NCBI RefSeq][bt2_roscfam10_source] | [full zip][bt2_roscfam10_full], [.1.bt2][bt2_roscfam10_1], [.2.bt2][bt2_roscfam10_2], [.3.bt2][bt2_roscfam10_3], [.4.bt2][bt2_roscfam10_4], [.rev.1.bt2][bt2_roscfam10_r1], [.rev.2.bt2][bt2_roscfam10_r2] | [archive md5][bt2_roscfam10_md5], [.dict][bt2_roscfam10_dict], [manifest json][bt2_roscfam10_manifest] |
-| Dog / CanFam3.1 | [Ensembl][bt2_canfam31_source] | [full zip][bt2_canfam31_full], [.1.bt2][bt2_canfam31_1], [.2.bt2][bt2_canfam31_2], [.3.bt2][bt2_canfam31_3], [.4.bt2][bt2_canfam31_4], [.rev.1.bt2][bt2_canfam31_r1], [.rev.2.bt2][bt2_canfam31_r2] | [archive md5][bt2_canfam31_md5] |
-| Dog / CanFam4 | [NCBI][bt2_canfam4_source] | [full zip][bt2_canfam4_full], [.1.bt2][bt2_canfam4_1], [.2.bt2][bt2_canfam4_2], [.3.bt2][bt2_canfam4_3], [.4.bt2][bt2_canfam4_4], [.rev.1.bt2][bt2_canfam4_r1], [.rev.2.bt2][bt2_canfam4_r2] | [archive md5][bt2_canfam4_md5] |
+| Dog / CanFam3.1 | [Ensembl][bt2_canfam31_source] | [full zip][bt2_canfam31_full], [.1.bt2][bt2_canfam31_1], [.2.bt2][bt2_canfam31_2], [.3.bt2][bt2_canfam31_3], [.4.bt2][bt2_canfam31_4], [.rev.1.bt2][bt2_canfam31_r1], [.rev.2.bt2][bt2_canfam31_r2] | [archive md5][bt2_canfam31_md5], [.dict][bt2_canfam31_dict], [manifest json][bt2_canfam31_manifest] |
+| Dog / CanFam4 | [NCBI][bt2_canfam4_source] | [full zip][bt2_canfam4_full], [.1.bt2][bt2_canfam4_1], [.2.bt2][bt2_canfam4_2], [.3.bt2][bt2_canfam4_3], [.4.bt2][bt2_canfam4_4], [.rev.1.bt2][bt2_canfam4_r1], [.rev.2.bt2][bt2_canfam4_r2] | [archive md5][bt2_canfam4_md5], [.dict][bt2_canfam4_dict], [manifest json][bt2_canfam4_manifest] |
 | Rat / GRCr8 | [NCBI RefSeq][bt2_grcr8_source] | [full zip][bt2_grcr8_full], [.1.bt2][bt2_grcr8_1], [.2.bt2][bt2_grcr8_2], [.3.bt2][bt2_grcr8_3], [.4.bt2][bt2_grcr8_4], [.rev.1.bt2][bt2_grcr8_r1], [.rev.2.bt2][bt2_grcr8_r2] | [archive md5][bt2_grcr8_md5], [.dict][bt2_grcr8_dict], [manifest json][bt2_grcr8_manifest] |
-| Rat / rn4 | [UCSC][bt2_rn4_source] | [full zip][bt2_rn4_full], [.1.bt2][bt2_rn4_1], [.2.bt2][bt2_rn4_2], [.3.bt2][bt2_rn4_3], [.4.bt2][bt2_rn4_4], [.rev.1.bt2][bt2_rn4_r1], [.rev.2.bt2][bt2_rn4_r2] | [archive md5][bt2_rn4_md5] |
-| Rat / Rnor6.0 | [NCBI][bt2_rnor60_source] | [full zip][bt2_rnor60_full], [.1.bt2][bt2_rnor60_1], [.2.bt2][bt2_rnor60_2], [.3.bt2][bt2_rnor60_3], [.4.bt2][bt2_rnor60_4], [.rev.1.bt2][bt2_rnor60_r1], [.rev.2.bt2][bt2_rnor60_r2] | [archive md5][bt2_rnor60_md5] |
+| Rat / rn4 | [UCSC][bt2_rn4_source] | [full zip][bt2_rn4_full], [.1.bt2][bt2_rn4_1], [.2.bt2][bt2_rn4_2], [.3.bt2][bt2_rn4_3], [.4.bt2][bt2_rn4_4], [.rev.1.bt2][bt2_rn4_r1], [.rev.2.bt2][bt2_rn4_r2] | [archive md5][bt2_rn4_md5], [.dict][bt2_rn4_dict], [manifest json][bt2_rn4_manifest] |
+| Rat / Rnor6.0 | [NCBI][bt2_rnor60_source] | [full zip][bt2_rnor60_full], [.1.bt2][bt2_rnor60_1], [.2.bt2][bt2_rnor60_2], [.3.bt2][bt2_rnor60_3], [.4.bt2][bt2_rnor60_4], [.rev.1.bt2][bt2_rnor60_r1], [.rev.2.bt2][bt2_rnor60_r2] | [archive md5][bt2_rnor60_md5], [.dict][bt2_rnor60_dict], [manifest json][bt2_rnor60_manifest] |
 | Chicken / bGalGal1.mat.broiler.GRCg7b | [NCBI RefSeq][bt2_grcg7b_source] | [full zip][bt2_grcg7b_full], [.1.bt2][bt2_grcg7b_1], [.2.bt2][bt2_grcg7b_2], [.3.bt2][bt2_grcg7b_3], [.4.bt2][bt2_grcg7b_4], [.rev.1.bt2][bt2_grcg7b_r1], [.rev.2.bt2][bt2_grcg7b_r2] | [archive md5][bt2_grcg7b_md5], [.dict][bt2_grcg7b_dict], [manifest json][bt2_grcg7b_manifest] |
-| Chicken / GRCg6a | [NCBI][bt2_grcg6a_source] | [full zip][bt2_grcg6a_full], [.1.bt2][bt2_grcg6a_1], [.2.bt2][bt2_grcg6a_2], [.3.bt2][bt2_grcg6a_3], [.4.bt2][bt2_grcg6a_4], [.rev.1.bt2][bt2_grcg6a_r1], [.rev.2.bt2][bt2_grcg6a_r2] | [archive md5][bt2_grcg6a_md5] |
-| Chicken / Galgal4 | [Ensembl][bt2_galgal4_source] | [full zip][bt2_galgal4_full], [.1.bt2][bt2_galgal4_1], [.2.bt2][bt2_galgal4_2], [.3.bt2][bt2_galgal4_3], [.4.bt2][bt2_galgal4_4], [.rev.1.bt2][bt2_galgal4_r1], [.rev.2.bt2][bt2_galgal4_r2] | [archive md5][bt2_galgal4_md5] |
-| Zebrafish / GRCz11 | [NCBI][bt2_grcz11_source] | [full zip][bt2_grcz11_full], [.1.bt2][bt2_grcz11_1], [.2.bt2][bt2_grcz11_2], [.3.bt2][bt2_grcz11_3], [.4.bt2][bt2_grcz11_4], [.rev.1.bt2][bt2_grcz11_r1], [.rev.2.bt2][bt2_grcz11_r2] | [archive md5][bt2_grcz11_md5] |
-| Zebrafish / GRCz10 | [NCBI][bt2_grcz10_source] | [full zip][bt2_grcz10_full], [.1.bt2][bt2_grcz10_1], [.2.bt2][bt2_grcz10_2], [.3.bt2][bt2_grcz10_3], [.4.bt2][bt2_grcz10_4], [.rev.1.bt2][bt2_grcz10_r1], [.rev.2.bt2][bt2_grcz10_r2] | [archive md5][bt2_grcz10_md5] |
-| Corn / AGPv4 | [Ensembl][bt2_agpv4_source] | [full zip][bt2_agpv4_full], [.1.bt2][bt2_agpv4_1], [.2.bt2][bt2_agpv4_2], [.3.bt2][bt2_agpv4_3], [.4.bt2][bt2_agpv4_4], [.rev.1.bt2][bt2_agpv4_r1], [.rev.2.bt2][bt2_agpv4_r2] | [archive md5][bt2_agpv4_md5] |
-| Corn / B73 RefGenV5 | [NCBI][bt2_b73_refgen_v5_source] | [full zip][bt2_b73_refgen_v5_full], [.1.bt2][bt2_b73_refgen_v5_1], [.2.bt2][bt2_b73_refgen_v5_2], [.3.bt2][bt2_b73_refgen_v5_3], [.4.bt2][bt2_b73_refgen_v5_4], [.rev.1.bt2][bt2_b73_refgen_v5_r1], [.rev.2.bt2][bt2_b73_refgen_v5_r2] | [archive md5][bt2_b73_refgen_v5_md5] |
+| Chicken / GRCg6a | [NCBI][bt2_grcg6a_source] | [full zip][bt2_grcg6a_full], [.1.bt2][bt2_grcg6a_1], [.2.bt2][bt2_grcg6a_2], [.3.bt2][bt2_grcg6a_3], [.4.bt2][bt2_grcg6a_4], [.rev.1.bt2][bt2_grcg6a_r1], [.rev.2.bt2][bt2_grcg6a_r2] | [archive md5][bt2_grcg6a_md5], [.dict][bt2_grcg6a_dict], [manifest json][bt2_grcg6a_manifest] |
+| Chicken / Galgal4 | [Ensembl][bt2_galgal4_source] | [full zip][bt2_galgal4_full], [.1.bt2][bt2_galgal4_1], [.2.bt2][bt2_galgal4_2], [.3.bt2][bt2_galgal4_3], [.4.bt2][bt2_galgal4_4], [.rev.1.bt2][bt2_galgal4_r1], [.rev.2.bt2][bt2_galgal4_r2] | [archive md5][bt2_galgal4_md5], [.dict][bt2_galgal4_dict], [manifest json][bt2_galgal4_manifest] |
+| Zebrafish / GRCz11 | [NCBI][bt2_grcz11_source] | [full zip][bt2_grcz11_full], [.1.bt2][bt2_grcz11_1], [.2.bt2][bt2_grcz11_2], [.3.bt2][bt2_grcz11_3], [.4.bt2][bt2_grcz11_4], [.rev.1.bt2][bt2_grcz11_r1], [.rev.2.bt2][bt2_grcz11_r2] | [archive md5][bt2_grcz11_md5], [.dict][bt2_grcz11_dict], [manifest json][bt2_grcz11_manifest] |
+| Zebrafish / GRCz10 | [NCBI][bt2_grcz10_source] | [full zip][bt2_grcz10_full], [.1.bt2][bt2_grcz10_1], [.2.bt2][bt2_grcz10_2], [.3.bt2][bt2_grcz10_3], [.4.bt2][bt2_grcz10_4], [.rev.1.bt2][bt2_grcz10_r1], [.rev.2.bt2][bt2_grcz10_r2] | [archive md5][bt2_grcz10_md5], [.dict][bt2_grcz10_dict], [manifest json][bt2_grcz10_manifest] |
+| Corn / AGPv4 | [Ensembl][bt2_agpv4_source] | [full zip][bt2_agpv4_full], [.1.bt2][bt2_agpv4_1], [.2.bt2][bt2_agpv4_2], [.3.bt2][bt2_agpv4_3], [.4.bt2][bt2_agpv4_4], [.rev.1.bt2][bt2_agpv4_r1], [.rev.2.bt2][bt2_agpv4_r2] | [archive md5][bt2_agpv4_md5], [.dict][bt2_agpv4_dict], [manifest json][bt2_agpv4_manifest] |
+| Corn / B73 RefGenV5 | [NCBI][bt2_b73_refgen_v5_source] | [full zip][bt2_b73_refgen_v5_full], [.1.bt2][bt2_b73_refgen_v5_1], [.2.bt2][bt2_b73_refgen_v5_2], [.3.bt2][bt2_b73_refgen_v5_3], [.4.bt2][bt2_b73_refgen_v5_4], [.rev.1.bt2][bt2_b73_refgen_v5_r1], [.rev.2.bt2][bt2_b73_refgen_v5_r2] | [archive md5][bt2_b73_refgen_v5_md5], [.dict][bt2_b73_refgen_v5_dict], [manifest json][bt2_b73_refgen_v5_manifest] |
 | Wheat / IWGSC | [Ensembl Plants][bt2_iwgsc_source] | [full zip][bt2_iwgsc_full], [.1.bt2l][bt2_iwgsc_1], [.2.bt2l][bt2_iwgsc_2], [.3.bt2l][bt2_iwgsc_3], [.4.bt2l][bt2_iwgsc_4], [.rev.1.bt2l][bt2_iwgsc_r1], [.rev.2.bt2l][bt2_iwgsc_r2] | [archive md5][bt2_iwgsc_md5], [.dict][bt2_iwgsc_dict], [manifest json][bt2_iwgsc_manifest] |
 | Barley / MorexV3_pseudomolecules_assembly | [Ensembl Plants][bt2_morexv3_source] | [full zip][bt2_morexv3_full], [.1.bt2l][bt2_morexv3_1], [.2.bt2l][bt2_morexv3_2], [.3.bt2l][bt2_morexv3_3], [.4.bt2l][bt2_morexv3_4], [.rev.1.bt2l][bt2_morexv3_r1], [.rev.2.bt2l][bt2_morexv3_r2] | [archive md5][bt2_morexv3_md5], [.dict][bt2_morexv3_dict], [manifest json][bt2_morexv3_manifest] |
 | Oryza sativa (rice) / IRGSP-1.0 | [Ensembl Plants][bt2_irgsp10_source] | [full zip][bt2_irgsp10_full], [.1.bt2][bt2_irgsp10_1], [.2.bt2][bt2_irgsp10_2], [.3.bt2][bt2_irgsp10_3], [.4.bt2][bt2_irgsp10_4], [.rev.1.bt2][bt2_irgsp10_r1], [.rev.2.bt2][bt2_irgsp10_r2] | [archive md5][bt2_irgsp10_md5], [.dict][bt2_irgsp10_dict], [manifest json][bt2_irgsp10_manifest] |
-| Oryza sativa (rice) / Build_4.0 | [NCBI][bt2_build4_source] | [full zip][bt2_build4_full], [.1.bt2][bt2_build4_1], [.2.bt2][bt2_build4_2], [.3.bt2][bt2_build4_3], [.4.bt2][bt2_build4_4], [.rev.1.bt2][bt2_build4_r1], [.rev.2.bt2][bt2_build4_r2] | [archive md5][bt2_build4_md5] |
-| Arabidopsis thaliana / TAIR10 | [Ensembl][bt2_tair10_source] | [full zip][bt2_tair10_full], [.1.bt2][bt2_tair10_1], [.2.bt2][bt2_tair10_2], [.3.bt2][bt2_tair10_3], [.4.bt2][bt2_tair10_4], [.rev.1.bt2][bt2_tair10_r1], [.rev.2.bt2][bt2_tair10_r2] | [archive md5][bt2_tair10_md5] |
-| Fruitfly / BDGP6 | [Ensembl][bt2_bdgp6_source] | [full zip][bt2_bdgp6_full], [.1.bt2][bt2_bdgp6_1], [.2.bt2][bt2_bdgp6_2], [.3.bt2][bt2_bdgp6_3], [.4.bt2][bt2_bdgp6_4], [.rev.1.bt2][bt2_bdgp6_r1], [.rev.2.bt2][bt2_bdgp6_r2] | [archive md5][bt2_bdgp6_md5] |
-| Fruitfly / Dmel A4 1.0 | [NCBI][bt2_dmela410_source] | [full zip][bt2_dmela410_full], [.1.bt2][bt2_dmela410_1], [.2.bt2][bt2_dmela410_2], [.3.bt2][bt2_dmela410_3], [.4.bt2][bt2_dmela410_4], [.rev.1.bt2][bt2_dmela410_r1], [.rev.2.bt2][bt2_dmela410_r2] | [archive md5][bt2_dmela410_md5] |
-| C. elegans / WBcel235 | [Ensembl][bt2_wbcel235_source] | [full zip][bt2_wbcel235_full], [.1.bt2][bt2_wbcel235_1], [.2.bt2][bt2_wbcel235_2], [.3.bt2][bt2_wbcel235_3], [.4.bt2][bt2_wbcel235_4], [.rev.1.bt2][bt2_wbcel235_r1], [.rev.2.bt2][bt2_wbcel235_r2] | [archive md5][bt2_wbcel235_md5] |
-| Yeast / R64-1-1 | [Ensembl][bt2_r6411_source] | [full zip][bt2_r6411_full], [.1.bt2][bt2_r6411_1], [.2.bt2][bt2_r6411_2], [.3.bt2][bt2_r6411_3], [.4.bt2][bt2_r6411_4], [.rev.1.bt2][bt2_r6411_r1], [.rev.2.bt2][bt2_r6411_r2] | [archive md5][bt2_r6411_md5] |
+| Oryza sativa (rice) / Build_4.0 | [NCBI][bt2_build4_source] | [full zip][bt2_build4_full], [.1.bt2][bt2_build4_1], [.2.bt2][bt2_build4_2], [.3.bt2][bt2_build4_3], [.4.bt2][bt2_build4_4], [.rev.1.bt2][bt2_build4_r1], [.rev.2.bt2][bt2_build4_r2] | [archive md5][bt2_build4_md5], [.dict][bt2_build4_dict], [manifest json][bt2_build4_manifest] |
+| Arabidopsis thaliana / TAIR10 | [Ensembl][bt2_tair10_source] | [full zip][bt2_tair10_full], [.1.bt2][bt2_tair10_1], [.2.bt2][bt2_tair10_2], [.3.bt2][bt2_tair10_3], [.4.bt2][bt2_tair10_4], [.rev.1.bt2][bt2_tair10_r1], [.rev.2.bt2][bt2_tair10_r2] | [archive md5][bt2_tair10_md5], [.dict][bt2_tair10_dict], [manifest json][bt2_tair10_manifest] |
+| Fruitfly / BDGP6 | [Ensembl][bt2_bdgp6_source] | [full zip][bt2_bdgp6_full], [.1.bt2][bt2_bdgp6_1], [.2.bt2][bt2_bdgp6_2], [.3.bt2][bt2_bdgp6_3], [.4.bt2][bt2_bdgp6_4], [.rev.1.bt2][bt2_bdgp6_r1], [.rev.2.bt2][bt2_bdgp6_r2] | [archive md5][bt2_bdgp6_md5], [.dict][bt2_bdgp6_dict], [manifest json][bt2_bdgp6_manifest] |
+| Fruitfly / Dmel A4 1.0 | [NCBI][bt2_dmela410_source] | [full zip][bt2_dmela410_full], [.1.bt2][bt2_dmela410_1], [.2.bt2][bt2_dmela410_2], [.3.bt2][bt2_dmela410_3], [.4.bt2][bt2_dmela410_4], [.rev.1.bt2][bt2_dmela410_r1], [.rev.2.bt2][bt2_dmela410_r2] | [archive md5][bt2_dmela410_md5], [.dict][bt2_dmela410_dict], [manifest json][bt2_dmela410_manifest] |
+| C. elegans / WBcel235 | [Ensembl][bt2_wbcel235_source] | [full zip][bt2_wbcel235_full], [.1.bt2][bt2_wbcel235_1], [.2.bt2][bt2_wbcel235_2], [.3.bt2][bt2_wbcel235_3], [.4.bt2][bt2_wbcel235_4], [.rev.1.bt2][bt2_wbcel235_r1], [.rev.2.bt2][bt2_wbcel235_r2] | [archive md5][bt2_wbcel235_md5], [.dict][bt2_wbcel235_dict], [manifest json][bt2_wbcel235_manifest] |
+| Yeast / R64-1-1 | [Ensembl][bt2_r6411_source] | [full zip][bt2_r6411_full], [.1.bt2][bt2_r6411_1], [.2.bt2][bt2_r6411_2], [.3.bt2][bt2_r6411_3], [.4.bt2][bt2_r6411_4], [.rev.1.bt2][bt2_r6411_r1], [.rev.2.bt2][bt2_r6411_r2] | [archive md5][bt2_r6411_md5], [.dict][bt2_r6411_dict], [manifest json][bt2_r6411_manifest] |
 
 <div class="datatable-end"></div>
 
@@ -128,6 +128,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_grch38_noalt_r1]: https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.rev.1.bt2
 [bt2_grch38_noalt_r2]: https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.rev.2.bt2
 [bt2_grch38_noalt_md5]: https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.md5
+[bt2_grch38_noalt_dict]: https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.dict
+[bt2_grch38_noalt_manifest]: https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.manifest.json
 [bt2_grch38_noalt_decoy_full]: https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_decoy_as.zip
 [bt2_grch38_noalt_decoy_1]: https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_decoy_as.1.bt2
 [bt2_grch38_noalt_decoy_2]: https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_decoy_as.2.bt2
@@ -136,6 +138,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_grch38_noalt_decoy_r1]: https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_decoy_as.rev.1.bt2
 [bt2_grch38_noalt_decoy_r2]: https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_decoy_as.rev.2.bt2
 [bt2_grch38_noalt_decoy_md5]: https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_decoy_as.md5
+[bt2_grch38_noalt_decoy_dict]: https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_decoy_as.dict
+[bt2_grch38_noalt_decoy_manifest]: https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_decoy_as.manifest.json
 [bt2_grch38_1kgmaj_full]: https://genome-idx.s3.amazonaws.com/bt/grch38_1kgmaj.zip
 [bt2_grch38_1kgmaj_1]: https://genome-idx.s3.amazonaws.com/bt/grch38_1kgmaj.1.bt2
 [bt2_grch38_1kgmaj_2]: https://genome-idx.s3.amazonaws.com/bt/grch38_1kgmaj.2.bt2
@@ -144,6 +148,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_grch38_1kgmaj_r1]: https://genome-idx.s3.amazonaws.com/bt/grch38_1kgmaj.rev.1.bt2
 [bt2_grch38_1kgmaj_r2]: https://genome-idx.s3.amazonaws.com/bt/grch38_1kgmaj.rev.2.bt2
 [bt2_grch38_1kgmaj_md5]: https://genome-idx.s3.amazonaws.com/bt/grch38_1kgmaj.md5
+[bt2_grch38_1kgmaj_dict]: https://genome-idx.s3.amazonaws.com/bt/grch38_1kgmaj.dict
+[bt2_grch38_1kgmaj_manifest]: https://genome-idx.s3.amazonaws.com/bt/grch38_1kgmaj.manifest.json
 [bt2_grch37_full]: https://genome-idx.s3.amazonaws.com/bt/GRCh37.zip
 [bt2_grch37_1]: https://genome-idx.s3.amazonaws.com/bt/GRCh37.1.bt2
 [bt2_grch37_2]: https://genome-idx.s3.amazonaws.com/bt/GRCh37.2.bt2
@@ -152,6 +158,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_grch37_r1]: https://genome-idx.s3.amazonaws.com/bt/GRCh37.rev.1.bt2
 [bt2_grch37_r2]: https://genome-idx.s3.amazonaws.com/bt/GRCh37.rev.2.bt2
 [bt2_grch37_md5]: https://genome-idx.s3.amazonaws.com/bt/GRCh37.md5
+[bt2_grch37_dict]: https://genome-idx.s3.amazonaws.com/bt/GRCh37.dict
+[bt2_grch37_manifest]: https://genome-idx.s3.amazonaws.com/bt/GRCh37.manifest.json
 [bt2_ash1_full]: https://genome-idx.s3.amazonaws.com/bt/Ash1v1.7.zip
 [bt2_ash1_1]: https://genome-idx.s3.amazonaws.com/bt/Ash1v1.7.1.bt2
 [bt2_ash1_2]: https://genome-idx.s3.amazonaws.com/bt/Ash1v1.7.2.bt2
@@ -160,6 +168,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_ash1_r1]: https://genome-idx.s3.amazonaws.com/bt/Ash1v1.7.rev.1.bt2
 [bt2_ash1_r2]: https://genome-idx.s3.amazonaws.com/bt/Ash1v1.7.rev.2.bt2
 [bt2_ash1_md5]: https://genome-idx.s3.amazonaws.com/bt/Ash1v1.7.md5
+[bt2_ash1_dict]: https://genome-idx.s3.amazonaws.com/bt/Ash1v1.7.dict
+[bt2_ash1_manifest]: https://genome-idx.s3.amazonaws.com/bt/Ash1v1.7.manifest.json
 [bt2_ash1_2_full]: https://genome-idx.s3.amazonaws.com/bt/Ash1_v2.0.zip
 [bt2_ash1_2_1]: https://genome-idx.s3.amazonaws.com/bt/Ash1_v2.0.1.bt2
 [bt2_ash1_2_2]: https://genome-idx.s3.amazonaws.com/bt/Ash1_v2.0.2.bt2
@@ -168,6 +178,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_ash1_2_r1]: https://genome-idx.s3.amazonaws.com/bt/Ash1_v2.0.rev.1.bt2
 [bt2_ash1_2_r2]: https://genome-idx.s3.amazonaws.com/bt/Ash1_v2.0.rev.2.bt2
 [bt2_ash1_2_md5]: https://genome-idx.s3.amazonaws.com/bt/Ash1_v2.0.md5
+[bt2_ash1_2_dict]: https://genome-idx.s3.amazonaws.com/bt/Ash1_v2.0.dict
+[bt2_ash1_2_manifest]: https://genome-idx.s3.amazonaws.com/bt/Ash1_v2.0.manifest.json
 [bt2_t2tplusy_full]: https://genome-idx.s3.amazonaws.com/bt/chm13.draft_v1.0_plusY.zip
 [bt2_t2tplusy_1]: https://genome-idx.s3.amazonaws.com/bt/chm13.draft_v1.0_plusY.1.bt2
 [bt2_t2tplusy_2]: https://genome-idx.s3.amazonaws.com/bt/chm13.draft_v1.0_plusY.2.bt2
@@ -176,6 +188,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_t2tplusy_r1]: https://genome-idx.s3.amazonaws.com/bt/chm13.draft_v1.0_plusY.rev.1.bt2
 [bt2_t2tplusy_r2]: https://genome-idx.s3.amazonaws.com/bt/chm13.draft_v1.0_plusY.rev.2.bt2
 [bt2_t2tplusy_md5]: https://genome-idx.s3.amazonaws.com/bt/chm13.draft_v1.0_plusY.md5
+[bt2_t2tplusy_dict]: https://genome-idx.s3.amazonaws.com/bt/chm13.draft_v1.0_plusY.dict
+[bt2_t2tplusy_manifest]: https://genome-idx.s3.amazonaws.com/bt/chm13.draft_v1.0_plusY.manifest.json
 [bt2_hs1_full]: https://genome-idx.s3.amazonaws.com/bt/hs1.zip
 [bt2_hs1_1]: https://genome-idx.s3.amazonaws.com/bt/hs1.1.bt2
 [bt2_hs1_2]: https://genome-idx.s3.amazonaws.com/bt/hs1.2.bt2
@@ -194,6 +208,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_hg19_r1]: https://genome-idx.s3.amazonaws.com/bt/hg19.rev.1.bt2
 [bt2_hg19_r2]: https://genome-idx.s3.amazonaws.com/bt/hg19.rev.2.bt2
 [bt2_hg19_md5]: https://genome-idx.s3.amazonaws.com/bt/hg19.md5
+[bt2_hg19_dict]: https://genome-idx.s3.amazonaws.com/bt/hg19.dict
+[bt2_hg19_manifest]: https://genome-idx.s3.amazonaws.com/bt/hg19.manifest.json
 [bt2_hg18_full]: https://genome-idx.s3.amazonaws.com/bt/hg18.zip
 [bt2_hg18_1]: https://genome-idx.s3.amazonaws.com/bt/hg18.1.bt2
 [bt2_hg18_2]: https://genome-idx.s3.amazonaws.com/bt/hg18.2.bt2
@@ -202,6 +218,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_hg18_r1]: https://genome-idx.s3.amazonaws.com/bt/hg18.rev.1.bt2
 [bt2_hg18_r2]: https://genome-idx.s3.amazonaws.com/bt/hg18.rev.2.bt2
 [bt2_hg18_md5]: https://genome-idx.s3.amazonaws.com/bt/hg18.md5
+[bt2_hg18_dict]: https://genome-idx.s3.amazonaws.com/bt/hg18.dict
+[bt2_hg18_manifest]: https://genome-idx.s3.amazonaws.com/bt/hg18.manifest.json
 [bt2_grcm38_full]: https://genome-idx.s3.amazonaws.com/bt/GRCm38.zip
 [bt2_grcm38_1]: https://genome-idx.s3.amazonaws.com/bt/GRCm38.1.bt2
 [bt2_grcm38_2]: https://genome-idx.s3.amazonaws.com/bt/GRCm38.2.bt2
@@ -210,6 +228,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_grcm38_r1]: https://genome-idx.s3.amazonaws.com/bt/GRCm38.rev.1.bt2
 [bt2_grcm38_r2]: https://genome-idx.s3.amazonaws.com/bt/GRCm38.rev.2.bt2
 [bt2_grcm38_md5]: https://genome-idx.s3.amazonaws.com/bt/GRCm38.md5
+[bt2_grcm38_dict]: https://genome-idx.s3.amazonaws.com/bt/GRCm38.dict
+[bt2_grcm38_manifest]: https://genome-idx.s3.amazonaws.com/bt/GRCm38.manifest.json
 [bt2_grcm39_full]: https://genome-idx.s3.amazonaws.com/bt/GRCm39.zip
 [bt2_grcm39_1]: https://genome-idx.s3.amazonaws.com/bt/GRCm39.1.bt2
 [bt2_grcm39_2]: https://genome-idx.s3.amazonaws.com/bt/GRCm39.2.bt2
@@ -218,6 +238,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_grcm39_r1]: https://genome-idx.s3.amazonaws.com/bt/GRCm39.rev.1.bt2
 [bt2_grcm39_r2]: https://genome-idx.s3.amazonaws.com/bt/GRCm39.rev.2.bt2
 [bt2_grcm39_md5]: https://genome-idx.s3.amazonaws.com/bt/GRCm39.md5
+[bt2_grcm39_dict]: https://genome-idx.s3.amazonaws.com/bt/GRCm39.dict
+[bt2_grcm39_manifest]: https://genome-idx.s3.amazonaws.com/bt/GRCm39.manifest.json
 [bt2_mm10_full]: https://genome-idx.s3.amazonaws.com/bt/mm10.zip
 [bt2_mm10_1]: https://genome-idx.s3.amazonaws.com/bt/mm10.1.bt2
 [bt2_mm10_2]: https://genome-idx.s3.amazonaws.com/bt/mm10.2.bt2
@@ -226,6 +248,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_mm10_r1]: https://genome-idx.s3.amazonaws.com/bt/mm10.rev.1.bt2
 [bt2_mm10_r2]: https://genome-idx.s3.amazonaws.com/bt/mm10.rev.2.bt2
 [bt2_mm10_md5]: https://genome-idx.s3.amazonaws.com/bt/mm10.md5
+[bt2_mm10_dict]: https://genome-idx.s3.amazonaws.com/bt/mm10.dict
+[bt2_mm10_manifest]: https://genome-idx.s3.amazonaws.com/bt/mm10.manifest.json
 [bt2_mm9_full]: https://genome-idx.s3.amazonaws.com/bt/mm9.zip
 [bt2_mm9_1]: https://genome-idx.s3.amazonaws.com/bt/mm9.1.bt2
 [bt2_mm9_2]: https://genome-idx.s3.amazonaws.com/bt/mm9.2.bt2
@@ -234,6 +258,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_mm9_r1]: https://genome-idx.s3.amazonaws.com/bt/mm9.rev.1.bt2
 [bt2_mm9_r2]: https://genome-idx.s3.amazonaws.com/bt/mm9.rev.2.bt2
 [bt2_mm9_md5]: https://genome-idx.s3.amazonaws.com/bt/mm9.md5
+[bt2_mm9_dict]: https://genome-idx.s3.amazonaws.com/bt/mm9.dict
+[bt2_mm9_manifest]: https://genome-idx.s3.amazonaws.com/bt/mm9.manifest.json
 [bt2_clintptr2_full]: https://genome-idx.s3.amazonaws.com/bt/Clint_PTRv2.zip
 [bt2_clintptr2_1]: https://genome-idx.s3.amazonaws.com/bt/Clint_PTRv2.1.bt2
 [bt2_clintptr2_2]: https://genome-idx.s3.amazonaws.com/bt/Clint_PTRv2.2.bt2
@@ -242,6 +268,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_clintptr2_r1]: https://genome-idx.s3.amazonaws.com/bt/Clint_PTRv2.rev.1.bt2
 [bt2_clintptr2_r2]: https://genome-idx.s3.amazonaws.com/bt/Clint_PTRv2.rev.2.bt2
 [bt2_clintptr2_md5]: https://genome-idx.s3.amazonaws.com/bt/Clint_PTRv2.md5
+[bt2_clintptr2_dict]: https://genome-idx.s3.amazonaws.com/bt/Clint_PTRv2.dict
+[bt2_clintptr2_manifest]: https://genome-idx.s3.amazonaws.com/bt/Clint_PTRv2.manifest.json
 [bt2_chimp214_full]: https://genome-idx.s3.amazonaws.com/bt/CHIMP2.1.4.zip
 [bt2_chimp214_1]: https://genome-idx.s3.amazonaws.com/bt/CHIMP2.1.4.1.bt2
 [bt2_chimp214_2]: https://genome-idx.s3.amazonaws.com/bt/CHIMP2.1.4.2.bt2
@@ -250,6 +278,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_chimp214_r1]: https://genome-idx.s3.amazonaws.com/bt/CHIMP2.1.4.rev.1.bt2
 [bt2_chimp214_r2]: https://genome-idx.s3.amazonaws.com/bt/CHIMP2.1.4.rev.2.bt2
 [bt2_chimp214_md5]: https://genome-idx.s3.amazonaws.com/bt/CHIMP2.1.4.md5
+[bt2_chimp214_dict]: https://genome-idx.s3.amazonaws.com/bt/CHIMP2.1.4.dict
+[bt2_chimp214_manifest]: https://genome-idx.s3.amazonaws.com/bt/CHIMP2.1.4.manifest.json
 [bt2_mmul10_full]: https://genome-idx.s3.amazonaws.com/bt/Mmul_10.zip
 [bt2_mmul10_1]: https://genome-idx.s3.amazonaws.com/bt/Mmul_10.1.bt2
 [bt2_mmul10_2]: https://genome-idx.s3.amazonaws.com/bt/Mmul_10.2.bt2
@@ -258,6 +288,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_mmul10_r1]: https://genome-idx.s3.amazonaws.com/bt/Mmul_10.rev.1.bt2
 [bt2_mmul10_r2]: https://genome-idx.s3.amazonaws.com/bt/Mmul_10.rev.2.bt2
 [bt2_mmul10_md5]: https://genome-idx.s3.amazonaws.com/bt/Mmul_10.md5
+[bt2_mmul10_dict]: https://genome-idx.s3.amazonaws.com/bt/Mmul_10.dict
+[bt2_mmul10_manifest]: https://genome-idx.s3.amazonaws.com/bt/Mmul_10.manifest.json
 [bt2_arsucd20_full]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD2.0.zip
 [bt2_arsucd20_1]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD2.0.1.bt2
 [bt2_arsucd20_2]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD2.0.2.bt2
@@ -276,6 +308,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_arsucd12_r1]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD1.2.rev.1.bt2
 [bt2_arsucd12_r2]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD1.2.rev.2.bt2
 [bt2_arsucd12_md5]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD1.2.md5
+[bt2_arsucd12_dict]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD1.2.dict
+[bt2_arsucd12_manifest]: https://genome-idx.s3.amazonaws.com/bt/ARS-UCD1.2.manifest.json
 [bt2_sscorfa111_full]: https://genome-idx.s3.amazonaws.com/bt/Sscrofa11.1.zip
 [bt2_sscorfa111_1]: https://genome-idx.s3.amazonaws.com/bt/Sscrofa11.1.1.bt2
 [bt2_sscorfa111_2]: https://genome-idx.s3.amazonaws.com/bt/Sscrofa11.1.2.bt2
@@ -284,6 +318,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_sscorfa111_r1]: https://genome-idx.s3.amazonaws.com/bt/Sscrofa11.1.rev.1.bt2
 [bt2_sscorfa111_r2]: https://genome-idx.s3.amazonaws.com/bt/Sscrofa11.1.rev.2.bt2
 [bt2_sscorfa111_md5]: https://genome-idx.s3.amazonaws.com/bt/Sscrofa11.1.md5
+[bt2_sscorfa111_dict]: https://genome-idx.s3.amazonaws.com/bt/Sscrofa11.1.dict
+[bt2_sscorfa111_manifest]: https://genome-idx.s3.amazonaws.com/bt/Sscrofa11.1.manifest.json
 [bt2_roscfam10_full]: https://genome-idx.s3.amazonaws.com/bt/ROS_Cfam_1.0.zip
 [bt2_roscfam10_1]: https://genome-idx.s3.amazonaws.com/bt/ROS_Cfam_1.0.1.bt2
 [bt2_roscfam10_2]: https://genome-idx.s3.amazonaws.com/bt/ROS_Cfam_1.0.2.bt2
@@ -302,6 +338,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_canfam31_r1]: https://genome-idx.s3.amazonaws.com/bt/CanFam3.1.rev.1.bt2
 [bt2_canfam31_r2]: https://genome-idx.s3.amazonaws.com/bt/CanFam3.1.rev.2.bt2
 [bt2_canfam31_md5]: https://genome-idx.s3.amazonaws.com/bt/CanFam3.1.md5
+[bt2_canfam31_dict]: https://genome-idx.s3.amazonaws.com/bt/CanFam3.1.dict
+[bt2_canfam31_manifest]: https://genome-idx.s3.amazonaws.com/bt/CanFam3.1.manifest.json
 [bt2_canfam4_full]: https://genome-idx.s3.amazonaws.com/bt/canfam4.zip
 [bt2_canfam4_1]: https://genome-idx.s3.amazonaws.com/bt/canfam4.1.bt2
 [bt2_canfam4_2]: https://genome-idx.s3.amazonaws.com/bt/canfam4.2.bt2
@@ -310,6 +348,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_canfam4_r1]: https://genome-idx.s3.amazonaws.com/bt/canfam4.rev.1.bt2
 [bt2_canfam4_r2]: https://genome-idx.s3.amazonaws.com/bt/canfam4.rev.2.bt2
 [bt2_canfam4_md5]: https://genome-idx.s3.amazonaws.com/bt/canfam4.md5
+[bt2_canfam4_dict]: https://genome-idx.s3.amazonaws.com/bt/canfam4.dict
+[bt2_canfam4_manifest]: https://genome-idx.s3.amazonaws.com/bt/canfam4.manifest.json
 [bt2_grcr8_full]: https://genome-idx.s3.amazonaws.com/bt/GRCr8.zip
 [bt2_grcr8_1]: https://genome-idx.s3.amazonaws.com/bt/GRCr8.1.bt2
 [bt2_grcr8_2]: https://genome-idx.s3.amazonaws.com/bt/GRCr8.2.bt2
@@ -328,6 +368,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_rn4_r1]: https://genome-idx.s3.amazonaws.com/bt/rn4.rev.1.bt2
 [bt2_rn4_r2]: https://genome-idx.s3.amazonaws.com/bt/rn4.rev.2.bt2
 [bt2_rn4_md5]: https://genome-idx.s3.amazonaws.com/bt/rn4.md5
+[bt2_rn4_dict]: https://genome-idx.s3.amazonaws.com/bt/rn4.dict
+[bt2_rn4_manifest]: https://genome-idx.s3.amazonaws.com/bt/rn4.manifest.json
 [bt2_rnor60_full]: https://genome-idx.s3.amazonaws.com/bt/Rnor_6.0.zip
 [bt2_rnor60_1]: https://genome-idx.s3.amazonaws.com/bt/Rnor_6.0.1.bt2
 [bt2_rnor60_2]: https://genome-idx.s3.amazonaws.com/bt/Rnor_6.0.2.bt2
@@ -336,6 +378,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_rnor60_r1]: https://genome-idx.s3.amazonaws.com/bt/Rnor_6.0.rev.1.bt2
 [bt2_rnor60_r2]: https://genome-idx.s3.amazonaws.com/bt/Rnor_6.0.rev.2.bt2
 [bt2_rnor60_md5]: https://genome-idx.s3.amazonaws.com/bt/Rnor_6.0.md5
+[bt2_rnor60_dict]: https://genome-idx.s3.amazonaws.com/bt/Rnor_6.0.dict
+[bt2_rnor60_manifest]: https://genome-idx.s3.amazonaws.com/bt/Rnor_6.0.manifest.json
 [bt2_grcg7b_full]: https://genome-idx.s3.amazonaws.com/bt/bGalGal1.mat.broiler.GRCg7b.zip
 [bt2_grcg7b_1]: https://genome-idx.s3.amazonaws.com/bt/bGalGal1.mat.broiler.GRCg7b.1.bt2
 [bt2_grcg7b_2]: https://genome-idx.s3.amazonaws.com/bt/bGalGal1.mat.broiler.GRCg7b.2.bt2
@@ -354,6 +398,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_grcg6a_r1]: https://genome-idx.s3.amazonaws.com/bt/GRCg6a.rev.1.bt2
 [bt2_grcg6a_r2]: https://genome-idx.s3.amazonaws.com/bt/GRCg6a.rev.2.bt2
 [bt2_grcg6a_md5]: https://genome-idx.s3.amazonaws.com/bt/GRCg6a.md5
+[bt2_grcg6a_dict]: https://genome-idx.s3.amazonaws.com/bt/GRCg6a.dict
+[bt2_grcg6a_manifest]: https://genome-idx.s3.amazonaws.com/bt/GRCg6a.manifest.json
 [bt2_galgal4_full]: https://genome-idx.s3.amazonaws.com/bt/Galgal4.zip
 [bt2_galgal4_1]: https://genome-idx.s3.amazonaws.com/bt/Galgal4.1.bt2
 [bt2_galgal4_2]: https://genome-idx.s3.amazonaws.com/bt/Galgal4.2.bt2
@@ -362,6 +408,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_galgal4_r1]: https://genome-idx.s3.amazonaws.com/bt/Galgal4.rev.1.bt2
 [bt2_galgal4_r2]: https://genome-idx.s3.amazonaws.com/bt/Galgal4.rev.2.bt2
 [bt2_galgal4_md5]: https://genome-idx.s3.amazonaws.com/bt/Galgal4.md5
+[bt2_galgal4_dict]: https://genome-idx.s3.amazonaws.com/bt/Galgal4.dict
+[bt2_galgal4_manifest]: https://genome-idx.s3.amazonaws.com/bt/Galgal4.manifest.json
 [bt2_grcz11_full]: https://genome-idx.s3.amazonaws.com/bt/GRCz11.zip
 [bt2_grcz11_1]: https://genome-idx.s3.amazonaws.com/bt/GRCz11.1.bt2
 [bt2_grcz11_2]: https://genome-idx.s3.amazonaws.com/bt/GRCz11.2.bt2
@@ -370,6 +418,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_grcz11_r1]: https://genome-idx.s3.amazonaws.com/bt/GRCz11.rev.1.bt2
 [bt2_grcz11_r2]: https://genome-idx.s3.amazonaws.com/bt/GRCz11.rev.2.bt2
 [bt2_grcz11_md5]: https://genome-idx.s3.amazonaws.com/bt/GRCz11.md5
+[bt2_grcz11_dict]: https://genome-idx.s3.amazonaws.com/bt/GRCz11.dict
+[bt2_grcz11_manifest]: https://genome-idx.s3.amazonaws.com/bt/GRCz11.manifest.json
 [bt2_grcz10_full]: https://genome-idx.s3.amazonaws.com/bt/GRCz10.zip
 [bt2_grcz10_1]: https://genome-idx.s3.amazonaws.com/bt/GRCz10.1.bt2
 [bt2_grcz10_2]: https://genome-idx.s3.amazonaws.com/bt/GRCz10.2.bt2
@@ -378,6 +428,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_grcz10_r1]: https://genome-idx.s3.amazonaws.com/bt/GRCz10.rev.1.bt2
 [bt2_grcz10_r2]: https://genome-idx.s3.amazonaws.com/bt/GRCz10.rev.2.bt2
 [bt2_grcz10_md5]: https://genome-idx.s3.amazonaws.com/bt/GRCz10.md5
+[bt2_grcz10_dict]: https://genome-idx.s3.amazonaws.com/bt/GRCz10.dict
+[bt2_grcz10_manifest]: https://genome-idx.s3.amazonaws.com/bt/GRCz10.manifest.json
 [bt2_agpv4_full]: https://genome-idx.s3.amazonaws.com/bt/AGPv4.zip
 [bt2_agpv4_1]: https://genome-idx.s3.amazonaws.com/bt/AGPv4.1.bt2
 [bt2_agpv4_2]: https://genome-idx.s3.amazonaws.com/bt/AGPv4.2.bt2
@@ -386,6 +438,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_agpv4_r1]: https://genome-idx.s3.amazonaws.com/bt/AGPv4.rev.1.bt2
 [bt2_agpv4_r2]: https://genome-idx.s3.amazonaws.com/bt/AGPv4.rev.2.bt2
 [bt2_agpv4_md5]: https://genome-idx.s3.amazonaws.com/bt/AGPv4.md5
+[bt2_agpv4_dict]: https://genome-idx.s3.amazonaws.com/bt/AGPv4.dict
+[bt2_agpv4_manifest]: https://genome-idx.s3.amazonaws.com/bt/AGPv4.manifest.json
 [bt2_b73_refgen_v5_full]: https://genome-idx.s3.amazonaws.com/bt/Zm-B73-REFERENCE-NAM-5.0.zip
 [bt2_b73_refgen_v5_1]: https://genome-idx.s3.amazonaws.com/bt/Zm-B73-REFERENCE-NAM-5.0.1.bt2
 [bt2_b73_refgen_v5_2]: https://genome-idx.s3.amazonaws.com/bt/Zm-B73-REFERENCE-NAM-5.0.2.bt2
@@ -394,6 +448,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_b73_refgen_v5_r1]: https://genome-idx.s3.amazonaws.com/bt/Zm-B73-REFERENCE-NAM-5.0.rev.1.bt2
 [bt2_b73_refgen_v5_r2]: https://genome-idx.s3.amazonaws.com/bt/Zm-B73-REFERENCE-NAM-5.0.rev.2.bt2
 [bt2_b73_refgen_v5_md5]: https://genome-idx.s3.amazonaws.com/bt/Zm-B73-REFERENCE-NAM-5.0.md5
+[bt2_b73_refgen_v5_dict]: https://genome-idx.s3.amazonaws.com/bt/Zm-B73-REFERENCE-NAM-5.0.dict
+[bt2_b73_refgen_v5_manifest]: https://genome-idx.s3.amazonaws.com/bt/Zm-B73-REFERENCE-NAM-5.0.manifest.json
 [bt2_iwgsc_full]: https://genome-idx.s3.amazonaws.com/bt/IWGSC.zip
 [bt2_iwgsc_1]: https://genome-idx.s3.amazonaws.com/bt/IWGSC.1.bt2l
 [bt2_iwgsc_2]: https://genome-idx.s3.amazonaws.com/bt/IWGSC.2.bt2l
@@ -432,6 +488,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_build4_r1]: https://genome-idx.s3.amazonaws.com/bt/Build_4.0.rev.1.bt2
 [bt2_build4_r2]: https://genome-idx.s3.amazonaws.com/bt/Build_4.0.rev.2.bt2
 [bt2_build4_md5]: https://genome-idx.s3.amazonaws.com/bt/Build_4.0.md5
+[bt2_build4_dict]: https://genome-idx.s3.amazonaws.com/bt/Build_4.0.dict
+[bt2_build4_manifest]: https://genome-idx.s3.amazonaws.com/bt/Build_4.0.manifest.json
 [bt2_tair10_full]: https://genome-idx.s3.amazonaws.com/bt/TAIR10.zip
 [bt2_tair10_1]: https://genome-idx.s3.amazonaws.com/bt/TAIR10.1.bt2
 [bt2_tair10_2]: https://genome-idx.s3.amazonaws.com/bt/TAIR10.2.bt2
@@ -440,6 +498,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_tair10_r1]: https://genome-idx.s3.amazonaws.com/bt/TAIR10.rev.1.bt2
 [bt2_tair10_r2]: https://genome-idx.s3.amazonaws.com/bt/TAIR10.rev.2.bt2
 [bt2_tair10_md5]: https://genome-idx.s3.amazonaws.com/bt/TAIR10.md5
+[bt2_tair10_dict]: https://genome-idx.s3.amazonaws.com/bt/TAIR10.dict
+[bt2_tair10_manifest]: https://genome-idx.s3.amazonaws.com/bt/TAIR10.manifest.json
 [bt2_bdgp6_full]: https://genome-idx.s3.amazonaws.com/bt/BDGP6.zip
 [bt2_bdgp6_1]: https://genome-idx.s3.amazonaws.com/bt/BDGP6.1.bt2
 [bt2_bdgp6_2]: https://genome-idx.s3.amazonaws.com/bt/BDGP6.2.bt2
@@ -448,6 +508,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_bdgp6_r1]: https://genome-idx.s3.amazonaws.com/bt/BDGP6.rev.1.bt2
 [bt2_bdgp6_r2]: https://genome-idx.s3.amazonaws.com/bt/BDGP6.rev.2.bt2
 [bt2_bdgp6_md5]: https://genome-idx.s3.amazonaws.com/bt/BDGP6.md5
+[bt2_bdgp6_dict]: https://genome-idx.s3.amazonaws.com/bt/BDGP6.dict
+[bt2_bdgp6_manifest]: https://genome-idx.s3.amazonaws.com/bt/BDGP6.manifest.json
 [bt2_dmela410_full]: https://genome-idx.s3.amazonaws.com/bt/Dmel_A4_1.0.zip
 [bt2_dmela410_1]: https://genome-idx.s3.amazonaws.com/bt/Dmel_A4_1.0.1.bt2
 [bt2_dmela410_2]: https://genome-idx.s3.amazonaws.com/bt/Dmel_A4_1.0.2.bt2
@@ -456,6 +518,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_dmela410_r1]: https://genome-idx.s3.amazonaws.com/bt/Dmel_A4_1.0.rev.1.bt2
 [bt2_dmela410_r2]: https://genome-idx.s3.amazonaws.com/bt/Dmel_A4_1.0.rev.2.bt2
 [bt2_dmela410_md5]: https://genome-idx.s3.amazonaws.com/bt/Dmel_A4_1.0.md5
+[bt2_dmela410_dict]: https://genome-idx.s3.amazonaws.com/bt/Dmel_A4_1.0.dict
+[bt2_dmela410_manifest]: https://genome-idx.s3.amazonaws.com/bt/Dmel_A4_1.0.manifest.json
 [bt2_wbcel235_full]: https://genome-idx.s3.amazonaws.com/bt/WBcel235.zip
 [bt2_wbcel235_1]: https://genome-idx.s3.amazonaws.com/bt/WBcel235.1.bt2
 [bt2_wbcel235_2]: https://genome-idx.s3.amazonaws.com/bt/WBcel235.2.bt2
@@ -464,6 +528,8 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_wbcel235_r1]: https://genome-idx.s3.amazonaws.com/bt/WBcel235.rev.1.bt2
 [bt2_wbcel235_r2]: https://genome-idx.s3.amazonaws.com/bt/WBcel235.rev.2.bt2
 [bt2_wbcel235_md5]: https://genome-idx.s3.amazonaws.com/bt/WBcel235.md5
+[bt2_wbcel235_dict]: https://genome-idx.s3.amazonaws.com/bt/WBcel235.dict
+[bt2_wbcel235_manifest]: https://genome-idx.s3.amazonaws.com/bt/WBcel235.manifest.json
 [bt2_r6411_full]: https://genome-idx.s3.amazonaws.com/bt/R64-1-1.zip
 [bt2_r6411_1]: https://genome-idx.s3.amazonaws.com/bt/R64-1-1.1.bt2
 [bt2_r6411_2]: https://genome-idx.s3.amazonaws.com/bt/R64-1-1.2.bt2
@@ -472,3 +538,5 @@ Corresponding S3 URLs can be obtained by removing `https://genome-idx.s3.amazona
 [bt2_r6411_r1]: https://genome-idx.s3.amazonaws.com/bt/R64-1-1.rev.1.bt2
 [bt2_r6411_r2]: https://genome-idx.s3.amazonaws.com/bt/R64-1-1.rev.2.bt2
 [bt2_r6411_md5]: https://genome-idx.s3.amazonaws.com/bt/R64-1-1.md5
+[bt2_r6411_dict]: https://genome-idx.s3.amazonaws.com/bt/R64-1-1.dict
+[bt2_r6411_manifest]: https://genome-idx.s3.amazonaws.com/bt/R64-1-1.manifest.json

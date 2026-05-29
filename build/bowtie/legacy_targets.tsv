@@ -1,0 +1,37 @@
+# id	index_base	species	assembly	source	url	expected_ext	notes
+# Metadata-only backfill catalog: matches xfer/bt/shortname_map.csv rows that do not yet declare dict;manifest.
+# Run: ./build_indexes.bash --metadata-only --backfill --from-s3-prefix s3://genome-idx/bt --targets legacy_targets.tsv --upload-prefix s3://genome-idx/bt <ids...>
+grch38_noalt	GRCh38_noalt_as	Human	GRCh38 no-alt analysis set	NCBI	https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz	bt2	NCBI analysis set (UCSC-style contig names)
+grch38_noalt_decoy	GRCh38_noalt_decoy_as	Human	GRCh38 no-alt +decoy set	NCBI	https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.40_GRCh38.p14/GRCh38_major_release_seqs_for_alignment_pipelines/GCA_000001405.15_GRCh38_no_alt_plus_hs38d1_analysis_set.fna.gz	bt2	NCBI GRCh38.p14 alignment pipelines no-alt plus hs38d1 decoy
+grch38_1kgmaj	grch38_1kgmaj	Human	GRCh38 + major SNVs	NCBI+1KG	https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz	bt2	Dict baseline is NCBI no-alt analysis set; index applies 1KG major alleles (see bowtie-majref) so sequence MD5s differ at variant sites
+grch37	GRCh37	Human	GRCh37	NCBI	https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.25_GRCh37.p13/GCF_000001405.25_GRCh37.p13_genomic.fna.gz	bt2	RefSeq GRCh37.p13 primary assembly
+ash1	Ash1v1.7	Human	Ash1v1.7	JHU	https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/064/465/GCA_011064465.1_Ash1.7/GCA_011064465.1_Ash1.7_genomic.fna.gz	bt2	NCBI GenBank Ash1.7 (GCA_011064465.1); verify against original Ash1v1.7 FASTA if needed
+ash1_2	Ash1_v2.0	Human	Ash1v2.0	JHU	https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/011/064/465/GCA_011064465.2_Ash1_v2.2/GCA_011064465.2_Ash1_v2.2_genomic.fna.gz	bt2	NCBI GenBank Ash1_v2.2 (GCA_011064465.2); index name Ash1_v2.0 — verify if patch differs
+t2tplusy	chm13.draft_v1.0_plusY	Human	CHM13plusY	T2T	https://human-pangenomics.s3.us-west-2.amazonaws.com/T2T/CHM13/assemblies/chm13.draft_v1.0.fasta.gz	bt2	CHM13 draft v1.0; index name implies plus-Y assembly—verify dict vs exact reference used for the posted index
+hg19	hg19	Human	hg19	UCSC	https://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz	bt2	UCSC hg19 full soft-masked FASTA
+hg18	hg18	Human	hg18	UCSC	https://hgdownload.soe.ucsc.edu/goldenPath/hg18/bigZips/hg18.fa.gz	bt2	UCSC hg18 full soft-masked FASTA
+grcm38	GRCm38	Mouse	GRCm38	NCBI	https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/635/GCF_000001635.26_GRCm38.p6/GCF_000001635.26_GRCm38.p6_genomic.fna.gz	bt2	RefSeq GRCm38.p6
+grcm39	GRCm39	Mouse	GRCm39	NCBI	https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/635/GCF_000001635.27_GRCm39/GCF_000001635.27_GRCm39_genomic.fna.gz	bt2	RefSeq GRCm39
+mm10	mm10	Mouse	mm10	UCSC	https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/mm10.fa.gz	bt2	UCSC mm10
+mm9	mm9	Mouse	mm9	UCSC	https://hgdownload.soe.ucsc.edu/goldenPath/mm9/bigZips/mm9.fa.gz	bt2	UCSC mm9
+clintptr2	Clint_PTRv2	Chimpanzee	Clint_PTRv2	NCBI	https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/880/755/GCF_002880755.1_Clint_PTRv2/GCF_002880755.1_Clint_PTRv2_genomic.fna.gz	bt2	RefSeq Clint_PTRv2
+chimp214	CHIMP2.1.4	Chimpanzee	CHIMP2.1.4	Ensembl	https://ftp.ensembl.org/pub/release-80/fasta/pan_troglodytes/dna/Pan_troglodytes.CHIMP2.1.4.dna.toplevel.fa.gz	bt2	Ensembl release-80 CHIMP2.1.4 toplevel
+mmul10	Mmul_10	Rhesus macaque	MMul_10	Ensembl	https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/003/339/765/GCF_003339765.1_Mmul_10/GCF_003339765.1_Mmul_10_genomic.fna.gz	bt2	RefSeq Mmul_10
+arsucd12	ARS-UCD1.2	Cow	ARS-UCD1.2	NCBI	https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/002/263/795/GCF_002263795.1_ARS-UCD1.2/GCF_002263795.1_ARS-UCD1.2_genomic.fna.gz	bt2	RefSeq ARS-UCD1.2
+sscorfa111	Sscrofa11.1	Pig	Sscrofa11.1	NCBI	https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/003/025/GCF_000003025.6_Sscrofa11.1/GCF_000003025.6_Sscrofa11.1_genomic.fna.gz	bt2	RefSeq Sscrofa11.1
+canfam31	CanFam3.1	Dog	CanFam3.1	Ensembl	https://ftp.ensembl.org/pub/release-104/fasta/canis_lupus_familiaris/dna/Canis_lupus_familiaris.CanFam3.1.dna.toplevel.fa.gz	bt2	Ensembl release-104 CanFam3.1 toplevel
+canfam4	canfam4	Dog	CanFam4	NCBI	https://hgdownload.soe.ucsc.edu/goldenPath/canFam4/bigZips/canFam4.fa.gz	bt2	UCSC canFam4 (matches common Index Zone naming); NCBI also hosts CanFam4 under a different accession path
+rn4	rn4	Rat	rn4	UCSC	https://hgdownload.soe.ucsc.edu/goldenPath/rn4/bigZips/rn4.fa.gz	bt2	UCSC rn4
+rnor60	Rnor_6.0	Rat	Rnor6.0	NCBI	https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/895/GCF_000001895.5_Rnor_6.0/GCF_000001895.5_Rnor_6.0_genomic.fna.gz	bt2	RefSeq Rnor_6.0
+grcg6a	GRCg6a	Chicken	GRCg6a	NCBI	https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/315/GCF_000002315.6_GRCg6a/GCF_000002315.6_GRCg6a_genomic.fna.gz	bt2	RefSeq GRCg6a
+galgal4	Galgal4	Chicken	Galgal4	Ensembl	https://ftp.ensembl.org/pub/release-84/fasta/gallus_gallus/dna/Gallus_gallus.Galgal4.dna.toplevel.fa.gz	bt2	Ensembl release-84 Galgal4 toplevel
+grcz11	GRCz11	Zebrafish	GRCz11	NCBI	https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/035/GCF_000002035.6_GRCz11/GCF_000002035.6_GRCz11_genomic.fna.gz	bt2	RefSeq GRCz11
+grcz10	GRCz10	Zebrafish	GRCz10	Ensembl	https://ftp.ensembl.org/pub/release-80/fasta/danio_rerio/dna/Danio_rerio.GRCz10.dna.toplevel.fa.gz	bt2	Ensembl release-80 GRCz10 toplevel
+agpv4	AGPv4	Corn	AGPv4	Ensembl	https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-40/fasta/zea_mays/dna/Zea_mays.AGPv4.dna.toplevel.fa.gz	bt2	Ensembl Plants release-40 AGPv4
+b73_refgen_v5	Zm-B73-REFERENCE-NAM-5.0	Corn	B73 RefGenV5	NCBI	https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/902/167/145/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0/GCF_902167145.1_Zm-B73-REFERENCE-NAM-5.0_genomic.fna.gz	bt2	RefSeq B73 NAM-5.0
+build4	Build_4.0	Oryza sativa (rice)	Build_4.0	NCBI	https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/425/GCF_000005425.2_Build_4.0/GCF_000005425.2_Build_4.0_genomic.fna.gz	bt2	RefSeq Build_4.0
+tair10	TAIR10	Arabidopsis thaliana	TAIR10	Ensembl	https://ftp.ensemblgenomes.ebi.ac.uk/pub/plants/release-40/fasta/arabidopsis_thaliana/dna/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz	bt2	Ensembl Plants release-40 TAIR10
+bdgp6	BDGP6	Fruitfly	BDGP6	Ensembl	https://ftp.ensembl.org/pub/release-91/fasta/drosophila_melanogaster/dna/Drosophila_melanogaster.BDGP6.dna.toplevel.fa.gz	bt2	Ensembl release-91 BDGP6 toplevel
+dmela410	Dmel_A4_1.0	Fruitfly	Dmel A4 1.0	NCBI	https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/002/300/595/GCA_002300595.1_Dmel_A4_1.0/GCA_002300595.1_Dmel_A4_1.0_genomic.fna.gz	bt2	GenBank Dmel_A4_1.0
+wbcel235	WBcel235	C. elegans	WBcel235	Ensembl	https://ftp.ensembl.org/pub/release-112/fasta/caenorhabditis_elegans/dna/Caenorhabditis_elegans.WBcel235.dna.toplevel.fa.gz	bt2	Ensembl release-112 WBcel235 toplevel
+r6411	R64-1-1	Yeast	R64-1-1	Ensembl	https://ftp.ensembl.org/pub/release-112/fasta/saccharomyces_cerevisiae/dna/Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa.gz	bt2	Ensembl release-112 R64-1-1 toplevel

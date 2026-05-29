@@ -71,6 +71,76 @@ Check that the source FASTA URLs in the target catalog still resolve:
 ./check_sources.bash
 ```
 
+For the legacy metadata backfill catalog:
+
+```bash
+./check_sources.bash --targets legacy_targets.tsv
+```
+
+## Legacy metadata backfill (dict / manifest / build.txt)
+
+Indexes that predate the current CDK workflow often lack `.dict`, `.manifest.json`,
+and `.build.txt` on `s3://genome-idx/bt/` even though the `.bt2` / `.bt2l` shards
+are present.  The metadata-only path reuses existing shards (no `bowtie2-build`),
+downloads a curated reference FASTA from `legacy_targets.tsv`, runs `samtools dict`,
+repacks `.zip`, regenerates `.md5`, and uploads sidecars plus updated zip/md5.
+
+**Inventory (read-only):** compare the catalog to the bucket. Authenticate first
+(`aws login --profile data-langmead`, then `export AWS_PROFILE=index-zone-s3`;
+see `AWS.md` in the repo root), then:
+
+```bash
+python3 audit_s3.py
+python3 audit_s3.py --require-metadata --strict   # after backfill is complete
+```
+
+**Pilot (small genomes):** yeast, BDGP6 fly, WBcel235 worm:
+
+```bash
+./run_pilot_metadata_backfill.bash
+```
+
+**Full legacy batch:** every id in `legacy_targets.tsv`:
+
+```bash
+./run_legacy_metadata_backfill.bash
+```
+
+To **resume** after a partial run, use the audit-driven loop (one id per invocation so
+failures do not stop the batch):
+
+```bash
+./run_resume_missing_metadata_backfill.bash
+```
+
+Progress is appended to `legacy_backfill_resume.log`.  `grch37` is passed `--force`
+because prior runs left partial uploads.  After starting a long batch, you can run
+`./wait_and_audit_legacy_backfill.bash` in another terminal (or `nohup … &`); it
+logs progress every five minutes to `legacy_backfill_watch.log` and runs
+`audit_s3.py --require-metadata --strict` when the main job writes `EXIT:` to
+`legacy_backfill_remaining.log`.
+
+Both runners honor `FROM_S3_PREFIX` and `UPLOAD_PREFIX` (default `s3://genome-idx/bt`).
+Manual invocation for a subset:
+
+```bash
+./build_indexes.bash --metadata-only --backfill \
+  --from-s3-prefix s3://genome-idx/bt \
+  --targets legacy_targets.tsv \
+  --upload-prefix s3://genome-idx/bt \
+  r6411 bdgp6 wbcel235
+```
+
+**Docs / link check:** after uploads, confirm objects (see `audit_s3.py`), regenerate
+`docs/bowtie.md` from `xfer/bt/` per that directory’s workflow, then:
+
+```bash
+cd ../docs && python3 check_site_links.py --only bowtie.md --check-s3
+```
+
+Use `--only` to scope S3 HEAD checks to the Bowtie page; a full-repo run still includes
+unrelated pages and external URLs that may fail independently.
+
 ## CDK build on AWS
 
 This directory also includes a CDK workflow for running the same builder on
