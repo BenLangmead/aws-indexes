@@ -15,6 +15,9 @@ force=0
 keep_fasta=0
 upload_prefix="${UPLOAD_PREFIX:-}"
 target_ids=()
+metadata_only=0
+backfill=0
+from_s3_prefix=""
 
 usage() {
     cat <<'USAGE'
@@ -32,6 +35,10 @@ Options:
   --upload-prefix S3_URI  Also upload output artifacts to this S3 prefix.
   --force                 Redownload/rebuild even when outputs exist.
   --keep-fasta            Keep decompressed FASTA files in the work directory.
+  --metadata-only         Skip bowtie2-build; copy existing index shards from --from-s3-prefix.
+  --backfill              With --metadata-only, write dict/manifest/build.txt with unknown
+                          original build fields (requires --from-s3-prefix).
+  --from-s3-prefix URI    S3 prefix holding existing .bt2/.bt2l shards (e.g. s3://genome-idx/bt).
   -h, --help              Show this help.
 
 If no target IDs are given, all targets in the TSV are built.
@@ -109,6 +116,15 @@ md5_value() {
 default_builder_id() {
     local commit suffix status
 
+    if [[ "${backfill:-0}" -eq 1 ]]; then
+        if [[ -n "${INDEX_ZONE_BUILDER:-}" ]]; then
+            printf '%s\n' "$INDEX_ZONE_BUILDER"
+        else
+            printf '%s\n' "aws-indexes:metadata-backfill"
+        fi
+        return 0
+    fi
+
     if [[ -n "${INDEX_ZONE_BUILDER:-}" ]]; then
         printf '%s\n' "$INDEX_ZONE_BUILDER"
     elif git -C "$script_dir" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
@@ -146,6 +162,42 @@ validate_index_files() {
             exit 1
         fi
     done
+}
+
+download_s3_shards() {
+    local index_base="$1"
+    local ext="$2"
+    local prefix="$3"
+    local suffix
+    local src
+
+    require_cmd aws
+    for suffix in .1 .2 .3 .4 .rev.1 .rev.2; do
+        src="${from_s3_prefix%/}/${index_base}${suffix}.${ext}"
+        printf 'Downloading %s\n' "$src"
+        aws s3 cp "$src" "${prefix}${suffix}.${ext}"
+    done
+}
+
+finalize_index_artifacts() {
+    local id="$1"
+    local index_base="$2"
+    local species="$3"
+    local assembly="$4"
+    local source="$5"
+    local url="$6"
+    local expected_ext="$7"
+    local notes="$8"
+    local download="$9"
+    local fasta="${10}"
+    local prefix="${11}"
+    local actual_ext="${12}"
+
+    write_sequence_dictionary "$fasta" "$index_base"
+    write_provenance "$id" "$index_base" "$species" "$assembly" "$source" "$url" "$expected_ext" "$actual_ext" "$notes"
+    write_manifest "$id" "$index_base" "$species" "$assembly" "$source" "$url" "$expected_ext" "$actual_ext" "$notes" "$download" "$fasta" "$prefix"
+    copy_index_artifacts "$prefix" "$index_base" "$actual_ext"
+    upload_outputs "$index_base" "$actual_ext"
 }
 
 copy_index_artifacts() {
@@ -195,14 +247,23 @@ write_manifest() {
     local download="${10}"
     local fasta="${11}"
     local prefix="${12}"
-    local version_line tool_version input_md5 build_command builder_id
+    local version_line tool_version input_md5 build_command builder_id manifest_threads
 
-    version_line="$("$bowtie2_build" --version | head -n 1 || true)"
-    tool_version="$(printf '%s\n' "$version_line" | sed -E 's/.*version ([^[:space:]]+).*/\1/')"
+    if [[ "${backfill:-0}" -eq 1 ]]; then
+        version_line="unknown"
+        tool_version="unknown"
+        build_command="unknown"
+        builder_id="$(default_builder_id)"
+        manifest_threads="unknown"
+    else
+        version_line="$("$bowtie2_build" --version | head -n 1 || true)"
+        tool_version="$(printf '%s\n' "$version_line" | sed -E 's/.*version ([^[:space:]]+).*/\1/')"
+        build_command="$(printf '%q ' "$bowtie2_build" --threads "$threads" "$fasta" "$prefix")"
+        build_command="${build_command% }"
+        builder_id="$(default_builder_id)"
+        manifest_threads="$threads"
+    fi
     input_md5="$(md5_value "$download")"
-    build_command="$(printf '%q ' "$bowtie2_build" --threads "$threads" "$fasta" "$prefix")"
-    build_command="${build_command% }"
-    builder_id="$(default_builder_id)"
 
     INDEX_MANIFEST_PATH="${out_dir}/${index_base}.manifest.json" \
     INDEX_ID="$id" \
@@ -219,7 +280,7 @@ write_manifest() {
     INDEX_TOOL_VERSION="$tool_version" \
     INDEX_TOOL_VERSION_LINE="$version_line" \
     INDEX_COMMAND="$build_command" \
-    INDEX_THREADS="$threads" \
+    INDEX_THREADS="$manifest_threads" \
     INDEX_BUILDER="$builder_id" \
     python3 - <<'PY'
 import json
@@ -290,8 +351,15 @@ write_provenance() {
     local actual_ext="$8"
     local notes="$9"
     local version
+    local thread_line
 
-    version="$("$bowtie2_build" --version | head -n 1 || true)"
+    if [[ "${backfill:-0}" -eq 1 ]]; then
+        version="unknown"
+        thread_line="unknown"
+    else
+        version="$("$bowtie2_build" --version | head -n 1 || true)"
+        thread_line="$threads"
+    fi
 
     {
         printf 'id=%s\n' "$id"
@@ -304,7 +372,7 @@ write_provenance() {
         printf 'actual_ext=%s\n' "$actual_ext"
         printf 'built_utc=%s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
         printf 'bowtie2_build=%s\n' "$version"
-        printf 'threads=%s\n' "$threads"
+        printf 'threads=%s\n' "$thread_line"
         printf 'notes=%s\n' "$notes"
     } > "${out_dir}/${index_base}.build.txt"
 }
@@ -361,17 +429,72 @@ build_one() {
 
     actual_ext="$(index_ext_for_prefix "$prefix")"
     validate_index_files "$prefix" "$actual_ext"
-    write_sequence_dictionary "$fasta" "$index_base"
-    write_provenance "$id" "$index_base" "$species" "$assembly" "$source" "$url" "$expected_ext" "$actual_ext" "$notes"
-    write_manifest "$id" "$index_base" "$species" "$assembly" "$source" "$url" "$expected_ext" "$actual_ext" "$notes" "$download" "$fasta" "$prefix"
-    copy_index_artifacts "$prefix" "$index_base" "$actual_ext"
-    upload_outputs "$index_base" "$actual_ext"
+    finalize_index_artifacts "$id" "$index_base" "$species" "$assembly" "$source" "$url" "$expected_ext" "$notes" "$download" "$fasta" "$prefix" "$actual_ext"
 
     if [[ "$keep_fasta" -eq 0 ]]; then
         rm -f "$fasta"
     fi
 
     printf 'Finished %s -> %s/%s.zip\n' "$id" "$out_dir" "$index_base"
+}
+
+backfill_one() {
+    local id="$1"
+    local index_base="$2"
+    local species="$3"
+    local assembly="$4"
+    local source="$5"
+    local url="$6"
+    local expected_ext="$7"
+    local notes="$8"
+    local target_work download fasta prefix
+    local merged_notes
+
+    target_work="${work_dir}/${id}"
+    download="${target_work}/source.fa.gz"
+    fasta="${target_work}/source.fa"
+    prefix="${target_work}/${index_base}"
+
+    if [[ "$expected_ext" != "bt2" && "$expected_ext" != "bt2l" ]]; then
+        printf 'error: %s: expected_ext must be bt2 or bt2l, got %s\n' "$id" "$expected_ext" >&2
+        exit 1
+    fi
+
+    if [[ "$force" -eq 0 && -s "${out_dir}/${index_base}.zip" && -s "${out_dir}/${index_base}.dict" && -s "${out_dir}/${index_base}.manifest.json" && -s "${out_dir}/${index_base}.md5" ]]; then
+        printf 'Skipping %s; outputs already exist in %s. Use --force to rebuild.\n' "$id" "$out_dir"
+        return 0
+    fi
+
+    merged_notes="${notes}"
+    if [[ -n "$merged_notes" ]]; then
+        merged_notes="${merged_notes} "
+    fi
+    merged_notes="${merged_notes}Metadata-only backfill; index .${expected_ext} shards unchanged from ${from_s3_prefix}; original bowtie2-build version/date/command not recorded."
+
+    printf 'Backfilling metadata for %s (%s / %s)\n' "$id" "$species" "$assembly"
+    mkdir -p "$target_work"
+
+    if [[ "$force" -eq 1 || ! -s "$download" ]]; then
+        rm -f "$download"
+        "$curl_bin" --fail --location --silent --show-error --retry 5 --retry-delay 10 -o "$download" "$url"
+    fi
+
+    if [[ "$force" -eq 1 || ! -s "$fasta" ]]; then
+        rm -f "$fasta"
+        gzip -cd "$download" > "$fasta"
+    fi
+
+    rm -f "${prefix}".*.bt2 "${prefix}".*.bt2l
+    download_s3_shards "$index_base" "$expected_ext" "$prefix"
+    validate_index_files "$prefix" "$expected_ext"
+
+    finalize_index_artifacts "$id" "$index_base" "$species" "$assembly" "$source" "$url" "$expected_ext" "$merged_notes" "$download" "$fasta" "$prefix" "$expected_ext"
+
+    if [[ "$keep_fasta" -eq 0 ]]; then
+        rm -f "$fasta"
+    fi
+
+    printf 'Finished metadata backfill for %s -> %s/%s.zip\n' "$id" "$out_dir" "$index_base"
 }
 
 while [[ "$#" -gt 0 ]]; do
@@ -408,6 +531,18 @@ while [[ "$#" -gt 0 ]]; do
             keep_fasta=1
             shift
             ;;
+        --metadata-only)
+            metadata_only=1
+            shift
+            ;;
+        --backfill)
+            backfill=1
+            shift
+            ;;
+        --from-s3-prefix)
+            from_s3_prefix="$2"
+            shift 2
+            ;;
         -h|--help)
             usage
             exit 0
@@ -434,12 +569,31 @@ fi
 
 threads="${threads:-$(default_threads)}"
 
-require_cmd "$bowtie2_build"
+if [[ "$metadata_only" -eq 1 ]]; then
+    if [[ "$backfill" -ne 1 ]]; then
+        printf 'error: --metadata-only requires --backfill\n' >&2
+        exit 1
+    fi
+    if [[ -z "$from_s3_prefix" ]]; then
+        printf 'error: --metadata-only requires --from-s3-prefix\n' >&2
+        exit 1
+    fi
+elif [[ "$backfill" -eq 1 ]]; then
+    printf 'error: --backfill is only valid with --metadata-only\n' >&2
+    exit 1
+fi
+
+if [[ "$metadata_only" -eq 0 ]]; then
+    require_cmd "$bowtie2_build"
+fi
 require_cmd "$samtools_bin"
 require_cmd "$curl_bin"
 require_cmd python3
 require_cmd gzip
 require_cmd zip
+if [[ "$metadata_only" -eq 1 ]]; then
+    require_cmd aws
+fi
 
 if [[ ! -f "$targets_file" ]]; then
     printf 'error: target file does not exist: %s\n' "$targets_file" >&2
@@ -453,7 +607,11 @@ while IFS=$'\t' read -r id index_base species assembly source url expected_ext n
     [[ -z "${id:-}" || "${id:0:1}" == "#" ]] && continue
     if target_selected "$id"; then
         matched=$((matched + 1))
-        build_one "$id" "$index_base" "$species" "$assembly" "$source" "$url" "$expected_ext" "$notes"
+        if [[ "$metadata_only" -eq 1 ]]; then
+            backfill_one "$id" "$index_base" "$species" "$assembly" "$source" "$url" "$expected_ext" "$notes"
+        else
+            build_one "$id" "$index_base" "$species" "$assembly" "$source" "$url" "$expected_ext" "$notes"
+        fi
     fi
 done < "$targets_file"
 

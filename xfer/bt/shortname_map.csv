@@ -1,42 +1,42 @@
-grch38_noalt,GRCh38_noalt_as,Human,H. sapiens,GRCh38 no-alt analysis set,NCBI
-grch38_noalt_decoy,GRCh38_noalt_decoy_as,Human,H. sapiens,GRCh38 no-alt +decoy set,NCBI
-grch38_1kgmaj,grch38_1kgmaj,Human,H. sapiens,GRCh38 + major SNVs,NCBI+1KG<sup>1</sup>
-grch37,GRCh37,Human,H. sapiens,GRCh37,NCBI
-ash1,Ash1v1.7,Human,H. sapiens,Ash1v1.7,JHU <sup>2</sup>
-ash1_2,Ash1_v2.0,Human,H. sapiens,Ash1v2.0,JHU <sup>2</sup>
-t2tplusy,chm13.draft_v1.0_plusY,Human,H. sapiens,CHM13plusY,T2T <sup>3</sup>
+grch38_noalt,GRCh38_noalt_as,Human,H. sapiens,GRCh38 no-alt analysis set,NCBI,bt2,dict;manifest
+grch38_noalt_decoy,GRCh38_noalt_decoy_as,Human,H. sapiens,GRCh38 no-alt +decoy set,NCBI,bt2,dict;manifest
+grch38_1kgmaj,grch38_1kgmaj,Human,H. sapiens,GRCh38 + major SNVs,NCBI+1KG<sup>1</sup>,bt2,dict;manifest
+grch37,GRCh37,Human,H. sapiens,GRCh37,NCBI,bt2,dict;manifest
+ash1,Ash1v1.7,Human,H. sapiens,Ash1v1.7,JHU <sup>2</sup>,bt2,dict;manifest
+ash1_2,Ash1_v2.0,Human,H. sapiens,Ash1v2.0,JHU <sup>2</sup>,bt2,dict;manifest
+t2tplusy,chm13.draft_v1.0_plusY,Human,H. sapiens,CHM13plusY,T2T <sup>3</sup>,bt2,dict;manifest
 hs1,hs1,Human,H. sapiens,hs1 / T2T-CHM13v2.0,UCSC,bt2,dict;manifest
-hg19,hg19,Human,H. sapiens,hg19,UCSC
-hg18,hg18,Human,H. sapiens,hg18,UCSC
-grcm38,GRCm38,Mouse,M. Musculus,GRCm38,NCBI
-grcm39,GRCm39,Mouse,M. Musculus,GRCm39,NCBI
-mm10,mm10,Mouse,M. Musculus,mm10,UCSC
-mm9,mm9,Mouse,M. Musculus,mm9,UCSC
-clintptr2,Clint_PTRv2,Chimpanzee,P. troglodytes,Clint_PTRv2,NCBI
-chimp214,CHIMP2.1.4,Chimpanzee,P. troglodytes,CHIMP2.1.4,Ensembl
-mmul10,Mmul_10,Rhesus macaque,M. mulatta,MMul_10,Ensembl
+hg19,hg19,Human,H. sapiens,hg19,UCSC,bt2,dict;manifest
+hg18,hg18,Human,H. sapiens,hg18,UCSC,bt2,dict;manifest
+grcm38,GRCm38,Mouse,M. Musculus,GRCm38,NCBI,bt2,dict;manifest
+grcm39,GRCm39,Mouse,M. Musculus,GRCm39,NCBI,bt2,dict;manifest
+mm10,mm10,Mouse,M. Musculus,mm10,UCSC,bt2,dict;manifest
+mm9,mm9,Mouse,M. Musculus,mm9,UCSC,bt2,dict;manifest
+clintptr2,Clint_PTRv2,Chimpanzee,P. troglodytes,Clint_PTRv2,NCBI,bt2,dict;manifest
+chimp214,CHIMP2.1.4,Chimpanzee,P. troglodytes,CHIMP2.1.4,Ensembl,bt2,dict;manifest
+mmul10,Mmul_10,Rhesus macaque,M. mulatta,MMul_10,Ensembl,bt2,dict;manifest
 arsucd20,ARS-UCD2.0,Cow,B. taurus,ARS-UCD2.0,NCBI RefSeq,bt2,dict;manifest
-arsucd12,ARS-UCD1.2,Cow,B. taurus,ARS-UCD1.2,NCBI
-sscorfa111,Sscrofa11.1,Pig,S. scrofa,Sscrofa11.1,NCBI
+arsucd12,ARS-UCD1.2,Cow,B. taurus,ARS-UCD1.2,NCBI,bt2,dict;manifest
+sscorfa111,Sscrofa11.1,Pig,S. scrofa,Sscrofa11.1,NCBI,bt2,dict;manifest
 roscfam10,ROS_Cfam_1.0,Dog,C. familiaris,ROS_Cfam_1.0,NCBI RefSeq,bt2,dict;manifest
-canfam31,CanFam3.1,Dog,C. familiaris,CanFam3.1,Ensembl
-canfam4,canfam4,Dog,C. familiaris,CanFam4,NCBI
+canfam31,CanFam3.1,Dog,C. familiaris,CanFam3.1,Ensembl,bt2,dict;manifest
+canfam4,canfam4,Dog,C. familiaris,CanFam4,NCBI,bt2,dict;manifest
 grcr8,GRCr8,Rat,R. norvegicus,GRCr8,NCBI RefSeq,bt2,dict;manifest
-rn4,rn4,Rat,R. norvegicus,rn4,UCSC
-rnor60,Rnor_6.0,Rat,R. norvegicus,Rnor6.0,NCBI
+rn4,rn4,Rat,R. norvegicus,rn4,UCSC,bt2,dict;manifest
+rnor60,Rnor_6.0,Rat,R. norvegicus,Rnor6.0,NCBI,bt2,dict;manifest
 grcg7b,bGalGal1.mat.broiler.GRCg7b,Chicken,G. gallus,bGalGal1.mat.broiler.GRCg7b,NCBI RefSeq,bt2,dict;manifest
-grcg6a,GRCg6a,Chicken,G. gallus,GRCg6a,NCBI
-galgal4,Galgal4,Chicken,G. gallus,Galgal4,Ensembl
-grcz11,GRCz11,Zebrafish,D. rerio,GRCz11,NCBI
-grcz10,GRCz10,Zebrafish,D. rerio,GRCz10,NCBI
-agpv4,AGPv4,Corn,Z. mays,AGPv4,Ensembl
-b73_refgen_v5,Zm-B73-REFERENCE-NAM-5.0,Corn,Z. mays,B73 RefGenV5,NCBI
+grcg6a,GRCg6a,Chicken,G. gallus,GRCg6a,NCBI,bt2,dict;manifest
+galgal4,Galgal4,Chicken,G. gallus,Galgal4,Ensembl,bt2,dict;manifest
+grcz11,GRCz11,Zebrafish,D. rerio,GRCz11,NCBI,bt2,dict;manifest
+grcz10,GRCz10,Zebrafish,D. rerio,GRCz10,NCBI,bt2,dict;manifest
+agpv4,AGPv4,Corn,Z. mays,AGPv4,Ensembl,bt2,dict;manifest
+b73_refgen_v5,Zm-B73-REFERENCE-NAM-5.0,Corn,Z. mays,B73 RefGenV5,NCBI,bt2,dict;manifest
 iwgsc,IWGSC,Wheat,T. aestivum,IWGSC,Ensembl Plants,bt2l,dict;manifest
 morexv3,MorexV3_pseudomolecules_assembly,Barley,H. vulgare,MorexV3_pseudomolecules_assembly,Ensembl Plants,bt2l,dict;manifest
 irgsp10,IRGSP-1.0,Oryza sativa (rice),O. sativa,IRGSP-1.0,Ensembl Plants,bt2,dict;manifest
-build4,Build_4.0,Oryza sativa (rice),O. sativa,Build_4.0,NCBI
-tair10,TAIR10,Arabidopsis thaliana,A. thaliana,TAIR10,Ensembl
-bdgp6,BDGP6,Fruitfly,D. melanogaster,BDGP6,Ensembl
-dmela410,Dmel_A4_1.0,Fruitfly,D. melanogaster,Dmel A4 1.0,NCBI
-wbcel235,WBcel235,C. elegans,C. elegans,WBcel235,Ensembl
-r6411,R64-1-1,Yeast,S. cerevisiae,R64-1-1,Ensembl
+build4,Build_4.0,Oryza sativa (rice),O. sativa,Build_4.0,NCBI,bt2,dict;manifest
+tair10,TAIR10,Arabidopsis thaliana,A. thaliana,TAIR10,Ensembl,bt2,dict;manifest
+bdgp6,BDGP6,Fruitfly,D. melanogaster,BDGP6,Ensembl,bt2,dict;manifest
+dmela410,Dmel_A4_1.0,Fruitfly,D. melanogaster,Dmel A4 1.0,NCBI,bt2,dict;manifest
+wbcel235,WBcel235,C. elegans,C. elegans,WBcel235,Ensembl,bt2,dict;manifest
+r6411,R64-1-1,Yeast,S. cerevisiae,R64-1-1,Ensembl,bt2,dict;manifest

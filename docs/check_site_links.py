@@ -26,6 +26,7 @@ Usage:
   cd docs && python3 check_site_links.py
   python3 docs/check_site_links.py --root docs
   python3 check_site_links.py --verbose --workers 12
+  python3 docs/check_site_links.py --root docs --only bowtie.md --check-s3
 """
 
 from __future__ import annotations
@@ -395,6 +396,15 @@ def main() -> int:
         help="Verify ftp:// links (off by default; servers often rate-limit)",
     )
     ap.add_argument(
+        "--only",
+        nargs="+",
+        metavar="REL_PATH",
+        help=(
+            "Only scan these paths relative to --root (e.g. bowtie.md). "
+            "Useful for targeted checks after a partial doc or S3 update."
+        ),
+    )
+    ap.add_argument(
         "--request-delay",
         type=float,
         default=0.0,
@@ -412,6 +422,14 @@ def main() -> int:
     files = find_markdown_files(docs_root, args.include_skills) + find_layout_files(
         docs_root
     )
+    if args.only:
+        wanted = {(docs_root / rel).resolve() for rel in args.only}
+        files = [f for f in files if f.resolve() in wanted]
+        found_resolved = {f.resolve() for f in files}
+        for w in sorted(wanted):
+            if w not in found_resolved:
+                print(f"Error: --only path not found under root: {w}", file=sys.stderr)
+                return 2
     if not files:
         print("No source files found.", file=sys.stderr)
         return 0

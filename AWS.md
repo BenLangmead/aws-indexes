@@ -1,4 +1,24 @@
-Remember that if you need temporary credentials, you can go to:
+For **Index Zone / genome-idx** work on this machine, the AWS CLI v2 flow is:
+
+1. Log in to the console-backed user profile (opens a browser, or use `aws login --remote` over SSH):
+
+   ```bash
+   aws login --profile data-langmead
+   ```
+
+2. Use the role that can list and write `s3://genome-idx/` (see `~/.aws/config` — profile `index-zone-s3` chains from `data-langmead`):
+
+   ```bash
+   export AWS_PROFILE=index-zone-s3
+   ```
+
+For **IAM Identity Center** (e.g. CDK deploy profile `index-zone-ec2`), use:
+
+```bash
+aws sso login --profile index-zone-ec2
+```
+
+Remember that if you need temporary credentials via the JHU portal, you can go to:
 https://jh.awsapps.com/start/#/console?account_id=159168350739
 
 Unfortunately, my instance_shopper.py script doesn't know about architectures (e.g. Xeon versus Graviton).  Another factor that's important is whether there's instance-local storage.  So it could be that I have to narrow my options using more than one script or database.
