@@ -1,23 +1,36 @@
 version: 2
 
 updates:
+  # ---- Docs site (Jekyll / Ruby) ----
+  # Pinned to the github-pages meta-gem, so security alerts here are
+  # local-preview-only. Group everything into a single PR to limit noise.
   - package-ecosystem: "bundler"
     directory: "/docs"
     schedule:
       interval: "weekly"
     groups:
-      docs-security-updates:
+      docs-security:
         applies-to: security-updates
         patterns:
           - "*"
+      docs-version:
+        applies-to: version-updates
+        patterns:
+          - "*"
 
+  # ---- Python build/deploy helpers ----
+  # One grouped PR per directory for both security and version updates.
   - package-ecosystem: "pip"
     directory: "/build/bowtie"
     schedule:
       interval: "weekly"
     groups:
-      bowtie-python-security-updates:
+      bowtie-security:
         applies-to: security-updates
+        patterns:
+          - "*"
+      bowtie-version:
+        applies-to: version-updates
         patterns:
           - "*"
 
@@ -26,8 +39,12 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      tera-python-security-updates:
+      tera-security:
         applies-to: security-updates
+        patterns:
+          - "*"
+      tera-version:
+        applies-to: version-updates
         patterns:
           - "*"
 
@@ -36,7 +53,39 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      pfp-python-security-updates:
+      pfp-security:
         applies-to: security-updates
+        patterns:
+          - "*"
+      pfp-version:
+        applies-to: version-updates
+        patterns:
+          - "*"
+
+  - package-ecosystem: "pip"
+    directory: "/build/movi_kmer_bench"
+    schedule:
+      interval: "weekly"
+    groups:
+      movi-kmer-bench-security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+      movi-kmer-bench-version:
+        applies-to: version-updates
+        patterns:
+          - "*"
+
+  - package-ecosystem: "pip"
+    directory: "/build/movi_mem_bench"
+    schedule:
+      interval: "weekly"
+    groups:
+      movi-mem-bench-security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+      movi-mem-bench-version:
+        applies-to: version-updates
         patterns:
           - "*"
