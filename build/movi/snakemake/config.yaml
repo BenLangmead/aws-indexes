@@ -1,0 +1,65 @@
+# Movi-index build: configuration for one pangenome collection.
+# Defaults target HPRC release 1 (HPRC-yr1.agc, 95 haplotypes) on JHU Rockfish.
+
+collection: hprc-yr1
+agc_archive: /data/blangme2/fasta/hprc-yr1/HPRC-yr1.agc
+# haplotypes: "ALL" (whole collection via `agc getcol`) or a comma/space list of
+# sample names (subset via `agc getset`, e.g. "CHM13Y,HG002.1,HG002.2").
+haplotypes: ALL
+ftab_k: 12                       # movi build/query PRIMARY ftab k. ftab size = 4^k x 32 B,
+                                 # so k>=14 is impractical to load at query time (k=16 ~137 GB,
+                                 # k=14 ~8.6 GB); cap the largest ftab at 12 (~0.5 GB).
+# Additional (smaller) ftabs to build for the finished index (ftab.<k>.bin), beyond ftab_k.
+# Each is built by `movi ftab` against the existing index (no rebuild). 4^k entries x 32 B:
+# k=10 ~34 MB, k=8 ~2 MB, k<=6 tiny. Enables --multi-ftab (fall back to smaller k).
+ftab_extra_k: [10, 8, 6, 4, 2]
+
+workdir: /scratch16/blangme2/movi-work   # large/transient scratch (grl_in, lcp_index, grlbwt temp)
+outdir:  /data/blangme2/movi              # durable output (the finished Movi index)
+
+# Slurm accounts
+account:        blangme2
+account_bigmem: blangme2_bigmem
+
+# Tool paths (prebuilt on shared /home; rebuilt TeraLCP carries Tier A+B + --rlbwt-meta)
+agc:          /home/blangme2/bin/agc
+movi:         /home/blangme2/git/movi-langmead/build/movi
+movi_prepare: /home/blangme2/git/movi-langmead/build/bin/movi-prepare-ref
+teralcp:      /home/blangme2/git/TeraTools-pr/src/TeraLCP/TeraLCP
+adapter:      /home/blangme2/git/TeraTools-pr/src/TeraLCP/tools/grlbwt2teralcp
+grlbwt:       /home/blangme2/git/grlBWT/build/grlbwt-cli
+grlbwt2rle:   /home/blangme2/git/grlBWT/build/grlbwt2rle
+
+# Per-rule Slurm resources. NOTE on Rockfish memory model:
+#   parallel = 4 GB/CPU  (192 GB,  48c, 3-day, qos normal)
+#   bigmem   = 32 GB/CPU (1536 GB, 48c, 2-day default; up to 7-day under qos `extended`)
+# Because mem is tied to CPUs, to get N GB you must request N/4 (or N/32) CPUs --
+# the cpus below are sized to *unlock the memory*, not because the tool needs them
+# (TeraLCP is effectively serial). runtime is in MINUTES.
+#
+# QOS: bigmem's AllowQos is {qos_bigmem, extended} -- the default `normal` is REJECTED
+# there, so bigmem rules must set `qos` explicitly. `extended` raises the walltime cap
+# to 7 days (MaxWall 7-00:00:00). The `emr` partition is a condo we CANNOT use
+# (AllowQos=emr,emr_condo,emr_tzaki; blangme2 has none of those) -- do not target it.
+#
+# Sizing rationale (HPRC-yr1; grlbwt measured, TeraLCP extrapolated from 24-hap pilot):
+#   grlbwt  16h42m / ~84 GB RAM / ~371 GB scratch peak (measured 2026-06-18)
+#   teralcp_construct  ~4-5 days / ~450 GB  -> now split into A/B/C, each
+#       bigmem+extended (7-day, 1.5 TB node) so a >7-day total can be chunked.
+#       Each runtime is the 7-day cap (10080 min); a phase finishing early just
+#       releases the node. mem sized to the whole-construct peak for safety.
+#   teralcp_thresholds ~ few h   / ~0.5-0.7 TB (Tier A+B) -> bigmem+qos_bigmem (2-day)
+res:
+  extract:            {partition: parallel, account: blangme2,        cpus: 8,   mem_mb: 32000,   runtime: 180}
+  prepare:            {partition: parallel, account: blangme2,        cpus: 1,   mem_mb: 16000,   runtime: 600}
+  concat:             {partition: parallel, account: blangme2,        cpus: 1,   mem_mb: 8000,    runtime: 600}
+  grlbwt:             {partition: parallel, account: blangme2,        cpus: 48,  mem_mb: 190000,  runtime: 2880}
+  rle:                {partition: parallel, account: blangme2,        cpus: 4,   mem_mb: 96000,   runtime: 360}
+  adapter:            {partition: parallel, account: blangme2,        cpus: 4,   mem_mb: 64000,   runtime: 240}
+  teralcp_construct_A: {partition: bigmem,  account: blangme2_bigmem, qos: extended,   cpus: 24,  mem_mb: 1000000, runtime: 10080}
+  teralcp_construct_B: {partition: bigmem,  account: blangme2_bigmem, qos: extended,   cpus: 24,  mem_mb: 1000000, runtime: 10080}
+  teralcp_construct_C: {partition: bigmem,  account: blangme2_bigmem, qos: extended,   cpus: 24,  mem_mb: 1000000, runtime: 10080}
+  teralcp_thresholds: {partition: bigmem,   account: blangme2_bigmem, qos: qos_bigmem, cpus: 48,  mem_mb: 1500000, runtime: 1440}
+  stage:              {partition: parallel, account: blangme2,        cpus: 1,   mem_mb: 8000,    runtime: 360}
+  movi_build:         {partition: bigmem,   account: blangme2_bigmem, qos: qos_bigmem, cpus: 48,  mem_mb: 1500000, runtime: 1440}
+  ftab:               {partition: parallel, account: blangme2,        cpus: 32,  mem_mb: 128000,  runtime: 720}

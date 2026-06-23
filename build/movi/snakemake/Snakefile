@@ -1,0 +1,403 @@
+# Movi-index build pipeline: AGC/FASTA -> grlBWT -> TeraLCP -> Movi.
+#
+# Designed for Snakemake >=8 with the SLURM executor plugin on JHU Rockfish.
+# Each rule is one Slurm job; resources (partition/account/mem/runtime/cpus) come
+# from config["res"][<rule>]. The expensive TeraLCP step is split into per-phase
+# jobs via internal checkpoints so a >7-day build can complete across <=7-day jobs:
+#   teralcp_construct_A/B/C -> bigmem+extended (1.5 TB, 7-day): build the LCP index,
+#                              one job per slow phase, sharing a checkpoint dir
+#   teralcp_thresholds      -> bigmem (1.5 TB, 2-day): resumes, emits .thr/.thr_pos
+# The resume reads run metadata from the grlBWT heads/len via TeraLCP --rlbwt-meta.
+#
+# Usage (from this directory, with the snakemake8 conda env active):
+#   snakemake --executor slurm --workflow-profile profiles/rockfish --configfile config.yaml
+# Dry run / DAG:
+#   snakemake -n  ;  snakemake --dag | dot -Tsvg > dag.svg
+
+import os
+configfile: "config.yaml"
+
+C    = config["collection"]
+WORK = os.path.join(config["workdir"], C)
+OUT  = os.path.join(config["outdir"], C)
+IDX  = os.path.join(OUT, "index")
+RES  = config["res"]
+TP   = config.get("teralcp_p", 24)   # threads passed to TeraLCP -p (decoupled from
+                                      # the cpus requested only to unlock memory)
+
+def res(rule, key):
+    return RES[rule][key]
+
+rule all:
+    input:
+        os.path.join(IDX, "index.movi"),
+        expand(os.path.join(IDX, "ftab.{k}.bin"), k=config.get("ftab_extra_k", []))
+
+# ----------------------------------------------------------------------------
+# 1. Input acquisition: AGC -> one FASTA
+# ----------------------------------------------------------------------------
+rule extract:
+    output:
+        fa = os.path.join(WORK, "input.fa")
+    params:
+        agc     = config["agc"],
+        archive = config["agc_archive"],
+        haps    = str(config["haplotypes"])
+    threads: res("extract", "cpus")
+    resources:
+        slurm_partition = res("extract", "partition"),
+        slurm_account   = res("extract", "account"),
+        mem_mb          = res("extract", "mem_mb"),
+        runtime         = res("extract", "runtime")
+    shell:
+        r"""
+        mkdir -p $(dirname {output.fa})
+        if [ "{params.haps}" = "ALL" ]; then
+            {params.agc} getcol -t {threads} {params.archive} > {output.fa}
+        else
+            {params.agc} getset -t {threads} {params.archive} $(echo "{params.haps}" | tr ',' ' ') > {output.fa}
+        fi
+        test -s {output.fa}
+        """
+
+# ----------------------------------------------------------------------------
+# 2. movi-prepare-ref: clean + %-separate + append reverse complement
+# ----------------------------------------------------------------------------
+rule prepare:
+    input:
+        fa = os.path.join(WORK, "input.fa")
+    output:
+        clean = os.path.join(WORK, "clean.fa")
+    params:
+        prep = config["movi_prepare"]
+    threads: res("prepare", "cpus")
+    resources:
+        slurm_partition = res("prepare", "partition"),
+        slurm_account   = res("prepare", "account"),
+        mem_mb          = res("prepare", "mem_mb"),
+        runtime         = res("prepare", "runtime")
+    shell:
+        "{params.prep} {input.fa} {output.clean} separators"
+
+# ----------------------------------------------------------------------------
+# 3. Concatenate to one %-separated string (trailing newline = grlBWT sentinel)
+# ----------------------------------------------------------------------------
+rule concat:
+    input:
+        clean = os.path.join(WORK, "clean.fa")
+    output:
+        grl_in = os.path.join(WORK, "grl_in.txt")
+    threads: res("concat", "cpus")
+    resources:
+        slurm_partition = res("concat", "partition"),
+        slurm_account   = res("concat", "account"),
+        mem_mb          = res("concat", "mem_mb"),
+        runtime         = res("concat", "runtime")
+    shell:
+        r"{{ grep -v '^>' {input.clean} | tr -d '\n'; echo; }} > {output.grl_in}"
+
+# ----------------------------------------------------------------------------
+# 4. grlBWT: BCR-exact run-length BWT  (big scratch via -T on the work dir)
+# ----------------------------------------------------------------------------
+rule grlbwt:
+    input:
+        grl_in = os.path.join(WORK, "grl_in.txt")
+    output:
+        rlbwt = os.path.join(WORK, "grl_out.rl_bwt")
+    params:
+        grlbwt = config["grlbwt"],
+        tmp    = os.path.join(WORK, "grltmp")
+    threads: res("grlbwt", "cpus")
+    resources:
+        slurm_partition = res("grlbwt", "partition"),
+        slurm_account   = res("grlbwt", "account"),
+        mem_mb          = res("grlbwt", "mem_mb"),
+        runtime         = res("grlbwt", "runtime")
+    shell:
+        r"""
+        mkdir -p {params.tmp}
+        {params.grlbwt} {input.grl_in} -o {WORK}/grl_out -t {threads} -T {params.tmp}
+        rm -rf {params.tmp}
+        """
+
+rule rle:
+    input:
+        rlbwt = os.path.join(WORK, "grl_out.rl_bwt")
+    output:
+        syms = os.path.join(WORK, "grl_rle.syms"),
+        lens = os.path.join(WORK, "grl_rle.len")
+    params:
+        rle = config["grlbwt2rle"]
+    threads: res("rle", "cpus")
+    resources:
+        slurm_partition = res("rle", "partition"),
+        slurm_account   = res("rle", "account"),
+        mem_mb          = res("rle", "mem_mb"),
+        runtime         = res("rle", "runtime")
+    shell:
+        "{params.rle} {input.rlbwt} {WORK}/grl_rle"
+
+# ----------------------------------------------------------------------------
+# 6/9. Adapters: grlBWT RLE -> heads/len.
+#   - default form for TeraLCP -f rlbwt (heads as-is)
+#   - --movi-sentinel form for `movi build` (smallest head byte remapped to 0x00)
+# ----------------------------------------------------------------------------
+rule adapter_teralcp:
+    input:
+        syms = os.path.join(WORK, "grl_rle.syms"),
+        lens = os.path.join(WORK, "grl_rle.len")
+    output:
+        heads = os.path.join(WORK, "grl.bwt.heads"),
+        lens  = os.path.join(WORK, "grl.bwt.len")
+    params:
+        adapter = config["adapter"]
+    threads: res("adapter", "cpus")
+    resources:
+        slurm_partition = res("adapter", "partition"),
+        slurm_account   = res("adapter", "account"),
+        mem_mb          = res("adapter", "mem_mb"),
+        runtime         = res("adapter", "runtime")
+    shell:
+        "{params.adapter} {WORK}/grl_rle {WORK}/grl -q"
+
+rule adapter_movi:
+    input:
+        syms = os.path.join(WORK, "grl_rle.syms"),
+        lens = os.path.join(WORK, "grl_rle.len")
+    output:
+        heads = os.path.join(IDX, "ref.fa.bwt.heads"),
+        lens  = os.path.join(IDX, "ref.fa.bwt.len")
+    params:
+        adapter = config["adapter"]
+    threads: res("adapter", "cpus")
+    resources:
+        slurm_partition = res("adapter", "partition"),
+        slurm_account   = res("adapter", "account"),
+        mem_mb          = res("adapter", "mem_mb"),
+        runtime         = res("adapter", "runtime")
+    shell:
+        r"""
+        mkdir -p {IDX}
+        {params.adapter} {WORK}/grl_rle {IDX}/ref.fa --movi-sentinel -q
+        """
+
+# ----------------------------------------------------------------------------
+# 7. TeraLCP construct, split into per-phase jobs (A -> B -> C), each its own
+#    bigmem + extended QOS job (1.5 TB / 7-day). The phases share ONE checkpoint
+#    dir (teralcp.ckpt); each job resumes from the first incomplete phase
+#    (-checkpoint) and stops after its phase (-stop-after), writing an atomic
+#    per-phase checkpoint. The final job (C) emits teralcp.lcp_index. This lets an
+#    HPRCv2-scale build whose total construct time exceeds a single 7-day walltime
+#    complete across successive jobs. Boundaries (see TeraLCP):
+#       A  after endmarker repair          B  after Phi+samples          C  .lcp_index
+#    Each job re-reads -f rlbwt -i grl (the constructor rebuilds + frees the FMD
+#    even on resume), so B and C also depend on the grlBWT heads/len.
+#    NB: the emr partition is a condo we have NO access to; bigmem+extended gives
+#    1.5 TB / 7-day, more RAM than emr and the same walltime.
+#    CAVEAT: checkpoints are only at phase boundaries -- a single phase that
+#    exceeds 7 days cannot be chunked yet (would need the finer two-traversal
+#    split inside phase A). Watch construct_A at full HPRCv2 scale.
+#    The teralcp.ckpt dir (100s of GB) can be deleted once teralcp.lcp_index
+#    exists; left in place here (scratch is ample) to keep resume possible.
+# ----------------------------------------------------------------------------
+CKPT = os.path.join(WORK, "teralcp.ckpt")
+
+rule teralcp_construct_A:
+    input:
+        heads = os.path.join(WORK, "grl.bwt.heads"),
+        lens  = os.path.join(WORK, "grl.bwt.len")
+    output:
+        done = os.path.join(WORK, "teralcp.ckpt.A.done")
+    params:
+        teralcp = config["teralcp"],
+        tp      = TP,
+        ckpt    = CKPT,
+        tmp     = os.path.join(WORK, "teralcp.construct.tmp")
+    threads: res("teralcp_construct_A", "cpus")
+    resources:
+        slurm_partition = res("teralcp_construct_A", "partition"),
+        slurm_account   = res("teralcp_construct_A", "account"),
+        qos             = res("teralcp_construct_A", "qos"),
+        mem_mb          = res("teralcp_construct_A", "mem_mb"),
+        runtime         = res("teralcp_construct_A", "runtime")
+    shell:
+        r"""
+        {params.teralcp} -f rlbwt -i {WORK}/grl -t {params.tmp} \
+            -checkpoint {params.ckpt} -stop-after A -p {params.tp} -v time
+        rm -f {params.tmp}
+        touch {output.done}
+        """
+
+rule teralcp_construct_B:
+    input:
+        done  = os.path.join(WORK, "teralcp.ckpt.A.done"),
+        heads = os.path.join(WORK, "grl.bwt.heads"),
+        lens  = os.path.join(WORK, "grl.bwt.len")
+    output:
+        done = os.path.join(WORK, "teralcp.ckpt.B.done")
+    params:
+        teralcp = config["teralcp"],
+        tp      = TP,
+        ckpt    = CKPT,
+        tmp     = os.path.join(WORK, "teralcp.construct.tmp")
+    threads: res("teralcp_construct_B", "cpus")
+    resources:
+        slurm_partition = res("teralcp_construct_B", "partition"),
+        slurm_account   = res("teralcp_construct_B", "account"),
+        qos             = res("teralcp_construct_B", "qos"),
+        mem_mb          = res("teralcp_construct_B", "mem_mb"),
+        runtime         = res("teralcp_construct_B", "runtime")
+    shell:
+        r"""
+        {params.teralcp} -f rlbwt -i {WORK}/grl -t {params.tmp} \
+            -checkpoint {params.ckpt} -stop-after B -p {params.tp} -v time
+        rm -f {params.tmp}
+        touch {output.done}
+        """
+
+rule teralcp_construct_C:
+    input:
+        done  = os.path.join(WORK, "teralcp.ckpt.B.done"),
+        heads = os.path.join(WORK, "grl.bwt.heads"),
+        lens  = os.path.join(WORK, "grl.bwt.len")
+    output:
+        index = os.path.join(WORK, "teralcp.lcp_index")
+    params:
+        teralcp = config["teralcp"],
+        tp      = TP,
+        ckpt    = CKPT,
+        tmp     = os.path.join(WORK, "teralcp.construct.tmp")
+    threads: res("teralcp_construct_C", "cpus")
+    resources:
+        slurm_partition = res("teralcp_construct_C", "partition"),
+        slurm_account   = res("teralcp_construct_C", "account"),
+        qos             = res("teralcp_construct_C", "qos"),
+        mem_mb          = res("teralcp_construct_C", "mem_mb"),
+        runtime         = res("teralcp_construct_C", "runtime")
+    shell:
+        # -oindex appends .lcp_index, so pass the stem WORK/teralcp
+        r"""
+        {params.teralcp} -f rlbwt -i {WORK}/grl -t {params.tmp} \
+            -checkpoint {params.ckpt} -oindex {WORK}/teralcp -p {params.tp} -v time
+        rm -f {params.tmp}
+        test -s {output.index}
+        """
+
+# ----------------------------------------------------------------------------
+# 8. TeraLCP job B (bigmem): resume from the index, emit Movi thresholds.
+#    Run metadata comes from the grlBWT heads/len via --rlbwt-meta.
+# ----------------------------------------------------------------------------
+rule teralcp_thresholds:
+    input:
+        index = os.path.join(WORK, "teralcp.lcp_index"),
+        heads = os.path.join(WORK, "grl.bwt.heads"),
+        lens  = os.path.join(WORK, "grl.bwt.len")
+    output:
+        thr     = os.path.join(WORK, "septera.thr"),
+        thr_pos = os.path.join(WORK, "septera.thr_pos")
+    params:
+        teralcp = config["teralcp"],
+        tp      = TP,
+        tmp     = os.path.join(WORK, "teralcp.thr.tmp")
+    threads: res("teralcp_thresholds", "cpus")
+    resources:
+        slurm_partition = res("teralcp_thresholds", "partition"),
+        slurm_account   = res("teralcp_thresholds", "account"),
+        qos             = res("teralcp_thresholds", "qos"),
+        mem_mb          = res("teralcp_thresholds", "mem_mb"),
+        runtime         = res("teralcp_thresholds", "runtime")
+    shell:
+        r"""
+        {params.teralcp} -f lcp_index -i {input.index} -t {params.tmp} \
+            -othresholds {WORK}/septera --rlbwt-meta {WORK}/grl -p {params.tp} -v time
+        rm -f {params.tmp}
+        test -s {output.thr_pos}
+        """
+
+# ----------------------------------------------------------------------------
+# 10/11. Assemble the preprocessed Movi index directory
+# ----------------------------------------------------------------------------
+rule stage_ref:
+    input:
+        clean = os.path.join(WORK, "clean.fa")
+    output:
+        ref = os.path.join(IDX, "ref.fa")
+    threads: res("stage", "cpus")
+    resources:
+        slurm_partition = res("stage", "partition"),
+        slurm_account   = res("stage", "account"),
+        mem_mb          = res("stage", "mem_mb"),
+        runtime         = res("stage", "runtime")
+    shell:
+        "mkdir -p {IDX} && cp {input.clean} {output.ref}"
+
+rule stage_thresholds:
+    input:
+        thr     = os.path.join(WORK, "septera.thr"),
+        thr_pos = os.path.join(WORK, "septera.thr_pos")
+    output:
+        thr     = os.path.join(IDX, "ref.fa.thr"),
+        thr_pos = os.path.join(IDX, "ref.fa.thr_pos")
+    threads: res("stage", "cpus")
+    resources:
+        slurm_partition = res("stage", "partition"),
+        slurm_account   = res("stage", "account"),
+        mem_mb          = res("stage", "mem_mb"),
+        runtime         = res("stage", "runtime")
+    shell:
+        "cp {input.thr} {output.thr} && cp {input.thr_pos} {output.thr_pos}"
+
+# ----------------------------------------------------------------------------
+# 12. movi build (preprocessed). Consumes ref.fa + companions -> index.movi.
+# ----------------------------------------------------------------------------
+rule movi_build:
+    input:
+        ref     = os.path.join(IDX, "ref.fa"),
+        heads   = os.path.join(IDX, "ref.fa.bwt.heads"),
+        lens    = os.path.join(IDX, "ref.fa.bwt.len"),
+        thr     = os.path.join(IDX, "ref.fa.thr"),
+        thr_pos = os.path.join(IDX, "ref.fa.thr_pos")
+    output:
+        movi = os.path.join(IDX, "index.movi")
+    params:
+        movi = config["movi"],
+        k    = config["ftab_k"]
+    threads: res("movi_build", "cpus")
+    resources:
+        slurm_partition = res("movi_build", "partition"),
+        slurm_account   = res("movi_build", "account"),
+        qos             = res("movi_build", "qos"),
+        mem_mb          = res("movi_build", "mem_mb"),
+        runtime         = res("movi_build", "runtime")
+    shell:
+        r"""
+        {params.movi} build --separators --preprocessed --skip-prepare --skip-pfp \
+            --type regular-thresholds --ftab-k {params.k} \
+            --fasta {input.ref} --index {IDX}
+        test -s {output.movi}
+        """
+
+# ----------------------------------------------------------------------------
+# 13. Additional ftabs (k != ftab_k) for the finished index, one per k.
+#     `movi ftab` fills an ftab for the EXISTING index (ftab.<k>.bin) without
+#     rebuilding. The k=ftab_k ftab is already produced by movi_build above.
+#     Multiple ftabs let queries use --multi-ftab (fall back to smaller k).
+# ----------------------------------------------------------------------------
+rule ftab:
+    input:
+        movi = os.path.join(IDX, "index.movi")
+    output:
+        ftab = os.path.join(IDX, "ftab.{k}.bin")
+    params:
+        movi = config["movi"]
+    threads: res("ftab", "cpus")
+    resources:
+        slurm_partition = res("ftab", "partition"),
+        slurm_account   = res("ftab", "account"),
+        mem_mb          = res("ftab", "mem_mb"),
+        runtime         = res("ftab", "runtime")
+    shell:
+        r"""
+        {params.movi} ftab --index {IDX} --ftab-k {wildcards.k}
+        test -s {output.ftab}
+        """

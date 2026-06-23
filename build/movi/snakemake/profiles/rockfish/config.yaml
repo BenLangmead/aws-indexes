@@ -1,0 +1,22 @@
+# Snakemake workflow profile for JHU Rockfish (Slurm executor plugin, Snakemake >=8).
+# Per-rule partition/account/mem/runtime/cpus come from the Snakefile (config["res"]);
+# this profile sets the executor and the cluster-submission behavior.
+
+executor: slurm
+jobs: 12                 # max Slurm jobs in flight at once
+latency-wait: 90         # seconds to wait for NFS/GPFS to surface outputs
+retries: 1               # resubmit a failed job once (e.g. transient node issue)
+printshellcmds: true
+rerun-incomplete: true
+keep-going: false        # stop on first hard failure (long jobs: fail fast, inspect)
+
+# Fallback resources for any rule that doesn't set its own (all our rules do).
+# IMPORTANT: do NOT set cpus_per_task here -- each rule's `threads:` drives
+# --cpus-per-task. A default cpus_per_task=1 forces SLURM_CPUS_PER_TASK=1, which
+# makes the in-job Snakemake scale every tool down to a single thread (and would
+# leave teralcp_construct_* unable to claim its memory on a 4 GB/CPU node).
+default-resources:
+  slurm_partition: parallel
+  slurm_account: blangme2
+  mem_mb: 8000
+  runtime: 120
