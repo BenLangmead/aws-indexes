@@ -1,0 +1,50 @@
+# HPRC release 2 (yr2) — 472-haplotype human pangenome (~5x yr1). The CHALLENGE run
+# for the checkpoint/resume workflow: total construct (~15 days) >> the 7-day walltime cap,
+# so it runs as per-phase A/B/C jobs sharing a checkpoint dir. NB: phase A (endmarker repair)
+# is projected at ~8.5 days, which may EXCEED a single 7-day job -- if construct_A hits its
+# walltime, it needs the finer two-traversal checkpoint inside phase A (not yet implemented).
+# grlBWT (~3.5 days) also exceeds the 3-day parallel cap -> on bigmem+extended here.
+
+collection: hprc-yr2
+agc_archive: /data/blangme2/fasta/hprc-v2/human472.agc
+haplotypes: ALL
+ftab_k: 12
+ftab_extra_k: [10, 8, 6, 4, 2]
+
+workdir: /vast/blangme2/movi-work   # VAST (~150 TB quota); scratch16's 10 TB user quota is too
+                                    # small for yr2's multi-TB intermediates. temp() auto-deletes
+                                    # input.fa/clean.fa/grl_in/grl_out once consumed.
+outdir:  /data/blangme2/movi
+
+account:        blangme2
+account_bigmem: blangme2_bigmem
+
+agc:          /home/blangme2/bin/agc
+movi:         /home/blangme2/git/movi-langmead/build/movi
+movi_prepare: /home/blangme2/git/movi-langmead/build/bin/movi-prepare-ref
+teralcp:      /home/blangme2/git/TeraTools-pr/src/TeraLCP/TeraLCP
+adapter:      /home/blangme2/git/TeraTools-pr/src/TeraLCP/tools/grlbwt2teralcp
+grlbwt:       /home/blangme2/git/grlBWT/build/grlbwt-cli
+grlbwt2rle:   /home/blangme2/git/grlBWT/build/grlbwt2rle
+samtools:     /home/blangme2/miniforge3/envs/vargas-build/bin/samtools   # for `samtools dict` (seqdict rule)
+
+teralcp_p: 24
+
+# Sizing for ~2.85 Tbp (n ~5x yr1) / r ~4.4B (nearly flat - r saturates for human pangenomes).
+# RAM is never the binding constraint (all <= the 1.5 TB bigmem node); TIME is.
+# runtime in MINUTES; bigmem rules need explicit qos (normal is rejected on bigmem).
+res:
+  extract:            {partition: parallel, account: blangme2,        cpus: 16, mem_mb: 64000,   runtime: 1440}
+  prepare:            {partition: parallel, account: blangme2,        cpus: 1,  mem_mb: 16000,   runtime: 2880}
+  concat:             {partition: parallel, account: blangme2,        cpus: 1,  mem_mb: 16000,   runtime: 1440}
+  grlbwt:             {partition: bigmem,   account: blangme2_bigmem, qos: extended,   cpus: 48, mem_mb: 1500000, runtime: 10080}
+  rle:                {partition: parallel, account: blangme2,        cpus: 4,  mem_mb: 96000,   runtime: 720}
+  adapter:            {partition: parallel, account: blangme2,        cpus: 4,  mem_mb: 96000,   runtime: 720}
+  teralcp_construct_A: {partition: bigmem,  account: blangme2_bigmem, qos: extended,   cpus: 24, mem_mb: 1000000, runtime: 10080}
+  teralcp_construct_B: {partition: bigmem,  account: blangme2_bigmem, qos: extended,   cpus: 24, mem_mb: 1000000, runtime: 10080}
+  teralcp_construct_C: {partition: bigmem,  account: blangme2_bigmem, qos: extended,   cpus: 24, mem_mb: 1000000, runtime: 10080}
+  teralcp_thresholds: {partition: bigmem,   account: blangme2_bigmem, qos: qos_bigmem, cpus: 48, mem_mb: 1500000, runtime: 2880}
+  stage:              {partition: parallel, account: blangme2,        cpus: 1,  mem_mb: 16000,   runtime: 1440}
+  movi_build:         {partition: bigmem,   account: blangme2_bigmem, qos: qos_bigmem, cpus: 48, mem_mb: 1500000, runtime: 2880}
+  ftab:               {partition: parallel, account: blangme2,        cpus: 32, mem_mb: 128000,  runtime: 720}
+  seqdict:            {partition: parallel, account: blangme2,        cpus: 16, mem_mb: 64000,   runtime: 480}

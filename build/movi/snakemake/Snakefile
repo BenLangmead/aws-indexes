@@ -31,14 +31,15 @@ def res(rule, key):
 rule all:
     input:
         os.path.join(IDX, "index.movi"),
-        expand(os.path.join(IDX, "ftab.{k}.bin"), k=config.get("ftab_extra_k", []))
+        expand(os.path.join(IDX, "ftab.{k}.bin"), k=config.get("ftab_extra_k", [])),
+        os.path.join(IDX, C + ".seqdict.json")
 
 # ----------------------------------------------------------------------------
 # 1. Input acquisition: AGC -> one FASTA
 # ----------------------------------------------------------------------------
 rule extract:
     output:
-        fa = os.path.join(WORK, "input.fa")
+        fa = temp(os.path.join(WORK, "input.fa"))   # consumed only by prepare; auto-deleted after
     params:
         agc     = config["agc"],
         archive = config["agc_archive"],
@@ -67,7 +68,7 @@ rule prepare:
     input:
         fa = os.path.join(WORK, "input.fa")
     output:
-        clean = os.path.join(WORK, "clean.fa")
+        clean = temp(os.path.join(WORK, "clean.fa"))   # consumed by concat + stage_ref; auto-deleted after both
     params:
         prep = config["movi_prepare"]
     threads: res("prepare", "cpus")
@@ -86,7 +87,7 @@ rule concat:
     input:
         clean = os.path.join(WORK, "clean.fa")
     output:
-        grl_in = os.path.join(WORK, "grl_in.txt")
+        grl_in = temp(os.path.join(WORK, "grl_in.txt"))   # consumed only by grlbwt; auto-deleted after
     threads: res("concat", "cpus")
     resources:
         slurm_partition = res("concat", "partition"),
@@ -103,7 +104,7 @@ rule grlbwt:
     input:
         grl_in = os.path.join(WORK, "grl_in.txt")
     output:
-        rlbwt = os.path.join(WORK, "grl_out.rl_bwt")
+        rlbwt = temp(os.path.join(WORK, "grl_out.rl_bwt"))   # consumed only by rle; auto-deleted after
     params:
         grlbwt = config["grlbwt"],
         tmp    = os.path.join(WORK, "grltmp")
@@ -111,6 +112,7 @@ rule grlbwt:
     resources:
         slurm_partition = res("grlbwt", "partition"),
         slurm_account   = res("grlbwt", "account"),
+        qos             = RES["grlbwt"].get("qos", ""),   # optional; bigmem needs it, parallel omits
         mem_mb          = res("grlbwt", "mem_mb"),
         runtime         = res("grlbwt", "runtime")
     shell:
@@ -400,4 +402,46 @@ rule ftab:
         r"""
         {params.movi} ftab --index {IDX} --ftab-k {wildcards.k}
         test -s {output.ftab}
+        """
+
+# ----------------------------------------------------------------------------
+# 14. seqdict: a sequence-dictionary companion identifying exactly which
+#     haplotypes/contigs are in the index, independent of index format.
+#     For each haplotype (an agc "set") we stream `agc getset | samtools dict -`
+#     and record per-contig name/length/MD5 (samtools/refget M5 convention:
+#     uppercase + newline-strip, non-ACGT hashed literally). The per-haplotype
+#     `xor_of_md5s` is the bitwise XOR of its contigs' 16-byte M5 values
+#     (order-independent). Provenance includes the source .agc md5 + how many
+#     haplotypes it stores. Depends only on the agc, so it can run in parallel
+#     with the whole build; produced straight into the index dir.
+# ----------------------------------------------------------------------------
+rule seqdict:
+    output:
+        json = os.path.join(IDX, C + ".seqdict.json")
+    params:
+        script   = os.path.join(workflow.basedir, "scripts", "seqdict_build.py"),
+        agc      = config["agc"],
+        archive  = config["agc_archive"],
+        samtools = config["samtools"],
+        haps     = str(config["haplotypes"]),
+        coll     = C,
+        jobs     = res("seqdict", "cpus") // 4 or 1
+    threads: res("seqdict", "cpus")
+    resources:
+        slurm_partition = res("seqdict", "partition"),
+        slurm_account   = res("seqdict", "account"),
+        mem_mb          = res("seqdict", "mem_mb"),
+        runtime         = res("seqdict", "runtime")
+    shell:
+        r"""
+        mkdir -p {IDX}
+        SETS_ARG=""
+        if [ "{params.haps}" != "ALL" ]; then
+            SETS_ARG="--sets $(echo '{params.haps}' | tr ' ' ',')"
+        fi
+        python3 {params.script} \
+            --agc {params.archive} --agc-bin {params.agc} --samtools-bin {params.samtools} \
+            --collection {params.coll} --jobs {params.jobs} --threads 4 $SETS_ARG \
+            --out {output.json}
+        test -s {output.json}
         """

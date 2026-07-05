@@ -29,6 +29,7 @@ teralcp:      /home/blangme2/git/TeraTools-pr/src/TeraLCP/TeraLCP
 adapter:      /home/blangme2/git/TeraTools-pr/src/TeraLCP/tools/grlbwt2teralcp
 grlbwt:       /home/blangme2/git/grlBWT/build/grlbwt-cli
 grlbwt2rle:   /home/blangme2/git/grlBWT/build/grlbwt2rle
+samtools:     /home/blangme2/miniforge3/envs/vargas-build/bin/samtools   # for `samtools dict` (seqdict rule)
 
 # Per-rule Slurm resources. NOTE on Rockfish memory model:
 #   parallel = 4 GB/CPU  (192 GB,  48c, 3-day, qos normal)
@@ -63,3 +64,4 @@ res:
   stage:              {partition: parallel, account: blangme2,        cpus: 1,   mem_mb: 8000,    runtime: 360}
   movi_build:         {partition: bigmem,   account: blangme2_bigmem, qos: qos_bigmem, cpus: 48,  mem_mb: 1500000, runtime: 1440}
   ftab:               {partition: parallel, account: blangme2,        cpus: 32,  mem_mb: 128000,  runtime: 720}
+  seqdict:            {partition: parallel, account: blangme2,        cpus: 16,  mem_mb: 64000,   runtime: 240}

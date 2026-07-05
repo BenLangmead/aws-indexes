@@ -1,0 +1,52 @@
+# OpenHGL (lh3/OpenHGL) — human579.agc: 579 high-quality de novo human assemblies
+# (~1.7 Tbp raw; CHM13 + HPRC(464) + Chinese/Korean/Saudi/Indian/UAE-Arab references).
+# With %-separators + reverse complement the Movi index BWT length n ~= 3.4 Tbp
+# (~20% larger than hprc-yr2's 2.84 Tbp). Uses the PARALLEL single-seq TeraLCP
+# (TeraTools-ssp), so the construct's per-sequence phases scale across cores instead
+# of running single-threaded — the whole reason this is now tractable at this scale.
+# Source agc already on Rockfish (durable /data); md5 617ff48ee2e51d0216192f577ab3f465.
+
+collection: openhgl
+agc_archive: /data/blangme2/fasta/openHGL/human579.agc
+haplotypes: ALL
+ftab_k: 12
+ftab_extra_k: [10, 8, 6, 4, 2]
+
+workdir: /vast/blangme2/movi-work   # VAST (128 TB free); temp() auto-deletes
+                                    # input.fa/clean.fa/grl_in/grl_out once consumed.
+outdir:  /data/blangme2/movi
+
+account:        blangme2
+account_bigmem: blangme2_bigmem
+
+agc:          /home/blangme2/bin/agc
+movi:         /home/blangme2/git/movi-langmead/build/movi
+movi_prepare: /home/blangme2/git/movi-langmead/build/bin/movi-prepare-ref
+teralcp:      /home/blangme2/git/TeraTools-ssp/src/TeraLCP/TeraLCP           # PARALLEL single-seq build (single-seq-parallel branch)
+adapter:      /home/blangme2/git/TeraTools-pr/src/TeraLCP/tools/grlbwt2teralcp
+grlbwt:       /home/blangme2/git/grlBWT/build/grlbwt-cli
+grlbwt2rle:   /home/blangme2/git/grlBWT/build/grlbwt2rle
+samtools:     /home/blangme2/miniforge3/envs/vargas-build/bin/samtools   # for `samtools dict` (seqdict rule)
+
+teralcp_p: 24   # threads for TeraLCP -p (override on the CLI, e.g. --config teralcp_p=16, to stay neighborly)
+
+# Sizing mirrors hprc-yr2 (bigmem, qos extended = 7-day cap; per-phase A/B/C checkpoints
+# so a multi-day construct completes across <=7-day jobs). OpenHGL is ~20% larger than
+# yr2 but r saturates for human pangenomes, so RAM stays well under the 1.5 TB node;
+# TIME is the binding constraint. runtime in MINUTES. For a devlangmead1 LOCAL run
+# (like yr2) the partition/qos fields are ignored; only cpus/mem_mb/threads matter.
+res:
+  extract:            {partition: parallel, account: blangme2,        cpus: 16, mem_mb: 64000,   runtime: 1440}
+  prepare:            {partition: parallel, account: blangme2,        cpus: 1,  mem_mb: 16000,   runtime: 2880}
+  concat:             {partition: parallel, account: blangme2,        cpus: 1,  mem_mb: 16000,   runtime: 1440}
+  grlbwt:             {partition: bigmem,   account: blangme2_bigmem, qos: extended,   cpus: 48, mem_mb: 1500000, runtime: 10080}
+  rle:                {partition: parallel, account: blangme2,        cpus: 4,  mem_mb: 96000,   runtime: 720}
+  adapter:            {partition: parallel, account: blangme2,        cpus: 4,  mem_mb: 96000,   runtime: 720}
+  teralcp_construct_A: {partition: bigmem,  account: blangme2_bigmem, qos: extended,   cpus: 24, mem_mb: 1000000, runtime: 10080}
+  teralcp_construct_B: {partition: bigmem,  account: blangme2_bigmem, qos: extended,   cpus: 24, mem_mb: 1000000, runtime: 10080}
+  teralcp_construct_C: {partition: bigmem,  account: blangme2_bigmem, qos: extended,   cpus: 24, mem_mb: 1000000, runtime: 10080}
+  teralcp_thresholds: {partition: bigmem,   account: blangme2_bigmem, qos: qos_bigmem, cpus: 48, mem_mb: 1500000, runtime: 2880}
+  stage:              {partition: parallel, account: blangme2,        cpus: 1,  mem_mb: 16000,   runtime: 1440}
+  movi_build:         {partition: bigmem,   account: blangme2_bigmem, qos: qos_bigmem, cpus: 48, mem_mb: 1500000, runtime: 2880}
+  ftab:               {partition: parallel, account: blangme2,        cpus: 32, mem_mb: 128000,  runtime: 720}
+  seqdict:            {partition: parallel, account: blangme2,        cpus: 16, mem_mb: 64000,   runtime: 480}
