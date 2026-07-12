@@ -51,8 +51,14 @@ def clean_base(c):
     return buf
 
 
+# Fast C-level equivalent of applying clean_base to every char: uppercase ACGT
+# preserved, everything else (incl. lowercase c/g/t, N, IUPAC, gaps) -> 'A'.
+_CLEAN_TT = str.maketrans({chr(i): (chr(i) if chr(i) in "ACGT" else "A")
+                           for i in range(256)})
+
+
 def clean_seq(s):
-    return "".join(clean_base(c) for c in s)
+    return s.translate(_CLEAN_TT)
 
 
 _RC = str.maketrans("ACGT", "TGCA")
