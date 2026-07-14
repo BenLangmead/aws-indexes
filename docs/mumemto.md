@@ -1,3 +1,17 @@
+<style>
+/* These tables have long, prose descriptions.  On wider viewports, wrap the
+   columns to fit the content area instead of forcing a very wide horizontal
+   scroll (that scroll left an edge-fade rendering artifact mid-table).  On
+   small screens they fall back to the site-wide horizontal-scroll behavior. */
+@media (min-width: 721px) {
+  .table-scroll table { width: 100%; min-width: 0; }
+  .table-scroll th,
+  .table-scroll td { white-space: normal; overflow-wrap: anywhere; vertical-align: top; }
+  .table-scroll th:first-child,
+  .table-scroll td:first-child { white-space: nowrap; }
+}
+</style>
+
 # Mumemto and Shredtools HPRC indexes
 
 Mumemto ([GitHub repo](https://github.com/vikshiv/mumemto)) is an efficient multi-MUM finder for large pangenomes.  Multi-MUMs have a variety of uses, including forming a pangenome coordinate system, visualizing synteny, and serving as a basis for multiple genome alignment.
