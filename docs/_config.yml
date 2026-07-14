@@ -16,6 +16,9 @@ navigation:
   - title: Movi
     url: movi
     blurb: Movi 1/2 pangenome indexes.
+  - title: Mumemto
+    url: mumemto
+    blurb: Mumemto multi-MUMs and Shredtools coordinate systems for HPRC pangenomes.
   - title: HISAT
     url: hisat
     blurb: HISAT2 and related splice-aware aligner indexes.
