@@ -1,62 +1,62 @@
 {
-  "generated_at": "2026-05-26T13:04:54-04:00",
-  "updated_label": "May 26, 2026",
+  "generated_at": "2026-07-16T17:31:47+00:00",
+  "updated_label": "July 16, 2026",
   "period": {
-    "start": "2026-05-01",
-    "end": "2026-05-24",
-    "label": "May 1 through May 23, 2026"
+    "start": "2026-07-01",
+    "end": "2026-07-16",
+    "label": "July 1 through July 15, 2026"
   },
   "first_known_log_date": "2020-06-15",
-  "storage_timestamp": "2026-05-25T11:00:11-04:00",
+  "storage_timestamp": "2026-07-14T13:31:00-04:00",
   "metrics": {
-    "egress_gb": 167608.3841511367,
-    "public_egress_gb": 165901.8753608847,
-    "weekly_egress_gb": 51011.247350345955,
-    "weekly_unblended_cost_usd": 2614.2635602134123,
-    "requests": 609541.0,
-    "unblended_cost_usd": 8589.723126415498,
-    "storage_bytes": 28187937570879.0,
-    "storage_tb_decimal": 28.187937570879,
-    "objects": 4719.0
+    "egress_gb": 165317.44804082657,
+    "public_egress_gb": 111736.2649175897,
+    "weekly_egress_gb": 77148.1424190524,
+    "weekly_unblended_cost_usd": 3208.4833204270017,
+    "requests": 853439.0,
+    "unblended_cost_usd": 6875.321400915004,
+    "storage_bytes": 31523297803212.0,
+    "storage_tb_decimal": 31.523297803212,
+    "objects": 5615.0
   },
   "cards": [
     {
       "label": "Data stored",
-      "value": "28.2 TB",
-      "detail": "Current S3 storage across 4,719 objects."
+      "value": "31.5 TB",
+      "detail": "Current S3 storage across 5,615 objects."
     },
     {
       "label": "Objects available",
-      "value": "4,719",
+      "value": "5,615",
       "detail": "Public files, archives, indexes, checksums, and reports in genome-idx."
     },
     {
       "label": "Data served this period",
-      "value": "167.6 TB",
-      "detail": "S3 transfer out from May 1 through May 23, 2026."
+      "value": "165.3 TB",
+      "detail": "S3 transfer out from July 1 through July 15, 2026."
     },
     {
       "label": "S3 requests this period",
-      "value": "610K",
+      "value": "853K",
       "detail": "Cost Explorer request classes for the same period."
     }
   ],
   "site_cards": [
     {
       "label": "Data stored",
-      "value": "28.2 TB"
+      "value": "31.5 TB"
     },
     {
       "label": "Files available",
-      "value": "4,719"
+      "value": "5,615"
     },
     {
       "label": "Served / week",
-      "value": "~51.0 TB"
+      "value": "~77.1 TB"
     },
     {
       "label": "AWS charges / week",
-      "value": "~$2.6K",
+      "value": "~$3.2K",
       "note": "Thank you, AWS!"
     }
   ]
