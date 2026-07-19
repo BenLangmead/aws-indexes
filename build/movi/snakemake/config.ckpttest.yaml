@@ -1,0 +1,54 @@
+# TeraLCP checkpoint/resume TEST config — small 4-haplotype subset of HPRC-yr1.
+# Purpose: exercise the per-phase construct split (teralcp_construct_A -> B -> C with
+# -checkpoint / -stop-after) end to end on a small input so it runs in minutes, not days.
+# Distinct `collection` name => fresh workdir/outdir (won't touch the real hprc-yr1 build).
+#
+# Launch (from ~/movi-slurm/snakemake, snakemake8 env):
+#   nohup snakemake --workflow-profile profiles/rockfish --configfile config.ckpttest.yaml \
+#       > run.ckpttest.log 2>&1 &
+# Verify checkpoint/resume is result-invariant (byte-identical to a straight-through build):
+#   W=/scratch16/blangme2/movi-work/hprc-yr1-ckpttest
+#   T=/home/blangme2/git/TeraTools-pr/src/TeraLCP/TeraLCP
+#   $T -f rlbwt -i $W/grl -t $W/ref.tmp -oindex $W/teralcp_ref -p 8 -v time   # no -checkpoint
+#   cmp $W/teralcp.lcp_index $W/teralcp_ref.lcp_index && echo "BYTE-IDENTICAL ✓"
+
+collection: hprc-yr1-ckpttest
+agc_archive: /data/blangme2/fasta/hprc-yr1/HPRC-yr1.agc
+haplotypes: CHM13Y,HG002.1,HG002.2,HG00438.1
+ftab_k: 12
+ftab_extra_k: [10, 8, 6, 4, 2]
+
+workdir: /scratch16/blangme2/movi-work
+outdir:  /data/blangme2/movi
+
+account:        blangme2
+account_bigmem: blangme2_bigmem
+
+agc:          /home/blangme2/bin/agc
+movi:         /home/blangme2/git/movi-langmead/build/movi
+movi_prepare: /home/blangme2/git/movi-langmead/build/bin/movi-prepare-ref
+teralcp:      /home/blangme2/git/TeraTools-pr/src/TeraLCP/TeraLCP
+adapter:      /home/blangme2/git/TeraTools-pr/src/TeraLCP/tools/grlbwt2teralcp
+grlbwt:       /home/blangme2/git/grlBWT/build/grlbwt-cli
+grlbwt2rle:   /home/blangme2/git/grlBWT/build/grlbwt2rle
+
+teralcp_p: 8
+
+# Right-sized for a ~4-haplotype input (~12 Gbp -> ~24 Gbp w/ revcomp). Construct A/B/C +
+# thresholds + movi_build on bigmem with qos_bigmem (shared/non-exclusive nodes -> schedules
+# fast; small mem so it co-tenants). They still go through every construct phase, just quickly,
+# so the A->B->C checkpoint chaining is fully exercised. runtime in MINUTES.
+res:
+  extract:            {partition: parallel, account: blangme2,        cpus: 8,  mem_mb: 32000,  runtime: 180}
+  prepare:            {partition: parallel, account: blangme2,        cpus: 1,  mem_mb: 16000,  runtime: 120}
+  concat:             {partition: parallel, account: blangme2,        cpus: 1,  mem_mb: 8000,   runtime: 60}
+  grlbwt:             {partition: parallel, account: blangme2,        cpus: 16, mem_mb: 64000,  runtime: 240}
+  rle:                {partition: parallel, account: blangme2,        cpus: 4,  mem_mb: 32000,  runtime: 60}
+  adapter:            {partition: parallel, account: blangme2,        cpus: 4,  mem_mb: 32000,  runtime: 60}
+  teralcp_construct_A: {partition: bigmem,  account: blangme2_bigmem, qos: qos_bigmem, cpus: 8, mem_mb: 256000, runtime: 240}
+  teralcp_construct_B: {partition: bigmem,  account: blangme2_bigmem, qos: qos_bigmem, cpus: 8, mem_mb: 256000, runtime: 240}
+  teralcp_construct_C: {partition: bigmem,  account: blangme2_bigmem, qos: qos_bigmem, cpus: 8, mem_mb: 256000, runtime: 240}
+  teralcp_thresholds: {partition: bigmem,   account: blangme2_bigmem, qos: qos_bigmem, cpus: 8, mem_mb: 256000, runtime: 120}
+  stage:              {partition: parallel, account: blangme2,        cpus: 1,  mem_mb: 8000,   runtime: 60}
+  movi_build:         {partition: bigmem,   account: blangme2_bigmem, qos: qos_bigmem, cpus: 8, mem_mb: 256000, runtime: 120}
+  ftab:               {partition: parallel, account: blangme2,        cpus: 8,  mem_mb: 64000,  runtime: 120}

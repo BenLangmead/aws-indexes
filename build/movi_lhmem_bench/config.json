@@ -1,0 +1,29 @@
+{
+    "region": "us-east-1",
+    "availability_zone": "us-east-1b",
+    "instance_type": {
+        "type": "c5.metal",
+        "spot_price": 2.1
+    },
+    "root_volume_gb": 200,
+    "_comment_s3": "Public genome-idx inputs are downloaded unsigned (no creds). Results are uploaded to genome-idx by assuming the cross-account upload_role_arn from the instance role (credential_source=Ec2InstanceMetadata) -- no permanent credentials. Same model as build/bowtie and build/movi_kmer_bench.",
+    "src_s3_uri": "s3://genome-idx/movi/lhmem_bench/movi_src.tar.gz",
+    "index_s3_uri": "s3://genome-idx/movi/movi2_hprc1_thresh/index.movi",
+    "_comment_ftab": "Both ftab files land in the index dir so production read_ftab() and movi-co can pick either ftab-k at query time.",
+    "ftab_s3_uris": [
+        "s3://genome-idx/movi/kmer_bench/ftab.10.bin",
+        "s3://genome-idx/movi/mem_bench/ftab.12.bin"
+    ],
+    "_comment_reads": "Full S3 URIs (two different prefixes): real_100k for PML, mem2k for MEM/kmer.",
+    "reads": [
+        "s3://genome-idx/movi/kmer_bench/reads/real_100k.fasta.gz",
+        "s3://genome-idx/movi/mem_bench/reads/mem2k.fasta.gz"
+    ],
+    "results_s3_prefix": "s3://genome-idx/movi/lhmem_bench/results",
+    "instance_role_name": "index-zone-movi-kmer-bench-role",
+    "upload_profile": "data-langmead",
+    "upload_role_arn": "arn:aws:iam::128342663110:role/S3UploadFromComputeRole",
+    "min_mem_length": 25,
+    "ftab_ks": [10, 12],
+    "install_vtune": false
+}

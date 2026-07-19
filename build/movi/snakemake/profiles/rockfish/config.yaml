@@ -4,6 +4,8 @@
 
 executor: slurm
 jobs: 12                 # max Slurm jobs in flight at once
+slurm_jobname_prefix: movi-idx   # Slurm job names become `movi-idx_<run_uuid>` instead of a bare
+                                 # UUID, so `squeue` clearly flags these as Movi-index builds.
 latency-wait: 90         # seconds to wait for NFS/GPFS to surface outputs
 retries: 1               # resubmit a failed job once (e.g. transient node issue)
 printshellcmds: true

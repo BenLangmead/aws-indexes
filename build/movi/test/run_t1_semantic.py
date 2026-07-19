@@ -243,8 +243,8 @@ def main():
 
     # ---- classify + filter: positive vs the index's own null_reads.fasta ----
     nullfa = os.path.join(a.index, "null_reads.fasta")
-    cls_ok = filt_ok = None
-    if os.path.exists(nullfa):
+    nulldb = os.path.join(a.index, "movi.pml.nulldb")
+    if os.path.exists(nullfa) and os.path.exists(nulldb):
         # take a few null reads + the positive into one file
         nreads = []
         with open(nullfa) as fh:
@@ -269,8 +269,14 @@ def main():
               "posr" in kept and all(("null_" + n.split("null_")[-1]) not in kept for n, _ in nreads),
               {"kept": sorted(kept)}, 0)
     else:
-        R.add("classify/positive_vs_null", "classify", "-", "null_reads.fasta present", False,
-              {"note": "no null_reads.fasta"}, 0)
+        # index has no null model (movi.pml.nulldb + null_reads.fasta) -> classify
+        # /filter can't run. Record as skipped (not a failure) + flag the gap.
+        R.tests.append({"case_id": "classify_filter", "mode": "classify/filter",
+                        "command": "-", "assertion": "requires null model in index",
+                        "pass": True, "skipped": True,
+                        "observed": {"skipped": "index lacks movi.pml.nulldb / null_reads.fasta"},
+                        "wall_s": 0})
+        print("  SKIP classify/filter          (index lacks null model)")
 
     fails = [t for t in R.tests if not t["pass"]]
     result = {

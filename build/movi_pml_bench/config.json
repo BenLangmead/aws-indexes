@@ -1,0 +1,25 @@
+{
+    "region": "us-east-1",
+    "availability_zone": "us-east-1b",
+    "instance_type": {
+        "type": "c5.metal",
+        "spot_price": 2.1
+    },
+    "root_volume_gb": 200,
+    "_comment": "PML coroutine A/B on bare metal: run_bench builds 3 movi-co variants (LTO-reuse, LTO-inline, no-LTO-inline) from the source and times them at W=8, plus per-source-line PEBS (cycles) on the LTO-reuse binary to find the residual hotspot vs the hand-inlined loop. Public genome-idx inputs downloaded unsigned; results uploaded via the cross-account upload role (no permanent creds).",
+    "src_s3_uri": "s3://genome-idx/movi/pml_bench/movi_src.tar.gz",
+    "index_s3_uri": "s3://genome-idx/movi/movi2_hprc1_thresh/index.movi",
+    "ftab_s3_uris": [
+        "s3://genome-idx/movi/kmer_bench/ftab.10.bin"
+    ],
+    "reads_s3_prefix": "s3://genome-idx/movi/kmer_bench/reads",
+    "reads": [
+        "real_100k.fasta.gz",
+        "one453.fasta"
+    ],
+    "results_s3_prefix": "s3://genome-idx/movi/pml_bench/results",
+    "instance_role_name": "index-zone-movi-kmer-bench-role",
+    "upload_profile": "data-langmead",
+    "upload_role_arn": "arn:aws:iam::128342663110:role/S3UploadFromComputeRole",
+    "install_vtune": false
+}

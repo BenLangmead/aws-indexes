@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+cdk.out/
+cdk.context.json
+outputs.json
+*.pem

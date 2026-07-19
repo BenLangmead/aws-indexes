@@ -1,0 +1,48 @@
+{
+    "collection": "hprc-yr2",
+    "key_name": "movi-idx-build",
+
+    "agc_s3": "s3://genome-idx/movi/inputs/human472.agc",
+    "haplotypes": "ALL",
+
+    "ftab_k": 12,
+    "ftab_extra_k": [10, 8, 6, 4, 2],
+    "teralcp_p": 0,
+
+    "s3_work_prefix": "s3://genome-idx/movi/aws-build",
+    "s3_output_prefix": "s3://genome-idx/movi/indexes",
+
+    "repos": {
+        "agc":       {"url": "https://github.com/refresh-bio/agc.git",      "branch": "master"},
+        "grlbwt":    {"url": "https://github.com/ddiazdom/grlBWT.git",       "branch": "main"},
+        "teratools": {"url": "https://github.com/BenLangmead/TeraTools.git", "branch": "teralcp-checkpoint-resume"},
+        "movi":      {"url": "https://github.com/BenLangmead/Movi.git",      "branch": "lh_kmers_mems_mph"}
+    },
+
+    "asg_name": "movi-idx-hprc-yr2",
+    "instance_profile": "default",
+
+    "instance_type": {
+        "test": {
+            "region": "us-east-2",
+            "availability_zone": "us-east-2a",
+            "preferred_availability_zones": ["us-east-2a", "us-east-2b", "us-east-2c"],
+            "type": "t3.micro",
+            "spot_price": "0.02"
+        },
+        "default": {
+            "region": "us-east-2",
+            "availability_zone": "us-east-2a",
+            "preferred_availability_zones": ["us-east-2a", "us-east-2b", "us-east-2c"],
+            "type": "i4i.12xlarge",
+            "spot_price": "2.50"
+        },
+        "headroom": {
+            "region": "us-east-2",
+            "availability_zone": "us-east-2a",
+            "preferred_availability_zones": ["us-east-2a", "us-east-2b", "us-east-2c"],
+            "type": "i4i.16xlarge",
+            "spot_price": "3.00"
+        }
+    }
+}
