@@ -12,7 +12,7 @@ Tags:
   - medicine
   - reference index
   - mapping
-License: Public domain
+License: "No restrictions from the maintainers; underlying data keep their source terms (e.g. GTDB-derived indexes are CC BY-SA 4.0). See https://benlangmead.github.io/aws-indexes/licensing"
 Resources:
   - Description: Genomic indexes for Bowtie, Kraken, HISAT, Centrifuge
     ARN: PENDING
